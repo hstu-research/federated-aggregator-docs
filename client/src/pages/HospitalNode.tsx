@@ -8,7 +8,8 @@ const documents = [
   { title: "Schema and workflow", description: "Local SQLite control state, append-only events, normal and exception flows, and no patient-data persistence.", file: "HOSPITAL_NODE_AGENT_DATA_AND_SCHEMA.md" },
   { title: "Architecture and API", description: "TypeScript/Python split, simulated deployment topology, existing Core limitations, and proposed workload contract.", file: "HOSPITAL_NODE_AGENT_ENGINEERING_AND_API.md" },
   { title: "Core workload contract", description: "Additive Core authorization, assignment, lease, descriptor, audit, and verified bounded Azure lease and creation evidence before later integration boundaries.", file: "CORE_HOSPITAL_NODE_WORKLOAD_CONTRACT.md" },
-  { title: "Core-mediated streaming dossier", description: "Complete synthetic-first requirements, schema, workflow, architecture, API, test, and handoff constraints for server-mediated generated-model streaming.", file: "CORE_MEDIATED_MODEL_STREAMING.md" },
+  { title: "Core-mediated streaming dossier", description: "Complete synthetic-first requirements, schema, workflow, architecture, API, test, and handoff constraints for the now-validated server-mediated generated-model stream.", file: "CORE_MEDIATED_MODEL_STREAMING.md" },
+  { title: "Agent receipt and persistence", description: "Next documentation-only gate: receipt verification, exact full-body integrity checks, redacted SQLite evidence, and private generated-fixture materialization without training.", file: "HOSPITAL_NODE_AGENT_MODEL_RECEIPT_AND_PERSISTENCE.md" },
   { title: "Implementation handoff", description: "Repository map, delivery slices, test gates, contract policy, and autonomous decision rules.", file: "HOSPITAL_NODE_AGENT_IMPLEMENTATION_HANDOFF.md" }
 ];
 
@@ -30,18 +31,18 @@ export default function HospitalNode() {
             <article><span>RETAINED LIMIT</span><h2>No hospital claim.</h2><p>Only generated values and tiny tensors are accepted today. Real images, patient data, institution integration, and clinical use remain explicitly out of scope.</p></article>
           </section>
           <section className="node-evidence-row"><div><span>REPOSITORY / COMMIT</span><strong>hstu-research / <i>cfcf1dc</i></strong></div><p>Hospital Node Quality Gates #1 completed successfully for formatting, strict TypeScript, four synthetic execution tests, and four Python optimization tests.</p><a className="editorial-link" href="https://github.com/hstu-research/federated-aggregator-hospital-node" target="_blank" rel="noreferrer">Inspect repository <ArrowUpRight size={15} /></a></section>
-          <section className="node-documents"><div className="section-heading"><span>DOCUMENTED DELIVERY RECORD</span><span>seven design artifacts</span></div>{documents.map((document, index) => <a key={document.file} className="node-document" href={`https://github.com/hstu-research/federated-aggregator-docs/blob/main/docs/${document.file}`} target="_blank" rel="noreferrer"><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{document.title}</h2><p>{document.description}</p></div><FileText size={19} /><ArrowUpRight size={17} /></a>)}</section>
-          <section className="node-next"><div><span>NEXT VALIDATION GATE</span><h2>Stream one generated fixture through Core, then close every proof state.</h2></div><p>The reviewed Core stream boundary is deployed with no locator or credential disclosure. Next, a separately deployed profile must reuse the synthetic workload mapping, call the guarded route once, compare bytes privately, and close the intent/lease/assignment plus fixture. No Agent change, training, update, submission, ML-worker identity, hospital data, or aggregation-worker activation is permitted.</p><CheckCircle2 size={24} /></section>
+          <section className="node-documents"><div className="section-heading"><span>DOCUMENTED DELIVERY RECORD</span><span>eight design artifacts</span></div>{documents.map((document, index) => <a key={document.file} className="node-document" href={`https://github.com/hstu-research/federated-aggregator-docs/blob/main/docs/${document.file}`} target="_blank" rel="noreferrer"><span>{String(index + 1).padStart(2, "0")}</span><div><h2>{document.title}</h2><p>{document.description}</p></div><FileText size={19} /><ArrowUpRight size={17} /></a>)}</section>
+          <section className="node-next"><div><span>NEXT DOCUMENTATION GATE</span><h2>Verify one Core receipt locally before any training can see a generated fixture.</h2></div><p>The guarded Core stream is now boundedly validated with no locator or credential disclosure. The next dossier fixes the Agent-only verifier: it must bind one descriptor-only intent to immutable command facts, check full-body integrity into a private temporary sink, persist only redacted receipt evidence, and stop before Python training. No update, submission, ML-worker identity, hospital data, provider contact, or aggregation-worker activation is permitted.</p><CheckCircle2 size={24} /></section>
         </div>
         <aside className="node-provenance" aria-label="Bounded Azure proof provenance">
-          <span>PROOF / 002</span>
-          <h2>Creation<br />evidence</h2>
+          <span>PROOF / 003</span>
+          <h2>Core stream<br />evidence</h2>
           <StatusStamp status="VALIDATED" />
-          <div><span>RELEASE</span><strong>0b48aeb</strong></div>
-          <div><span>AUTHORITY</span><strong>private service</strong></div>
-          <div><span>BOUND</span><strong>one creation</strong></div>
-          <div><span>CLOSURE</span><strong>expired</strong></div>
-          <p>Generated synthetic control facts only. No model access, transfer, training, submission, or hospital data.</p>
+          <div><span>RELEASE</span><strong>707cf23</strong></div>
+          <div><span>AUTHORITY</span><strong>Core guard</strong></div>
+          <div><span>BOUND</span><strong>one generated stream</strong></div>
+          <div><span>CLOSURE</span><strong>consumed / closed</strong></div>
+          <p>Generated non-clinical fixture only. No Agent persistence, training, submission, hospital data, or direct provider access.</p>
         </aside>
       </div>
     </div>

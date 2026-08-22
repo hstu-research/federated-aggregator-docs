@@ -1,6 +1,6 @@
 # Core-Mediated Generated-Model Streaming
 
-**Status:** Proposed design; no stream route, storage read adapter, Agent download, byte transfer, training, update, submission, or aggregation behavior is implemented by this document.  
+**Status:** Core stream route and private storage-read boundary implemented; one bounded Azure generated-fixture stream proof validated. Agent receipt verification, local persistence, training, update, submission, and aggregation behavior remain unimplemented.
 **Scope:** A narrowly bounded, synthetic-first Core capability that may eventually stream a verified generated base-model fixture to the authenticated Hospital Node over the existing Core connection, without giving the node a bucket name, object key, provider credential, or presigned URL.
 
 ## 1. Nontechnical requirements and research rationale
@@ -201,6 +201,20 @@ The next runner is an opt-in profile named `hospital-node-base-model-stream-vali
 | Closure | Confirm one completed stream session, consumed intent, expired generated lease/assignment, closure event, fixture-object cleanup, zero remaining runner instances, healthy Core, and disabled worker. | Active proof state, repeated stream call, worker enablement, or a claim of object-provider/hospital readiness. |
 
 The profile invocation must use an explicit Compose file and `run --build`, following the documented stale-image correction from the prior intent proof. It must not start until the profile source itself passes Core Quality Gates and protected Azure deployment, followed by renewed health and disabled-worker checks. A failure after a guarded stream request must be recorded and reviewed before another invocation.
+
+## 10. Implementation and evidence record — generated-fixture stream proof
+
+Core commit `707cf23` adds the opt-in `hospital-node-base-model-stream-validation` profile and its one-shot runner. The source passed local full quality with **83 TypeScript tests and 9 Python tests**. GitHub Core Quality Gates run `32567581955` completed successfully in **2 minutes 1 second** and protected Azure deployment run `32567581950` completed successfully in **2 minutes 45 seconds**, both from `707cf2367b96a5f8e4cde00120267238cef91eb6`. The deployed profile then remained dormant until renewed checks confirmed public and container liveness/readiness HTTP 200 and the aggregation worker’s explicit default-disabled marker.
+
+The profile was invoked **once** through the explicit deployed Compose file with `run --build`. It reused the existing separate synthetic Hospital Node workload mapping, created one tiny generated non-clinical fixture only through Core-private setup, created fresh generated surrounding Core facts, acquired the separate Hospital Node identity only for the Core routes, issued one read intent, and called the guarded full-body stream route once. The runner emitted only its safe success marker: the bounded generated-model stream validation succeeded and synthetic stream state closed. It privately checked the expected byte count, checksum, content type, no-store/nosniff/attachment response behavior, and the absence of prohibited public response projections; no token, secret, storage locator, provider configuration/response, raw header, or fixture byte was printed.
+
+Post-run aggregate-safe inspection observed **one completed stream session**, **zero active stream sessions**, **one consumed read intent**, **zero issued or streaming read intents**, **zero active leases**, **one stream closure event**, and **zero remaining validation-runner containers**. The terminal aggregate also contained four expired assignments and three expired leases, including earlier bounded fixtures; these non-identifying global counts are not attributed to the stream profile alone. Public and container liveness/readiness remained HTTP 200, and the deployed aggregation worker continued to log its default-disabled state. The runner performed its generated-fixture cleanup internally; no storage locator or provider response was inspected or published.
+
+This is proof of a single Core-mediated generated-fixture transfer and safe Core terminal state only. It is **not** an Agent download/persistence proof, a real model distribution claim, a provider-readiness claim, a training result, an update/submission/aggregation proof, a hospital integration, or a clinical-use claim.
+
+## 11. Next documentation gate — Agent receipt verification and synthetic persistence
+
+The next slice is design-only and is documented in `HOSPITAL_NODE_AGENT_MODEL_RECEIPT_AND_PERSISTENCE.md`. It defines how the separate Agent may obtain a descriptor-only intent, verify a full-body Core response against immutable local facts, and persist only a scalar-safe receipt/materialization record for a generated fixture in a private local workspace. It does not authorize coding, Core changes, Agent deployment, training, update packaging, submission, aggregation, or a new Azure execution until its own contract and delivery slices are published and accepted.
 
 ## References
 

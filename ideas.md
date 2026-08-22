@@ -62,3 +62,6 @@
 - The primary ledger mark uses three offset vertical rules intersected by one rising aggregation line; generic node-network motifs are reserved for explanatory diagrams only.
 - Every primary documentation route follows the reading-room structure with a persistent index, editorial document column, and visible provenance or evidence margin.
 - Repeating content groups use ruled ledger inserts, margin labels, and status stamps rather than generic rounded marketing cards; mineral teal remains an operational evidence signal.
+- Long chronologies use named archival chapter breaks with a visible index range, rather than a uniform chronological feed.
+- The Research Log evidence margin is a second spine: every entry carries a bounded proof-state label, state treatment, and record number in a ruled margin panel.
+- Oxide red visibly marks blocked, failed, rejected, and cautionary evidence; mineral teal remains reserved for validated, active, and navigational evidence.

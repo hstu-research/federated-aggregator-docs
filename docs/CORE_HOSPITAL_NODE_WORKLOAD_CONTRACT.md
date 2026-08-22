@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease boundary implemented and bounded Azure lease proof validated; artifact capability and submission boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent receipt/persistence, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -458,6 +458,16 @@ Aggregate terminal evidence was **one expired proof assignment, zero active leas
 The next increment is design-only. A Hospital Node eventually needs model bytes for synthetic local training, but the system must not expose an object locator, bucket, provider credential, or presigned URL. The proposed boundary is a **Core-mediated model-stream authorization**: an authenticated `hospital_node` workload presents its own active read-intent receipt to a new node-only Core endpoint; Core validates workload ownership, unexpired issued intent, immutable descriptor/command binding, one-time consumption, and response headers, then streams verified bytes from an internal storage adapter over the existing authenticated connection. The node never receives storage credentials or an object address.
 
 Before code, the ledger must define stream range policy, maximum response size, checksum verification behavior, content-type allowlist, cancellation and partial-transfer handling, intent-consumption timing, revocation/expiry race rules, binary audit evidence, rate limits, retention, and failure redaction. Its contract must make clear that a successful HTTP response is not training success and that no patient data, preprocessing input, local path, update, or model result may return to Core in the same increment. This design must be reviewed, tested, and separately proved with a generated non-clinical byte fixture before any Agent-side download or local FedAvg/FedProx integration begins.
+
+## 31. Evidence record — bounded Azure Core-mediated generated-model stream proof
+
+Core commit `707cf23` added the dedicated opt-in generated-fixture stream validation profile after the reviewed stream boundary from `d3516e4` was already deployed. Local full quality passed with 83 TypeScript and 9 Python tests. Core Quality Gates run `32567581955` succeeded in 2 minutes 1 second and protected Azure deployment run `32567581950` succeeded in 2 minutes 45 seconds from `707cf2367b96a5f8e4cde00120267238cef91eb6`. Renewed public/container liveness and readiness were HTTP 200 before the profile ran; the aggregation worker remained deployed but logged its explicit default-disabled state.
+
+The profile used the explicit deployed Compose file and `run --build` once. It reused the existing separate synthetic `hospital_node` workload mapping, created one tiny generated non-clinical fixture by Core-private setup, created fresh generated supporting facts, obtained only the separate Hospital Node token for the guarded Core endpoints, issued one descriptor-only intent, and called the Core stream route once. The private runner compared body byte count/checksum and safe binary response behavior without emitting a fixture byte, storage locator, bucket, object version, provider endpoint/response, token, secret, header dump, database URL, local path, patient field, or training data.
+
+Aggregate-safe terminal inspection observed one completed stream session, zero active stream sessions, one consumed intent, zero issued/streaming intents, zero active leases, one stream closure event, zero validation-runner containers, and HTTP 200 health after closure. The aggregate expired-assignment and expired-lease totals include earlier bounded fixtures and are therefore not presented as stream-run-only counts. The profile’s safe success marker confirms its generated stream state closed; fixture cleanup remained internal and was not inspected through any locator-bearing provider interface.
+
+This establishes a one-shot **Core-mediated generated-fixture stream** only. It does not establish Agent receipt validation, local model persistence, direct storage access, model release, training, update packaging, update submission, aggregation, hospital operation, real data use, or clinical validity. The next gate is the separate Agent receipt-verification and synthetic-persistence dossier, which must be completed before implementation begins.
 
 ## References
 
