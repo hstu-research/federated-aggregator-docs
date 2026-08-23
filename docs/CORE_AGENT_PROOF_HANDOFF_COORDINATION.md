@@ -248,6 +248,21 @@ Local `pnpm check` passed formatting, lint, strict TypeScript, **79 TypeScript t
 
 This validates local port behavior and terminal classification only. It does not create a generated fixture, runtime clock, Agent image, Core executable runner, protected composite profile, target Compose render, token, lease, intent, stream, workspace write, training, submission, provider interaction, or aggregation action. The safe pre-route block remains in force.
 
+## 16. Design record — source-only Core proof-runner entrypoint
+
+The next Core slice is a **source-only entrypoint**, not a container command or deployed runner. Its research value is to make the already-tested coordinator invocation and terminal readout explicit without silently constructing runtime authority. The entrypoint accepts an explicit enablement bit, a caller-supplied UTC `now`, and a preconstructed coordinator; it returns a versioned scalar readout containing only the runner state (`completed`, `timed_out`, or `refused`) and, for completion, the existing allowlisted scalar Agent outcome. It must deny disabled execution and invalid time before coordinator use.
+
+| Boundary | Requirement and explicit non-goal |
+| --- | --- |
+| Authorization | Explicit caller opt-in only; no environment, CLI flag, secret, token, human, ML-worker, or callback identity read. |
+| Immutable facts | The entrypoint binds only caller-supplied `now` and coordinator behavior already bound by the narrow handoff/result contracts. |
+| Data and readout | Versioned scalar output only; no handoff/result record, assignment, digest, path, byte, header/body, provider, locator, token, secret, or free-text diagnostic projection. |
+| Failure and closure | Disabled/invalid input is refused before use; coordinator-owned timeout/interruption/error closure remains mandatory and does not retry. |
+| Architecture | Pure application package; it constructs no filesystem, channel, fixture, timer, database, transport, identity, provider, Compose, container, or public route. |
+| Test/proof boundary | Deterministic coordinator fakes verify explicit enablement, exact scalar projections, refusal-before-use, and no-retry behavior. This is neither a target image nor a proof authorization. |
+
+The following increment will implement this small entrypoint and tests only. A separate adapter/design gate remains required before any runtime command can supply a real generated context or wall-clock wait, and a distinct protected composite profile/render gate remains required before Azure activity.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
