@@ -218,6 +218,14 @@ The first remote workflows for `9e7128d` failed before build or deployment becau
 
 This validates the source adapter and its protected release, not a deployed proof topology. The target still lacks Agent source/image and a reviewed composite profile; no target tmpfs mount render, Core coordinator runner, fixture, token, lease, intent, stream, workspace write, training, submission, provider access, or aggregation has occurred.
 
+## 13. Implementation evidence — explicit Core tmpfs coordinator composition
+
+Core release `bda376aaabfff48d7dca7832ead61ab6136c8c70` composes only the released fixed-root tmpfs filesystem adapter, fixed-operation file channel, and explicit coordinator factory. It requires the caller to inject the generated-context and bounded wait ports, so it cannot create a fixture, acquire identity, open transport, access a provider/database, read configuration, or start a runner. Its deterministic test uses only a fake node filesystem plus fake context/wait ports to prove one scalar pre-route result, one closure, and removal of both fixed records.
+
+Local `pnpm check` passed formatting, lint, strict TypeScript, **77 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted. Core Quality Gates run `32659163268` and protected Azure deployment run `32659163281` both completed successfully.
+
+This is still a composition helper, not an executable Azure runner. The required generated-context port, bounded wait implementation, Agent source/image, protected composite profile, target Compose render, and final read-only preflight remain unimplemented and keep the proof pre-route blocked.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
