@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic typed transport/pathless-workspace compatibility adapters, and concrete-adapter review implemented as local design evidence; concrete transport/workspace, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic typed transport/pathless-workspace compatibility adapters, and non-runtime concrete-adapter review artifacts implemented locally; concrete transport/workspace, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -506,6 +506,14 @@ L4c fixes the prerequisites for later concrete Agent adapter code without writin
 The review fixes full-body response validation and safe classification before body delivery. Only a `200`, exact generated-model type, positive bounded length, `no-store`, `nosniff`, attachment disposition, no content encoding, and valid checksum projection may produce typed facts plus an iterator. Redirects, partial/multipart/encoded/malformed/oversized responses and terminal statuses are denied without body reading. Pre-body unavailability is only classified for a future fresh-intent policy; post-body interruption is terminal and cannot resume.
 
 The future private workspace remains pathless and adapter-private: exclusive temporary write, incremental integrity check, same-root atomic promotion, scalar-only materialization capability, persistence-compensation discard, and cleanup-failure readiness block are required. L4c authorizes no environment read, token, socket, filesystem action, Agent deployment, Core/Azure request, provider contact, trainer, update, submission, aggregation, real data, hospital workflow, or clinical claim. Its next work is non-runtime L4c1/L4c2 review fixtures; real adapter code is deferred to L4d.
+
+## 37. Evidence record — non-runtime concrete-adapter review artifacts
+
+Hospital Node Agent commit `6cb6662` converts the L4c review into deterministic, non-runtime test artifacts. The transport artifact classifies only proposed HTTPS-origin/audience/bound conditions, two allowed operation classes, and safe stream response facts. It never creates a client, request, URL/path, header map, token, environment read, socket, or provider integration; its safe projection excludes origin, bounds, raw response, body, header, token, and provider details.
+
+The workspace artifact classifies abstract private-root, ownership, permission, and symlink-risk conditions and models cleanup/compensation state obligations without a filesystem path or operation. It requires cleanup after mismatch/interruption/promote failure, discard after persistence failure, suppression for terminal replay, and blocked readiness for cleanup failure. Local quality passed with formatting, strict TypeScript, 29 TypeScript tests, and 4 Python tests.
+
+This is local review-artifact evidence only. It does not establish a concrete transport, token acquisition, filesystem permission at runtime, Core/Azure request, deployment, model delivery, local materialization, training, update submission, aggregation, hospital integration, real data use, or clinical validity. The next gate is L4d documentation-first concrete adapter implementation with local-only negative tests and no runtime invocation.
 
 ## References
 

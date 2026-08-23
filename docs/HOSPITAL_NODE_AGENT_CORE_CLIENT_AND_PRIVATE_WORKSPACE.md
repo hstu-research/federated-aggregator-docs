@@ -294,6 +294,16 @@ The future concrete adapter package may be merged only after local negative test
 
 L4c proves only that the future concrete adapter has a fixed, reviewable design. It does **not** prove implementation, transport security, token acquisition, private filesystem permissions, Core compatibility at runtime, generated-model delivery, local materialization, training, submission, aggregation, hospital integration, or clinical use.
 
+## 11. Implementation evidence — L4c1/L4c2 non-runtime review artifacts
+
+Hospital Node Agent commit `6cb6662` implements only deterministic review artifacts aligned with the L4c record. `concrete-adapter-review` accepts proposed configuration/response facts as generated test values and returns a safe configuration class, allowed operation class, or scalar response classification. It validates an HTTPS-origin shape, literal hospital-node audience, positive time/size bounds, UUID-only operation identifiers, and the required full-body facts. It does not construct a concrete path, client, header map, token, environment source, request, or socket. Its safe result never contains the candidate origin, bounds, URL, raw header/body, token, provider field, or response text.
+
+The paired `concrete-workspace-review` artifact accepts only abstract root/owner/permission classes plus expected size and models the required pathless lifecycle matrix. It denies a non-private root class, shared/unknown ownership or permissions, and symlink-escape risk. Its state review requires temporary cleanup on mismatch/interruption/promote failure, promoted-fixture discard on persistence failure, terminal replay suppression, and readiness block on cleanup failure. It does not import or access filesystem, path, environment, network, provider, storage, Core, or Azure APIs; it does not accept or project a local path.
+
+Local `pnpm run ci` passed after these artifacts: formatting, strict TypeScript, **29 TypeScript tests**, and **4 Python tests**. The added tests prove configuration redaction, two-operation allowlisting, redirect/partial/encoded/unsafe response denial, pre-body unavailability classification, private-root/permission denial, and pathless cleanup/compensation obligations. No concrete adapter, environment read, workload token, socket, filesystem action, Core/Azure request, deployment, training, update, submission, aggregation worker, hospital data, or clinical workflow occurred.
+
+The next permitted slice is **L4d** concrete adapter implementation, but it is still limited to local unit/negative tests and safe observability. It requires a new implementation record before code and must remain before deployment, any Core request, Azure Agent execution, training, update submission, or aggregation proof.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
