@@ -202,6 +202,14 @@ Its local composition tests use the deterministic in-memory channel only; they c
 
 The result is a source-only protected composition seam, not a target topology. Concrete private tmpfs channel adapters, a Core coordinator runner, an Agent image, an Azure composite profile/render, and an aggregate-safe runtime preflight remain separate required gates. The pre-route block therefore remains in force.
 
+## 11. Implementation evidence — Core fixed-operation private file channel
+
+Core release `91fa453bbc8dc6c68b44b77351b874508a96560e` adds a strict file-channel adapter behind an injected pathless filesystem port. The adapter accepts only fixed logical records named `handoff` and `result`; it can ensure the two private roots are empty, exclusively write one validated handoff, parse one result, and remove both records during terminal closure. It cannot enumerate a directory, accept a caller-selected path, read environment, resolve a secret, construct network/identity/storage/provider/database/fixture behavior, or create a runner. Malformed result serialization and stale channel content are denied before coordinator use.
+
+Its deterministic tests use in-memory functions to prove one handoff/result exchange and two-record cleanup. Local `pnpm check` passed formatting, lint, strict TypeScript, **74 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted. Core Quality Gates run `32657908322` and protected Azure deployment run `32657908327` both completed successfully.
+
+This adapter is not the concrete Azure tmpfs filesystem implementation and does not create a Core runner or target profile. The target Agent source/image, Core runner, concrete fixed-root filesystem port, composite Azure source/render, and final read-only preflight remain required before any proof could be considered.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
