@@ -362,6 +362,43 @@ The terminal matrix covers token-material failure, request-port transport refusa
 
 Local `pnpm run ci` passed formatting, strict TypeScript, **62 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32667511970` completed successfully. This is an all-fake composition test, not a generated-fixture proof: it uses no secret file, OIDC provider, HTTP/fetch/socket, host or tmpfs filesystem, real private volume, image build/release, Core/Azure/storage/provider request, Compose render, target runner, training, update/submission, or aggregation. The next boundary is a separate **design-only** review of a concrete secret-source adapter; target image binding and Azure staging remain prohibited until every concrete adapter family receives its own design, fake-first implementation, quality evidence, and later protected release gate.
 
+## 23. Design record — target-safe concrete secret-source adapter
+
+### 23.1 Boundary and nontechnical requirements
+
+This record defines only the future Agent-side seam that could obtain a workload credential for the already closed `HospitalNodeWorkloadTokenSource` interface. Its research value is auditable least-privilege identity handling without expanding the Agent into a general credential broker. The future adapter must be deployment-owned, noninteractive, private, and observable only through an allowlisted scalar outcome. It must never make a clinical, hospital-integration, production-readiness, training, update, submission, or aggregation claim.
+
+> **Stop condition:** this design neither authorizes reading a secret nor proves that an identity provider, a workload credential, an issuer, or a target Agent runtime exists.
+
+### 23.2 Technical contract and protected ownership
+
+The composition root may receive a typed `HospitalNodeSecretSourceConfig` value only after an outer protected deployment reviewer has validated it. The value contains a version marker, the literal `fedagg-hospital-node` audience, a bounded clock-skew allowance, and an opaque **secret-reference class**; it contains neither a secret string, raw file path, issuer URL, endpoint, client ID, token, provider locator, callback, nor transport option. The concrete adapter is the sole module allowed to resolve that protected reference inside the target image after a later dedicated implementation/release decision.
+
+| Concern | Required future rule | Explicit prohibition |
+|---|---|---|
+| Reference ownership | Deployment owns one fixed, private secret projection; application callers receive no secret value or path. | Caller-provided paths, environment fallback, volume discovery, directory enumeration. |
+| Read discipline | One bounded in-process read per acquisition attempt; validate expected file kind/mode/owner at the concrete edge; clear transient buffers at the narrowest practical boundary. | Persistence, cache, serialization, error interpolation, status/metric labels, or log fields containing credential material. |
+| Audience and time | Accept only the literal audience; reject invalid clock, issuer-policy, expiry, not-before, rotation, or key-validation facts through fixed scalar codes. | Audience override, human/browser/device identity, ML-worker/callback identity reuse, silent expiry grace, token reuse beyond the later policy. |
+| Provider coupling | A later provider client may exist only behind this adapter and must return an opaque token to the typed Core client seam. | Provider response projection, generic OAuth/OIDC SDK access from application code, direct Core token handling. |
+
+### 23.3 Minimal schema, states, and redaction
+
+The future configuration and readout are additive, versioned scalar values. `secretReferenceClass` is an enum such as `hospital_node_workload_projection`; it is deliberately not a locator. The adapter may hold a transient opaque credential buffer internally but must never place it in SQLite, receipts, events, `PrivateProofResult`, public documentation, output JSON, test snapshots, or exception messages. `SecretSourceReadout` may expose only `{ schemaVersion, outcome }`, where `outcome` is one of `ready`, `disabled`, `reference_denied`, `secret_unavailable`, `secret_invalid`, `provider_unavailable`, `token_invalid`, `token_expired`, or `policy_denied`.
+
+The finite workflow is **disabled → reference validated → bounded read → internal credential validation → bounded provider exchange → opaque token returned → terminal scalar outcome**. Any denial is terminal for that composition attempt. There is no retry loop, refresh loop, background rotation watcher, cache, fallback identity, or replay of a failed request. If an outer deployment rotates the protected projection, a later run receives that change only through a newly constructed adapter after an explicit release/restart policy; the adapter does not watch or log rotation state.
+
+### 23.4 Architecture, dependencies, and engineering standards
+
+The dependency direction is fixed: one protected outer composition root → concrete secret-source adapter → closed `HospitalNodeWorkloadTokenSource` interface → existing typed Core client. The adapter must not depend on the runner, workspace, channel, repository, trainer, Python package, aggregation worker, or public listener. It may not export a generic read, generic identity client, raw token parser, issuer configuration, or shared credential utility. Real filesystem/secret access and real provider transport must be separate concrete sub-adapters behind private interfaces, not implicit imports in the application layer.
+
+Engineering acceptance requires strict unknown-field rejection at the protected config boundary; constant allowlists for audience and scalar errors; bounded buffers and timeouts; no raw input/provider error propagation; no secret-bearing object serialization; deterministic fake clock/material/provider doubles; and a static import check proving that all other Agent packages lack secret, provider, filesystem, and browser identity imports. The adapter’s only permissible public method is `getAccessToken({ audience: 'fedagg-hospital-node' })`, and its only permitted return on success is an opaque string passed directly to the closed Core-client seam.
+
+### 23.5 Fake-first implementation, gates, and AI handoff
+
+The first executable slice must remain fake-only: a new `SecretMaterialPort` and `WorkloadIdentityExchangePort` with deterministic injected material, fake clock, and fixed scalar refusal outcomes. It must test absent/wrong-kind/unsafe-mode/oversized/malformed material; forbidden audience; clock skew; expired/not-before facts; issuer/key-policy failure; unavailable provider; invalid response; no cache; no retry; and absence of secret/token/reference text from snapshots, errors, results, or logs. It must not open a secret projection, contact an issuer, acquire a token, or add an SDK.
+
+After that fake-only slice, a separate design and implementation record is required for the protected secret read edge, followed by a separate provider exchange edge, independent local quality evidence, image binding, protected release/deployment evidence, Azure Agent source staging, target Compose render, read-only safety preflight, and only then consideration of a one-shot proof. This design does not advance any of those gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
