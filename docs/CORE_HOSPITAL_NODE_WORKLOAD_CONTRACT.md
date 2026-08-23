@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, injected concrete adapter logic, and protected preflight profile implemented locally; private Core-to-Agent proof handoff design published; protected deployment/release verification and one-shot proof remain unimplemented; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, injected concrete adapter logic, protected preflight profile, and private Core-to-Agent handoff components implemented locally; protected deployment/release verification and one-shot proof remain unimplemented; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -542,6 +542,14 @@ The next gate requires protected release/safety verification before the one-shot
 The generated-fixture proof requires an explicit private rendezvous because the guarded Hospital Node API exposes no assignment-discovery route. The new coordination contract gives Core-private setup exactly one handoff record containing a fresh proof-run ID, assignment ID, immutable generated descriptor facts, and expiry. It passes through an ephemeral private channel only; it carries no token, secret, Core origin, header/body, locator/provider field, fixture bytes, path, data field, or selection capability. The Agent independently obtains the separate hospital-node identity, leases the handed assignment through the established guarded lease route, validates command equality, then calls the existing intent/stream routes once.
 
 The Agent returns a narrower scalar-safe result using only the proof-run ID, fixed outcome/booleans, and terminal receipt state. Core validates it privately, cleans/expirs the generated context, and deletes the channel. Target composition requires directional private tmpfs channels, no host path/persistent volume/public port/queue/discovery endpoint, and a one-run/no-retry policy. This is L4e2a design only: no coordination code, target composition, token, Core/Azure call, fixture transfer, training, submission, aggregation, hospital integration, data use, or clinical claim exists yet.
+
+## 42. Evidence record — pure private proof contract and fake Agent lease orchestration
+
+Core `a64488d` adds strict pure validators for the ephemeral handoff/result records. It accepts only expected fields, UUIDs, immutable digest formats, bounded generated facts, expiry, correlated run IDs, and coherent outcome states; unknown locator-like fields and impossible success claims are rejected. Core local quality passed formatting, lint, strict TypeScript, 67 TypeScript tests with 18 database integration tests skipped by the non-integration command, and 9 Python tests. Its pre-existing `core.env.example` modification was preserved untouched.
+
+Agent `8e53c22` adds matching narrow parser/result contracts and a fake-first lease → command-binding → intent → stream → workspace → scalar-result orchestration use case. All capabilities are injected and local tests use deterministic doubles, in-memory SQLite, and in-memory workspace state. Agent CI passed formatting, strict TypeScript, 37 TypeScript tests, and 4 Python tests. No runtime coordination channel, shared volume, token, Core/Azure request, fixture transfer, provider, deployment, training, update submission, aggregation, hospital/data system, or clinical workflow occurred.
+
+The next gate is protected release/safety verification. No target profile can be built or run until all source quality/release, target Compose rendering, Core release/health, disabled-worker, no-runner, and safe initial proof-state checks are current and recorded.
 
 ## References
 

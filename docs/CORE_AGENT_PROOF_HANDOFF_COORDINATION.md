@@ -1,6 +1,6 @@
 # Core–Agent Private Proof Handoff Coordination
 
-**Status:** L4e2a design contract. No cross-repository proof coordinator, Agent runtime lease/stream runner, shared proof volume, target-runtime composition, Core/Azure request, generated-fixture transfer, training, update, submission, or aggregation behavior is implemented by this document.
+**Status:** L4e2a design contract and L4e2b pure/fake-first Core–Agent coordination components implemented locally. No shared runtime channel, target-runtime composition, live token, Core/Azure request, generated-fixture transfer, training, update, submission, or aggregation behavior is implemented by this document.
 
 **Scope:** The existing guarded Hospital Node API intentionally has no assignment-discovery route. A future proof therefore needs a tightly scoped coordination channel that lets Core’s private validation setup hand one newly created generated assignment to one ephemeral Agent runner without creating a public listing service, exposing an artifact locator, or converting the Agent into a general Core control client.
 
@@ -177,6 +177,14 @@ These files are private coordinator interfaces, not HTTP payloads. They do not c
 | L4e3 | Release/preflight verification and one `run --build` invocation if every documented gate succeeds. | One attempt only; no trainer/update/submission/aggregation. |
 
 Any request to make the handoff discoverable, durable, externally callable, provider-aware, secret-bearing, data-bearing, path-bearing, retriable, multi-Agent, or usable outside the bounded proof is a fail-closed design change requiring a new ledger record.
+
+## 8. Implementation evidence — L4e2b private contract and fake coordination
+
+Core commit `a64488d` implements the pure `hospital-node-proof-handoff/v1` and `hospital-node-proof-result/v1` validators in the domain package. The Core contract accepts only strict fields, fresh UUIDs, valid immutable digest formats, a positive byte bound, exact generated content type, and unexpired handoff. It rejects unknown locator-like fields, stale values, uncorrelated result IDs, and impossible success claims before any coordinator/channel/storage/identity code could be composed. Core local quality passed formatting, lint, strict TypeScript, **67 TypeScript tests** (with 18 database-integration tests intentionally skipped under the non-integration command), and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` working-tree change remained unmodified and uncommitted.
+
+Agent commit `8e53c22` mirrors the narrow private handoff/result contract and adds `runPrivateProofHandoff`. The use case consumes an already validated handoff through injected lease, typed Core client, receipt repository, private workspace, and scalar result-writer ports. Its fake-first path is lease → command fact binding → intent → stream → private verification → one narrow terminal result. It refuses locator-bearing handoffs and returns no assignment/artifact/checksum/route/token/path/provider/byte in the result. Agent local CI passed formatting, strict TypeScript, **37 TypeScript tests**, and **4 Python tests** using only deterministic fakes, in-memory SQLite, and in-memory workspace state.
+
+No private filesystem channel, shared Compose volume, token acquisition, Core/Azure request, generated fixture transfer, target deployment, provider access, training, update, submission, aggregation, hospital data, or clinical workflow occurred. The next gate is release/safety verification: both source quality/release conclusions, target-runtime Compose rendering, Core release/health, disabled aggregation worker, no runner, and safe initial aggregate state must be recorded before the one-shot profile can be constructed or run.
 
 ## References
 
