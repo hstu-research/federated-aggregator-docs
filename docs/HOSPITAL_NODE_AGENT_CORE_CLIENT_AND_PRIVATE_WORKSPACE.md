@@ -1,6 +1,6 @@
 # Hospital Node Agent — Typed Core Client and Private Workspace Adapter Contract
 
-**Status:** Documentation-first L4 contract. No typed Core client, workload-token call, HTTP request, real/private filesystem workspace, storage-provider access, Agent deployment, Azure execution, training, update, submission, or aggregation behavior is implemented by this document.
+**Status:** L4a contract and L4b deterministic fake typed-client/pathless-workspace compatibility adapters implemented locally. No workload-token call, HTTP request, real/private filesystem workspace, storage-provider access, Agent deployment, Azure execution, training, update, submission, or aggregation behavior is implemented by this document.
 
 **Scope:** This contract follows the local-only L2 receipt persistence and L3 fake verifier. It specifies the only allowed future transport seam between a synthetic Hospital Node Agent and Core, plus the private workspace seam that may later materialize an already Core-mediated generated fixture. It is deliberately not a direct object-store contract, a generic HTTP client, a public download feature, a model-release API, or a clinical-data feature.
 
@@ -205,6 +205,18 @@ The first real Client/Workspace proof is not authorized by L4a or L4b. It may st
 | L4e — Proof dossier | A fresh bounded Agent/Core generated-fixture proof profile and closure plan. | No invocation until protected deployment/health/disabled-worker checks are recorded. |
 
 Every delivery slice requires a dated public Research Ledger entry before the next slice. The implementation must preserve the two-route allowlist, separate hospital-node identity, no-locator/no-provider boundary, full-body-only behavior, scalar-safe persistence, private/pathless workspace result, and disabled aggregation worker. Any erosion of those constraints is a blocker, not an implementation shortcut.
+
+## 9. Implementation evidence — L4b deterministic fake adapters
+
+Hospital Node Agent commit `afc98d1` implements only the fake-adapter slice of this contract. `FakeTypedHospitalNodeCoreClient` admits two method classes and no generic transport surface: descriptor-intent issuance and stream opening. Its inputs contain only assignment/read-intent IDs and an idempotency key. Its outputs are a scalar typed receipt or a scalar-safe stream projection with checksum, byte size, allowlisted content type, `no-store`, `nosniff`, attachment disposition, and an async generated-byte iterator. The fake records only a route-class call log; it accepts no base URL, header map, token, Range, provider field, arbitrary route, selector, raw response, or storage capability.
+
+The fake enforces intent-before-stream sequencing and classifies out-of-sequence calls as terminal conflict. Invalid idempotency yields terminal unprocessable; configured terminal/retryable fixtures remain typed outcomes. The fake has no socket, environment configuration, token source, HTTP library, redirect behavior, provider client, or Azure reference. It is a compatibility oracle for the L4 contract, not a Core connection.
+
+`FakePrivateGeneratedFixtureWorkspace` separately implements the pathless private workspace port with generated in-memory bytes. It exposes only aggregate temporary/materialized/cleaned/discarded lifecycle counts. Exact expected checksum and byte size are prerequisites for promotion. Mismatch promotion is denied until cleanup, and an interrupted generated body requires cleanup. The adapter contains no filesystem root, path, filename, provider key, token, credential, network call, or public readout. It is not a concrete private filesystem adapter.
+
+Local `pnpm run ci` passed after L4b: formatting, strict TypeScript, **25 TypeScript tests**, and **4 Python tests**. The new coverage verifies allowed intent→stream sequencing, out-of-sequence denial, invalid idempotency, terminal/retryable fixture classification, full-body scalar fact projection, pathless fake promotion, mismatch cleanup, and interrupted-body cleanup. No Core route, workload token, HTTP stream, socket, filesystem, storage provider, Azure resource, trainer, update, submission, aggregation worker, hospital data, or clinical workflow was used.
+
+The next safe step is **L4c**, an adapter-review record for a future concrete client and concrete private workspace. It must decide configuration ownership, token-port wiring, HTTP response validator, error map, private-root permissions, cleanup failure behavior, and deployment posture before any production-shaped code. L4c does not authorize a Core request or Azure execution.
 
 ## References
 
