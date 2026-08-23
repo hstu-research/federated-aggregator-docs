@@ -210,6 +210,14 @@ Its deterministic tests use in-memory functions to prove one handoff/result exch
 
 This adapter is not the concrete Azure tmpfs filesystem implementation and does not create a Core runner or target profile. The target Agent source/image, Core runner, concrete fixed-root filesystem port, composite Azure source/render, and final read-only preflight remain required before any proof could be considered.
 
+## 12. Implementation evidence — concrete Core tmpfs filesystem port and repaired release gate
+
+Core release `9e7128d` adds an isolated `@fedagg/proof-channel-tmpfs` edge package. It owns the two fixed internal roots and filenames, rejects non-directory/symlink/group-or-world-readable roots, bounds records to 4 KiB, uses exclusive `0600` writes, treats only missing files as empty during reads/removal, and exposes no path selection or directory enumeration to the application channel. Its tests use a deterministic node-filesystem fake; no host filesystem, target tmpfs, token, secret, provider, database, fixture, Core route, or runner was invoked locally. Local `pnpm check` passed formatting, lint, strict TypeScript, **76 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**.
+
+The first remote workflows for `9e7128d` failed before build or deployment because the new workspace package had not yet been represented in `pnpm-lock.yaml`; no runtime code or Azure target action occurred. Core release `9ef36ae702c0027a6e714c61b76aac322b360153` adds only the required lockfile workspace dependency entry. The same local quality command passed again. Core Quality Gates run `32658551164` and protected Azure deployment run `32658551195` then completed successfully. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted throughout.
+
+This validates the source adapter and its protected release, not a deployed proof topology. The target still lacks Agent source/image and a reviewed composite profile; no target tmpfs mount render, Core coordinator runner, fixture, token, lease, intent, stream, workspace write, training, submission, provider access, or aggregation has occurred.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
