@@ -263,6 +263,14 @@ The next Core slice is a **source-only entrypoint**, not a container command or 
 
 The following increment will implement this small entrypoint and tests only. A separate adapter/design gate remains required before any runtime command can supply a real generated context or wall-clock wait, and a distinct protected composite profile/render gate remains required before Azure activity.
 
+## 17. Implementation evidence — source-only Core proof-runner entrypoint
+
+Core release `550ebf842bc8b8dafae353e6cf027a94536085b2` implements the source-only entrypoint. It requires the caller to provide an explicit enablement bit, a valid UTC `Date`, and a preconstructed coordinator. It returns only the versioned `hospital-node-source-only-proof-runner-readout/v1` projection: `completed` together with the existing allowlisted scalar result, or `timed_out` / `refused` without diagnostic payload. Disabled or invalid input is refused before coordinator use; a coordinator refusal is projected once without retry.
+
+The three deterministic tests cover completed scalar projection, refusal-before-use for disabled/invalid input, timeout/refusal projection, and one-call no-retry behavior. Local `pnpm check` passed formatting, lint, strict TypeScript, **82 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained outside the commit. Core Quality Gates run `32665135582` and protected Azure deployment run `32665135576` both completed successfully.
+
+This entrypoint is not an executable target runner: it does not read configuration, construct a channel, fixture, clock, filesystem, database, transport, identity, storage/provider client, container, listener, or Compose profile. There remains no target Agent image, Core runtime adapter binding, protected composite profile/render, fixture, token, lease, intent, stream, workspace write, training, submission, provider interaction, or aggregation action. The pre-route block remains active.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
