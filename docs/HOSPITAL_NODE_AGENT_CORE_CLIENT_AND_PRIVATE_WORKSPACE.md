@@ -218,6 +218,82 @@ Local `pnpm run ci` passed after L4b: formatting, strict TypeScript, **25 TypeSc
 
 The next safe step is **L4c**, an adapter-review record for a future concrete client and concrete private workspace. It must decide configuration ownership, token-port wiring, HTTP response validator, error map, private-root permissions, cleanup failure behavior, and deployment posture before any production-shaped code. L4c does not authorize a Core request or Azure execution.
 
+## 10. L4c concrete-adapter review — implementation preconditions
+
+**Review status:** Approved as a design and non-runtime test criterion record. It authorizes no concrete adapter source, no environment read, no token acquisition, no socket, no filesystem operation, no Agent deployment, and no Core/Azure invocation.
+
+### 10.1 Configuration and identity ownership
+
+The composition root, not application/domain/persistence code, is the only future owner of configuration. It may construct a closed `HospitalNodeCoreTransportConfig` from a validated deployment source; the config object remains adapter-private and is never serialized, stored, returned, or logged. The only future fields are a fixed HTTPS Core origin, the pinned hospital-node audience, bounded connect/response timeouts, and a bounded maximum model byte size. The config must reject non-HTTPS origins, origin path/query/fragment components, user-info, unsupported host syntax, a zero/negative timeout, or a nonpositive/max-unsafe size **before** a client object is created.
+
+| Future input | Owner | Validation and use | Never crosses into |
+|---|---|---|---|
+| Core origin | Composition root → concrete transport constructor | One normalized HTTPS origin, no caller-supplied route or redirect target. | Application, domain, SQLite, event, status, public document, test snapshot, log. |
+| Hospital-node audience | Composition root → workload token port | Literal `fedagg-hospital-node` only; requested immediately before each allowed Core call. | Application request, receipt, stream projection, SQLite, or event. |
+| Token | Workload token port → concrete transport internals | Bearer header assembled only inside the adapter for one request. | Public API, error value, response value, log, test fixture, persistence, or workspace. |
+| Time/size bounds | Composition root → concrete transport/workspace constructor | Guard connection, headers, byte count, and private temporary write before work begins. | Caller-controlled request, public readout, or unchecked allocation. |
+| Private root | Composition root → concrete workspace constructor | Absolute dedicated private directory; checked before any write, never returned. | Contract, receipt/event row, materialization result, status, log, or public documentation. |
+
+The future `HospitalNodeWorkloadTokenSource` must be called only by the concrete transport adapter. It may return a token to that adapter only. The adapter must not cache, record, compare, throw, interpolate, or log it. A token-source denial or exception becomes the allowlisted `transport_unavailable` result without an outbound attempt. Human, browser, ML-worker, callback, and provider identities remain categorically invalid.
+
+### 10.2 Fixed routes and request construction
+
+The concrete transport must have two private constructors, not a generic `request()` method. They append only canonical UUID path/query components to the normalized Core origin. The idempotency key is validated as UUID before an intent request; read-intent ID is validated as UUID before a stream request. The user agent sends no caller-provided header map, cookie, `Range`, compression preference, artifact selector, model parameter, provider field, byte body, or retry directive.
+
+| Operation | Fixed method and route family | Allowed request facts | Required terminal refusal |
+|---|---|---|---|
+| Request intent | `POST /v1/workload-assignments/{assignmentId}/base-model-read-intents` | Assignment UUID, idempotency UUID, internal bearer token. | Invalid IDs, wrong origin, token-source failure, any redirect, 401/403/404/409/416/422, malformed/unsafe response. |
+| Open stream | `GET /v1/workload-assignments/{assignmentId}/base-model-stream?intentId={intentId}` | Assignment UUID, intent UUID, internal bearer token. | Invalid IDs, `Range`/partial path, redirect, content encoding, non-200, missing/mismatched required facts, configured size limit, post-body failure. |
+
+Set redirect mode to error. Treat any cross-origin, redirect, opaque, partial (`206`), multipart, content-encoded, or unexpected-success response as terminal `redirect_denied` or `invalid_response` without reading a response body. The concrete adapter may read only a bounded safe response category/status to classify an error; it must never parse or expose response text/JSON, raw headers, or body content.
+
+### 10.3 Stream response validator and safe error map
+
+The validator runs inside the transport adapter before yielding an `AsyncIterable<Uint8Array>`. It requires status `200`, exact `application/vnd.fedagg.base-model+zip`, a parseable positive `Content-Length` no larger than the local configured maximum, `Cache-Control` containing `no-store`, exact `X-Content-Type-Options: nosniff`, attachment-only content disposition without projecting a filename, no `Content-Encoding`, and one valid SHA-256 checksum projection. The adapter returns only the already defined typed facts and body iterator.
+
+| Observed condition | Adapter outcome | Body behavior | Retry posture |
+|---|---|---|---|
+| Valid intent or valid full-body stream headers | `ready` typed receipt/stream facts. | Yield only for the validated stream. | No automatic retry. |
+| `401`, `403`, `404`, `409`, `416`, `422` | Terminal denial with allowlisted code. | Do not read. | No retry for current context. |
+| `503` before body or token/network unavailable before response | `retryable_unavailable`. | Do not read. | Future policy only; never automatic in L4. |
+| Redirect, `206`, other non-200, encoded/multipart/malformed/missing/oversized facts | Terminal `redirect_denied` or `invalid_response`. | Do not read. | No retry for current intent. |
+| Iterator throws/disconnects after body starts | Terminal failure for the current intent; workspace cleanup path handles body state. | Stop immediately. | No resume/Range/reuse. |
+
+The checksum header is a safe Core fact but is still validated internally; raw header collection must be discarded. The local verifier compares the typed checksum/length/content type again with the immutable read receipt. Header presence is not proof of model fitness, local persistence, training compatibility, update validity, or clinical suitability.
+
+### 10.4 Private workspace lifecycle and permissions
+
+The future concrete workspace is a local private-store adapter, never a direct object-store client. Its root must be dedicated to generated fixtures, owned by the Agent runtime identity, and inaccessible to other users/processes by restrictive directory/file permissions. The adapter creates a unique private temporary file with exclusive creation inside the validated root; it streams chunks and computes checksum/byte count; it flushes and closes before an atomic same-root promotion. It returns `{ receiptId, state: "materialized" }` only. It never returns a path, filename, handle, byte, root, permission detail, or storage/provider fact.
+
+| Lifecycle point | Required action | Failure and recovery posture |
+|---|---|---|
+| Constructor | Validate root is absolute, private, existing/creatable only by approved composition policy, and not a symlink escape. | Fail startup with a safe configuration code; do not create a session. |
+| Begin | Create one exclusive temporary sink beneath root; enforce expected positive size bound. | Refuse duplicate/terminal receipt; no overwrite or path projection. |
+| Consume | Write bounded chunks, hash/count incrementally, stop on overflow/disconnect. | Close and attempt temporary cleanup; report a safe local failure code. |
+| Promote | Require exact observed facts, flush/close, atomically rename within root. | If promote fails, remove temporary; do not mark verified. |
+| Persist verified | Application writes scalar terminal result after promotion. | If persistence fails, invoke `discardPromoted`; never retain a usable fixture. |
+| Cleanup/discard | Best-effort unlink plus directory-boundary recheck; record no path. | Return allowlisted `cleanup_required` local failure and block readiness; operator review is required before any later proof. |
+| Restart | Reconcile only opaque temporary-file age/category internally under a later dedicated recovery policy. | L4c does not authorize automatic deletion or reuse after restart. |
+
+`cleanup_required` is a local safe reason category to be added only with a later workspace state/contract change. Until then, cleanup behavior remains review criteria and fake coverage, not persisted runtime behavior. A real workspace implementation must not use an untrusted filename, preserve a path in SQLite, or scan arbitrary directories.
+
+### 10.5 Safe observability, compatibility, and deployment posture
+
+The concrete transport/workspace layer may emit only: operation class (`intent` or `stream`), allowlisted outcome code, receipt state, equality boolean, byte-count bucket, and duration bucket. It must never emit Core origin, request path/query, token, response text/header/body, filename/path/root, object provider detail, database connection, local data, or exception payload. CI fixtures must model status/header/body conditions with in-memory typed test doubles; no test reads a secret or makes a network/filesystem/provider call.
+
+The future concrete adapter package may be merged only after local negative tests cover invalid config, wrong IDs, token-source denial without outbound attempt, route allowlist, redirect/partial/encoding denial, every safe error class, max-size refusal, typed-response redaction, private-root refusal, exclusive temp behavior, mismatch/interrupt cleanup, promote failure, persistence compensation, cleanup failure classification, and terminal replay. The Agent remains local-only and no deployment profile, Docker service, public port, Azure resource, or Core route call is authorized by L4c.
+
+### 10.6 Implementation handoff and proof preconditions
+
+| Next slice | Allowed deliverable | Absolute stop condition |
+|---|---|---|
+| L4c1 | Type-only config/route/response-review fixtures and tests that use no environment/token/network APIs. | Do not instantiate `fetch`, read `process.env`, obtain a token, or contact Core. |
+| L4c2 | Type-only workspace configuration/lifecycle/recovery decision fixtures and fake negative tests. | Do not import filesystem APIs, create a directory, or persist a path. |
+| L4d | Concrete transport/workspace source plus local unit/negative tests after L4c1/L4c2 evidence. | No deployment, Core call, Azure Agent execution, training, update, submission, or aggregation. |
+| L4e | New deployment and bounded-proof dossier with redacted closure template. | Do not invoke until protected quality/deployment, health, release, and disabled-worker evidence are current. |
+
+L4c proves only that the future concrete adapter has a fixed, reviewable design. It does **not** prove implementation, transport security, token acquisition, private filesystem permissions, Core compatibility at runtime, generated-model delivery, local materialization, training, submission, aggregation, hospital integration, or clinical use.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
