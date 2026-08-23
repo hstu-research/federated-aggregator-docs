@@ -186,6 +186,14 @@ Agent commit `8e53c22` mirrors the narrow private handoff/result contract and ad
 
 No private filesystem channel, shared Compose volume, token acquisition, Core/Azure request, generated fixture transfer, target deployment, provider access, training, update, submission, aggregation, hospital data, or clinical workflow occurred. The next gate is release/safety verification: both source quality/release conclusions, target-runtime Compose rendering, Core release/health, disabled aggregation worker, no runner, and safe initial aggregate state must be recorded before the one-shot profile can be constructed or run.
 
+## 9. Implementation evidence — deterministic Core channel fake
+
+Core release `ca433554674a202167dd7327ef22c3fb52530d6c` adds `InMemoryHospitalNodeProofChannel`, a deterministic local-test implementation of the already defined Core channel port. It stores one typed handoff and at most one opaque test result in memory, refuses a non-empty/duplicate channel or result delivery before a handoff, and clears both values on coordinator removal. The only test-driver result-delivery seam is local and cannot select a path, enumerate a directory, open a socket, inspect a secret, call a provider, or compose a target runtime.
+
+The coordinator test now proves one result delivery after a one-shot handoff, Core context closure, and channel clearing. Local `pnpm check` passed formatting, lint, strict TypeScript, **70 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted. Core Quality Gates run `32619421561` and the protected Azure deployment run `32619421515` both completed successfully.
+
+This release does not provide a concrete shared filesystem channel, Core coordinator runner, Agent image, target composite profile, target Compose render, or proof invocation. Therefore, it does not change the safe pre-route block: no generated fixture, token, lease, intent, stream, workspace write, training, submission, provider contact, or aggregation has been authorized or performed.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
