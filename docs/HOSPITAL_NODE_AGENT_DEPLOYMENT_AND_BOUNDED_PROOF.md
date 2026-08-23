@@ -407,6 +407,46 @@ The tests cover a valid one-read/one-exchange flow, wrong audience before any ma
 
 Local `pnpm run ci` passed formatting, strict TypeScript, **65 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668003652` completed successfully. This validates only fake identity contracts; it is not a protected secret read, OIDC/client-credential exchange, token acquisition, image build/release, Agent target, Azure staging, Compose render, or proof. The next safe boundary is a separate design-only protected secret-read edge with its own nonpersistent buffer, expected kind/mode/owner validation, and fake-first test plan. The aggregation worker remains disabled and all pre-route proof blocks remain active.
 
+## 25. Design record — protected concrete secret-read edge
+
+### 25.1 Purpose, authorization, and hard stop
+
+This design isolates the only future adapter that could inspect a deployment-projected workload credential before it reaches the separately designed provider-exchange edge. It reduces the trust surface from “application can read a secret” to “one protected edge can use one deployment-owned projection under a fixed policy.” The edge is not a token source, OIDC client, credential validator, provider client, general filesystem wrapper, config loader, or public API.
+
+> **Hard stop:** the record does not authorize Node filesystem imports, opening a projection, inspecting a credential, contacting a provider, acquiring a token, constructing an image, deploying an Agent, rendering Compose, or invoking a proof.
+
+### 25.2 Fixed projection policy and minimal contract
+
+The protected composition root may pass only a versioned `SecretProjectionPolicy` to the later concrete edge. It contains the enum `hospital_node_workload_projection`, a fixed maximum material size, expected `regular_file` kind, literal owner-only mode policy, and an expected deployment-identity class. It contains no secret, filesystem location, path segment, mount name, environment-variable name, user/group identifier, provider endpoint, issuer, client ID, or token. The path/volume mapping remains outside source control in a protected deployment binding that the application never reads or reports.
+
+| Check | Required future edge behavior | Terminal scalar denial |
+|---|---|---|
+| Projection selection | Resolve exactly one deployment-owned reference class; reject absent or ambiguous binding. | `projection_unavailable` or `projection_policy_denied` |
+| File kind | Accept only a non-symlink regular file; reject directory, device, socket, FIFO, or link. | `projection_kind_denied` |
+| Access policy | Require the literal restrictive owner-only mode and expected deployment-identity class. | `projection_access_denied` |
+| Bounds | Check size before read; read once within a fixed bound; reject zero, oversize, incomplete, or changed-on-read material. | `projection_size_denied` or `projection_read_denied` |
+| Lifetime | Keep material only within one closed exchange attempt and dispose of transient buffers in a `finally` boundary. | `projection_disposal_failed` (terminal, redacted) |
+
+The public-facing shape is deliberately scalar: `SecretReadOutcome = { schemaVersion, outcome }`. A successful internal read yields an opaque, nonserializable internal lease usable only by the immediately adjacent exchange adapter in the same protected composition root. No application component, runner, Core client, workspace, channel, result, repository, event, test snapshot, metric label, log, or public document receives the buffer, its length beyond policy-safe aggregate, a path, a mount, or a reference value.
+
+### 25.3 Lifecycle, deletion, rotation, and restart semantics
+
+The state machine is **unbound → policy-reviewed → metadata-validated → bounded-read → internal-lease-active → disposed → closed**. Any failed metadata or read check closes the attempt before exchange; a later fresh composition may try again only if its caller starts a separately authorized run. There is no internal retry, open-handle reuse, cache, file watcher, polling loop, reload signal, fallback identity, or automatic rotation. The edge must close its descriptor/handle immediately after the bounded read, dispose of transient material in `finally`, and record only the allowlisted scalar terminal outcome.
+
+Rotation is an outer deployment event, not an adapter feature. A later target policy may replace a projection only through a controlled deployment/restart process that constructs a fresh edge; the existing edge neither discovers a replacement nor reports version/location. On process crash or restart, no material, token, lease, open-handle identity, or rotation state is restored. A failed disposal is terminal and requires operator investigation in protected infrastructure records; it does not reopen, reread, or switch identities.
+
+### 25.4 Architecture, observability, and failure taxonomy
+
+The only permitted dependency chain is protected deployment binding → concrete secret-read edge → internal opaque lease → future concrete exchange edge → closed workload-token source. The secret-read edge cannot import the Core client, runner, workspace, private channel, repository, Python trainer, aggregation worker, public server, or generic filesystem/service-discovery helper. Node filesystem APIs, if later approved, are confined to this edge alone and are prohibited elsewhere by static import checks.
+
+Allowed observability fields are adapter schema version, scalar outcome code, attempt ordinal fixed at one, and a bounded non-sensitive duration bucket. Forbidden fields include secret bytes, raw/derived token material, path, mount, file name, owner/group ID, mode value, inode/handle, provider request/response, exception text, body/header, or secret-reference class rendering. The error map is fixed to `disabled`, `projection_unavailable`, `projection_policy_denied`, `projection_kind_denied`, `projection_access_denied`, `projection_size_denied`, `projection_read_denied`, `projection_disposal_failed`, and `internal_denied`; unknown errors collapse to `internal_denied`.
+
+### 25.5 Fake-first delivery plan and proof boundary
+
+The next executable slice must create an injected fake metadata/read port, an opaque in-memory lease, and deterministic fake closure behavior—**not** a Node filesystem adapter. Tests must simulate absent binding, wrong kind, symlink-like kind, unsafe mode/owner, zero/oversize/incomplete/changing bytes, lease-use failure, disposal failure, duplicate-use refusal, restart with no restoration, unknown error collapse, no cache/watch/retry, and redaction from every public representation. The test fixture must not represent a real secret, path, mount, or provider credential.
+
+Only after that slice and its separate quality evidence may a new design review consider the concrete Node filesystem edge. Later concrete secret-read implementation, provider exchange, request transport, image binding, protected release, Azure Agent source staging, Compose render, read-only preflight, and one-shot proof remain distinct gates. This design advances none of them.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
