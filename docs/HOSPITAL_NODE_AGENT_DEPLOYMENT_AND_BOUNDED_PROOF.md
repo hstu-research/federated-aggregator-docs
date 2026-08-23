@@ -455,6 +455,46 @@ The deterministic tests prove one inspect → open → consume-once → dispose 
 
 Local `pnpm run ci` passed formatting, strict TypeScript, **68 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668418777` completed successfully. This is an in-memory deterministic test double, not a protected projection open or Node filesystem adapter. No projection, secret byte, mount, provider request, token acquisition, image binding, Azure Agent staging, Compose render, proof, training, submission, or aggregation occurred. The next safe boundary is a separate design-only review of the concrete Node filesystem edge; the pre-route block and disabled aggregation worker remain in force.
 
+## 27. Design record — concrete Node filesystem secret-read edge
+
+### 27.1 Scope, platform posture, and hard stop
+
+This review defines the one future Node-only edge that could implement the already documented protected projection policy. It translates a deployment-owned opaque binding into descriptor-first metadata/read/close operations and nothing else. It is not a generic filesystem utility, path resolver, directory walker, mount inspector, file watcher, configuration loader, secret manager, token source, provider client, or application service.
+
+> **Hard stop:** no Node filesystem module, path utility, projection binding, container mount, secret, or target environment is accessed in this design increment. The design creates no runtime capability and does not authorize image binding, Azure staging, Compose rendering, preflight, or proof.
+
+The later concrete edge is supported only on a protected Node runtime whose deployment binding can provide the documented non-following descriptor-first primitives. An unsupported operating system, unavailable primitive, or policy ambiguity fails closed as `platform_unsupported` or `projection_policy_denied`; it must never silently fall back to path-following behavior, ordinary `readFile`, a generic helper, or a different identity source.
+
+### 27.2 Fixed binding and descriptor-first policy
+
+The outer protected deployment binding owns the sole fixed projection mapping. Application configuration receives only the existing `hospital_node_workload_projection` enum; it never receives a path, environment key, mount, filename, owner value, or descriptor. In the later implementation, one private `NodeProtectedProjectionSyscallPort` is the only module permitted to import Node filesystem primitives. Static checks must reject those imports everywhere else in the Agent repository.
+
+| Stage | Required future edge action | Mandatory denial / prohibition |
+|---|---|---|
+| Resolve binding | Obtain the one protected projection only from the outer deployment binding. | No caller path, glob, directory enumeration, alternate mount, or environment fallback. |
+| Open | Use a non-following, read-only, close-on-exec descriptor-first open through the platform port. | Reject unsupported non-following semantics; never follow symlinks or open by a post-validation path. |
+| Inspect | Read descriptor metadata and require regular-file kind, literal owner-only policy, expected deployment identity class, one link, and bounded pre-read size. | Reject directory, symlink, device, socket, FIFO, unsafe policy, unknown ownership, zero/oversize file, or metadata error. |
+| Read and recheck | Read once to the fixed bound from that descriptor; re-check same-object identity and policy facts after read. | Reject short/overlong/changing object facts; do not reopen, reread, retry, or switch to another descriptor. |
+| Close and dispose | Close descriptor in `finally`; zero the narrow mutable buffer before its local lifetime ends; return only the internal opaque lease. | No caching, watcher, reload, persistence, exception text, path/descriptor rendering, or raw buffer projection. |
+
+The platform port’s private metadata comparison must use sufficient same-object facts to detect replacement or policy change between pre-read and post-read inspection. Those facts remain inside the edge; no inode, device, mode bit, owner identifier, timestamp, descriptor, or mount information may cross into application records, logs, metrics, events, results, or documentation.
+
+### 27.3 Internal lease, buffer, and close behavior
+
+The future edge allocates one bounded mutable byte buffer only after pre-read policy checks. It reads at most the allowed size, obtains post-read metadata before releasing the descriptor, and validates that the byte count and protected same-object facts remain valid. The edge then constructs an opaque internal lease consumed once by the adjacent future exchange edge. Its public return remains the existing scalar `SecretReadOutcome`; no method returns raw bytes or a generic file handle.
+
+All open/inspection/read/recheck failures converge through `finally` close. Once the exchange callback finishes, fails, or is refused, the lease’s bounded mutable buffer is cleared and marked unusable. Runtime-managed copies cannot be claimed erased; the evidence claim is deliberately limited to clearing the edge-owned buffer and retaining no reference in adapter state. A close/disposal error is terminal and scalar-safe. It cannot trigger a second read, retry, cache, reopen, or fallback identity.
+
+### 27.4 Scalar failures, observability, and compatibility
+
+The concrete edge maps all low-level failures into only `disabled`, `platform_unsupported`, `projection_unavailable`, `projection_policy_denied`, `projection_kind_denied`, `projection_access_denied`, `projection_size_denied`, `projection_changed_on_read`, `projection_read_denied`, `projection_close_failed`, `projection_disposal_failed`, or `internal_denied`. Unknown system errors collapse to `internal_denied`. Only schema version, scalar code, fixed attempt ordinal, and bounded duration class may be observed. Error objects, errno text, raw stat values, paths, mounts, descriptors, bytes, secret references, token data, or provider values are forbidden from all output channels.
+
+Compatibility is defined by the documented injected `NodeProtectedProjectionSyscallPort`, not by a target mount. Its deterministic fake will script descriptor-first operations—open, inspect, bounded read, re-inspect, close—without importing Node filesystem modules. It must model unsupported platform, non-following open refusal, kind/access/size mismatches, changed facts, short/oversize read, close/dispose failure, duplicate use, redaction, and exact no-retry closure. This fake-first syscall-port slice is the next permitted implementation step.
+
+### 27.5 Delivery gates and proof boundary
+
+After the syscall fake and local quality record, a **separate** review must inspect the Node-specific implementation code and platform tests before any image is built. A later protected release must then provide Agent source/image binding, quality/deployment evidence, Azure target staging, a real composite source, `docker compose config`, fresh read-only safety preflight, and every retained no-training/no-submission/no-aggregation gate before a one-shot proof could even be considered. This review authorizes none of those steps.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
