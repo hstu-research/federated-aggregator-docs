@@ -194,6 +194,14 @@ The coordinator test now proves one result delivery after a one-shot handoff, Co
 
 This release does not provide a concrete shared filesystem channel, Core coordinator runner, Agent image, target composite profile, target Compose render, or proof invocation. Therefore, it does not change the safe pre-route block: no generated fixture, token, lease, intent, stream, workspace write, training, submission, provider contact, or aggregation has been authorized or performed.
 
+## 10. Implementation evidence — explicit Core composition factory
+
+Core release `3575ffa7095a1bcb9aaea2cf06eb7dd86364bf85` adds a composition factory that accepts only preconstructed context, channel, and wait ports plus an explicit enablement flag and positive bounded poll count. It refuses disabled or nonpositive/unbounded construction before touching a port and delegates one-shot behavior to the existing coordinator. It reads no environment, mounts no channel, resolves no secret, constructs no filesystem, network, token, storage/provider, database, or generated fixture adapter, and does not create a runner command.
+
+Its local composition tests use the deterministic in-memory channel only; they cover explicit enabled composition, one terminal scalar result, and disabled/invalid-bound refusal. Local `pnpm check` passed formatting, lint, strict TypeScript, **72 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted. Core Quality Gates run `32656626047` and protected Azure deployment run `32656626055` both completed successfully.
+
+The result is a source-only protected composition seam, not a target topology. Concrete private tmpfs channel adapters, a Core coordinator runner, an Agent image, an Azure composite profile/render, and an aggregate-safe runtime preflight remain separate required gates. The pre-route block therefore remains in force.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
