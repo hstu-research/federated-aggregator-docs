@@ -65,3 +65,6 @@
 - Long chronologies use named archival chapter breaks with a visible index range, rather than a uniform chronological feed.
 - The Research Log evidence margin is a second spine: every entry carries a bounded proof-state label, state treatment, and record number in a ruled margin panel.
 - Oxide red visibly marks blocked, failed, rejected, and cautionary evidence; mineral teal remains reserved for validated, active, and navigational evidence.
+- The ledger mark and compressed `AGGREGATOR / LEDGER` wordmark recur as an institutional archive seal in the left rail and Research Log header, rather than appearing as isolated navigation branding.
+- Research Log chapter clusters use dark index tabs, volume labels, visible index ranges, and stronger ruled divisions so the chronology reads as a bound ledger rather than a uniform feed.
+- The evidence margin carries proof-state, semantic status stamp, record number, and chronology label as mandatory evidence infrastructure; titles, stamps, metadata, and body text follow a deliberately scan-first editorial hierarchy.
