@@ -495,6 +495,14 @@ Compatibility is defined by the documented injected `NodeProtectedProjectionSysc
 
 After the syscall fake and local quality record, a **separate** review must inspect the Node-specific implementation code and platform tests before any image is built. A later protected release must then provide Agent source/image binding, quality/deployment evidence, Azure target staging, a real composite source, `docker compose config`, fresh read-only safety preflight, and every retained no-training/no-submission/no-aggregation gate before a one-shot proof could even be considered. This review authorizes none of those steps.
 
+## 28. Implementation evidence — deterministic descriptor-first syscall port
+
+Agent release `1d56fdded0cad8a6bbcbe398e4a34e9f6e5a5993` implements the final fake-first syscall layer: `FakeNodeProtectedProjectionSyscallPort` and its bridge to the existing fake identity seam. The port has exactly four fixed operations—non-following open, metadata inspect, bounded read, and close—using opaque in-memory handles and injected metadata/material facts. Its public snapshot exposes only aggregate operation and active-handle counts. It cannot accept or reveal a path, mount, descriptor number, reference, environment value, byte payload, secret, provider option, or Node filesystem primitive.
+
+The deterministic tests prove one descriptor-first sequence with open → inspect → read → re-inspect → close, exact one close after a successful open, and no active handle after normal closure. They cover unsupported platform, open/metadata/kind/access/size/change/short-read/read refusal, close failure, duplicate and foreign opaque handle refusal, unknown-error scalar collapse, redaction, and no cache/watch/retry. A close attempt in the material bridge occurs in `finally`; if it fails, the fixed close scalar replaces the prior outcome without a reopen or second read.
+
+Local `pnpm run ci` passed formatting, strict TypeScript, **71 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668776028` completed successfully. This is a deterministic in-memory syscall double, not a Node filesystem implementation: it imports no `node:fs`, opens no projection, reads no secret, and contacts no provider. No image binding, Agent target staging, Azure Compose render, proof, training, submission, or aggregation occurred. The next action is not automatic concrete filesystem code; a separate review must decide whether an audited Node-specific implementation is appropriate for the protected target boundary. All pre-route blocks and the disabled aggregation worker remain in force.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
