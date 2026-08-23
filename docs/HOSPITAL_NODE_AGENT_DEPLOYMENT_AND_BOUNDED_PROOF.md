@@ -399,6 +399,14 @@ The first executable slice must remain fake-only: a new `SecretMaterialPort` and
 
 After that fake-only slice, a separate design and implementation record is required for the protected secret read edge, followed by a separate provider exchange edge, independent local quality evidence, image binding, protected release/deployment evidence, Azure Agent source staging, target Compose render, read-only safety preflight, and only then consideration of a one-shot proof. This design does not advance any of those gates.
 
+## 24. Implementation evidence — deterministic fake secret material and identity exchange
+
+Agent release `fd438132d1d173759b9ed76b6d45aa0f1baf8b2e` implements the first executable identity slice exactly as designed: a deterministic `FakeSecretMaterialPortDouble`, a deterministic `FakeWorkloadIdentityExchangePortDouble`, and a closed `FakeSecretBackedHospitalNodeWorkloadTokenSource`. The material contract contains only reference class, kind, mode, version, and byte-length facts; it deliberately contains no secret bytes, file path, mount, handle, issuer, endpoint, client identifier, provider response, or token. The exchange contract accepts only validated fake material, literal audience, and injected time, then returns an opaque fake token only to the existing typed Core-client seam.
+
+The tests cover a valid one-read/one-exchange flow, wrong audience before any material access, invalid kind/mode/length/unknown-field material, future not-before, expiry, policy denial, unavailable exchange, malformed exchange response, and serialization redaction. Every failed case has a bounded attempt count with no cache, fallback identity, retry, secret/reference/token/provider output, or background rotation behavior. The test doubles contain no filesystem, environment, OIDC SDK, browser/device flow, socket, HTTP client, or provider capability.
+
+Local `pnpm run ci` passed formatting, strict TypeScript, **65 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668003652` completed successfully. This validates only fake identity contracts; it is not a protected secret read, OIDC/client-credential exchange, token acquisition, image build/release, Agent target, Azure staging, Compose render, or proof. The next safe boundary is a separate design-only protected secret-read edge with its own nonpersistent buffer, expected kind/mode/owner validation, and fake-first test plan. The aggregation worker remains disabled and all pre-route proof blocks remain active.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
