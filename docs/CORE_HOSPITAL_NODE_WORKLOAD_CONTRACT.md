@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic typed transport/pathless-workspace compatibility adapters, and non-runtime concrete-adapter review artifacts implemented locally; concrete transport/workspace, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, and injected concrete adapter logic implemented locally; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -514,6 +514,14 @@ Hospital Node Agent commit `6cb6662` converts the L4c review into deterministic,
 The workspace artifact classifies abstract private-root, ownership, permission, and symlink-risk conditions and models cleanup/compensation state obligations without a filesystem path or operation. It requires cleanup after mismatch/interruption/promote failure, discard after persistence failure, suppression for terminal replay, and blocked readiness for cleanup failure. Local quality passed with formatting, strict TypeScript, 29 TypeScript tests, and 4 Python tests.
 
 This is local review-artifact evidence only. It does not establish a concrete transport, token acquisition, filesystem permission at runtime, Core/Azure request, deployment, model delivery, local materialization, training, update submission, aggregation, hospital integration, real data use, or clinical validity. The next gate is L4d documentation-first concrete adapter implementation with local-only negative tests and no runtime invocation.
+
+## 38. Evidence record — injected concrete Agent adapter logic under local-only tests
+
+Hospital Node Agent commit `ec1c98f` implements the reviewed L4d transport/workspace logic without providing runtime wiring. The typed Core client accepts only reviewed config, asks an injected token port internally, builds only the guarded descriptor-intent and full-body stream routes, and calls an injected request port. It validates scalar receipts and safe response facts, classifies denial/unavailability, and projects only scalar typed facts plus a bounded copied byte iterator. It offers no application-visible URL, generic request API, header map, token, raw response, provider capability, or direct storage path.
+
+The matching private workspace calls an injected filesystem port only. It requires private-root readiness and exclusive temporary creation, hashes/counts bounded chunks, closes before same-root promotion, returns only a receipt-scoped scalar materialization capability, cleans interrupted temporary state, and supports promoted-fixture discard when later persistence fails. Current tests use an in-memory filesystem double and no host filesystem action.
+
+Local quality passed with formatting, strict TypeScript, 33 TypeScript tests, and 4 Python tests. No real token acquisition, Core/Azure request, socket, host filesystem, provider interaction, deployment, model delivery, training, update submission, aggregation, hospital system, real data, or clinical workflow was used. The next gate is a fresh L4e deployment/proof dossier; no real invocation is authorized by this local-only evidence.
 
 ## References
 
