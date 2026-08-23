@@ -447,6 +447,14 @@ The next executable slice must create an injected fake metadata/read port, an op
 
 Only after that slice and its separate quality evidence may a new design review consider the concrete Node filesystem edge. Later concrete secret-read implementation, provider exchange, request transport, image binding, protected release, Azure Agent source staging, Compose render, read-only preflight, and one-shot proof remain distinct gates. This design advances none of them.
 
+## 26. Implementation evidence — deterministic fake protected-projection lifecycle
+
+Agent release `041c386e48b16b908b4aa70b6576de8ef0455023` implements the first fake-only secret-read slice: `FakeProtectedProjectionPort`, an opaque `FakeOpaqueProtectedProjectionLease`, and a bridge into the existing fake secret-material identity seam. The port accepts only injected metadata/material facts—regular-file kind, owner-only mode, deployment identity class, version, and bounded size—and exposes aggregate inspection/open/disposal/active-lease counts. It cannot receive a path, mount, file descriptor, caller-selected reference, secret byte, environment variable, provider option, or Node filesystem capability.
+
+The deterministic tests prove one inspect → open → consume-once → dispose lifecycle with no active lease after closure; absent/wrong-kind/unsafe-access/zero/oversize/changed-on-read/read-refusal denial; duplicate lease-use refusal; restart with no restored lease; disposal failure; and unknown-error collapse to a scalar internal denial. The bridge closes every lease in `finally`; there is no cache, watcher, reload loop, retry, fallback identity, or secret/reference/token/provider serialization. Fake exchange remains downstream of validated material facts and is not invoked on projection denial.
+
+Local `pnpm run ci` passed formatting, strict TypeScript, **68 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668418777` completed successfully. This is an in-memory deterministic test double, not a protected projection open or Node filesystem adapter. No projection, secret byte, mount, provider request, token acquisition, image binding, Azure Agent staging, Compose render, proof, training, submission, or aggregation occurred. The next safe boundary is a separate design-only review of the concrete Node filesystem edge; the pre-route block and disabled aggregation worker remain in force.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
