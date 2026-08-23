@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent receipt/persistence, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value contracts and scalar-safe SQLite persistence implemented locally; Agent transport/workspace integration, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -468,6 +468,14 @@ The profile used the explicit deployed Compose file and `run --build` once. It r
 Aggregate-safe terminal inspection observed one completed stream session, zero active stream sessions, one consumed intent, zero issued/streaming intents, zero active leases, one stream closure event, zero validation-runner containers, and HTTP 200 health after closure. The aggregate expired-assignment and expired-lease totals include earlier bounded fixtures and are therefore not presented as stream-run-only counts. The profile’s safe success marker confirms its generated stream state closed; fixture cleanup remained internal and was not inspected through any locator-bearing provider interface.
 
 This establishes a one-shot **Core-mediated generated-fixture stream** only. It does not establish Agent receipt validation, local model persistence, direct storage access, model release, training, update packaging, update submission, aggregation, hospital operation, real data use, or clinical validity. The next gate is the separate Agent receipt-verification and synthetic-persistence dossier, which must be completed before implementation begins.
+
+## 32. Evidence record — Agent local read-receipt contracts and persistence
+
+Hospital Node Agent commit `a9561ff` implements the first Agent-side consumer prerequisite after the bounded Core stream proof. It adds the versioned `hospital-node-base-model-read-receipt/v1` projection; strict validators accept only scalar assignment/read-intent IDs, immutable digests, checksum, positive byte size, the exact generated-model content type, expiry, and `issued` state. Unknown token-, URL-, locator/version-, provider-, header/body-, path-, byte-, data-, and free-text-shaped fields are rejected. The corresponding observed-materialization value is scalar-only.
+
+The Agent now has a pure local receipt state matrix and additive SQLite records for immutable receipt facts, a scalar observed materialization outcome, and append-only allowlisted events. Receipt issue plus its event, and later observed terminal outcome plus its event, are transactionally recorded. Exact issue replay is idempotent; terminal `verified` and `rejected` records remain terminal across a process restart. The code has no Core HTTP, OIDC, storage SDK, workspace, trainer, update, submission, aggregation, or Azure dependency.
+
+Local quality passed with formatting, strict TypeScript, 17 TypeScript tests, and 4 Python tests. This is local contract/persistence evidence only: it does not prove a Core request, token use, response verification, bytes, workspace materialization, model delivery, training, submission, aggregation, hospital integration, real data use, or clinical validity. The next documented implementation gate is a fake-first local verification use case and temporary generated-fixture workspace adapter; a real Core client or Azure Agent proof remains prohibited until later slices are separately documented and validated.
 
 ## References
 
