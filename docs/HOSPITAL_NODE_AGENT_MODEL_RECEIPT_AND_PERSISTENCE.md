@@ -246,7 +246,7 @@ The only workspace implementation is `InMemoryGeneratedFixtureWorkspace`, a test
 
 Local `pnpm run ci` passed after the implementation and its README evidence: formatting, strict TypeScript, **21 TypeScript tests**, and **4 Python tests**. The L3 tests cover exact promotion with redacted result, byte-size mismatch cleanup, generated-body interruption cleanup, append-only terminal events, and workspace suppression for a terminal replay. No Core endpoint, workload identity token, HTTP stream, filesystem path, real storage API, Core database, Azure host/container, Python trainer, model update, submission, aggregation worker, hospital data, or clinical claim was used.
 
-The next permitted slice is **L4**, still bounded by this dossier: introduce a typed Hospital Node Core client and a separately designed private workspace adapter only after a fresh L4 technical contract, local fake/client tests, and non-runtime quality evidence are recorded. It must retain the separate hospital-node identity, call only the existing descriptor-intent and guarded stream routes, deny redirects/range responses/raw body logging, and remain strictly before any Azure Agent execution, training, update, submission, or aggregation proof.
+The next permitted slice is **L4**, now specified in `HOSPITAL_NODE_AGENT_CORE_CLIENT_AND_PRIVATE_WORKSPACE.md`. Its first executable substep remains fake-only. A typed Hospital Node Core client and a separately designed private workspace adapter must retain the separate hospital-node identity, call only the existing descriptor-intent and guarded stream routes, deny redirects/range responses/raw body logging, and remain strictly before any Azure Agent execution, training, update, submission, or aggregation proof.
 
 ## References
 
