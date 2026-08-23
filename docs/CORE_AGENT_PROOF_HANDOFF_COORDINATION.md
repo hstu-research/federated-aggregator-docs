@@ -226,6 +226,20 @@ Local `pnpm check` passed formatting, lint, strict TypeScript, **77 TypeScript t
 
 This is still a composition helper, not an executable Azure runner. The required generated-context port, bounded wait implementation, Agent source/image, protected composite profile, target Compose render, and final read-only preflight remain unimplemented and keep the proof pre-route blocked.
 
+## 14. Design record — bounded generated-context and wait ports
+
+The next Core-only slice separates the two remaining inputs to the source composition helper. The **generated-context port** may return exactly one prevalidated handoff record for a synthetic proof-run identifier and must close or abort only through scalar-safe callbacks. The **wait port** may advance a bounded local poll count and return only a completion/timeout/interruption fact. Neither port is authorized to create a fixture, query persistence, contact object storage/provider services, read environment or secrets, acquire an identity token, open a network connection, construct an Agent channel, or invoke a Compose profile.
+
+| Design dimension | Generated-context port | Wait port |
+| --- | --- | --- |
+| Input and output | One already-validated scalar handoff plus close/abort callbacks. | Positive maximum polls and scalar elapsed/timeout/interruption outcome. |
+| Authority | A caller-provided fake or later separately reviewed runtime adapter. | A caller-provided fake or later separately reviewed runtime adapter. |
+| State and closure | One context may be handed off once; a terminal callback may run once. | A wait cycle is bounded; timeout/interruption is terminal and never retries. |
+| Explicit exclusions | No fixture construction, database, storage, provider, secret, token, network, route, worker, or public listener. | No scheduler, retry queue, configuration read, secret, transport, route, worker, or public listener. |
+| Proof meaning | Proves local binding and denial behavior only. | Proves bounded polling and terminal classification only. |
+
+The first implementation will use deterministic in-memory fakes, cover reuse, invalid/terminal handoff, nonpositive bounds, timeout, interruption, exact closure, and no-retry denial, and publish only scalar outcomes. Concrete generated-fixture setup and a real wait/runtime clock remain future separately reviewed adapters. This design does not authorize a target run or relax the existing pre-route block.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
