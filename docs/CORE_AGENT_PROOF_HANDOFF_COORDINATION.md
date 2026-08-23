@@ -240,6 +240,14 @@ The next Core-only slice separates the two remaining inputs to the source compos
 
 The first implementation will use deterministic in-memory fakes, cover reuse, invalid/terminal handoff, nonpositive bounds, timeout, interruption, exact closure, and no-retry denial, and publish only scalar outcomes. Concrete generated-fixture setup and a real wait/runtime clock remain future separately reviewed adapters. This design does not authorize a target run or relax the existing pre-route block.
 
+## 15. Implementation evidence — deterministic generated-context and bounded wait ports
+
+Core release `bde985af2e2476bb9201258d2493144c1629e138` implements the documented fake-only context and wait ports. The context port validates one supplied handoff against an injected `now`, permits one issuance, accepts only one correlated terminal close or abort, and refuses reuse, uncorrelated callbacks, or terminal reopening. The wait port validates a positive maximum, returns only `continued`, `timed_out`, or `interrupted` scalar facts, and never uses a timer, scheduler, retry queue, configuration, identity, network, persistence, storage/provider, fixture, route, listener, or worker. The coordinator now closes and removes fixed channel records on immediate timeout or interruption rather than retrying.
+
+Local `pnpm check` passed formatting, lint, strict TypeScript, **79 TypeScript tests** with **18 integration tests skipped** under the non-integration command, and **9 Python tests**. The known pre-existing `infra/deploy/core.env.example` modification remained untouched and uncommitted. Core Quality Gates run `32660088251` and protected Azure deployment run `32660088268` both completed successfully.
+
+This validates local port behavior and terminal classification only. It does not create a generated fixture, runtime clock, Agent image, Core executable runner, protected composite profile, target Compose render, token, lease, intent, stream, workspace write, training, submission, provider interaction, or aggregation action. The safe pre-route block remains in force.
+
 ## References
 
 [1] [Core Hospital Node guarded assignment, lease, intent, and stream controller](https://github.com/hstu-research/federated-aggregator-core/blob/main/apps/api/src/hospital-node-assignments/hospital-node-assignments.controller.ts)
