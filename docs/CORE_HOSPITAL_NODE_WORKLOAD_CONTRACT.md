@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, and injected concrete adapter logic implemented locally; protected Agent deployment and one-shot proof design published but unimplemented; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, injected concrete adapter logic, and protected preflight profile implemented locally; private Core-to-Agent proof handoff design published; protected deployment/release verification and one-shot proof remain unimplemented; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -528,6 +528,20 @@ Local quality passed with formatting, strict TypeScript, 33 TypeScript tests, an
 The L4e dossier fixes the deployment/proof boundary before any runtime wiring. The Agent remains a non-public, opt-in, one-shot profile with no port, no default activation, no restart, no host data mount, and no trainer/update/submission/aggregation action. Concrete request/token/workspace adapters may receive only opaque protected configuration references at the composition root; they cannot print, persist, or propagate a token, origin, secret, provider field, fixture body, header, path, or data field.
 
 The future proof has one Core-private generated fixture context, one separate hospital-node identity, one descriptor-only intent, one full-body stream, local private integrity/materialization/discard, and aggregate-safe Core/Agent closure. It must use a rebuilt profile and the existing active workload mapping. Preflight requires Agent/Core source/release gates, Core health, zero previous runner, and the explicit disabled aggregation-worker control. A post-route failure must be published before any retry. This is a design record only; it has no protected Agent runtime wiring, deployment, Core/Azure invocation, model transfer, training, submission, aggregation, hospital integration, real data, or clinical claim.
+
+## 40. Evidence record — protected Agent proof-profile preflight only
+
+Hospital Node Agent commit `ea97b69` adds a non-invoking opt-in proof profile. It has no public port, default activation, restart, or host data mount; it uses an opaque OIDC secret-file reference, private tmpfs workspace, and a preflight command only. The preflight validates proof enablement, normalized HTTPS origin, protected reference classes, and bounded timeout/size values while returning no origin, secret reference, workspace value, token, route, header/body, provider detail, or path.
+
+Local quality passed with formatting, strict TypeScript, 35 TypeScript tests, and 4 Python tests. The sandbox lacks Docker, so it could not render Compose semantically; a source-level non-executing check confirmed the profile/no-port/restart/tmpfs/secret/preflight declarations. Target-runtime Compose render is therefore still mandatory before runtime use. No profile invocation/deployment, token, Core/Azure request, fixture transfer, filesystem action, provider interaction, training, update submission, aggregation, hospital integration, real data, or clinical workflow occurred.
+
+The next gate requires protected release/safety verification before the one-shot proof: Agent pipeline/release evidence, target Compose render, Core compatibility/release identity, HTTP health, explicit disabled worker marker, no prior runner, and safe initial aggregate state. Any failed gate blocks fixture creation and route access.
+
+## 41. Design record — private Core-to-Agent proof handoff coordination
+
+The generated-fixture proof requires an explicit private rendezvous because the guarded Hospital Node API exposes no assignment-discovery route. The new coordination contract gives Core-private setup exactly one handoff record containing a fresh proof-run ID, assignment ID, immutable generated descriptor facts, and expiry. It passes through an ephemeral private channel only; it carries no token, secret, Core origin, header/body, locator/provider field, fixture bytes, path, data field, or selection capability. The Agent independently obtains the separate hospital-node identity, leases the handed assignment through the established guarded lease route, validates command equality, then calls the existing intent/stream routes once.
+
+The Agent returns a narrower scalar-safe result using only the proof-run ID, fixed outcome/booleans, and terminal receipt state. Core validates it privately, cleans/expirs the generated context, and deletes the channel. Target composition requires directional private tmpfs channels, no host path/persistent volume/public port/queue/discovery endpoint, and a one-run/no-retry policy. This is L4e2a design only: no coordination code, target composition, token, Core/Azure call, fixture transfer, training, submission, aggregation, hospital integration, data use, or clinical claim exists yet.
 
 ## References
 
