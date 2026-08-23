@@ -1,6 +1,6 @@
 # Core — Hospital Node Workload Contract Design
 
-**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, and injected concrete adapter logic implemented locally; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
+**Status:** Additive Core lease, descriptor-only read-intent, and Core-mediated generated-model stream boundaries implemented and bounded Azure proofs validated; Agent local receipt/value persistence, fake-first verification, deterministic compatibility adapters, non-runtime review artifacts, and injected concrete adapter logic implemented locally; protected Agent deployment and one-shot proof design published but unimplemented; production transport/workspace wiring, artifact update capability, submission, and training boundaries remain proposed.
 **Decision date:** 22 August 2026  
 **Depends on:** the public Hospital Node Agent dossier and the current Core artifact, workload-identity, aggregation, and audit boundaries.
 
@@ -522,6 +522,12 @@ Hospital Node Agent commit `ec1c98f` implements the reviewed L4d transport/works
 The matching private workspace calls an injected filesystem port only. It requires private-root readiness and exclusive temporary creation, hashes/counts bounded chunks, closes before same-root promotion, returns only a receipt-scoped scalar materialization capability, cleans interrupted temporary state, and supports promoted-fixture discard when later persistence fails. Current tests use an in-memory filesystem double and no host filesystem action.
 
 Local quality passed with formatting, strict TypeScript, 33 TypeScript tests, and 4 Python tests. No real token acquisition, Core/Azure request, socket, host filesystem, provider interaction, deployment, model delivery, training, update submission, aggregation, hospital system, real data, or clinical workflow was used. The next gate is a fresh L4e deployment/proof dossier; no real invocation is authorized by this local-only evidence.
+
+## 39. Design record — protected Agent deployment and one-shot generated-fixture proof
+
+The L4e dossier fixes the deployment/proof boundary before any runtime wiring. The Agent remains a non-public, opt-in, one-shot profile with no port, no default activation, no restart, no host data mount, and no trainer/update/submission/aggregation action. Concrete request/token/workspace adapters may receive only opaque protected configuration references at the composition root; they cannot print, persist, or propagate a token, origin, secret, provider field, fixture body, header, path, or data field.
+
+The future proof has one Core-private generated fixture context, one separate hospital-node identity, one descriptor-only intent, one full-body stream, local private integrity/materialization/discard, and aggregate-safe Core/Agent closure. It must use a rebuilt profile and the existing active workload mapping. Preflight requires Agent/Core source/release gates, Core health, zero previous runner, and the explicit disabled aggregation-worker control. A post-route failure must be published before any retry. This is a design record only; it has no protected Agent runtime wiring, deployment, Core/Azure invocation, model transfer, training, submission, aggregation, hospital integration, real data, or clinical claim.
 
 ## References
 
