@@ -2434,6 +2434,34 @@ The runner’s eventual input path is finite and one-use. Every rejection happen
 
 Passing future arithmetic or synthetic local-epoch checks would not demonstrate breast-cancer classification accuracy, clinical validity, generalization, privacy performance, data-silo integration, hospital deployment, update submission, or aggregation. It would validate only a bounded deterministic synthetic FedProx local-training contract. The later sequence remains strict: first the separately gated Agent synthetic proof, then independently authorized synthetic training execution, then a distinct update-submission safety boundary, and finally a distinct aggregation boundary. No stage implies the next.
 
+## 84. Source-only pure synthetic FedProx manifest-validator contract
+
+The first executable FedProx evidence slice is a pure TypeScript manifest validator, not a Python trainer and not an experiment run. It will accept one exact frozen intent whose fields express only allowlisted **classes**: schema version, synthetic fixture class, opaque deterministic seed class, proximal-parameter class, learning-rate class, batch-size class, local-epoch class, parameter-shape class, and retained `trainer_not_invoked`, `submission_not_invoked`, and `aggregation_disabled` controls. It may privately canonicalize that intent and emit a frozen scalar receipt, but it must not retain or return a manifest, fixture, seed, hyperparameter value, parameter vector, gradient, model, callback, path, or capability.
+
+| Input class | Sole allowed value class | Closure if absent, changed, or broadened |
+|---|---|---|
+| Schema | `hospital-node-fedprox-synthetic-manifest/v1` only. | `manifest_invalid` |
+| Fixture and determinism | `synthetic_vector_fixture` plus `deterministic_opaque_seed`. | `fixture_closed` or `seed_closed` |
+| Hyperparameters | `finite_nonnegative_mu`, `finite_positive_learning_rate`, `bounded_positive_batch`, and `bounded_positive_epochs`. | `hyperparameter_closed` or `epoch_closed` |
+| Parameter expectation | `matching_synthetic_vector_shape` only. | `shape_closed` |
+| Retained controls | Trainer/submission not invoked and aggregation disabled. | `state_closed` |
+
+The validator is one-use. A valid or invalid first call closes its instance; any second call produces scalar `replay_closed` without re-entry or replacement input. Receipts/readouts are frozen and expose only an eligibility class, closure class, aggregate validation count, and consumed class. A nonenumerable private marker must serialize to no manifest facts. The file may import no Python runner, trainer, data/dataset loader, weight/model library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module.
+
+Tests must cover eligible exact frozen intent; invalid fixture/seed/hyperparameter/epoch/shape/control classes; mutable, inherited, malformed, missing, and unknown values; replay after valid and invalid first values; independent validators; receipt/readout freezing and redaction; marker nonenumerability; and import isolation. Passing tests would prove only synthetic experiment-intent eligibility. They would not load data, train, create weights, compute an experiment metric, start an Agent, submit an update, or aggregate.
+
+## 85. Source-only pure synthetic FedProx manifest validator — quality result
+
+The pure validator is now implemented at Agent revision `950491e`. It accepts one exact frozen versioned intent, privately canonicalizes only allowlisted synthetic fixture, opaque seed, hyperparameter, local-epoch, shape, and retained-control classes, and emits a frozen scalar receipt/readout. It imports no Python runner, trainer, data/dataset loader, model/weight library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module. The canonical marker is nonenumerable and serializes to no manifest facts.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and manifest test | Six deterministic validator checks passed locally. | Manifest-intent validation only; not data loading, a trainer, or an experiment. |
+| Full Agent local quality chain | 203 TypeScript tests and 4 Python tests passed. | Source quality only; no dataset, model, local epoch, metric, Agent, submission, or aggregation path ran. |
+| Remote Agent Quality Gates | Run `32754612654` completed successfully for revision `950491e`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves exact eligible intent; fixture, seed, hyperparameter, epoch, shape, and retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after eligible or invalid first input; independent validator isolation; frozen redacted receipt/readout; marker nonenumerability; and import separation. This establishes only synthetic experiment-intent eligibility. It does not access data, create a model or weight, invoke a trainer, compute a metric, start an Agent, submit an update, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
