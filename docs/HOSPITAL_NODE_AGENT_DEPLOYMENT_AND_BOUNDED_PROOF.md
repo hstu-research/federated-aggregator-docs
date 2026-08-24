@@ -2063,6 +2063,36 @@ The design is now implemented as the source-only fake coordinator compatibility 
 
 The new tests cover the one normal empty→claim→no-artifact-route→terminal sequence; terminal, orphan, and invalid hydration closures; claim denial; route closure; terminal denial; explicit fixture disposal; coordinator replay suppression; independent temporary-root fixture isolation; receipt freezing/redaction; and no local-state/filesystem/runtime import. This establishes only deterministic local contract behavior. It does not wire application composition, alter an existing coordinator runtime, inject a target root, parse or render anything, write configuration, access a package or credential, start an Agent, reach a Core service, stage an image, produce proof, train, submit an update, or aggregate.
 
+## 71. Design-only source-only application-composition ownership review
+
+The quality-gated fake coordinator fixture is still not an application composition. This review defines the next **design-only** seam: a future test composition module may create exactly one operation fixture, privately obtain a test-created temporary-root factory input and synthetic correlation, construct one temporary-root scalar port, and inject that port into one new fake coordinator. It is the only proposed owner of those construction inputs. The fake coordinator receives no factory, root, correlation, record, path, configuration, or disposal capability beyond the five-operation scalar interface already admitted by the compatibility boundary.
+
+| Required design concern | Design-only rule | Explicitly not established |
+|---|---|---|
+| Composition authority | A dedicated test-composition module is the sole creator of one port and one fake coordinator per operation. | Production/application composition, controller ownership, or runtime dependency injection. |
+| Private capability ownership | Factory input, temporary root, and correlation remain private to composition. The coordinator gets only the structural scalar port. | Target-root ownership, configuration resolution, environment access, or any general factory. |
+| Lifetime | One `admitSyntheticNoArtifact()` attempt consumes the operation. Composition then disposes the port exactly once if it remains open and discards both objects. | Reuse, pooling, retry, restart recovery, cross-operation sharing, or record deletion. |
+| Readout/redaction | Composition may combine only frozen aggregate call counts and the coordinator scalar receipt into a frozen test assertion. | Root/correlation/record/path/text/bytes/error/configuration/target/credential/runtime projection. |
+| Dependency direction | Temporary-root factory → scalar port interface ← fake coordinator; test composition joins them. Existing application/runtime modules do not import this composition. | Existing admission coordinator modification, local-state import into application logic, or runtime wiring. |
+
+### 71.1 One-operation ownership and closure matrix
+
+The composition object starts in `unconstructed`, privately constructs the port/coordinator, calls the coordinator once, snapshots only scalar state for its assertion, and disposes only when the returned result has not already terminally closed the port. It must never inspect a durable record to decide whether to retry. A second call, a construction error, a fixture exception, a denied transition, or a disposal error ends the operation; there is no alternate port, replacement coordinator, or fallback identity. The only permitted outcome classes are the existing `closed_after_terminal`, `closed_before_route`, `closed_after_route`, and `replay_suppressed` values.
+
+| Condition | Proposed composition behavior | Permitted observation |
+|---|---|---|
+| Fresh valid fixture | Construct once, inject scalar port once, admit once, capture receipt/readout, dispose only if still open. | Frozen scalar receipt and aggregate call counts. |
+| Private construction failure | Close the fixture attempt without coordinator admission or a replacement factory. | One allowlisted `construction_closed` test assertion; no error text. |
+| Hydration/claim/route/terminal closure | Do not inspect, retry, reconstruct, or forward the port. | Existing frozen terminal scalar receipt. |
+| Explicit disposal path | Dispose once, discard the coordinator/port pair, and suppress later calls. | Aggregate disposal/replay counts only. |
+| Unexpected fixture exception | Treat as terminal test failure; clean up the current fixture best-effort and publish no raw error or private fact. | One allowlisted `fixture_closed` assertion only. |
+
+### 71.2 Contract, testing, and future gates
+
+The future test-composition interface must accept no caller-supplied root, correlation, path, text, configuration, target, package, credential, transport, or identity. It must return no stateful object, callback, Promise, or capability—only a frozen local assertion. Its import guard must prohibit local-state implementation use outside the designated test-composition seam and prohibit all filesystem, environment, process, network, target, Core, package, credential, parser, renderer, configuration, trainer, submission, and aggregation dependencies. Compatibility fixtures must cover sole-owner construction, successful terminal closure, every closure class, disposal exactly once, replay suppression, independent operations, scalar-only serialization, and source import isolation.
+
+The implementation handoff is deliberately split. A first low-risk slice may add only a source-only test-composition fake with deterministic injected scripted ports and import guards. A separate target-root decision must later define which protected composition root, if any, receives a concrete root reference, with strict configuration, ownership, permission, cleanup, and evidence rules. A later application/runtime decision must separately define controller authority, error mapping, lifecycle observability, deployment controls, identity seam, and a new proof gate. This review authorizes none of those changes; it does not authorize filesystem use outside existing temporary-root fixtures, application wiring, runtime modification, target-root injection, parser/renderer/configuration behavior, package/credential action, target interaction, staging, proof, training, submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
