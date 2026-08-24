@@ -1634,6 +1634,40 @@ Agent release `f829bfd77c797df548d3dcb0ffd5dbecdbf4f0b4` implements a pure fake-
 
 The fake suite terminally closes malformed, unknown, missing, non-disabled, workspace-unready, fallback blueprint, unavailable blueprint, invalid blueprint, fake fallback, temporary denial, validation denial, cleanup denial, and replay cases. Synthetic sentinel/object serialization and orchestration serialization expose no sentinel content. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **139 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32708496990` completed successfully. This is source-quality evidence only: no renderer, configuration text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate concrete renderer implementation design/quality gate remains required before any renderer code or target configuration.
 
+## 60. Source-only implementation plan — concrete static renderer
+
+### 60.1 First implementation slice and hard boundary
+
+The next code slice may implement a **source-only, injected-only renderer policy** against deterministic fakes. It may validate a fixed abstract blueprint shape and orchestrate only symbolic temporary, validation, discard, and promotion-disabled outcomes. It must not create render text, a configuration object/file, filesystem effect, promoted artifact, target configuration, or process. The code is an implementation of boundary contracts, not a renderer execution or a target-staging result.
+
+| Planned module | Allowed responsibility | Prohibited responsibility |
+|---|---|---|
+| `StaticRendererRequestValidator` | Strictly validate versioned scalar intent class, one unused synthetic render identity, blueprint availability class, and workspace readiness class. | Parse environment, accept configuration text, caller-selected fields, paths, root/image values, target fields, credentials, package/registry values, or free text. |
+| `FixedBlueprintParser` | Consume only an injected private synthetic blueprint handle and emit an internal fixed abstract shape class after exact structural validation. | Return/render blueprint text, deserialize caller input, select a template, substitute variables, or expose field names/values. |
+| `PrivateRenderWorkspacePort` | Model bounded temporary allocation, internal-shape validation, discard confirmation, and a promotion-disabled response. | Open/write/read a file, return a path/bytes/handle, retain temporary text, atomically promote, or access host state. |
+| `StaticRendererPolicy` | Sequence validator → parser → workspace symbolic lifecycle once; return a scalar terminal receipt. | Spawn a process, invoke Docker/Compose, bind image/root, start an Agent, contact Core/target/provider, or mutate deployment state. |
+
+The fixed parser accepts only the internal structural classes required to assert disabled activation, no public ingress, no restart, no host network, reserved opaque root binding, fresh eligible image state, and no proof/training/submission/aggregation control. It rejects duplicate, missing, unknown, mutable, active, exposure-enabled, restart-enabled, host-network, fallback-binding, stale-image, command-bearing, or promotion-enabled structural classes before any workspace fake. The planned parser never emits its source text, parsed object, field identifiers, values, or diagnostics.
+
+### 60.2 Private interfaces and bounded internal text lifecycle
+
+The planned interfaces are injected-only and private by construction. A `StaticBlueprintHandle` has no public data-returning method and is held in a private nonenumerable field. A `FixedBlueprintParserPort` receives the handle and returns only an allowlisted shape class. A `PrivateRenderWorkspacePort` receives a correlation token and abstract shape class, never text; it may report symbolic `temporary_prepared`, `inert_shape_validated`, `discarded`, or one terminal failure class. The abstract renderer policy may know only a fixed compile-time bound exists for internal text work; neither the bound nor the text becomes an application request, result, event, log, exception, snapshot, or public record.
+
+| Interface boundary | Planned input | Planned output | Explicit non-disclosure |
+|---|---|---|---|
+| Blueprint authority → parser | Private handle built by target composition in a later environment; fake non-path handle in source tests. | Fixed abstract shape class or terminal scalar refusal. | No blueprint/template string, variable map, path, root/image, package, credential, target, or provider fact. |
+| Parser → workspace | Scalar correlation plus abstract inert-shape class. | Symbolic temporary/validated/discarded or terminal failure class. | No rendered text, file descriptor, location, byte count, configuration object, or promotion token. |
+| Workspace → renderer policy | Allowlisted lifecycle class only. | Terminal `not_rendered`, `denied`, or `closed_replay` receipt with retry disabled. | No internal artifact/failure detail or target observation. |
+| Promotion seam | No callable promotion operation in the first implementation slice. | `promotion_disabled_by_policy` only. | No atomic writer, target slot, package/image/root binding, or activation path. |
+
+### 60.3 Error/readout map, no-artifact rollback, and source gates
+
+The planned terminal map is intentionally narrow: `request_invalid`, `intent_not_disabled`, `blueprint_unavailable`, `blueprint_shape_denied`, `temporary_denied`, `inert_shape_denied`, `discard_denied`, `promotion_disabled_by_policy`, and `closed_replay`. Every error is retry-disabled for that synthetic identity. Aggregate readout can expose only received, not-rendered, denied by allowlisted class, discarded, promotion-disabled, cleanup-uncertain, and replay-suppressed counters. It cannot expose a cause string, line/column, configuration field, text fragment, path, provider response, credential, target, or runtime result.
+
+Rollback is a no-artifact invariant. A successful source-only lifecycle finishes with symbolic discard; a failure returns a terminal scalar state. Promotion is disabled before and after every branch, so there is no promoted artifact to remove and no fallback blueprint/root/image/credential/target choice. A cleanup uncertainty closes the identity and blocks replay; it cannot trigger an automatic retry, an alternate temporary location, or an operator action.
+
+The first implementation’s deterministic fake matrix must cover a sole inert abstract shape; malformed/unknown/missing/duplicate request classes; every rejected shape class; unavailable/invalid/fallback blueprint handles; temporary/validation/discard failures; promotion-disabled behavior; redaction/nonenumerability; fake invocation ordering; no-artifact serialization; and replay suppression. Source guards must reject filesystem, process, Docker/Compose/render, configuration/environment, networking, cloud/registry/OIDC, Core/Agent runtime, trainer, submission, and aggregation dependencies. Quality gates remain local formatting/types/tests and Hospital Node Quality Gates only. A separate review is required before a real parser, private writer, protected release, target render, Azure preflight, inert staging, or proof decision.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
