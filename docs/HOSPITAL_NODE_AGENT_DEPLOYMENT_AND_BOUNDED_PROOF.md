@@ -503,6 +503,31 @@ The deterministic tests prove one descriptor-first sequence with open → inspec
 
 Local `pnpm run ci` passed formatting, strict TypeScript, **71 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32668776028` completed successfully. This is a deterministic in-memory syscall double, not a Node filesystem implementation: it imports no `node:fs`, opens no projection, reads no secret, and contacts no provider. No image binding, Agent target staging, Azure Compose render, proof, training, submission, or aggregation occurred. The next action is not automatic concrete filesystem code; a separate review must decide whether an audited Node-specific implementation is appropriate for the protected target boundary. All pre-route blocks and the disabled aggregation worker remain in force.
 
+## 29. Authorization record — source-only concrete secret-read edge
+
+On 23 August 2026, the project owner explicitly authorized the narrow Azure **test-target** concrete secret-read edge after review of its fake syscall port. The authorization applies only to source-local implementation and local negative testing of the single protected Node edge described in §27. It does **not** authorize a generic filesystem API, caller-selected path, environment/config discovery, secret output, provider exchange, token acquisition, image build/release, Azure staging, Compose render, preflight, proof invocation, training, update submission, aggregation, or any public listener.
+
+The protected composition root remains the only future owner of the deployment binding. It must supply the binding internally, keep target platform mapping outside ordinary application configuration, and never route a filesystem capability through the runner, Core client, workspace, private channel, public server, or test readout. The source edge must fail closed on unsupported platform, binding ambiguity, non-following open failure, unsafe metadata, size mismatch, changed object facts, read failure, close failure, or disposal failure. It may project only a fixed scalar outcome.
+
+| Decision control | Authorized source-only implementation rule | Retained containment |
+|---|---|---|
+| Scope | One `node:fs`-importing edge behind a fixed protected projection binding and private syscall port. | No generic helper, directory access, path argument at read call sites, mount discovery, watcher, cache, retry, or fallback identity. |
+| Platform | Linux-compatible Azure test target only; unsupported primitives fail closed. | No portability fallback or ambient platform probe beyond the edge’s allowlisted capability check. |
+| Secret handling | Bounded mutable buffer, opaque one-use internal lease, `finally` close, and edge-owned buffer clearing. | No raw material in logging, status, errors, results, public docs, persistence, events, snapshots, or tests. |
+| Review and rollback | The user delegates source-slice execution to this task; source quality gates remain mandatory. | Any failure beyond local source tests stops before image binding. Rollback is source checkpoint reversion; no runtime secret or target state is created by this increment. |
+
+The next slice may therefore author the isolated Node edge and exercise it only through injected syscall doubles. It must not open an actual projection in test or deployment. After source quality evidence, a new separate decision is required before image binding or Azure target staging.
+
+## 30. Implementation evidence — authorized source-only Node secret-read edge
+
+Agent release `1982f5d6740ce8d321f6541d988a50e627d7f012` implements the authorized source-only `NodeProtectedProjectionSecretReadEdge` and the sole production-source `node:fs` adapter, `ConcreteNodeProtectedProjectionSyscallPort`. A protected composition root must construct an opaque binding; the binding location is held in a private `WeakMap` and is not accepted by read calls, exposed in adapter state, or returned by the edge. The concrete port accepts only its fixed binding, uses a Linux-only read-only non-following open with a fail-closed close-on-exec capability check, obtains descriptor metadata before and after a bounded read, and returns no public descriptor/path/byte capability.
+
+The reader enforces regular-file kind, fixed owner-only mode, expected deployment owner, single link, bounded size, exact read length, and same-object metadata facts. It clears the edge-owned mutable buffer and attempts descriptor close after every path; a close/disposal failure is terminal and scalar-safe, with no reopen, reread, retry, cache, watch, fallback identity, raw system error, or locator/token/provider projection. The production-source quality guard now allows `node:fs` imports only in this edge module; existing test fixtures remain outside runtime capability enforcement.
+
+All tests exercise the edge through injected syscall doubles only. They cover normal bounded consumption/clearing/close, open, kind, access, size, changed-object, short-read, read, close, and unknown failures, no retry, and redaction. No real projection was opened, no secret byte was read, and no provider/token operation occurred. Local `pnpm run ci` passed formatting, the production-source filesystem-import guard, strict TypeScript, **74 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32689071998` completed successfully.
+
+This is **source-quality evidence only**, not deployment evidence and not a target proof. The adapter is not bound into an image or Agent composition root, no protected projection binding exists in Azure source, no image has been built or released, and no Azure Compose profile has been rendered. Before a new decision on image binding or target staging, the project still needs a separate target-binding review, release-image evidence, a protected composite source, target render validation, renewed read-only safety preflight, and all retained no-training/no-submission/no-aggregation gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
