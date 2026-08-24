@@ -1015,6 +1015,41 @@ The release adds a production-source import guard denying Node, process, Docker,
 
 This validates source-only policy structure and deterministic fixtures only. No environment, workflow, package, credential, image, registry route, Azure action, target binding, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. The next safe boundary is an evidence-only environment-feasibility record; provider configuration remains a separate security-critical gate.
 
+## 48. Design record — evidence-only protected-environment feasibility
+
+### 48.1 Scope and data-minimizing evidence model
+
+This slice records whether the selected repository-hosted builder can be configured in a later, separately authorized step. It is read-only and evidence-only: it must not create, modify, or delete a GitHub environment, workflow, package, credential, image, registry route, Azure resource, target binding, Compose render, projection, runner, proof, training, update submission, or aggregation state.
+
+The record may retain only scalar capability classes: repository visibility/eligibility class, read-only environment-inventory availability, protected-environment feature status, repository-administrator custody status, reviewer-separation status, bypass-policy status, private-package-policy status, and a terminal feasibility code. It must never retain or publish environment names, package/image/registry identifiers, reviewer names, organization membership, plan/billing details, credentials, provider responses, workflow bodies, target facts, logs, hosts, paths, commands, raw headers/bodies, or clinical data.
+
+### 48.2 Feasibility matrix and terminal closure
+
+| Evidence class | Read-only question | Feasible conclusion | Terminal blocker |
+|---|---|---|---|
+| Repository eligibility | Does the repository’s visibility and provider feature posture support the required protection model? | `repository_feature_eligible` | `repository_feature_unverified` or `repository_feature_denied` |
+| Environment inventory | Can the repository’s existing environment inventory be inspected without creating one? | `environment_inventory_readable` | `environment_inventory_unavailable` |
+| Reviewer custody | Is an independent administrator/reviewer assignment possible without reusing Agent/Core/target/runtime identities? | `reviewer_custody_pending_assignment` | `reviewer_custody_conflicted` |
+| Bypass posture | Can administrator bypass be disabled as required by the policy? | `no_bypass_pending_configuration` | `no_bypass_unavailable` |
+| Private package policy | Can the future package remain private and repository-linked without fork/unrelated-repository access? | `private_package_policy_pending_verification` | `private_package_policy_unavailable` |
+| Implicit creation risk | Can configuration be held outside a workflow reference so an unprotected environment cannot be created accidentally? | `implicit_creation_risk_controlled_by_process` | `implicit_creation_risk_unresolved` |
+
+The aggregate result may be `feasibility_evidence_recorded`, `feasibility_blocked`, or `feasibility_unverified`. It cannot be `configuration_approved`, `workflow_authorized`, `credential_authorized`, `package_authorized`, or `execution_ready`. Unknown, inaccessible, or ambiguous provider facts are blockers and must not be replaced with an automatic configuration attempt or a lower security posture.
+
+### 48.3 Read-only inspection and stop conditions
+
+Read-only inspection is limited to repository-level capability and aggregate environment readiness facts using the existing repository authority. The inspector must project only allowlisted scalar states; a provider error, permission limit, missing package, unverified plan feature, or unavailable environment endpoint becomes a terminal blocker. It does not retry through another identity, browser session, personal token, package creation, workflow reference, or target account.
+
+> **Hard stop:** feasibility evidence cannot configure the provider. A future configuration step still requires an independently assigned administrator/reviewer/custodian, private-package access confirmation, no-bypass control, a fresh one-candidate authorization, immutable external source/base evidence, a target-staging dossier, and a security-critical action decision.
+
+### 48.4 Read-only feasibility evidence and blocked outcome
+
+The selected Agent repository was inspected through read-only repository and Actions endpoints. The projected facts are: the repository is private and active; default workflow-token permission is read-only; automatic pull-request approval is disabled; and the environment inventory is readable with a count of zero. No environment, workflow, package, credential, image, registry route, Azure resource, target, Compose profile, projection, proof, training, update submission, or aggregation setting was created, changed, or invoked.
+
+The evidence result is `feasibility_blocked`, not configuration approval. Read-only inventory proves that there is no existing protected environment to review, so no reviewer/custodian assignment, no-bypass rule, branch restriction, protected secret boundary, or environment capability is yet evidenced. The absence of a package also leaves private package access policy unverified. The repository’s default read-only workflow-token posture is compatible with a later job-scoped least-privilege design, but it is not itself proof of the required protected-environment controls. These blockers close terminally; no automatic environment reference, workflow creation, package creation, alternate identity, browser action, personal-token workaround, or provider configuration was attempted.
+
+The only next safe decision is whether to authorize a specific protected-environment and private-package configuration plan after assigning independent administrator/reviewer/custodian roles. Actual configuration, credential use, image building, registry publication, Azure staging, target binding, projection access, proof, training, update submission, and aggregation remain separately blocked.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
