@@ -1782,6 +1782,29 @@ The aggregate readout is limited to received, envelope-invalid, cross-identity-d
 
 Deterministic compatibility fixtures must prove private canonical-result non-disclosure, validator denial before policy/workspace, policy denial before workspace where applicable, one-way operation/shape/renderer identity consumption, cross-identity closure, no fallback, frozen scalar receipts/readouts, and no-text/no-artifact serialization. Static guards must reject filesystem, process, Docker/Compose/render/template/YAML, environment/configuration, HTTP/registry/cloud/OIDC, Core/Agent runtime, trainer, submission, and aggregation imports. This review authorizes neither a coordinator implementation nor any modification to validator/policy behavior. A later source-only coordinator slice must be documented and quality-gated separately; text parsing, renderer implementation, private writer, package access, target configuration, staging, proof, training, submission, and aggregation remain separate blocked decisions.
 
+### 62.4 Source-only synthetic admission coordinator increment
+
+The next Agent increment implements the narrow synthetic admission coordinator described above, using only the existing scalar validator and source-only renderer-policy fakes. The coordinator accepts one versioned envelope containing an operation identity and two existing scalar requests. It validates the exact synthetic operation/shape/render identity relation before consuming the operation. It must not accept a parser result, canonical object, configuration object/text, path, root, image/package/registry locator, target, credential, provider result, command, promotion capability, or free text.
+
+The normal sequence is fixed: validate envelope → verify identity relation → claim operation identity → call scalar validator → call renderer policy only after `inert_shape` → project frozen scalar terminal receipt. A malformed envelope or cross-identity conflict calls neither validator nor renderer policy. Validator denial calls no renderer policy or workspace. Renderer policy denial may close before workspace; a symbolic workspace closure remains no-artifact and promotion-disabled. The coordinator owns operation replay suppression; existing validator and renderer-policy identities retain their own replay semantics. No component may substitute an alternate shape/render identity or retry a terminal result.
+
+| Terminal route | Validator call | Renderer policy call | Public scalar receipt |
+|---|---|---|---|
+| Envelope malformed | No | No | `envelope_invalid` |
+| Identity relation denied | No | No | `identity_relation_denied` |
+| Operation replay | No | No | `operation_replay_denied` |
+| Validator denied/replayed | Yes | No | `validator_denied` or `validator_replay` |
+| Validator inert; policy denied/replayed | Yes | Yes | `policy_denied` or `policy_replay` |
+| Validator inert; symbolic discard closure | Yes | Yes | `not_rendered_after_discard` |
+
+Coordinator tests must use deterministic source-only fixtures to prove the call order, private port storage, no-policy/no-workspace path for malformed/cross-identity/validator-denial cases, scalar-only serialization, replay closure, and no artifact/promotion. They must not add parser, renderer, workspace writer, file, environment, process, Docker/Compose, network, package/registry, credential, target, Core/Agent runtime, staging, proof, training, submission, or aggregation capability. Source guards must reject those dependencies. This is source-quality work only and does not provide an integrated runtime renderer or staging result.
+
+### 62.5 Source-quality evidence — synthetic admission coordinator
+
+Agent release `26b471b` implements the source-only synthetic admission coordinator, private validator/policy ports, operation replay set, frozen scalar readout, deterministic integration fixtures, and import guard. It verifies matched synthetic operation/shape/render identity suffixes before operation consumption, calls the scalar validator first, calls the existing renderer policy only after scalar `inert_shape`, and projects a scalar `not_rendered_after_discard` only after the existing symbolic discard closure. The validator’s private canonical marker is never read, stored, or projected by the coordinator.
+
+The coordinator terminally closes malformed envelopes and cross-identity inputs before validator/policy invocation; validator denial before policy/workspace; policy precondition denial before workspace; symbolic cleanup denial without an artifact or promotion; and repeated operation identity without re-invocation. Its serialized object contains neither identities nor port state. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **154 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32711294107` completed successfully. This is source-quality evidence only: no parser, renderer execution, configuration text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate coordinator terminal-record/persistence design is required before durable restart behavior is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
