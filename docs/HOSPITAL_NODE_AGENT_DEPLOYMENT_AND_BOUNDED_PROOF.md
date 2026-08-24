@@ -603,6 +603,16 @@ The first executable slice after this decision may add a source-only build-admis
 
 Nothing in this decision changes the aggregation worker’s disabled state or authorizes training, update packaging/submission, provider contact, hospital integration, clinical data, or public exposure.
 
+## 33. Implementation evidence — source-only image admission and release mapping contracts
+
+Agent release `a4bf11a771eb74a7d0c6bd40ca1eeab609eb83ab` implements pure, versioned `AgentImageBuildAdmission`, `AgentImageReleaseMapping`, and `AgentImageReleaseQuarantine` contracts plus an in-memory `AgentImageReleaseBook`. The admission validator accepts only the narrow scalar source revision, lockfile digest, Node runtime class, policy version, completed quality/import-guard facts, and scalar-preflight default. It rejects unknown fields and malformed or mutable/source-incomplete values, including tag, registry, target, projection, and credential-shaped fields.
+
+The release book can create one `released_target_unbound` mapping only when supplied with an exact admitted source revision and a syntactically valid immutable digest value. It has no build, registry, Docker, Azure, filesystem, target, runner, projection, or network dependency. Its in-memory mapping and quarantine sets are private; snapshots expose only aggregate counts. A duplicate mapping is terminal, and a quarantined candidate remains terminal without retry or alternate mapping. The synthetic digest is a contract input only—it is **not** evidence that an image, manifest, registry object, or target release exists.
+
+Deterministic tests cover normal scalar admission/mapping, malformed source/lockfile/runtime/policy/quality/import-guard denial, unknown sensitive or mutable-shaped fields, source mismatch, invalid target state, mapping duplicate, quarantine, and redaction of source/digest values from book serialization. Local `pnpm run ci` passed formatting, the production-source filesystem-import guard, strict TypeScript, **77 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32689772080` completed successfully.
+
+This validates source-only contract behavior, not a protected build or release. Docker remains unavailable locally; no build daemon, image, registry contact, push, manifest, signature, Azure target, Compose render, projection, token, provider request, runner, proof, training, submission, or aggregation occurred. The next boundary is a separate protected-builder authorization/design decision; target staging remains blocked.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
