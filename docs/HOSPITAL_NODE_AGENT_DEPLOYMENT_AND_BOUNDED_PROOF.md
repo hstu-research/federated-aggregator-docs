@@ -939,6 +939,40 @@ Before any external build can be considered, the project still requires a commit
 
 > **Hard stop:** selecting GitHub Actions and a private GitHub Container Registry package is not an authorization to execute. No provider, credential, package, image, registry route, Azure target, projection, Compose render, proof, training, update submission, or aggregation action occurs in this increment.
 
+## 46. Decision record — protected-environment reviewer and workflow policy
+
+### 46.1 Scope, platform feasibility, and non-authorization
+
+This record defines the future protection posture for the selected GitHub Actions builder. It does not create a GitHub environment, change repository or organization settings, create a workflow, grant a reviewer, add a secret, configure a package, issue or use a token, build or publish an image, contact Azure, bind a target, render Compose, open a projection, invoke proof, train, submit an update, or enable aggregation.
+
+GitHub environments can require reviewers, branch restrictions, wait timers, and administrator-bypass controls; a job that references an environment can access environment secrets only after required review passes. [9] [10] However, availability of environment protection features depends on repository visibility and the organization’s plan. The future builder path therefore has an explicit feasibility precheck: a repository administrator must verify that the intended private-package/repository posture supports the required environment protections **before** any workflow references the environment. A workflow reference to a nonexistent environment can create it without protection rules, so neither the future workflow nor Agent source may implicitly create the environment. [9]
+
+### 46.2 Review state machine and role separation
+
+The selected policy uses a separate protected environment whose name is an internal control-plane value and is not written into Agent source, docs readouts, package metadata, image labels, or runtime configuration. The user who manually dispatches a future one-candidate run cannot approve that run. Administrator bypass is disabled. A designated independent reviewer class may approve only after the source-only authorization envelope, action-consumption record, source/base facts, quality conclusion, package-visibility evidence, and no-target-deployment attestation agree. GitHub supports up to six environment reviewers but permits one listed reviewer to approve, so this control supplements—rather than replaces—the independent policy/execution/registry/custody approvals documented earlier. [9] [10]
+
+| State | Required scalar conditions | Terminal denial / closure |
+|---|---|---|
+| `environment_unconfigured` | No workflow/environment/package/credential change exists. | External route prohibited. |
+| `environment_feasibility_verified` | Repository administrator confirms protection availability, private-package policy, no-bypass setting, manual-only trigger design, and independent reviewer configuration. | Any unavailable control yields `environment_capability_denied`. |
+| `one_candidate_review_pending` | Exact immutable candidate/source/base/policy facts, current quality, fresh authorization, and no-target-deployment attestation are bound before dispatch. | Stale, missing, mutable, contradictory, self-reviewed, or reused record yields `environment_review_denied`. |
+| `review_approved_not_executable` | Independent environment review is logged with bounded approval/expiry classes. | Still not a build instruction or a credential handoff. |
+| `review_rejected`, `review_cancelled`, or `review_revoked` | Allowlisted scalar closure reason and candidate class only. | Terminal; no retry, bypass, alternate reviewer, token refresh, or target action. |
+
+### 46.3 Future workflow policy and credential boundary
+
+The dedicated builder workflow must be disabled by default and use only manual dispatch after a separate decision. It must not trigger on `push`, pull request, tag, schedule, `pull_request_target`, or `workflow_run`. It must be separate from Hospital Node Quality Gates and must not check out untrusted fork content. The workflow may accept only an opaque one-candidate authorization class; it rejects free text, branch/tag names, mutable revisions, commands, build arguments, registry overrides, provider facts, target selectors, credentials, paths, or payloads.
+
+Its future protected job has a one-candidate concurrency group with cancellation disabled while a reviewed run is pending or active. Any cancellation must close as `review_cancelled`/`builder_pre_route_denied` before a builder route; a post-route failure must close once, publish redacted scalar evidence, and quarantine/retire the candidate without automatic retry. The job permissions remain exactly `contents: read`, `packages: write`, `attestations: write`, and `id-token: write`; no broad repository write, administration, deployment, issue, pull-request, secret, or cloud permission is allowed. Third-party actions must be pinned to full commit SHAs. [6] [7] [8]
+
+No environment secret is authorized by this record. If a future credential is needed beyond the ephemeral workflow token, it must reside only in the protected environment, be unavailable until approval, be individually scoped rather than structured, never appear in source/build arguments/layers/logs/runtime, and be revoked after a suspected exposure. [8] The Agent, Core, target, runtime image, test process, browser/human identity, ML worker, and callback identity cannot receive or reuse the credential.
+
+### 46.4 Audit, revocation, and retained stop
+
+The future audit record is append-only and contains only candidate/policy classes, reviewer role class, approval state, bounded freshness/duration/resource classes, cancellation/closure state, and provenance-verification conclusion. It excludes names, secrets, package/image/registry locators, runner/host data, commands, raw logs, headers, bodies, manifests, signatures, provider responses, target facts, and clinical data. A rejection, cancellation, exposure concern, review disagreement, source/base mismatch, package-visibility failure, or environment-policy drift revokes the candidate’s future eligibility and requires a new documentation decision before any further proposal.
+
+> **Hard stop:** this is a policy decision only. The next safe work is a source-only workflow-policy validator. Environment/package/workflow configuration and every external execution action remain security-critical gates requiring the documented feasibility precheck, external permission boundary, and a later explicit action decision.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -956,3 +990,9 @@ Before any external build can be considered, the project still requires a commit
 [7] [GitHub Docs: Publishing and installing a package with GitHub Actions](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions)
 
 [8] [GitHub Docs: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
+
+[9] [GitHub Docs: Managing environments for deployment](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)
+
+[10] [GitHub Docs: Deployments and environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments)
+
+[11] [GitHub Docs: Reviewing deployments](https://docs.github.com/actions/managing-workflow-runs/reviewing-deployments)
