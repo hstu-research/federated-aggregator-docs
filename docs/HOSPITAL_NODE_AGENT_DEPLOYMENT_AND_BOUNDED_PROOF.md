@@ -1072,6 +1072,74 @@ This is a terminal configuration block, not a temporary implementation error. Cr
 
 To reopen this boundary, an externally controlled second GitHub user or an existing independent team must be assigned repository access and designated as protected-builder reviewer/custodian. After that assignment, a new read-only feasibility record must verify role separation, environment capability, private package access, no-bypass eligibility, and fresh one-candidate source/base facts before any configuration. Until then, all provider configuration, credential use, image build/push, registry route, Azure staging, target binding, projection, proof, training, update submission, and aggregation remain blocked.
 
+## 50. Decision record — user-authorized test-only single-admin exception
+
+### 50.1 Scope and reduced-assurance disclosure
+
+The project owner explicitly authorized a **test-only single-admin exception** after the independent-reviewer/custodian blocker was evidenced. This exception allows one repository administrator to configure and operate a narrowly bounded synthetic protected-builder control plane where an independent reviewer/custodian is unavailable. It is a reduced-assurance test boundary only: it must not be represented as production segregation of duties, hospital integration, clinical processing, training evidence, update submission, aggregation capability, target authorization, or proof authorization.
+
+The exception is limited to one private test environment, one private repository-linked package boundary, a disabled-by-default manual workflow, one exact source/base candidate at a time, no environment secrets, no long-lived credential, minimal ephemeral job permissions, SHA-pinned action classes, immutable provenance, redacted scalar audit, and terminal no-retry closure. It does not authorize a public package, fork access, arbitrary command/input, branch/tag selection, mutable base, provider configuration outside the documented controls, Azure staging, target binding, projection, runner, proof, training, update submission, or aggregation.
+
+### 50.2 Test-only state machine and ownership
+
+| State | Required test-only condition | Terminal closure |
+|---|---|---|
+| `single_admin_exception_authorized` | Explicit owner authorization recorded, independent-role blocker retained, and synthetic-only/non-production scope fixed. | Any production, clinical, target, proof, training, submission, or aggregation claim yields `exception_scope_denied`. |
+| `test_environment_unconfigured` | No environment/package/workflow/credential/image exists. | No external route is available. |
+| `test_configuration_ready` | One named test environment with no secrets, a private package policy, and a manual-only source-reviewed workflow design. | Missing/mutable/public/credential-bearing configuration yields `test_configuration_denied`. |
+| `test_candidate_ready_not_dispatched` | Exact source/base/policy facts, source quality, scalar test authorization, and aggregation-disabled attestation agree. | Expiry, mismatch, duplicate, or target fact yields `test_candidate_denied`. |
+| `test_build_closed` | One redacted outcome is recorded and candidate is retired/quarantined. | No retry, fallback, re-tag, target binding, or proof. |
+
+The repository administrator is the sole test operator and remains prohibited from exporting any provider credential or substituting a human/browser/ML-worker/callback identity into Agent, Core, runtime, target, or proof boundaries. The protected environment is a test scope marker, not proof of independent review. No secret may be placed in it; any later request for a credential ends this exception and requires a new boundary decision.
+
+### 50.3 Required test-only workflow posture
+
+The future test workflow must be a separate file from Hospital Node Quality Gates, use `workflow_dispatch` only, be disabled by default through an explicit scalar input, have no `push`, pull-request, tag, schedule, reusable, workflow-run, or automatic retry trigger, and accept no free-text inputs. It may operate only on a fixed scalar candidate class tied to full source/base revisions. Its permissions are limited to `contents: read`, `packages: write`, `attestations: write`, and `id-token: write`; every action is pinned to a full commit SHA. The test workflow cannot access Agent/Core secrets, environment values, Azure, target data, projection, Compose, proof, training, submission, or aggregation interfaces.
+
+Before any one test dispatch, a source-only validator must separately validate this exception-specific policy and quality must pass. The dispatch decision must record only scalar candidate/policy/expiry/state classes. A failed or cancelled run closes terminally with redacted state, retires/quarantines the candidate, and prohibits retry or target use. The future package remains private and unreferenced by any target/pull instruction.
+
+> **Hard stop:** this exception permits only a later synthetic test builder configuration and one redacted test build after its source and configuration gates. It does not permit a real hospital workload, patient data, public release, target deployment, Azure staging, projection, proof, training, update submission, or aggregation.
+
+## 51. Decision record — real live-test protected-builder and synthetic deployment path
+
+### 51.1 Authorization, scope, and retained safety boundaries
+
+The project owner explicitly authorizes a **real functioning live-test path**, replacing the prior no-op interpretation of the single-admin exception. The path may create a real private GitHub environment, a real manual builder workflow, a real private package, one bounded image build/push, later real Azure staging, and one bounded synthetic proof. It remains a test deployment: it cannot process patient/clinical/hospital data, expose a public Agent API, access direct storage/provider services, acquire broad identity, reuse human/browser/ML-worker/callback identity in the Agent, train, package/submit an update, or enable aggregation.
+
+The current single-admin exception remains transparently reduced assurance. The repository administrator is the real test operator; there is no claim of independent reviewer/custodian segregation. The test environment contains no secret. A later Azure package-pull credential, if required, is a distinct deployment secret boundary and must be configured only in the target-staging gate with no source/doc/log projection.
+
+### 51.2 Real test path state machine
+
+| State | Real test operation permitted | Mandatory limit |
+|---|---|---|
+| `live_test_control_approved` | Create a private test environment and private package policy. | No environment secret, public package, target mapping, image, or workflow dispatch. |
+| `live_test_builder_quality_passed` | Commit a separate manual-only builder workflow after source quality evidence. | No automatic trigger, mutable candidate, arbitrary input, or build dispatch. |
+| `live_test_candidate_authorized` | Dispatch exactly one real workflow against one immutable synthetic candidate. | No retry, tag-based target selection, target binding, Azure action, or proof. |
+| `live_test_image_closed` | Record a redacted scalar build/provenance conclusion and retire/quarantine the candidate. | No public package, target pull, staging, proof, training, submission, or aggregation. |
+| `live_test_target_staging_authorized` | Begin a separate target dossier only after fresh image/pull/target safety evidence. | No proof until a separate one-shot decision and preflight pass. |
+
+Any failure is terminal for that candidate and must be published as redacted scalar evidence before a new candidate is proposed. The path forbids automatic retry, fallback registry, source/base substitution, mutable tag reuse, target reuse, hidden package visibility change, or aggregation-worker activation.
+
+### 51.3 Implementation and deployment contracts
+
+The real builder workflow must use `workflow_dispatch` only and require an explicit scalar enablement value. It accepts no repository/branch/tag/command/path/URL/credential/provider/target/payload free text; the committed workflow fixes the source context and validates only immutable candidate facts. It uses a repository-issued ephemeral token with the documented minimal `contents: read`, `packages: write`, `attestations: write`, and `id-token: write` job permissions. Each third-party action is pinned to a full commit SHA. The workflow builds only the tracked Agent container source, publishes only to a private repository-linked package, and writes an attestation only for the resulting immutable artifact. [6] [7] [8]
+
+Azure staging is a later independent boundary. It must not discover or accept an image tag; it must receive a verified immutable image identity through a redacted deployment record, use a narrowly scoped package-pull credential stored only on the target, and retain the Core aggregation-disabled marker. The target will have no public Agent port and no clinical/provider/storage credential. The later proof may use generated fixture data only, one opt-in route, exact scalar closure, and no training/update/submission/aggregation effect.
+
+### 51.4 Evidence and stop conditions
+
+Each real operation produces a distinct evidence record: source quality, environment/package configuration, workflow quality, image build/provenance, target staging, preflight, and one-shot proof. Evidence is aggregate/redacted and never includes package/image/registry locators, secret/token values, host/target identifiers, request/response bodies, headers, source paths, provider facts, or fixture bytes.
+
+> **Hard stop:** owner authorization does not merge the build, staging, and proof gates. Configuration is the next real action; image build/push, Azure staging, target binding, and proof remain blocked until their preceding evidence records pass.
+
+### 51.5 Live-test environment and builder-workflow evidence
+
+The real private test environment is now configured under the user-authorized single-admin exception. Its projected configuration has zero protection rules, no branch policy, and **zero environment secrets**. The absent reviewer/no-bypass/wait controls reflect the documented private-repository plan limitation; they are not represented as protection. The environment is a real GitHub scope marker only. No package exists yet, no image has been built or published, and no target mapping, provider credential, Azure action, target binding, Compose render, projection, proof, training, update submission, or aggregation action occurred.
+
+Agent release `ffc588bb88f5dd18c76d0198f4d2e9322e9d9abd` adds the separate real `Protected Builder Live Test` workflow and a static source test. The workflow has `workflow_dispatch` only, an explicit Boolean execution input defaulting false, a main-branch guard, one-candidate concurrency with cancellation disabled, a bounded timeout, the configured test environment, job-level `contents: read`, `packages: write`, `attestations: write`, and `id-token: write` permissions, full commit-SHA pins for all five third-party actions, ephemeral registry authentication, immutable SHA tag construction, and provenance attestation. It contains no automatic trigger or Azure/target/Compose/projection/proof/training/submission/aggregation step.
+
+The static policy test rejects automatic triggers, unpinned actions, unsafe permission drift, non-ephemeral secret references, cancellation, target/runtime keywords, and missing manual/branch/concurrency/environment constraints. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **104 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32696009922` completed successfully. This is source/configuration quality evidence only; the manual builder workflow has not been dispatched.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
