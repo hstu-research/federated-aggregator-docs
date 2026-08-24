@@ -2009,6 +2009,32 @@ Agent release `059c9c8` implements the local-only temporary-root coordinator ter
 
 Temporary-root fixtures prove canonical empty → claim → terminal closure, terminal and orphan hydration closure, claim denial from temporary residue, terminal/replay suppression, independent ports on separate roots, disposal behavior, and redaction. Local `pnpm run ci` passed formatting, protected filesystem and source import checks, strict TypeScript, **166 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32723808639` completed successfully. This is local temporary-root source-quality evidence only: no target root, application composition wiring, coordinator runtime call, parser, renderer, configuration text/file, target, package/registry access, credential, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate source-only coordinator compatibility boundary design is required before any composition wiring.
 
+## 68. Design record — source-only coordinator compatibility boundary
+
+### 68.1 Test-only scalar durability interface
+
+The next boundary is a **test-only** compatibility interface between a future source-only coordinator fake and the temporary-root durability port. The coordinator-facing interface retains exactly five scalar operations: `hydrate()`, `appendClaim()`, `appendTerminal(allowlistedTerminalCategory)`, `dispose()`, and `snapshot()`. It is structurally compatible with the local port, but the future coordinator fake imports only this interface; it does not import local-state, adapter factory, root capability, filesystem primitive, correlation type, record type, or a path-bearing value.
+
+The interface does not carry an operation identity as a string or object. The composition fixture owns the factory input, constructs a unique port, then injects the port reference into one fake coordinator instance. The fake coordinator may project only a frozen scalar admission receipt and aggregate operation counts. It cannot enumerate or serialize the injected port, request a second port, reconstruct a port, retain a port after terminal closure, access factory input, or delegate the port outside the test fixture.
+
+| Fake coordinator input | Required scalar sequence | Permitted receipt |
+|---|---|---|
+| Eligible synthetic admission | Hydrate empty → append claim stored → deterministic no-artifact route → append terminal stored. | `closed_after_terminal`. |
+| Hydrate terminal or orphan | Hydrate only, then coordinator closes. | `closed_before_route`. |
+| Claim denied | Hydrate empty → claim denied, with no route or terminal call. | `closed_before_route`. |
+| Route or terminal denial | Claim stored → route/terminal closes; no retry or alternative port. | `closed_after_terminal`. |
+| Explicit disposal or any replay | No further port transition. | `replay_suppressed`. |
+
+### 68.2 Lifetime, dependency direction, and compatibility fixtures
+
+The fixture composition root constructs the port before the fake coordinator and retains all private factory inputs. The fake coordinator uses the injected scalar interface for one admission only. Its lifetime ends at a terminal receipt, port disposal, or any denial; the fixture then discards the coordinator and port together. Rebuilding a fake coordinator does not resurrect the prior port. Rollback is terminal close plus fixture disposal, never record deletion, root reuse, port reconstruction, or fallback identity.
+
+Dependencies remain one-way: local-state temporary-root factory → scalar interface → source-only coordinator fake test. Application code, existing admission coordinator, parser, renderer, configuration, target, package/registry, credential, network, Core/Agent runtime, trainer, submission, and aggregation modules may not import the factory or this test-only fake. Compatibility fixtures must prove normal sequence; terminal/orphan/invalid hydration; claim/route/terminal denial ordering; explicit disposal; replay; independent coordinators/ports; no root/correlation/record in receipts, errors, snapshots, or serialization; and no application import. The compatibility boundary does not modify a coordinator runtime or establish application integration.
+
+### 68.3 Future decision boundary
+
+The first possible implementation is a new source-only fake coordinator and its compatibility fixtures. It requires a local quality gate and redacted source-quality evidence. A later application-composition decision must separately specify controller ownership, target-root policy, concrete coordinator lifecycle, error mapping, runtime preflight, protected identity/package access, and an inert staging decision. It remains separate from parser, renderer, configuration artifact, target setup, proof, training, submission, and aggregation. This design authorizes no port wiring, coordinator runtime change, target-root injection, or external action.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
