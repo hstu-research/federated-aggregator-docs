@@ -1328,6 +1328,52 @@ Agent release `4c7d3522c71859ed5634ea28b7d60b51e00c1476` implements the pure ter
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **114 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32703315914` completed successfully. This is source-quality evidence only: the store is in-memory and no filesystem, database, provider, organization, credential, machine account, package, target, image, Azure, render, Agent start, Core call, proof, training, submission, or aggregation action occurred. The external authorization block remains open. A real durable-store adapter would require its own focused design review; it is not implied by this result.
 
+## 54. Design record — durable terminal-diagnostic store adapter
+
+### 54.1 Requirement, scope, and acceptance boundary
+
+This adapter would preserve the already terminal, scalar-only authorization-diagnostic closure across a real process restart. Its research value is evidence continuity: a restart cannot silently reopen a blocked identity path. It does not establish organization authorization, package access, machine-account existence, target custody, image availability, staging readiness, hospital integration, clinical data access, training, submission, or aggregation. The only acceptable persistent payload remains the terminal scalar record defined in §53.8.
+
+| Acceptance fact | Required adapter behavior | Explicit exclusion |
+|---|---|---|
+| Private ownership | The composition root supplies one prevalidated private state-root capability. | Dynamic paths, user-provided paths, home-directory fallback, shared workspace, or public mount. |
+| Scalar encoding | A fixed file name stores one canonical terminal record with an exact schema. | Identifiers, credentials, package/image locators, target data, free text, raw provider facts, or diagnostic input. |
+| Atomicity | Write temporary file, flush, validate, atomically promote, then flush parent metadata. | Partial/append writes, overwrite-before-validation, retry-on-failure, or in-place migration. |
+| Restart closure | Load is bounded and strict; one valid closure produces restart-wide replay suppression. | Restarting into an open/authorized state or reconstructing an identity permission. |
+| Safe failure | Any configuration, permission, decode, integrity, or cleanup failure closes the diagnostic. | Error-body projection, permissive recovery, hidden reset, or target escalation. |
+
+### 54.2 Technical architecture and composition ownership
+
+The application layer retains the existing persistence port. A future infrastructure adapter alone may import the filesystem runtime API. The composition root—not the application, diagnostic request, test fixture, Agent runtime, target, Core, or browser—resolves a private state-root capability from a separately owned deployment configuration seam. It passes only a constructed adapter into the application. The fixed terminal filename is adapter-owned and cannot be derived from a request, identity, package, image, target, or provider fact.
+
+The adapter must validate that its root is absolute, private, non-symlinked, and owned by the executing service account before use. It must create the root and its fixed internal file with least-privilege mode; reject an unexpected owner/mode/type; never follow a symlink; and never expose a root, temporary, final, backup, or cleanup path in readout. The Agent process receives no credential, provider, package, Core, target, or public-server setting through this adapter.
+
+### 54.3 Data model, encoding, and integrity
+
+The durable document contains exactly one versioned `TargetMachineIdentityAuthorizationDiagnosticTerminalRecord`. Its canonical serialization uses a fixed key order, UTF-8, one terminal newline, a bounded byte limit, and no optional fields. On read, the adapter enforces exact bytes/encoding, exact key set, schema version, numeric bounds, allowlisted terminal code, blocked state, replay-suppressed state, and `retryAllowed: false` before passing the scalar record to the application. It does not accept legacy/unknown schema versions, comments, multiple records, partial JSON, extraneous whitespace, duplicate keys, timestamps, migration hints, backup records, or a reset field.
+
+| Event | Adapter result | Application-visible scalar result |
+|---|---|---|
+| Absent fixed record | No mutation; start from source-only state. | `persistence_empty` |
+| Exact valid record | Load exactly one verified terminal record. | `persistence_rehydrated_closed` |
+| Invalid/corrupt/unexpected record | Preserve evidence, do not modify it, and close. | `persistence_record_invalid` |
+| New terminal record | Write/flush/validate/promote once. | `diagnostic_terminal_recorded` |
+| Write, permission, flush, rename, or cleanup failure | Best-effort private temporary cleanup; do not retry. | `persistence_append_failed` |
+
+### 54.4 Lifecycle, recovery, and observability
+
+Load occurs once during explicitly controlled Agent composition. A missing record is the only open-state condition. Corruption or a stale temporary artifact never reopens state: the adapter records an internal allowlisted failure class, leaves final evidence untouched, removes only an adapter-created temporary file if safe, and returns a closed outcome. A successful write may never be overwritten by an ordinary later request because the application coordinator already suppresses replay. On crash/restart, a remaining temporary file is treated as a closed corruption/recovery condition; it is not promoted or parsed as a final record.
+
+Observability is aggregate-only: `load_attempted`, `empty`, `rehydrated_closed`, `record_invalid`, `append_attempted`, `append_failed`, `append_recorded`, `temporary_cleanup_attempted`, and `restart_replay_suppressed`. Log/status output may contain only that allowlisted class and a bounded operation counter. It must not contain a path, owner, mode, byte count, raw JSON, error message, stack trace, identifier, secret, provider result, package/image fact, target reference, or diagnostic input.
+
+### 54.5 Test plan, deployment constraints, and AI handoff
+
+The first implementation slice, if separately authorized, is local-only adapter code with temporary private fixtures. It must test absent, valid, malformed, oversized, duplicate-key, unknown-schema, unknown-code, symlink, wrong-owner/mode/type, write/flush/rename failure, cleanup failure, crash-temporary, restart replay, and no-path/no-content redaction cases. It must not contact Azure, GitHub, a package registry, Core, a target image, or a real database. Static guards must confine filesystem imports to the infrastructure adapter and reject them from application contracts, fakes, status projection, and tests outside isolated temporary fixtures.
+
+The concrete adapter needs a second quality release, then a separately documented deployment configuration review that defines root provisioning and permission assertions without publishing a path. A later target staging gate must recheck all retained restrictions before the adapter is used in an inert Agent process. No durable-store implementation, deployment configuration, filesystem change, target start, credential action, package/image action, proof, training, submission, or aggregation is authorized by this design record.
+
+> **Hard stop:** this record designs a future private scalar store. It does not create a directory, file, database, configuration value, or target artifact and cannot be treated as durable-state or runtime evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
