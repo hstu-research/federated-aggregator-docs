@@ -1247,6 +1247,12 @@ The target was checked only for the presence of an existing private-registry log
 
 The target-staging candidate remains unstarted. The next required input is a newly provisioned target-only private-package pull credential with the narrow package-read scope required by the private image. It must be installed only on the Azure target, never committed, rendered into application configuration, exposed to the Agent process, or recorded in logs/public evidence. Once independently provisioned, the sequence must repeat the scalar Core/aggregation preflight before one exact immutable image staging attempt. The absent credential does not authorize fallback to a user, browser, Core, ML-worker, callback, registry-discovery, or alternative package identity.
 
+### 52.12 Owner authorization — target-only credential provisioning increment
+
+The project owner authorizes proceeding with the target-only credential increment. This authority permits a new, narrow private-package read identity to be created and installed solely at the Azure target, followed by the documented single inert staging attempt after renewed preflight. It does **not** weaken the no-reuse rule: the repository operator’s credential, browser identity, Core identity, ML-worker identity, callback identity, package discovery capability, or any public/package-wide credential remains ineligible for the target.
+
+The credential record must remain target-local and opaque. Public evidence may state only that target-only custody is installed/absent/invalid and that an exact immutable binding was admitted/denied; it must not state the credential mechanism, identifier, scope string, secret value, package/image locator, or target location. No pull, render, Agent start, Core call, proof, training, submission, or aggregation action is implied by this authorization alone.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
