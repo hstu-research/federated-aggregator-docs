@@ -1259,6 +1259,39 @@ The authorized target-only credential increment was attempted through a newly cr
 
 The credential encountered an observability failure during the denied installation path and was immediately revoked through the issuer. Target registry custody remains absent and the remote session was closed. This is a terminal credential-attempt closure, not an image-build or target-staging retry. The attempt will not be repeated. A new staging path requires a separately published diagnosis of package-access authorization and an alternative target-only identity mechanism; it may not reuse the revoked credential, existing user/browser/repository-job identity, Core/ML-worker/callback identity, package discovery route, or a wider package/public credential.
 
+## 53. Design record — private-package access diagnosis and dedicated target machine identity
+
+### 53.1 Diagnosis facts, uncertainty, and nontechnical requirement
+
+GitHub documents that the Container registry and GitHub Packages authenticate non-workflow private package access with a classic personal access token; a download requires `read:packages`, and organizations that require SSO require the token to be SSO-enabled. Fine-grained personal access tokens do not supply the documented Container-registry authentication route. [12] [13] The observed denial therefore proves only that the first target credential could not authenticate to the private registry. It does **not** identify a missing package, package visibility, source repository linkage, inherited package access, organization SSO policy, member entitlement, or image state; those conclusions would require forbidden package/image discovery or a later narrowly authorized access review.
+
+The replacement boundary must supply a distinct non-human **target machine identity**, not treat a personal credential as target segregation. Its research value is a minimally auditable private artifact-consumption mechanism for the synthetic test environment. It does not provide a hospital identity, organization segregation, public access, production credential program, clinical data connection, training authorization, update submission, or aggregation capability.
+
+### 53.2 Replacement authority and data model
+
+The proposed identity is a newly created dedicated machine account, owned by the research organization and used only to mint one time-bounded classic package-read token for the Azure target. The account must receive only the access necessary to read the linked private package, either through verified repository inheritance or an explicit package-level read grant, not broad repository administration. Where the organization enforces SSO, its package-read token must be separately authorized for that organization before target installation. [12] [14]
+
+| Scalar record | Allowed value classes | Prohibited content |
+|---|---|---|
+| `machine_identity_state` | `designed`, `created`, `package_read_granted`, `denied`, `revoked` | Account name, email, user identifier, credential or SSO data. |
+| `package_access_state` | `inheritance_verified`, `explicit_read_verified`, `unknown`, `denied` | Package/image/repository locator, visibility, manifest, version, or metadata. |
+| `target_custody_state` | `absent`, `installed`, `invalidated` | Token, Docker config, file path, host, or deployment location. |
+| `staging_state` | `blocked_before_route`, `preflight_ready`, `staging_closed` | Pull output, image digest, target command, or provider response. |
+
+### 53.3 Workflow, architecture, and engineering standards
+
+The first new slice is read-only authorization diagnosis. It may inspect only scalar organization/package-access capability classes and must stop on a permission error rather than switching identities, listing packages, or probing image routes. The second slice—only after diagnosis is public—is dedicated machine-account creation, separate organization membership/access approval, and one short-lived classic `read:packages` token. The third slice is target-local installation through a non-echoing secret channel, followed by a fresh Core health/aggregation-disabled preflight and one inert image admission attempt.
+
+The Agent remains unaware of the machine identity and token. The Docker credential store remains target-owned; no source, Compose field, environment variable, Agent mount, proof channel, log, browser record, public document, or status projection may carry the credential. Static composition retains no network, host port, restart loop, secret declaration, image value, or runtime proof capability. A token-creation, SSO-authorization, access-grant, target-login, or staging denial closes its candidate with redacted scalar evidence and prohibits same-candidate retry.
+
+### 53.4 API/readout, test plan, and handoff
+
+The diagnostic API/readout is limited to `diagnosis_state`, `package_access_state`, `machine_identity_state`, `target_custody_state`, `core_health_state`, `aggregation_state`, and `terminal_reason`. It cannot return an account identifier, secret, package/image state, locator, raw provider response, header, body, or target detail. Tests must cover denial before package discovery, denied SSO/access class, absent/expired/revoked target custody, no fallback identity, no retry, and redaction.
+
+The implementation handoff is deliberately split: first publish source-only scalar contracts for the authorization diagnosis; then run quality gates; then perform a single read-only diagnosis. The creation or invitation of the dedicated machine account, package-level access grant, SSO authorization, token issuance, target installation, and staging attempt each remain separate credential-sensitive decisions. No image pull, Azure target render, Agent start, Core call, proof, training, submission, or aggregation is authorized in this design increment.
+
+> **Hard stop:** this design does not authorize a second credential attempt. It defines the facts that must be established before a new isolated identity/custody gate can be opened.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -1282,3 +1315,9 @@ The credential encountered an observability failure during the denied installati
 [10] [GitHub Docs: Deployments and environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments)
 
 [11] [GitHub Docs: Reviewing deployments](https://docs.github.com/actions/managing-workflow-runs/reviewing-deployments)
+
+[12] [GitHub Docs: Working with the Container registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)
+
+[13] [GitHub Docs: Introduction to GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages)
+
+[14] [GitHub Docs: Configuring a package's access control and visibility](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility)
