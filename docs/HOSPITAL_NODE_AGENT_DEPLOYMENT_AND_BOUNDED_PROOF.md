@@ -613,6 +613,35 @@ Deterministic tests cover normal scalar admission/mapping, malformed source/lock
 
 This validates source-only contract behavior, not a protected build or release. Docker remains unavailable locally; no build daemon, image, registry contact, push, manifest, signature, Azure target, Compose render, projection, token, provider request, runner, proof, training, submission, or aggregation occurred. The next boundary is a separate protected-builder authorization/design decision; target staging remains blocked.
 
+## 34. Decision record — protected-builder authorization, custody, and rollback
+
+### 34.1 Scope, ownership classes, and non-authorization
+
+This is a documentation-only authorization record for a **future** protected-builder boundary. It names the required classes and stop conditions; it neither appoints an external operator nor authorizes a remote builder invocation, registry operation, image build/push, Docker use, Azure contact, target staging, Compose render, projection, proof, training, update submission, or aggregation. The factual release state remains `source_validated_target_unbound` and image-free.
+
+The future control plane separates three opaque roles. `agent_release_policy_authority` alone can approve the immutable admission policy and approved base/runtime class. `protected_agent_release_builder` may later execute one admitted candidate only after a distinct execution approval. `registry_release_approver` separately controls a bounded release channel. No target operator, Agent process, test process, Core service, Azure host, runtime image, human/browser session, ML worker, callback identity, or documentation publisher may act as any of these roles or inherit their authority.
+
+### 34.2 Immutable admission, environment, and credential custody
+
+The future builder may accept only an exact `AgentImageBuildAdmission` already passed by the source-only contracts: immutable source and lockfile identities, fixed Dockerfile and policy revisions, approved runtime/base identity, completed quality/import-guard facts, and scalar preflight default. The builder must refuse a mutable reference, working tree, tag, unpinned base/dependency, target selector, ad hoc command, build argument, secret-shaped field, projection, dataset, provider fact, public listener, runner mode, or runtime configuration. An approval of a base **class** is not an approval of a particular external base object until its immutable identity is independently recorded at the later executable gate.
+
+| Control area | Required future condition | Terminal denial or stop condition |
+|---|---|---|
+| Builder environment | An isolated, disposable, non-root build environment receives only the admitted scalar facts and a frozen dependency resolution. It has no target credentials, host binding, public port, runtime listener, projection, or workload identity. | `builder_environment_denied`; no candidate is created. |
+| Registry custody | A registry release authority may later use a one-candidate, one-release opaque capability outside build arguments, image layers, labels, logs, test environments, Agent runtime, Core, Azure target, or documentation. The capability is not created or used by this record. | `registry_custody_denied`; no pull/push, mapping, or retry. |
+| Evidence and redaction | The control plane retains only admission/revision/digest classes, bounded duration/resource classes, and allowlisted outcome codes. Commands, paths, registry details, credentials, environment names, arguments, layer/manifest/signature data, and tool output are suppressed. | Unknown output becomes `builder_internal_denied`. |
+| Independent review | A policy authority and a registry-release approver must independently attest the same admitted candidate before any future execution approval. Neither attestation binds a target. | `builder_review_denied`; candidate remains absent or quarantined. |
+
+### 34.3 Quarantine, rollback, and no-target-deployment attestation
+
+Every denied, failed, revoked, or later-disputed candidate closes terminally as `builder_candidate_quarantined`. Quarantine binds only immutable candidate/revision classes; it must revoke any future one-candidate release capability, forbid mutable retagging, mapping substitution, automatic rerun, automatic retry, target binding, or reuse under a new candidate identity. A rollback is a policy-side withdrawal of the candidate's future release eligibility, not an image deletion, registry assertion, or Azure operation. It may be recorded only as redacted scalar state with an independent reviewer class.
+
+Before any later builder execution approval, the record must carry a `no_target_deployment_attested` conclusion: there is no Agent target binding, target credential, image pull instruction, Compose source/render, projection, target runner, proof request, or Azure staging action. Any contrary fact ends the future builder path at `target_separation_denied` and requires a new target-bound dossier rather than a correction or retry.
+
+### 34.4 Next bounded slice and retained block
+
+The only prospective follow-up is a **source-only** protected-builder admission-orchestration design and its deterministic fakes. It may model role separation, scalar authorization, terminal quarantine, and redacted readout; it must not mint a credential, call a builder or registry, construct an image, stage a target, render Compose, open a projection, or invoke proof. An actual external build still requires a separately published execution approval, independently established credential/registry custody, quality evidence for the orchestration, and a later target-staging decision.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
