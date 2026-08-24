@@ -1514,6 +1514,14 @@ Rollback destroys the injector/composition binding and returns disabled without 
 
 > **Hard stop:** this record designs a one-way target-owned injection boundary. It does not create, read, or test a real private-root reference and cannot be treated as configuration, target, durable-state, or runtime evidence.
 
+### 57.5 Source-only synthetic injection contract increment
+
+The next Agent increment is a pure source-only synthetic injection contract. Its only reference input is a fixed-format synthetic sentinel that cannot resemble a root, path, environment key, URL, package/image locator, credential, or provider value. The contract requires a scalar `configuration_ready_not_activated` eligibility decision, one unused synthetic injection identifier, and a deterministic adapter-construction fake. It returns only `injection_not_requested`, `injection_denied`, `adapter_construction_denied`, `persistence_port_constructed`, `composition_disabled`, or replay/fallback/invalid terminal classes; it never returns a reference, root, adapter object, or filesystem capability.
+
+The sentinel must live in a private nonenumerable field whose serialization, inspection, own-property enumeration, and error pathways expose only scalar classes. Malformed sentinels, noneligible/default/active configuration state, fallback reference class, duplicate injection, or fake construction failure deny before a retry or alternate root. The fake may issue a synthetic scalar construction outcome only; it cannot parse/inject configuration, read environment/filesystem, create a root, construct a real durable adapter, or touch Docker/Compose, a target, Azure, GitHub, registry/package, Core, credential, proof, training, submission, or aggregation capability.
+
+Tests must verify reference redaction, one-time handoff, nonenumerability, fake non-invocation on each precondition denial, construction failure closure, replay denial, aggregate-only readout, and import guards. This is an application-contract hypothesis, not a target injector or composition result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
