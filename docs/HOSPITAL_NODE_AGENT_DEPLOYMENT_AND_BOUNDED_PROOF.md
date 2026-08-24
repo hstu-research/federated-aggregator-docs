@@ -846,6 +846,43 @@ The release adds a dedicated production-source import guard for the authorizatio
 
 This validates source-only authorization-envelope behavior and deterministic fakes only. No execution instruction, external candidate appointment, credential, builder, registry, Docker, image, Azure, target, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. A later real external execution action remains a separate decision and requires explicit independent credential custody, builder/registry readiness, target separation, and distinct quality/deployment/staging/proof gates.
 
+## 43. Decision record — one-candidate external execution action and closure
+
+### 43.1 Documentation-only action decision and hard block
+
+This decision defines how a **future** one-candidate external execution action would be consumed and closed. It does not consume an authorization envelope, name a candidate, designate a builder/registry, create or use a credential, invoke a process, contact a builder/registry, use Docker, construct/pull/push/tag an image, contact Azure, bind/stage a target, render Compose, open a projection, run proof, train, submit an update, or enable aggregation. The current factual state remains source-only, image-free, target-unbound, and external-execution-blocked.
+
+No current source-only contract may cause an external route. The only possible future action is one separately recorded consumption of one still-fresh `ready_not_executable` envelope after all independent pre-route checks pass. That later record must remain non-transferable: it cannot be copied to a different candidate, source/policy/base identity, time/freshness class, registry channel, builder class, target, or action. An expired, revoked, quarantined, retired, post-route-closed, missing, or contradictory envelope is terminal and cannot be refreshed, recreated, retagged, or substituted automatically.
+
+### 43.2 Pre-route consumption matrix and custody-handoff prohibition
+
+| Pre-route check | Required future conclusion | Immediate stop condition |
+|---|---|---|
+| Envelope | One exact non-expired, not-revoked, not-quarantined, not-retired `ready_not_executable` class with all immutable facts still equal. | `action_envelope_denied`; no route declaration. |
+| Independent approvals | Policy, execution, registry, and custody readiness classes remain fresh, mutually independent, and bound to the same candidate/policy class. | `action_review_denied`; no route declaration or alternate reviewer. |
+| Custody handoff | The Agent, Core, target, runtime image, test process, documentation site, human/browser, ML worker, and callback identity receive no credential, handle, environment value, path, or provider instruction. The future custodian remains external to these boundaries. | `action_custody_denied`; no credential creation, refresh, or handoff. |
+| Target separation | A renewed `no_target_deployment_attested` conclusion excludes target binding, pull instruction, Compose source/render, projection, runner, proof, and Azure staging. | `target_separation_denied`; stop and require a target-bound dossier. |
+| External route declaration | A later declaration may contain only a one-candidate action class and redacted time/resource class; it cannot include an endpoint, registry, host, command, credential, image, request/response body, log, or provider fact. | `action_route_not_started`; no external route. |
+
+The transition `action_route_not_started` → `action_route_started_placeholder` is a documentation/contract state only in the current scope. It does **not** assert that a route was opened. It permits no code path to execute. A separate future execution action must record the exact permitted route class and re-evaluate every pre-route condition immediately before a real route; any failed condition stops before the route and closes as `action_pre_route_denied`.
+
+### 43.3 Post-route closure, publication, and candidate retirement
+
+If a future real route is ever opened, it becomes post-route immediately. Any failure must close as `action_post_route_failed`, publish one redacted scalar record before further action, and prohibit retry, fallback channel, candidate substitution, tag change, credential refresh, source rebuild, target binding, or reuse. Publication may contain only immutable candidate/policy classes, an allowlisted failure code, and bounded duration/resource classes. It must omit credentials, registry/provider details, endpoints, commands, logs, artifact values, bodies, headers, hosts, paths, and environment values.
+
+Candidate retirement is an independent policy-side terminal declaration by an opaque `candidate_retirement_authority` class. It can mark the candidate `retired`, `quarantined`, or `revoked` but cannot claim deletion, registry mutation, credential revocation, builder activity, or target action unless such claims have their own later evidence. The retirement declaration is append-only, redacted, and blocks every future action use of the candidate class.
+
+| Closure state | Required consequence | Prohibited recovery |
+|---|---|---|
+| `action_pre_route_denied` | No route has opened; record one scalar denial and keep the candidate ineligible for this envelope. | Auto-refresh, alternative review, or credential activity. |
+| `action_post_route_failed` | Publish one redacted scalar closure before any new proposal. | Retry, fallback, retagging, replacement, or hiding the failure. |
+| `candidate_retired`, `candidate_quarantined`, or `action_revoked` | Candidate cannot be consumed again. | Reuse under a new request, policy, or target. |
+| `target_separation_denied` | Stop the action path and create a separate target-bound dossier. | Azure staging, Compose render, projection, runner, or proof. |
+
+### 43.4 Next safe slice and retained proof block
+
+The next safe activity is a source-only action-consumption state contract with deterministic fakes. It may model one-candidate pre-route eligibility, route-not-started, a non-executing route-started placeholder, terminal pre/post-route closure, retirement, redacted aggregate readout, and forbidden imports. It cannot create an instruction or capability; it cannot interact with a credential, builder, registry, Docker, image, Azure, target, Compose, projection, runner, proof, training, submission, or aggregation path. Any later real action still requires a distinct external authorization, necessary permission/credential readiness, and separately documented execution/deployment/staging/proof gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
