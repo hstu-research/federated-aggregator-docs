@@ -2346,6 +2346,51 @@ If all packets become independently current through a separately authorized exte
 
 FedProx local-training evidence starts only after the Agent proof has its own recorded result; it remains a separate mathematical and synthetic-data/training dossier. Update submission and aggregation each require later independent safety, state, and evidence gates. Neither source quality nor deployment readiness proves a thesis experiment, model quality, or clinical viability.
 
+## 82. Critical path: one-shot synthetic-proof preflight design
+
+This design defines the smallest possible future runtime proof after—and only after—the five independent deployment-readiness packets are independently current. It is not a proof execution request. It creates no package or identity access, binds no release or target, starts no Agent, and contacts no Core service. Its role is to ensure that a future authorized proof has exactly one bounded synthetic command class, finite terminal outcomes, no public listener, no clinical workload, no trainer effect, no update submission, and aggregation disabled throughout.
+
+### 82.1 Immutable proof admission facts
+
+The future proof admission consumes only the scalar `proof_admitted` decision derived from the five current packets. It binds a one-time opaque proof class, a one-time synthetic-operation class, a private-process posture class, aggregation-disabled class, and cleanup-required class. The admission must not include or reveal a command string, release identity, target, root, path, configuration, credential, request body/header, database detail, model byte, dataset field, patient fact, or callback endpoint. The composition must refuse any attempt to add a second operation, broaden scope, alter aggregation state, or replace a packet after admission.
+
+| Invariant | Required future behavior | Explicitly excluded |
+|---|---|---|
+| Workload | One deterministic synthetic no-artifact operation only. | Clinical data, datasets, models, trainer invocation, model release, or performance measurement. |
+| Process posture | Non-public, no listener, one private bounded process. | Public ingress, browser/human identity, fallback identity, sidecar exposure, or long-running service. |
+| Core control | Fresh aggregate evidence says aggregation is disabled before and after the operation. | Enabling, scheduling, or inferring aggregation. |
+| Data effect | No update submission and no persistent training effect. | Weight generation, update packaging, model transfer, or state promotion. |
+| Cleanup | Terminal process/port/temporary-state cleanup is required before closure. | Reuse, background retry, residue promotion, or implicit recovery. |
+
+### 82.2 Finite proof lifecycle
+
+The lifecycle is intentionally linear. A proof may have one terminal observation only. `pre_route_cancelled` covers any stop before process start; `terminal_observed` covers the first completed, failed, or interrupted post-start observation. Both paths require cleanup before final closure. No state permits retry, packet refresh, command replacement, fallback identity, listener creation, or a second synthetic operation.
+
+| State | Entry condition | Permitted next state | Closure rule |
+|---|---|---|---|
+| `packet_current` | Five independently valid, current packets exist. | `proof_admitted` or `pre_route_cancelled`. | Any expiry/revocation/mismatch closes admission. |
+| `proof_admitted` | Immutable scalar proof facts pass final control evaluation. | `invocation_started` or `pre_route_cancelled`. | A duplicate/admission change closes without start. |
+| `invocation_started` | One private synthetic process is observed as started. | `terminal_observed`. | No retry, second process, or target substitution. |
+| `terminal_observed` | First aggregate terminal outcome is recorded. | `cleanup_verified`. | Outcome is published before any later decision. |
+| `pre_route_cancelled` | A pre-start control/cleanup condition fails. | `cleanup_verified`. | No target contact or Agent process start. |
+| `cleanup_verified` | Required process/temporary-state cleanup class is observed. | `closed`. | Residual/unknown cleanup closes as failed; no reuse. |
+| `closed` | Redacted proof record is complete. | None. | Future work requires a new independently authorized admission. |
+
+### 82.3 Allowed evidence projection and proof record
+
+The record may contain only the following aggregate-safe assertions. An outcome is not a training, submission, aggregation, hospital integration, or clinical claim.
+
+| Evidence assertion | Permitted values | Prohibited projection |
+|---|---|---|
+| Preflight class | `admitted` or one allowlisted closure class. | Packet contents, identities, release/target/root/configuration details. |
+| Process posture class | `private_non_public` or a closure class. | Ports, hosts, commands, process IDs, listener details. |
+| Aggregation-control class | `disabled_confirmed` or a closure class. | Internal control payloads or queue/job details. |
+| Terminal outcome class | `completed_synthetic`, `failed_synthetic`, or `interrupted_synthetic`. | Model/data/transport body, metrics, model weights, provider response. |
+| Cleanup class | `cleaned`, `residual_closed`, or `cleanup_unknown_closed`. | Paths, filenames, root details, process diagnostics. |
+| Retained-control class | `trainer_not_invoked`, `submission_not_invoked`, `aggregation_disabled`. | Training/update/aggregation implementation facts. |
+
+The future redacted proof record must name the evidence class, immutable proof class, terminal class, cleanup class, retained controls, and the statement that no clinical data, trainer, submission, or aggregation action occurred. It must not include any raw operational detail. A successful synthetic terminal observation proves only that the bounded synthetic proof contract completed under its own controls; it cannot prove hospital integration, model validity, FedProx quality, submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
