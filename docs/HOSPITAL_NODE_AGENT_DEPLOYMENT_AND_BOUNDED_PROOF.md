@@ -1241,6 +1241,12 @@ Agent release `c6207471b77c7410da52e905a7610756e42577c6` adds an opt-in Azure ta
 
 The static test rejects public ports, host network, privileged mode, Docker socket use, status enablement, build/secrets/volumes, and Core/identity/token/proof/training/submission/aggregation/HTTP configuration. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **106 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32697410462` completed successfully. This is source-quality evidence only: it has not rendered or pulled a target image, configured a target secret, touched Azure deployment configuration, started an Agent, contacted Core, or invoked a proof.
 
+### 52.11 Target-only package-pull credential preflight — blocked before route
+
+The target was checked only for the presence of an existing private-registry login, without reading credential material. No private-registry credential was present. This is a pre-route blocker, not a deployment failure: no target secret was created, no human/browser/repository-job credential was reused, and no image/package inventory query, image binding, image pull, Compose render, Agent start, Core call, proof, training, submission, or aggregation action was attempted.
+
+The target-staging candidate remains unstarted. The next required input is a newly provisioned target-only private-package pull credential with the narrow package-read scope required by the private image. It must be installed only on the Azure target, never committed, rendered into application configuration, exposed to the Agent process, or recorded in logs/public evidence. Once independently provisioned, the sequence must repeat the scalar Core/aggregation preflight before one exact immutable image staging attempt. The absent credential does not authorize fallback to a user, browser, Core, ML-worker, callback, registry-discovery, or alternative package identity.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
