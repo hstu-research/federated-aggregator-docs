@@ -1374,6 +1374,12 @@ The concrete adapter needs a second quality release, then a separately documente
 
 > **Hard stop:** this record designs a future private scalar store. It does not create a directory, file, database, configuration value, or target artifact and cannot be treated as durable-state or runtime evidence.
 
+### 54.6 Local-only implementation increment authorization
+
+The next increment is authorized solely for a local Agent-repository infrastructure adapter and isolated temporary-fixture tests. The adapter must receive a test-created private root capability through its constructor; test code may create and remove only its own bounded temporary fixtures. It must not read environment configuration, access the developer home, use the Azure target, query GitHub/registry/Core, bind a port, or accept a path from an application request. Its public contract must expose only the existing scalar persistence port and aggregate-safe results.
+
+Required quality gates are strict formatting, TypeScript, all existing tests, new corruption/permission/symlink/atomic/restart fixture tests, and a static import guard limiting filesystem imports to the adapter and isolated fixture test. The release is source-quality evidence only. Any later deployment-root configuration, real Agent composition, target staging, identity/credential change, package access, proof, training, submission, or aggregation action remains separately blocked.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
