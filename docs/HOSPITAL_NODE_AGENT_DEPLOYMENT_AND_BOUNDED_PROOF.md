@@ -1148,6 +1148,12 @@ The candidate is terminally closed. No workflow retry, alternate registry, mutab
 
 The next candidate must be a fresh source revision after a separate workflow policy change: GitHub’s unavailable attestation-persistence action will be removed and BuildKit OCI provenance will be enabled directly on the private image build through a fixed `provenance: mode=max` setting. This is a compatibility provenance mechanism, not GitHub attestation storage; its successful use must be separately observed and recorded before target staging. The closed candidate will not be retried.
 
+### 51.7 Fresh candidate policy — BuildKit OCI provenance
+
+Agent release `2d384537aa66019863648ab6ba81eba858a4b97e` creates the fresh candidate policy revision. It removes the unavailable GitHub attestation-persistence action and its unneeded `attestations: write`/`id-token: write` permissions. The real manual builder retains only `contents: read` and `packages: write`, the same immutable main-branch SHA context, ephemeral registry token, private-package target, single-candidate/no-cancellation guard, bounded timeout, and no automatic trigger. It now requests `provenance: mode=max` directly from BuildKit as OCI image provenance.
+
+The static policy test requires that exact OCI provenance mode, rejects the removed GitHub-attestation action and permissions, and continues to reject unpinned actions, automatic triggers, target/runtime capabilities, cancellation, and non-ephemeral secret references. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **104 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32696462452` completed successfully. This is source-quality evidence only; the fresh candidate has not been dispatched and the closed prior candidate has not been retried.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
