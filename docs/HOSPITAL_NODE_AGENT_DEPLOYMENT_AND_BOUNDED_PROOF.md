@@ -1154,6 +1154,14 @@ Agent release `2d384537aa66019863648ab6ba81eba858a4b97e` creates the fresh candi
 
 The static policy test requires that exact OCI provenance mode, rejects the removed GitHub-attestation action and permissions, and continues to reject unpinned actions, automatic triggers, target/runtime capabilities, cancellation, and non-ephemeral secret references. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **104 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32696462452` completed successfully. This is source-quality evidence only; the fresh candidate has not been dispatched and the closed prior candidate has not been retried.
 
+### 51.8 Fresh live synthetic image result — BuildKit OCI provenance path
+
+Exactly one fresh manual synthetic candidate was dispatched from the immutable BuildKit provenance workflow revision. The real checkout, build platform setup, private registry authentication, build/publish step, and workflow completion all succeeded. The workflow requested the fixed BuildKit OCI provenance mode directly as part of the private image build, avoiding the unavailable GitHub attestation-persistence service. The build record is `live_private_image_build_succeeded_with_oci_provenance_requested`.
+
+The result remains target-unbound. The available integration cannot list organization package inventory, so the record does not project a package name, image identity, visibility, digest, manifest, provenance body, or locator. The prior candidate remains terminally closed and was not retried. No target pull, Azure action, target binding, Compose render, projection, proof, training, update submission, or aggregation action occurred.
+
+The next boundary is a separate real Azure target-staging dossier. It must define a private package-pull credential held only on the target, verified immutable image identity within a redacted deployment record, no public Agent port, Compose source/render validation, aggregation-disabled recheck, and a later one-shot synthetic proof preflight. This image result is not target readiness or proof evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
