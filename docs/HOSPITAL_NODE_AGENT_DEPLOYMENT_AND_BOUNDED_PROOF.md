@@ -570,6 +570,39 @@ The future target-binding review must use aggregate-safe verification only: exac
 
 The next safe activity is a separate **design-only protected image-build and release-mapping record**. It may describe reproducibility, non-root image constraints, static guard execution, immutable digest admission, and no-runtime default, but cannot build/push an image or stage Azure. Only after that record, its isolated implementation and quality evidence, and a later new authorization could target staging be considered.
 
+## 32. Decision record — protected image build and immutable release mapping
+
+### 32.1 Scope and non-authorization
+
+This decision defines an image-build control plane for the existing source-only Agent release. It authorizes no build, no container daemon use, no registry contact, no image push, no mutable tag, no Azure contact, no Agent source staging, no Compose render, no projection open, and no proof. The current factual state remains `source_validated_target_unbound`; there is no image identity to deploy.
+
+The future build owner is an opaque `protected_agent_release_builder` class operating outside the Agent process and outside the Azure target. Registry credentials, if separately authorized later, belong only to that build/release control plane. They cannot be passed to the image, Agent code, test process, Dockerfile build arguments, logs, labels, runtime environment, or documentation.
+
+### 32.2 Build admission and deterministic constraints
+
+Any future protected build must receive one immutable, redacted `AgentImageBuildAdmission` record. It contains only exact source revision, lockfile identity, runtime class, Dockerfile revision, protected-fs import-guard conclusion, local/remote quality conclusion, and policy version. It rejects branch names, mutable tags, working-tree builds, unpinned dependencies, unverified base references, generic build arguments, runtime secrets, target binding selectors, and ad hoc Docker commands.
+
+| Build constraint | Required later behavior | Failure / prohibition |
+|---|---|---|
+| Source and dependencies | Build the exact admitted source and lockfile; record only immutable scalar revision identities. | `build_source_unverified` or `build_dependency_unverified`; no substitution. |
+| Base/runtime | Pin the approved runtime/base class by immutable identity; use a frozen lockfile. | `build_base_unverified`; no floating base or package update fallback. |
+| Privilege and listener | Run as non-root, expose no public port, and use a scalar preflight/readiness default—not a runner, proof, trainer, or service listener. | `build_runtime_policy_denied`; no image admission. |
+| Filesystem boundary | Re-run the production-source `node:fs` import guard and verify only the approved edge imports it. | `build_import_policy_denied`; no build output. |
+| Inputs | Admit no registry secret, projection, token, provider fact, target hostname, or dataset into build context/arguments. | `build_sensitive_input_denied`; fail closed. |
+| Output | Emit one immutable content digest, associated only with its scalar admission facts. | `build_digest_unverified`; no release mapping or target use. |
+
+### 32.3 Release mapping, logs, and quarantine
+
+A later successful build may create exactly one `AgentImageReleaseMapping` with scalar source revision, policy version, quality conclusion, immutable image digest, and a `released_target_unbound` state. A mutable tag, image alias, target-specific pull instruction, host, registry location, signature body, manifest body, layer value, build argument, or raw build log is not part of the mapping.
+
+Build observability is restricted to allowlisted state codes and bounded duration/resource classes: `build_admission_denied`, `build_started`, `build_failed`, `build_output_quarantined`, `build_digest_verified`, `release_mapping_denied`, and `release_mapping_created_target_unbound`. Unknown tool output collapses to `build_internal_denied`. Logs must redact command lines, paths, registry details, environment names, build arguments, credentials, layers, and outputs. A failed or revoked candidate is quarantined by immutable digest/revision class and cannot be retagged, rerun automatically, mapped to a target, or reused as a different candidate.
+
+### 32.4 Delivery gates and retained target block
+
+The first executable slice after this decision may add a source-only build-admission validator and deterministic release-mapping tests; it may not build or push an image. A separate later review is required before enabling any protected builder. Docker is unavailable in the local sandbox, which is a declared local limitation rather than evidence about the Azure target. The later sequence remains: build-admission implementation and quality → protected builder authorization/build evidence → immutable release mapping → separate Azure staging decision → protected composite source → target Compose render → fresh read-only preflight → explicit one-shot proof decision.
+
+Nothing in this decision changes the aggregation worker’s disabled state or authorizes training, update packaging/submission, provider contact, hospital integration, clinical data, or public exposure.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
