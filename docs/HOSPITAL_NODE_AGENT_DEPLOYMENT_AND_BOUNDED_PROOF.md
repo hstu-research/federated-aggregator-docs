@@ -766,6 +766,42 @@ The release adds a dedicated production-source import guard for the readiness mo
 
 This validates source-only readiness and deterministic fake behavior only. No external execution record or appointment exists; no credential, builder, registry, Docker, image, Azure, target, Compose, projection, runner, proof, training, update submission, or aggregation action occurred. Any actual external execution remains subject to a separate authorization record, credential-custody establishment, and separate quality/deployment/staging/proof gates.
 
+## 40. Decision record — one-candidate external execution-authorization envelope
+
+### 40.1 Scope and retained prohibition
+
+This is a documentation-only envelope for a possible future **one-candidate** external execution decision. It names the required facts, freshness, closure, and publication rules; it does not issue an authorization, designate a candidate, appoint an operator, create or use a credential, call a builder or registry, build/pull/push/tag an image, contact Azure, bind or stage a target, render Compose, open a projection, run proof, train, submit an update, or enable aggregation. The only current factual state is still source-validated, image-free, target-unbound, and external-execution-blocked.
+
+The envelope is scoped to one immutable candidate class and expires before any later external invocation. It cannot be copied to another source, base, policy, registry channel, builder class, target, or time window. The Agent, Core, target host, Azure host, runtime image, test process, human/browser session, ML worker, callback identity, documentation publisher, and any one approving role are prohibited from turning this record into a capability or external request.
+
+### 40.2 Required immutable anchors and approval freshness
+
+| Anchor class | Required future binding | Freshness / failure rule |
+|---|---|---|
+| Candidate admission | Exact source revision, lockfile identity, Dockerfile revision, policy revision, runtime/base object identity, completed quality/import-guard conclusion, and scalar preflight default. | All facts must match one candidate and the declared freshness class; any mismatch, stale fact, mutable reference, tag, or missing fact closes `authorization_not_ready`. |
+| Independent reviews | Separate policy, execution-approval, registry-release, and credential-custody readiness conclusions over the same anchor set. | Each review must remain within the same predeclared bounded freshness class; role reuse, disagreement, expiry, or missing review closes `authorization_denied`. |
+| Credential custody readiness | A custodian's scalar readiness attestation only, with no credential material, handle, name, location, or lifecycle event. | It cannot create, refresh, reveal, or consume a credential; absence or revocation closes `authorization_revoked`. |
+| Target separation | A renewed `no_target_deployment_attested` conclusion covering target binding, pull instruction, Compose source/render, projection, runner, proof, and Azure staging. | Any target fact closes `target_separation_denied` and requires a separate target-bound dossier. |
+
+The future authorization record may expose only an opaque authorization class, immutable candidate/policy class, bounded freshness/expiry class, role classes, and allowlisted terminal status. It must not store or publish credentials, tokens, registry facts, builder/host details, image/manifest/layer/signature values, commands, logs, paths, environment data, request/response bodies, provider facts, or clinical data.
+
+### 40.3 State transitions and invocation stop rules
+
+| State | Required condition | Permitted transition | Stop rule |
+|---|---|---|---|
+| `authorization_draft` | No external facts or capabilities exist. | `authorization_review_pending`. | No external action. |
+| `authorization_review_pending` | All immutable anchors and independent scalar reviews are fresh and mutually consistent. | `authorization_ready_not_executable`, `authorization_denied`, or `authorization_revoked`. | Any invalid/expired/disagreed/reused review terminally closes. |
+| `authorization_ready_not_executable` | The one-candidate envelope is complete and target separation is re-attested. | none in this decision. | It is **not** a build instruction or permission; a separate later execution action must be explicitly recorded before any route. |
+| `authorization_denied`, `authorization_revoked`, `candidate_quarantined`, `target_separation_denied` | Allowlisted scalar cause only. | none. | No automatic retry, alternate channel, credential refresh, candidate substitution, mutable tag, or target reuse. |
+
+Before any later external route, a new pre-route record must re-verify the complete anchor set, freshness class, and no-target-deployment conclusion. It must stop before routing if any check fails. Once any external builder or registry route is attempted, the path is considered post-route: a failure must close terminally, publish a redacted scalar failure record, and prohibit retry or fallback until a separately documented diagnosis and new decision exist. A post-route failure must never be hidden by candidate deletion, retagging, record replacement, new credential issuance, or target reuse.
+
+### 40.4 Audit, candidate retirement, and next safe slice
+
+Audit is append-only and redacted. It may retain only status/policy/candidate/freshness/role classes and bounded duration/resource classes; unknown external output collapses to `external_execution_internal_denied`. Candidate retirement, revocation, and quarantine are policy-side terminal declarations recorded by immutable class only. They do not assert image deletion, registry modification, or target action.
+
+The next safe activity is a source-only one-candidate authorization-envelope contract with deterministic fakes and a forbidden-import guard. It may model freshness, role disagreement, expiry, post-route placeholder failure, revocation, quarantine, and redacted aggregate readout; it cannot create an execution instruction or interact with any external builder, registry, Docker, credential, Azure, target, projection, Compose, runner, proof, training, submission, or aggregation path.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
