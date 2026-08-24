@@ -1437,6 +1437,36 @@ Agent release `e3070f30ab59bb83eaebee3a4d51757d6c6d779e` implements the pure ver
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **122 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32704963862` completed successfully. This is source-quality evidence only: no filesystem, environment configuration, Docker/Compose, deployment configuration, private root, mount, target, Azure, provider, organization, credential, package, image, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. A real composition/configuration adapter remains a separate focused design and implementation boundary.
 
+## 56. Design record — concrete private-root configuration and release-image mapping
+
+### 56.1 Configuration ownership and two-stage parsing
+
+The future configuration adapter belongs exclusively to infrastructure composition. It has two strictly separated stages. The first is a scalar-safe intent parser that accepts only a schema version, `disabled` or `private_terminal_store` mode, binding-presence class, source-release verification class, image-binding class, and activation class. It produces no path-bearing value. The second is a target-only injector that may supply one raw private-root reference directly to the durable adapter factory only after the intent parser yields `private_terminal_store` and all release/activation gates are closed. It cannot expose that reference to application contracts, status, logs, test snapshots, package build metadata, or public documents.
+
+| Input class | Allowed values | Denial rule |
+|---|---|---|
+| `mode` | `disabled`, `private_terminal_store` | Unknown/default-enabled values deny. |
+| `binding_presence` | `absent`, `provided` | Provided binding in disabled mode, or absent binding in private mode, denies. |
+| `source_release_state` | `unverified`, `verified_for_composition` | Private mode denies unless verified. |
+| `image_binding_state` | `not_selected`, `fresh_immutable_candidate_verified` | Private mode denies unless a fresh immutable candidate is verified. |
+| `activation_state` | `disabled`, `ready_not_activated` | Any active/default/runtime value denies. |
+
+The raw root reference is never interpreted as a generic environment variable by application code. The composition implementation, if later authorized, must take it through a target-owned injector type with a private nonenumerable field, reject empty/relative/control-character/home/substitution-shaped strings, and immediately pass it to the already reviewed durable-store adapter boundary. No fallback location, mutable root selection, automatic directory creation, or imported host configuration is allowed.
+
+### 56.2 Release-image mapping and candidate lifecycle
+
+The current successful private image candidate is not eligible for this composition because it predates the durable-store and composition source releases. A later build must be a **fresh candidate** from an immutable source release that includes the future reviewed configuration adapter, the durable store, and the composition contract. The protected builder still owns build/publish, and the Azure target may only consume a target-approved immutable binding. Package/image/digest/manifest/registry identifiers remain internal and must not appear in documentation, logs, status, or the Agent.
+
+The deployment record may retain only scalar facts: `source_release_state`, `configuration_contract_state`, `builder_quality_state`, `private_image_publication_state`, `provenance_state`, `image_binding_state`, `target_preflight_state`, `activation_state`, and `terminal_reason`. A state cannot be promoted from `not_selected` to `fresh_immutable_candidate_verified` without a new published builder result; a target must reject a stale, mutable, unavailable, unverified, or cross-release candidate. This mapping proves neither package access nor target readiness.
+
+### 56.3 Static render, rollback, and future test plan
+
+The future target-composition source must statically render disabled by default, with no host port, ingress, restart policy, public status route, privileged mode, host network, Docker socket, provider/storage/Core configuration, proof/training/submission/aggregation capability, or raw root reference. The only permitted private binding in the opt-in profile is a target-owned injector input that remains outside application-visible configuration. A static renderer must deny missing/extra configuration keys, path-like public values, active mode, mismatched release/image classes, and any alteration to current disabled Agent listener posture.
+
+Rollback removes the target composition binding and returns to disabled while preserving a final terminal record. It does not delete a final record, try an alternate root, retag/select a different image, reuse a previous image candidate, invoke another build, alter target credentials, or open a listener. Tests must cover all scalar parser states, malformed/unknown combinations, redaction, release-image mismatch, stale-candidate denial, disabled render, forbidden render fields, and rollback without final-record deletion. A real configuration adapter, fresh image build, target preflight, or activation requires its own subsequent decision and evidence gate.
+
+> **Hard stop:** this is a configuration and image-mapping design only. It does not add an environment/configuration parser, root injection, Compose file, image build, package pull, target configuration, Agent activation, credential, proof, training, submission, or aggregation action.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
