@@ -2035,6 +2035,34 @@ Dependencies remain one-way: local-state temporary-root factory → scalar inter
 
 The first possible implementation is a new source-only fake coordinator and its compatibility fixtures. It requires a local quality gate and redacted source-quality evidence. A later application-composition decision must separately specify controller ownership, target-root policy, concrete coordinator lifecycle, error mapping, runtime preflight, protected identity/package access, and an inert staging decision. It remains separate from parser, renderer, configuration artifact, target setup, proof, training, submission, and aggregation. This design authorizes no port wiring, coordinator runtime change, target-root injection, or external action.
 
+## 69. Source-only fake coordinator compatibility-fixture contract
+
+The next increment implements a **new test-only fake coordinator**, not the existing admission coordinator. It receives an injected structural scalar durability interface that carries only `hydrate`, `appendClaim`, `appendTerminal`, `dispose`, and `snapshot`; this test-only application interface must not import local-state or expose construction/root/correlation types. A fixture may adapt the temporary-root port to that structural interface, but the fake coordinator receives only the interface reference. It cannot enumerate, serialize, retain after closing, clone, replace, or invoke a factory for the port.
+
+The fake coordinator has one method, `admitSyntheticNoArtifact()`. It first hydrates. An `empty` result permits one claim; stored claim permits one deterministic internal **no-artifact** route result; then it attempts one terminal append with an allowlisted no-artifact category. It returns only a frozen scalar receipt: `closed_after_terminal`, `closed_before_route`, `closed_after_route`, or `replay_suppressed`, plus aggregate-only local call counts. It cannot parse content, construct text, use a workspace, write a file, call a renderer, create a configuration, access a root/correlation/record, read environment, open a network connection, invoke Core/Agent runtime, train, submit, or aggregate.
+
+| Fixture condition | Permitted fake coordinator behavior | Terminal receipt |
+|---|---|---|
+| Empty hydration and claim stored | Invoke exactly one internal no-artifact route, then one terminal append. | `closed_after_terminal` |
+| Terminal/orphan/invalid hydration | Do not claim, route, or append terminal. | `closed_before_route` |
+| Claim denied | Do not route or append terminal. | `closed_before_route` |
+| Internal route closed or terminal denied | Do not retry, replace the port, or reopen admission. | `closed_after_route` |
+| Explicit fixture disposal or any replay | Do not perform another durability operation. | `replay_suppressed` |
+
+The test-only port lifetime is one fake coordinator instance. It ends after any terminal receipt or fixture disposal. Independent temporary-root fixture ports yield independent fake coordinators, and neither can affect the other. Tests must prove the normal sequence; all hydration, claim, route, terminal, disposal, and replay closures; frozen receipts; serialization redaction; independent fixture isolation; and that no application runtime/local-state implementation import is introduced into the fake coordinator. The only intended local evidence is deterministic fixture behavior and source quality. No application wiring, target root, target configuration, parser, renderer, configuration artifact, package/credential action, runtime invocation, staging, proof, training, submission, or aggregation is authorized.
+
+## 70. Source-only fake coordinator compatibility fixture — quality result
+
+The design is now implemented as the source-only fake coordinator compatibility fixture at Agent revision `e907f20`. It accepts only the injected five-operation structural scalar interface and returns frozen scalar receipts. The fake coordinator uses a deterministic no-artifact route mode only; it has no import of local-state implementation, filesystem, environment, package, credential, network, target, Core, runtime, or operational services. The temporary-root fixture owns its capability and correlation privately. No root, correlation, path, record, artifact text, bytes, configuration, target, credential, or runtime value is part of a receipt or coordinator public shape.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and fixture test | Eight deterministic fixture checks passed locally. | Local synthetic behavior only; not a coordinator runtime. |
+| Full Agent local quality chain | 174 TypeScript tests and 4 Python tests passed. | Source quality only; Python checks do not use this fake coordinator. |
+| Remote Agent Quality Gates | Run `32724807579` completed successfully for revision `e907f20`. | CI evidence only; not deployment or runtime proof. |
+
+The new tests cover the one normal empty→claim→no-artifact-route→terminal sequence; terminal, orphan, and invalid hydration closures; claim denial; route closure; terminal denial; explicit fixture disposal; coordinator replay suppression; independent temporary-root fixture isolation; receipt freezing/redaction; and no local-state/filesystem/runtime import. This establishes only deterministic local contract behavior. It does not wire application composition, alter an existing coordinator runtime, inject a target root, parse or render anything, write configuration, access a package or credential, start an Agent, reach a Core service, stage an image, produce proof, train, submit an update, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
