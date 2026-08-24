@@ -1162,6 +1162,73 @@ The result remains target-unbound. The available integration cannot list organiz
 
 The next boundary is a separate real Azure target-staging dossier. It must define a private package-pull credential held only on the target, verified immutable image identity within a redacted deployment record, no public Agent port, Compose source/render validation, aggregation-disabled recheck, and a later one-shot synthetic proof preflight. This image result is not target readiness or proof evidence.
 
+## 52. Design record — Azure target staging for the private synthetic Agent image
+
+### 52.1 Nontechnical requirements and acceptance boundary
+
+This gate tests whether the already built **synthetic-only private Agent image** can be introduced into the authoritative Azure test environment without converting it into a hospital integration or a proof. The research value is operational reproducibility: a separately controlled build artifact reaches a controlled target while retaining data sovereignty, no public Agent surface, and the existing Core aggregation-disabled baseline. It does not establish clinical suitability, hospital ownership, model quality, training, model update submission, federation, aggregation, or production readiness.
+
+| Acceptance fact | Required evidence | Explicit non-goal |
+|---|---|---|
+| Private target binding | A target-local, least-privilege pull credential is held outside source and public records. | Reusing a human, browser, Core, ML-worker, callback, or repository-job identity. |
+| Immutable image selection | A redacted deployment record verifies one expected immutable image fact before activation. | Tags, mutable discovery, public package checks, digest or locator publication. |
+| Non-public Agent posture | No host port, ingress route, or public Agent listener is rendered or started. | Exposing health, status, control, upload, or model routes. |
+| Core safety retained | Authoritative Core liveness/readiness and the aggregation-disabled marker are rechecked immediately before staging. | Treating Core health as Agent proof or enabling aggregation. |
+| Bounded future proof path | The staged process remains inert until a later separately authorized one-shot generated-fixture proof. | Training, local data access, update packaging/submission, or automatic execution. |
+
+### 52.2 Technical requirements, authority, and failure posture
+
+The staging composition has exactly three authority planes. The protected builder owns private publication; the target owns a narrow `packages:read`-equivalent pull secret; and the Agent process owns no registry, provider, storage, Core-administrator, human, browser, or callback credential. The target secret is an opaque deployment-only handle and cannot appear in repository source, Compose values, documentation, shell history, runtime output, volume mounts visible to the Agent, or the later proof channel. The target may pull one preverified immutable candidate but may not select a tag, query package inventory, fall back to a second registry, or refresh credentials through an interactive flow. [7] [8]
+
+The concrete target source must bind a non-public Agent service to an internal/private composition only. It must have no published port, no ingress, no restart loop, no default activation, no `privileged` mode, no host networking, no Docker socket, no direct object-store/provider mount, and no clinical-data mount. The existing Agent status listener remains disabled unless a later proof-specific gate explicitly changes that fact; this staging gate does not do so. Any missing credential, pull denial, identity mismatch, immutable-binding mismatch, render violation, Core-health failure, aggregation-enabled marker, process exit, or observation/redaction failure is terminal for the staging candidate. It must be recorded before any revised candidate is proposed; it receives no automatic retry.
+
+### 52.3 Minimal target record and redaction rules
+
+The target may retain only additive scalar staging facts: a candidate class, image-binding verification state, target deployment state, non-public-port state, pull outcome class, process state, aggregation-disabled preflight state, Core-health class, render-validation state, timestamp class, and terminal reason code. It must not retain or project an image/package/registry locator, digest, manifest, tag, secret reference, token, host name, IP address, compose path, raw command, environment value, provider response, header, body, patient field, fixture byte, local workspace path, or free-text diagnostic.
+
+| State | Entry condition | Terminal result |
+|---|---|---|
+| `target_staging_designed` | This dossier is public and image evidence is closed. | A missing preceding build or malformed target specification yields `target_staging_denied`. |
+| `target_preflight_ready` | Target-only pull-secret ownership, immutable binding procedure, non-public render contract, and Core safety checks are separately verified. | Any unresolved credential, mutable selection, public-port, Core-health, or aggregation check yields `target_preflight_denied`. |
+| `target_staging_authorized` | One exact staging candidate is recorded with all preflight facts. | A state, identity, render, or image-binding mismatch yields `target_staging_denied`. |
+| `target_staging_closed` | Redacted scalar deployment outcome and cleanup/disabled posture are recorded. | No proof may start without a separate one-shot proof decision. |
+
+### 52.4 Workflow, lifecycle, and stop conditions
+
+The normal sequence is deliberately split. First, a read-only Azure inspection verifies the authoritative Core baseline and discovers only scalar deployment seams. Second, source changes create a static, opt-in target composition that references opaque deployment-owned configuration rather than values. Third, local source quality and static render checks pass. Fourth, target configuration introduces the narrow pull secret without writing it to source or public evidence. Fifth, one exact immutable candidate is pulled and started with no public port; deployment evidence then records only scalar state. The process remains inert and does not invoke the proof runner.
+
+Interrupted pull, failed image admission, start failure, unexpected exit, missing disabled marker, bad render, unsupported credential posture, or cleanup/readout failure closes the candidate. There is no in-place retry, force-pull, tag substitution, image rebuild, package visibility change, target reuse, public diagnostic, proof invocation, trainer start, update path, or aggregation enablement. A new target candidate needs a new published diagnosis and source/configuration revision.
+
+### 52.5 Architecture and composition direction
+
+The composition root belongs to the Agent repository, while the deployment secret and exact image binding belong to the Azure target. The Agent consumes injected opaque configuration through reviewed adapters only; it cannot use the composition layer to discover credentials, inspect deployment metadata, reach a registry, or bind a host port. The private package is an input to the target runtime, not a dependency in application code. Core remains remote and authoritative for its own health and disabled aggregation marker, but no Core-to-Agent request, proof handoff, or API invocation occurs in this gate.
+
+> **Forbidden dependency direction:** Agent application code must not import Compose, Azure, registry, package, Docker, target-secret, provider, or public-server concerns. The target composition must not add a public route or transport bypass to compensate for a missing proof boundary.
+
+### 52.6 Engineering standards and safe readout
+
+Before target contact, static checks must reject a published port, ingress label, host network, privileged flag, default start, restart policy, Docker socket, mutable image selector, secret value, provider/storage configuration, public health endpoint, trainer invocation, update/submission code path, or aggregation flag. Local validation must include the Agent’s existing strict CI plus a target-composition policy test. The resulting release requires the relevant Hospital Node Quality Gate before target use.
+
+Readout is limited to a versioned scalar result: `staging_state`, `image_binding_state`, `non_public_port_state`, `pull_state`, `process_state`, `core_health_state`, `aggregation_state`, `proof_state`, and `terminal_reason`. The only legal proof state at the end of this gate is `not_invoked`. No raw target/provider output is stored or published. The authoritative Azure environment, rather than documentation hosting or backup services, supplies any later runtime truth.
+
+### 52.7 Test, deployment, and future proof plan
+
+Local tests cover policy denials, opaque configuration shape, immutable-binding admission, disabled-by-default composition, no-port render, no restart, and redacted readout. The staging deployment gate proves only that the private image can be admitted and run in the target’s non-public inert posture. It does not prove the Core channel, identity exchange, stream, workspace, generated fixture, model integrity, cleanup, training, submission, or aggregation.
+
+A later proof dossier must separately require: a fresh Core liveness/readiness check; an immediately observed aggregation-disabled marker; expected release/image binding verification; target-local secret custody confirmation; non-public render; exact one-shot generated-fixture enablement; bounded wait; scalar result/closure; zero active runners/containers; and a terminal no-retry policy. That proof remains out of scope here.
+
+### 52.8 AI handoff and implementation slices
+
+| Slice | Permitted work | Stop condition and published evidence |
+|---|---|---|
+| S1 — Azure preflight | Read-only scalar inspection of Core health, disabled aggregation, and target deployment seams. | Any missing or unsafe fact closes preflight; no source/target change. |
+| S2 — source composition | Add static target composition, policy validator, and redacted scalar types. | Quality evidence only; no target secret, image binding, render, or Azure action. |
+| S3 — release quality | Run Agent CI and Hospital Node Quality Gates on the source change. | Failed quality closes the source candidate. |
+| S4 — target staging | Configure the target-only pull secret and deploy one immutable candidate after a fresh preflight. | Record scalar deployment closure; no proof invocation. |
+| S5 — proof decision | Draft a separate one-shot generated-fixture proof dossier. | No execution until its independent quality, target, and preflight gates pass. |
+
+> **Hard stop:** this dossier authorizes analysis and a later isolated staging gate only. It does not authorize target-secret creation/use, image pull, Azure configuration, Compose render, Agent start, Core call, proof, clinical/patient data, training, model update submission, or aggregation in this design increment.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
