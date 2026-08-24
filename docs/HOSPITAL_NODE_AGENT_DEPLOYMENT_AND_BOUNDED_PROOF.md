@@ -1431,6 +1431,12 @@ Malformed/unknown fields, invalid state combinations, fallback roots, default ac
 
 This contract proves control-state policy only. It does not construct an adapter, configuration, root, mount, image, container, process, target, identity, or credential. Local/remote quality gates are required before it can be cited as source-quality evidence.
 
+### 55.6 Source-quality evidence — private-root composition contract
+
+Agent release `e3070f30ab59bb83eaebee3a4d51757d6c6d779e` implements the pure versioned private-root composition validator and deterministic fake. It accepts only scalar composition identifiers, opaque-binding requests, disabled activation requests, and scalar root/binding/activation/runtime/rollback observations. It maps root absence/invalidity/temporary artifacts, unbound state, target-runtime claims, destructive-final-record rollback, fallback roots, default activation, malformed observations, and replay to terminal retry-disabled outcomes. Only an inert ready-not-activated state or a binding-removed rollback state can produce a disabled result; neither constructs an adapter or activates a runtime.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **122 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32704963862` completed successfully. This is source-quality evidence only: no filesystem, environment configuration, Docker/Compose, deployment configuration, private root, mount, target, Azure, provider, organization, credential, package, image, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. A real composition/configuration adapter remains a separate focused design and implementation boundary.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
