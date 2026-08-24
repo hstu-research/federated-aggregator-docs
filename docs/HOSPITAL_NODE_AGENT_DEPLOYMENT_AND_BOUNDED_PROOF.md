@@ -1235,6 +1235,12 @@ The authoritative Azure test target was inspected through a scalar-only, read-on
 
 This is **preflight evidence**, not a staging result. The broad initial container-name heuristic was discarded because it could not identify the aggregation configuration safely; the final check used exact Core Compose project/service labels and a scalar-only resolved-state classifier. A fresh preflight remains required immediately before any later target staging. The only newly permitted slice is static Agent target-composition source with local quality checks.
 
+### 52.10 Static target composition and source-quality evidence
+
+Agent release `c6207471b77c7410da52e905a7610756e42577c6` adds an opt-in Azure target-staging composition template and static policy test. The template accepts only a target-owned opaque immutable-image reference, has no default profile activation, uses `restart: 'no'`, read-only/non-root execution, an isolated runtime network, dropped capabilities, no-new-privileges, bounded process/memory limits, and a small private tmpfs. It explicitly keeps the Agent status listener disabled and runs only the existing inert status command. It declares no port, build source, secret, volume, Core/identity setting, proof/training/submission/aggregation capability, or image value.
+
+The static test rejects public ports, host network, privileged mode, Docker socket use, status enablement, build/secrets/volumes, and Core/identity/token/proof/training/submission/aggregation/HTTP configuration. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **106 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32697410462` completed successfully. This is source-quality evidence only: it has not rendered or pulled a target image, configured a target secret, touched Azure deployment configuration, started an Agent, contacted Core, or invoked a proof.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
