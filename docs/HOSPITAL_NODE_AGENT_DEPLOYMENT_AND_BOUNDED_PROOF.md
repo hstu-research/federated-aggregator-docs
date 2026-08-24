@@ -1322,6 +1322,12 @@ The port direction is application-to-persistence only. The fake store holds scal
 
 > **Hard stop:** this contract is not a real durable store and does not authorize a machine account, credential, package access, image pull, target render, Agent start, Core call, proof, training, submission, or aggregation.
 
+### 53.9 Source-quality evidence — terminal persistence and restart suppression
+
+Agent release `4c7d3522c71859ed5634ea28b7d60b51e00c1476` implements the pure terminal-record coordinator, restart-safe wrapper, scalar record validator, and deterministic in-memory persistence fake. The record has only its schema version, bounded sequence, blocked state, allowlisted terminal code, replay-suppressed state, and retry-disabled flag. It rejects malformed, unknown-code, non-monotonic, duplicate-sequence, and forbidden-shaped records. A clean source-only start permits one evaluator result to be recorded; a reloaded terminal record or append fault closes the wrapper and suppresses later evaluator invocation with terminal replay denial.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **114 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32703315914` completed successfully. This is source-quality evidence only: the store is in-memory and no filesystem, database, provider, organization, credential, machine account, package, target, image, Azure, render, Agent start, Core call, proof, training, submission, or aggregation action occurred. The external authorization block remains open. A real durable-store adapter would require its own focused design review; it is not implied by this result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
