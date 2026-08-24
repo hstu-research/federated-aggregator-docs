@@ -2164,6 +2164,42 @@ Dependencies remain one-way: opaque protected configuration reference → protec
 
 Implementation is deliberately staged. The next possible low-risk source slice may model only a strict scalar **configuration-reference validator fake** and its closure matrix; it must not inspect a real configuration or root. Only after that is quality-gated and documented may a separate concrete-adapter review decide whether to introduce filesystem-backed root validation. Deployment, target binding, runtime invocation, staging, proof, training, submission, and aggregation require their own later gates. This review authorizes none of them.
 
+## 75. Source-only scalar configuration-reference validator contract
+
+The first executable target-root slice is a pure validator that receives only one symbolic, frozen, versioned reference shape. It neither resolves nor dereferences that reference. The only accepted object has exactly four scalar fields: schema version, symbolic category `private_root_reference`, binding `protected_composition_only`, and state `unresolved_only`. These values state an intention, not a configuration location, name, secret, root, path, identifier, target, or runtime property. The validator copies only the accepted scalar intent into a private frozen marker and emits a frozen scalar receipt.
+
+| Contract aspect | Required rule | Forbidden projection or behavior |
+|---|---|---|
+| Input trust boundary | Accept a plain, own-property-only, deeply frozen exact object. Reject arrays, mutable objects, inherited values, unknown/missing keys, unsupported category/binding/state, and replay. | Environment/configuration/secret/root/path/filesystem lookup, parsing, interpolation, or fallback. |
+| Receipt | Return schema version, `closed` or `closed_replay`, allowlisted code, aggregate counts, and `retryAllowed: false`. | Input reference, root/path/configuration/secret/target/credential/runtime object, error text, or callback. |
+| One-use lifecycle | First call consumes the validator before validation; every later call is replay-suppressed. | Repair, replacement reference, re-validation, alternate binding, or retry. |
+| Private marker | Keep canonical intent private/nonenumerable and exclude it from `Object.keys`, serialization, snapshot, and receipt. | Identity token, location, path, configuration handle, root capability, or external object. |
+
+### 75.1 Closure matrix and engineering controls
+
+The validator starts `fresh` and consumes itself on the first call. A valid frozen reference yields `reference_validated` and terminal `closed`. Any invalid value yields `reference_invalid` and terminal `closed`. A later invocation yields `reference_replay_suppressed` and `closed_replay`, without validation again. The snapshot contains only aggregate `received`, `validated`, `invalid`, and `replaySuppressed` counts. No durable state is written; no root is created, inspected, stored, or cleaned up.
+
+| Input or event | Required terminal code | Required aggregate effect |
+|---|---|---|
+| One exact frozen symbolic reference | `reference_validated` | Received 1, validated 1. |
+| Mutable, inherited, malformed, unknown, missing, or unsupported reference | `reference_invalid` | Received 1, invalid 1. |
+| Any later call | `reference_replay_suppressed` | Replay count increments; no validator re-entry. |
+| Independent validator instance | Evaluate only its own first symbolic reference. | No shared state or cross-instance effect. |
+
+The source file must import no Node built-in, local-state adapter, temporary-root factory, environment/process API, network/client, package/credential/target/Core/Azure integration, parser, renderer, configuration artifact, trainer, submission, or aggregation module. Tests must prove strict validation, one-use closure, frozen receipt/snapshot, marker nonenumerability, serialization redaction, independent instances, and import isolation. Passing tests establish only a scalar intent validator. They do not establish configuration resolution, protected composition, root validation, filesystem use, application/runtime wiring, deployment, target binding, staging, proof, training, submission, or aggregation.
+
+## 76. Source-only scalar configuration-reference validator — quality result
+
+The scalar validator is now implemented at Agent revision `543f172`. It accepts one exact frozen symbolic intent, privately canonicalizes only the allowlisted scalar category/binding/state, and emits frozen scalar receipts/readouts. It neither resolves nor dereferences the input. The implementation has no configuration/environment/secret/root/path/filesystem/local-state/network/package/credential/target/Core/runtime/parser/renderer/trainer/submission/aggregation import. The private marker is nonenumerable and serializes as an empty record; no receipt or snapshot exposes a symbolic reference or a capability.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and fixture test | Six deterministic validator checks passed locally. | Symbolic intent validation only; not configuration resolution or root validation. |
+| Full Agent local quality chain | 188 TypeScript tests and 4 Python tests passed. | Source quality only; no environment, filesystem, or Python execution path was invoked by this validator. |
+| Remote Agent Quality Gates | Run `32726445658` completed successfully for revision `543f172`. | CI evidence only; not deployment, target binding, or runtime proof. |
+
+The new coverage proves valid frozen input; mutable, inherited, unknown, missing, and unsupported closure; one-use replay suppression after valid or invalid first input; independent validator isolation; receipt/snapshot freezing and redaction; marker nonenumerability; and import separation. This establishes only a pure scalar contract. It does not resolve a configuration reference, read environment or secrets, inject or inspect a root, access a filesystem/network/package/credential/target/Core/Azure, wire an application or runtime, deploy, stage, prove, train, submit, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
