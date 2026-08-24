@@ -1292,6 +1292,12 @@ The implementation handoff is deliberately split: first publish source-only scal
 
 > **Hard stop:** this design does not authorize a second credential attempt. It defines the facts that must be established before a new isolated identity/custody gate can be opened.
 
+### 53.5 Read-only authorization diagnostic outcome and next safe slice
+
+The available repository integration was asked only for the current operator’s scalar organization-membership class. The provider returned an integration-access denial. No package, image, version, visibility, linkage, inheritance, package access, SSO enrollment, member identity, credential, or target fact was read. This result cannot distinguish a missing membership privilege from an integration-token limitation; it is recorded as `organization_authorization_unavailable_to_integration` rather than a package-access conclusion.
+
+The diagnostic route is closed with no identity switch, browser-role substitution, package query, or retry. The next safe slice is source-only: versioned scalar diagnostic contracts and deterministic denials for organization-authorization-unavailable, package-access-unknown, machine-identity-uncreated, target-custody-absent, and no-retry closure. A future real machine-account provisioning gate remains blocked until an organization-authorized administrator can verify the necessary membership, SSO, and package-read access facts through a separately documented decision. No credential, image pull, render, Agent start, Core call, proof, training, submission, or aggregation action follows from this result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
