@@ -1467,6 +1467,14 @@ Rollback removes the target composition binding and returns to disabled while pr
 
 > **Hard stop:** this is a configuration and image-mapping design only. It does not add an environment/configuration parser, root injection, Compose file, image build, package pull, target configuration, Agent activation, credential, proof, training, submission, or aggregation action.
 
+### 56.4 Source-only configuration intent and fresh-image eligibility contract increment
+
+The next Agent increment is a pure versioned configuration-intent validator with a deterministic fake. It accepts only `mode`, `binding_presence`, `source_release_state`, `image_binding_state`, and `activation_state` scalar facts. It cannot receive an environment variable name, root reference, path, mount, image/package/digest/registry fact, target detail, credential, provider response, process state, or public listener value. Its output is terminal `disabled` or `blocked` with retry disabled and contains only allowlisted scalar reason codes.
+
+The only source-only disabled state is exactly `mode=disabled`, `binding_presence=absent`, `activation_state=disabled`, and no private image selected. Private terminal-store intent must deny before a fake if binding is absent, source release is unverified, image binding is stale/mutable/unavailable/unverified, activation is active/default, or the request has unknown/malformed/fallback/replay data. A deterministic fake may model scalar `fresh_immutable_candidate_verified` eligibility only; it cannot build, discover, inspect, select, publish, pull, or bind an image.
+
+Aggregate readout is limited to received, disabled, blocked, invalid, stale-image, fallback, and replay counts. Static guards must reject environment, filesystem, Docker/Compose, provider, credential, package, target, Core, proof, training, submission, and aggregation imports. This contract proves only configuration-policy and image-eligibility denial behavior; it cannot inject a root, configure a target, build/pull an image, or activate an Agent.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
