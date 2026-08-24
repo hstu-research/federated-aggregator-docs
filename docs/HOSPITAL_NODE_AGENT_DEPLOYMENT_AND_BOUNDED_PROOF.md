@@ -1579,6 +1579,47 @@ Agent release `ad2e2ed4f0a0863bd08a4f2ce2ce2ea97631a7ce` implements the pure ver
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **134 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32707838712` completed successfully. This is source-quality evidence only: no configuration artifact, Compose file, render engine, process, filesystem, environment/configuration parser, root/image binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A focused concrete static-renderer design review remains a separate low-risk boundary; it authorizes neither a renderer implementation nor target configuration.
 
+## 59. Design record — concrete static target-composition renderer review
+
+### 59.1 Boundary, authority, and non-goals
+
+This review defines a future **concrete static renderer** without writing or executing one. Its sole future responsibility is to transform an already accepted scalar `disabled_not_rendered` decision and a target-owned opaque fixed-blueprint capability into internal temporary render text for validation. It does not own policy eligibility, package access, image resolution, root binding, identity, deployment, or process invocation. The renderer is not a generic template engine, configuration parser, environment loader, or command launcher.
+
+| Component | Future responsibility | Must never receive, return, or perform |
+|---|---|---|
+| Render-intent policy | Produces scalar eligible/denied decision only. | Blueprint text, root/image/package/target value, render path, process result, or runtime state. |
+| Target-owned blueprint authority | Holds the fixed private blueprint and protected deployment-specific values. | Application request, public status/log/document projection, dynamic caller-supplied template, or fallback source. |
+| Concrete renderer | Maps fixed internal placeholders, checks inert shape, creates/validates/discards private temporary text, and emits only a scalar render receipt. | Generic variables, arbitrary template/path, external read, image/package discovery, credential acquisition, target command, listener, start, proof, or aggregation control. |
+| Future target composition owner | May privately promote a validated render artifact under a later separate deployment gate. | Silent activation, automatic restart, root/image fallback, public ingress, or disclosure of a rendered artifact. |
+
+> **Hard stop:** this record is a design review. It creates no blueprint, temporary file, promoted artifact, Compose file, target configuration, image/root binding, package access, credential, process, staging action, proof, training, submission, or aggregation effect.
+
+### 59.2 Opaque blueprint and internal render lifecycle
+
+The future blueprint is a target-owned capability, not a serializable application value. It must be constructed only within a controlled composition root after the render-intent policy closes as `disabled_not_rendered`. It can contain the protected values necessary for a target-owned file, but its content must never cross into application types, fake inputs, events, errors, snapshots, logs, test names, documentation, source-control output, or scalar receipts. The renderer accepts no caller-provided string, dynamic field map, environment lookup, file name, path, image value, root value, credential, or external reference.
+
+The future lifecycle is bounded and one-way: accept exact scalar intent; obtain one internal immutable blueprint capability; map a fixed allowlist of internal placeholders; produce private temporary text under a target-owned protected workspace; parse/validate only for the defined inert shape; either discard it on any failure or, at a later separately approved deployment boundary, atomically promote it to an opaque target-owned configuration slot. A renderer must not leave a temporary artifact after denial, validation failure, interruption, promotion failure, or cleanup failure. A cleanup uncertainty is terminal and blocks later promotion or retry until published as a separate evidence item.
+
+| Lifecycle point | Required internal check | Scalar-safe external projection |
+|---|---|---|
+| Intent admission | Exact schema, unused render identifier, `disabled_not_rendered`; no caller values. | `accepted_for_private_render` or terminal denial code. |
+| Blueprint acquisition | Target-owned immutable fixed capability; no fallback or dynamic source. | `blueprint_unavailable` or `blueprint_rejected`; never a value or location. |
+| Temporary render | Bounded private creation and fixed allowlisted mapping. | `temporary_render_created` only as an internal event class; no artifact text or path. |
+| Inert-shape validation | Enforce no-port, no-ingress, no-public-listener, no-restart, no-host-network, disabled activation, no root/image fallback, and no training/submission/aggregation command. | `inert_shape_validated` or allowlisted terminal denial. |
+| Promotion or discard | Atomic target-owned promotion is forbidden until a future deployment gate; otherwise discard with cleanup confirmation. | `not_promoted`, `discarded`, or terminal cleanup failure; no file reference. |
+
+### 59.3 Fixed mapping, validation, and redaction controls
+
+The future renderer may map only a predeclared finite blueprint field set whose names and values remain internal. The render source is fixed and versioned by target authority; no caller can select template sections, override a control, choose a root/image, vary a listener, or inject a command. The parser must reject unknown keys, duplicate structural fields, active profile/default behavior, port/ingress/listener forms, restart/host-network forms, host bind/device/socket forms, volume/mount text outside a reserved opaque binding, secret/environment materialization outside target authority, generic `build` instructions, package/pull logic, and any proof/training/update/submission/aggregation control.
+
+Any future diagnostic must reduce to an allowlisted scalar class: `intent_denied`, `blueprint_denied`, `inert_shape_denied`, `temporary_write_denied`, `promotion_denied`, `cleanup_denied`, or `closed_replay`. It must not carry render text, parser output, a line/column, key name, path, root/image/package/registry reference, target attribute, credential, provider response, process state, or free-text exception. Receipt/readout state is aggregate-only: attempted, accepted, denied by class, discarded, promotion-forbidden, cleanup-uncertain, and replay-suppressed counts.
+
+### 59.4 Compatibility fixtures, quality gates, rollback, and staging prerequisites
+
+The future source-only renderer implementation must begin with deterministic injected blueprint and private-workspace fakes. Its fixture matrix must prove one fixed inert render candidate, unknown/extra field denial, missing/duplicate field denial, every forbidden exposure/runtime/command form, dynamic-value/fallback denial, temporary creation interruption, validation failure discard, promotion refusal, cleanup failure closure, and restart/replay suppression. Fakes must not read environment/filesystem, write an artifact, invoke Docker/Compose, contact a registry/provider/target/Core/Azure service, or start a process.
+
+Source quality, protected release, target configuration, preflight, inert staging, and one-shot proof are separate gates. A later concrete implementation requires its own local source-quality evidence before any protected release. A later target configuration requires independently evidenced package access and a target-only identity mechanism, fresh eligible image mapping, target-owned root binding review, scalar Core/aggregation-disabled preflight, and an explicit inert-staging decision. Rollback of the future adapter is conservative: promotion remains forbidden, any temporary state is discarded only after safe cleanup confirmation, all activation/exposure/restart/network constraints stay disabled, and no alternative blueprint, root, image, credential, or target action is selected.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
