@@ -2200,6 +2200,50 @@ The scalar validator is now implemented at Agent revision `543f172`. It accepts 
 
 The new coverage proves valid frozen input; mutable, inherited, unknown, missing, and unsupported closure; one-use replay suppression after valid or invalid first input; independent validator isolation; receipt/snapshot freezing and redaction; marker nonenumerability; and import separation. This establishes only a pure scalar contract. It does not resolve a configuration reference, read environment or secrets, inject or inspect a root, access a filesystem/network/package/credential/target/Core/Azure, wire an application or runtime, deploy, stage, prove, train, submit, or aggregate.
 
+## 77. Source-only scalar adapter-construction eligibility contract
+
+The next source-only slice does **not** construct an adapter or a port. It evaluates a frozen, versioned symbolic eligibility envelope produced in a test fixture only. The envelope has exactly five scalar fields: schema version, configuration intent state, construction state, root-binding state, and dependency surface. Eligibility means only that a future protected composition could proceed to a *separate* construction review; it does not authorize construction, root injection, configuration resolution, filesystem access, or a runtime dependency.
+
+| Envelope field | Canonical eligible value | Closed alternatives |
+|---|---|---|
+| Configuration intent state | `reference_validated` | `reference_unresolved` or `reference_invalid` → reference closure. |
+| Construction state | `adapter_unconstructed` | `construction_denied` or `construction_requested` → construction-state closure. |
+| Root binding | `not_injected` | `root_requested` → root-binding closure. |
+| Dependency surface | `scalar_only` | `runtime_dependency` → dependency-surface closure. |
+
+The evaluator requires an own-property-only, exact-key, frozen plain object. It privately canonicalizes only the canonical scalar state and returns a frozen scalar receipt: `adapter_construction_eligible`, `reference_not_validated`, `construction_state_denied`, `root_binding_denied`, `dependency_surface_denied`, `eligibility_envelope_invalid`, or `eligibility_replay_suppressed`. The receipt and aggregate snapshot include no envelope, configuration reference, root, path, record, bytes, adapter, port, function, error text, target, credential, or runtime object.
+
+### 77.1 One-use closure and safety matrix
+
+The evaluator is `fresh` until its first call, which consumes it before envelope validation. A valid eligible envelope yields an eligibility receipt and terminal closure. Any malformed or denied envelope yields its allowlisted terminal closure. Every later call yields replay suppression without evaluation again. The private canonical marker is nonenumerable and serializes to an empty record. No durable state, adapter object, port, callback, capability, root, configuration handle, or cleanup action exists in this slice.
+
+| Input or event | Required terminal receipt | Aggregate observation |
+|---|---|---|
+| Exact eligible frozen envelope | `adapter_construction_eligible` | Received 1, eligible 1. |
+| Unresolved/invalid configuration intent | `reference_not_validated` | Received 1, denied 1. |
+| Denied/requested construction state | `construction_state_denied` | Received 1, denied 1. |
+| Requested root or runtime dependency surface | `root_binding_denied` or `dependency_surface_denied` | Received 1, denied 1. |
+| Mutable, inherited, unknown, missing, or malformed envelope | `eligibility_envelope_invalid` | Received 1, invalid 1. |
+| Any later call | `eligibility_replay_suppressed` | Replay count increments; no re-entry. |
+
+### 77.2 Dependency, test, and future-gate limits
+
+The evaluator may import no Node built-in, adapter, port, local-state implementation, temporary-root factory, configuration/environment/process/secret API, filesystem/network client, package/credential/target/Core/Azure module, parser, renderer, trainer, submission, or aggregation module. Tests must cover the eligible case; every stated closure; mutable/inherited/unknown/missing envelopes; replay after eligible and invalid input; independent evaluators; freezing/redaction/nonenumerability; and import isolation.
+
+Passing this test suite would prove only the deterministic scalar ordering between configuration intent and a later adapter-construction decision. It would not construct an adapter/port, resolve configuration, validate a root, access the filesystem, modify application/runtime composition, deploy, bind a target, stage, prove, train, submit, or aggregate. A later concrete-adapter design must separately decide whether construction may receive a protected root capability, under its own configuration, filesystem, deployment, and proof gates.
+
+## 78. Source-only scalar adapter-construction eligibility — quality result
+
+The scalar eligibility evaluator is now implemented at Agent revision `139db42`. It consumes one exact frozen symbolic envelope, privately canonicalizes only the all-allowlisted eligibility state, and emits frozen scalar receipts/readouts. An eligible receipt expresses ordering only: no adapter, port, configuration, root, path, filesystem handle, callback, target, credential, or runtime object is constructed, retained, or returned. The evaluator imports no adapter/local-state/temporary-root/configuration/environment/filesystem/network/package/credential/target/Core/runtime/parser/renderer/trainer/submission/aggregation module.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and fixture test | Eight deterministic eligibility checks passed locally. | Scalar eligibility ordering only; not adapter/port construction or protected composition. |
+| Full Agent local quality chain | 196 TypeScript tests and 4 Python tests passed. | Source quality only; no configuration, root, filesystem, or training action was invoked. |
+| Remote Agent Quality Gates | Run `32727048481` completed successfully for revision `139db42`. | CI evidence only; not deployment, target binding, or runtime proof. |
+
+The new coverage proves eligible frozen input; unresolved/invalid configuration-intent closure; denied/requested construction closure; root-requested and runtime-dependent closure; mutable/inherited/unknown/malformed envelope closure; replay after eligible and invalid input; independent evaluator isolation; receipt/snapshot freezing and redaction; marker nonenumerability; and import separation. This establishes only a pure scalar pre-construction contract. It does not construct an adapter or port, resolve configuration, inject/inspect a root, access filesystem/environment/network/package/credential/target/Core/Azure, modify an application/runtime, deploy, stage, prove, train, submit, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
