@@ -1380,6 +1380,14 @@ The next increment is authorized solely for a local Agent-repository infrastruct
 
 Required quality gates are strict formatting, TypeScript, all existing tests, new corruption/permission/symlink/atomic/restart fixture tests, and a static import guard limiting filesystem imports to the adapter and isolated fixture test. The release is source-quality evidence only. Any later deployment-root configuration, real Agent composition, target staging, identity/credential change, package access, proof, training, submission, or aggregation action remains separately blocked.
 
+### 54.7 Source-quality evidence — local durable terminal store adapter
+
+Agent release `8ad309f7b579307ccfb408021602d5674a0de88f` implements the isolated local durable-store adapter and temporary-fixture suite. The adapter receives an injected private-root capability, uses one fixed terminal-record name, validates private root/file ownership, mode and type, rejects symlinks and temporary artifacts, enforces bounded canonical scalar JSON, and writes through temporary private file, flush, atomic promotion, and root flush. Corrupt, duplicate-key, unknown-field, oversized, permission-invalid, symlinked, existing, or temporary states close safely; no raw path/content/error is projected.
+
+An initial local redaction assertion detected that the injected root capability was enumerable in object serialization. The implementation was corrected to retain that capability in a private field before the final quality run. Local `pnpm run ci` then passed formatting, all import guards, strict TypeScript, **118 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32704209672` completed successfully. The adapter touched only test-created temporary local fixtures; it did not read environment configuration or any developer home, and no target, Azure, provider, organization, credential, package, image, Agent runtime, Core call, proof, training, submission, or aggregation action occurred.
+
+This is source-quality evidence, not deployment evidence. The next safe gate is a separate local composition/configuration design that decides whether and how a private-root capability could be supplied without exposing it to application contracts, public logs, or the Agent status surface. No composition, configuration, target, or runtime activation is implied here.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
