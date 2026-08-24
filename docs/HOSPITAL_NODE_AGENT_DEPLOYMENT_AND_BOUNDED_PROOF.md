@@ -1253,6 +1253,12 @@ The project owner authorizes proceeding with the target-only credential incremen
 
 The credential record must remain target-local and opaque. Public evidence may state only that target-only custody is installed/absent/invalid and that an exact immutable binding was admitted/denied; it must not state the credential mechanism, identifier, scope string, secret value, package/image locator, or target location. No pull, render, Agent start, Core call, proof, training, submission, or aggregation action is implied by this authorization alone.
 
+### 52.13 Terminal target-credential attempt — registry authentication denied and credential revoked
+
+The authorized target-only credential increment was attempted through a newly created time-limited package-read credential after the fine-grained form proved unable to offer the required package-read capability. The target’s private-registry authentication was denied. No private package/image was listed, selected, pulled, bound, rendered, or started; no Azure deployment configuration changed; and no Agent, Core, proof, training, submission, or aggregation action occurred.
+
+The credential encountered an observability failure during the denied installation path and was immediately revoked through the issuer. Target registry custody remains absent and the remote session was closed. This is a terminal credential-attempt closure, not an image-build or target-staging retry. The attempt will not be repeated. A new staging path requires a separately published diagnosis of package-access authorization and an alternative target-only identity mechanism; it may not reuse the revoked credential, existing user/browser/repository-job identity, Core/ML-worker/callback identity, package discovery route, or a wider package/public credential.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
