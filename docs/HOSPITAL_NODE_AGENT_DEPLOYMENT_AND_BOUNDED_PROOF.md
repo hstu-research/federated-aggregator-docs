@@ -1901,6 +1901,44 @@ Agent release `34d2d5d` implements the source-only deterministic durable-store c
 
 The fake suite terminally closes malformed input before any port invocation; valid terminal hydration as replay; claimed/orphan hydration as restart closure; hydration denial; claim denial before route; terminal append denial without route retry; and operation replay after every accepted closure. Port state and operation correlations remain private/nonenumerable and absent from serialization. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **158 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32721983548` completed successfully. This is source-quality evidence only: no concrete durable store, root capability, record/file, filesystem, parser, renderer execution, configuration text/file, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate concrete durable-adapter composition review is required before filesystem-backed composition is considered.
 
+## 65. Design record — concrete durable-adapter composition
+
+### 65.1 Compatibility decision and constructor-only capability ownership
+
+The existing `DurableTerminalDiagnosticStore` cannot be used directly for coordinator claim-and-terminal persistence. It is intentionally limited to one final authorization-diagnostic record, one fixed `blocked` state, and a fixed allowlist of authorization-diagnostic reason codes. It has no claim state, no two-event sequence, no coordinator terminal category, and no operation correlation. Reusing it by coercion, record overwrite, or reason-code substitution would invalidate its existing contract. Therefore, the future concrete composition must use a **new parallel local-only durable adapter**, leaving the existing diagnostic store unchanged.
+
+The future adapter may be constructed only in a local-state composition root with a constructor-injected private-root capability. It must never derive a root from environment configuration, request input, target response, package metadata, credential, or user/session identity. The capability remains private to the adapter and cannot be reflected by the application composition, coordinator, readout, error, event, test fixture, browser, log, or public ledger. The target root is not selected, created, or accessed in this design increment.
+
+| Decision | Required design rule | Explicit prohibition |
+|---|---|---|
+| Existing diagnostic store | Preserve its one-terminal-record schema and source isolation unchanged. | Do not adapt, subclass for coordinator use, coerce codes, or share a record slot. |
+| Coordinator durable adapter | Define a new constructor-only, local-only adapter with a narrow scalar port. | Do not instantiate it in application composition or request a root. |
+| Root capability | Inject once into the local adapter’s constructor from a future target-owned composition root. | Do not pass it into coordinator requests, synthetic fakes, configuration, environment, or public state. |
+| Record correlation | Keep a canonical opaque correlation private inside the adapter. | Do not store/project raw operation, shape, or render identity. |
+| Record location | Reserve a non-overlapping private record slot under the injected root. | Do not name or disclose a path, file, temporary name, or locator. |
+
+### 65.2 Canonical record model and atomic lifecycle
+
+The future dedicated adapter must accept only a versioned scalar record with exactly: schema version, private opaque correlation, monotonic sequence, lifecycle state, allowlisted terminal category when applicable, replay-suppressed fact, and `retryAllowed: false`. A first record represents `claimed`; a second additive record represents terminal closure. The adapter must not persist raw coordinator codes, requests, canonical shape objects, parser outputs, configuration/text, bytes, image/root/package/registry information, target/credential/provider facts, commands, errors, or free-text diagnostics. Its public port returns only `empty`, `claimed`, `terminal_closed`, `closed_interrupted`, or an allowlisted persistence denial.
+
+The write algorithm is internally atomic: validate the private root and current canonical sequence; encode canonical JSON; create a private temporary candidate; write and flush; verify expected ownership/mode/non-symlink status; atomically promote; flush the parent root; and expose only a scalar stored/denied outcome. A temporary residue, missing record during a required transition, unexpected final record, duplicate/non-monotonic sequence, or any failed ownership/mode/canonical validation closes terminally. Cleanup is best-effort only and a remaining temporary candidate becomes terminal invalidity on later hydrate; it cannot trigger retry, deletion of final state, root substitution, or coordinator re-entry.
+
+| Lifecycle stage | Concrete adapter action | Application projection |
+|---|---|---|
+| Hydrate | Strict private-root and canonical-record validation; no raw record leaves adapter. | Empty, terminal/restart close, or persistence denial. |
+| Claim | Validate empty state; atomically persist one scalar claim sequence. | Claim stored or terminal denial. |
+| Terminal | Require matching prior claim; atomically persist one terminal sequence. | Terminal stored or terminal denial. |
+| Restart | Terminal sequence suppresses entry; orphan claim becomes closed-interrupted. | Replay/restart closure only. |
+| Cleanup fault | Preserve close posture; later hydrate treats residue as invalid. | Persistence closure only. |
+
+### 65.3 Failure map, compatibility fixtures, and future gates
+
+The concrete adapter’s allowlisted failure projection is limited to private-root invalid, missing/unexpected record, corrupt/non-canonical record, duplicate/non-monotonic sequence, symlink/ownership/mode denial, permission denial, temporary/atomic/promotion denial, cleanup-residue denial, claim-transition denial, terminal-transition denial, and replay/restart closure. It must not surface platform errors, paths, filenames, descriptors, bytes, stack traces, or raw JSON. Readout remains aggregate-only: load/empty/claim/terminal/invalid/failure/temporary-cleanup counts, without a root or operation dimension.
+
+Compatibility fixtures must prove the existing authorization-diagnostic store remains untouched; root is constructor-only; each exact canonical claim/terminal sequence validates; existing terminal and orphan state close; malformed/unknown/forbidden/duplicate/non-monotonic records deny; mode/ownership/symlink/permission/temporary/atomic/cleanup failures close; no route occurs before claim promotion; terminal failure does not replay a route; and serialization redacts private capability/correlation state. The future adapter must be isolated in the local-state package; application code may depend only on its narrow port. Static guards prohibit filesystem imports in application/coordinator modules and prohibit environment, network, package/registry, credential, target, Core/Agent runtime, parser, renderer, trainer, submission, and aggregation dependencies in the new adapter.
+
+This is a design review, not a concrete adapter, root capability, record/file, or target operation. A later source-only local-adapter implementation requires its own documentation record, local temporary-root fixture gate, quality gate, and redacted source-quality evidence. A further target-root injection review, package-access authorization, fresh release mapping, scalar preflight, inert staging, proof, training, submission, and aggregation remain separate blocked decisions.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
