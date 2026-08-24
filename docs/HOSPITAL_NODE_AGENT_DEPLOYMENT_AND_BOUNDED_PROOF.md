@@ -883,6 +883,22 @@ Candidate retirement is an independent policy-side terminal declaration by an op
 
 The next safe activity is a source-only action-consumption state contract with deterministic fakes. It may model one-candidate pre-route eligibility, route-not-started, a non-executing route-started placeholder, terminal pre/post-route closure, retirement, redacted aggregate readout, and forbidden imports. It cannot create an instruction or capability; it cannot interact with a credential, builder, registry, Docker, image, Azure, target, Compose, projection, runner, proof, training, submission, or aggregation path. Any later real action still requires a distinct external authorization, necessary permission/credential readiness, and separately documented execution/deployment/staging/proof gates.
 
+## 44. Implementation evidence — reconciled source-only action consumption
+
+### 44.1 Baseline reconciliation and bounded contract
+
+Before implementation, the clean local Agent checkout was found at the older `1d56fdd` release while authoritative `origin/main` advertised the documented `b50fdc9` authorization-envelope baseline. The checkout was fast-forwarded without reconstructing or changing prior releases. A fresh local quality run on restored `b50fdc9` passed formatting, all existing protected import guards, strict TypeScript, **91 TypeScript tests**, and **4 Python tests**. This reconciliation establishes local source provenance only; it does not create an image, credential, builder route, registry contact, target binding, Azure action, Compose render, projection, proof, training, submission, or aggregation effect.
+
+Agent release `909470e6716c617c879244dc3d3575843514fb2e` then adds pure `ProtectedBuilderActionConsumption` state. The strict request binds one exact admission, one prior authorization-envelope request, the `ready_not_executable` decision, source/policy facts, a bounded expiry, and injected scalar time. It composes only deterministic pre-route and candidate-retirement fakes. The module has no instruction/capability output and cannot create/consume a credential, open a process/socket, contact a builder or registry, use Docker, operate on an image, contact Azure, bind a target, render Compose, open a projection, start a runner, invoke proof, train, submit an update, or enable aggregation.
+
+### 44.2 State, quality outcome, and retained stop
+
+The source-only state can close only as `route_not_started`, a local `route_started_placeholder`, `post_route_closed`, `pre_route_denied`, `action_revoked`, `candidate_quarantined`, or `candidate_retired`. The placeholder is an in-memory record that asserts no route occurred. Unknown/mutable fields, invalid envelope, source/policy mismatch, expiry, duplicate action, candidate replay, role conflict, denial, revocation, quarantine, retirement, and invalid state ordering are terminal without retry. Readout serializes aggregate counts only; internal request, source, policy, expiry, and fake-script values remain private.
+
+The release adds a dedicated production-source import guard for action-consumption source, denying Node, process, Docker, cloud SDK, and common HTTP-client imports. Deterministic tests cover the valid non-executing placeholder lifecycle; malformed/mutable/envelope/mismatch/expiry denials; fake suppression; revocation; quarantine; retirement; duplicate/replay; role conflict; redaction; and no retry. Local `pnpm run ci` passed formatting, the protected filesystem, builder-orchestration, readiness, authorization-envelope, and action-consumption import guards, strict TypeScript, **96 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32693437721` completed successfully.
+
+This is source-only quality evidence. No real authorization was consumed; no candidate appointment, credential, builder, registry, Docker, image, Azure, target, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. The next step is not automatic external execution: a separately named external builder/registry provider, explicit credential/permission authority, immutable external candidate/base evidence, target-staging dossier, and user confirmation are required before any security-critical external action.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
