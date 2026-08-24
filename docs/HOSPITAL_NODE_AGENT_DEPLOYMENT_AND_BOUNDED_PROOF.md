@@ -2135,6 +2135,35 @@ The scripted-port composition is now implemented at Agent revision `923b8eb`. It
 
 The new coverage proves normal closure; terminal, orphan, denied, and replay hydration closure; claim and terminal denial; route-closed disposal exactly once; malformed-script closure before port construction; composition replay; independent composition isolation; scalar assertion freezing/redaction; and absence of temporary-root/local-state/filesystem/runtime imports. This evidence remains strictly source-only. It does not create or wire a temporary-root port from an application composition, modify an existing coordinator runtime, inject a target root, access filesystem/environment/network/package/credential/target/Core/Azure, parse/render/write configuration, deploy, stage, prove, train, submit, or aggregate.
 
+## 74. Design-only protected target-root capability boundary
+
+The next boundary is a review only. It does not grant or inject a root. If a later concrete adapter is authorized, exactly one named protected composition module—not application code, the fake coordinator, a controller, a test script, or a caller—may resolve one opaque deployment configuration reference into one private-root capability. The capability remains private to a concrete local-state adapter constructor. Neither the composition module nor adapter returns the root, its reference, a path, record, byte, error text, configuration value, filesystem handle, or factory. The application sees only the established scalar port and frozen aggregate readout.[1]
+
+| Requirement | Design-only rule | Explicitly not established |
+|---|---|---|
+| Authority and identity | A future protected composition module is the sole resolver of an opaque deployment configuration reference. No user, request, coordinator, or application object supplies root material. | Environment lookup, secret read, configuration parsing, runtime dependency injection, or deployed identity action. |
+| Root acceptance | Future validation must require a configured private local directory with strict ownership, private permissions, no symlink, no unexpected temporary material, and no shared/public mount. | Any observed filesystem check, root creation, cleanup execution, or target binding. |
+| Capability lifetime | Resolve once during protected construction; hand off only to the concrete local-state adapter; discard at terminal adapter disposal or construction failure. | Root reuse, path persistence, factory export, cross-operation sharing, or deletion/recreation strategy. |
+| Scalar projection | Emit only allowlisted classes such as `configuration_closed`, `root_closed`, `adapter_closed`, and aggregate count buckets. | Root/reference/path/record/bytes/owner/mode/error/configuration/target/credential/runtime fact. |
+| Failure posture | Missing, malformed, non-private, shared, symlinked, unavailable, cleanup-uncertain, or replayed capability states close before coordinator admission. | Fallback root, automatic repair, retry, alternate environment, or partial startup. |
+
+### 74.1 Future finite lifecycle and cleanup authority
+
+The future protected composition has a closed finite state machine: `unresolved` → `configuration_validated` → `root_validated` → `adapter_constructed` → `operation_closed` → `disposed`. Any validation or construction failure reaches terminal `configuration_closed` or `root_closed`; any cleanup uncertainty reaches terminal `adapter_closed`. No transition returns to an earlier state. The composition owns best-effort disposal of the adapter it constructed; it must not delete records, enumerate arbitrary content, or recreate a root. The concrete adapter owns only its documented local terminal-record lifecycle. A future application or coordinator never gains cleanup authority over either root or adapter.
+
+| Closure condition | Required future response | Allowed observability |
+|---|---|---|
+| Configuration reference absent or malformed | Refuse before root resolution and suppress coordinator construction. | `configuration_closed` count only. |
+| Root validation denied | Do not construct an adapter, substitute a root, or issue a port. | `root_closed` count only. |
+| Adapter construction/operation close | Dispose the adapter once; suppress later operation or construction attempts. | `adapter_closed`/replay count only. |
+| Disposal uncertainty | Freeze the operation as closed and require publication before any later design revision. | `adapter_closed` count only; no error text. |
+
+### 74.2 Architecture, tests, and evidence gates
+
+Dependencies remain one-way: opaque protected configuration reference → protected composition → concrete local-state adapter → scalar port → application/coordinator. The protected composition must be isolated from parser, renderer, configuration artifact generation, package access, registry/image binding, credential exchange, target/Core integration, trainer, submission, aggregation, and public listener modules. A future source-only implementation must add import guards and deterministic fakes for each configuration/root/adapter closure class without reading environment variables or the filesystem. It must prove capability non-projection, construction ownership, one-use disposal, replay suppression, and independent fake compositions. Quality evidence would remain distinct from any future protected deployment conclusion and from an opt-in runtime proof.
+
+Implementation is deliberately staged. The next possible low-risk source slice may model only a strict scalar **configuration-reference validator fake** and its closure matrix; it must not inspect a real configuration or root. Only after that is quality-gated and documented may a separate concrete-adapter review decide whether to introduce filesystem-backed root validation. Deployment, target binding, runtime invocation, staging, proof, training, submission, and aggregation require their own later gates. This review authorizes none of them.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
