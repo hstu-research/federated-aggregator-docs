@@ -1140,6 +1140,14 @@ Agent release `ffc588bb88f5dd18c76d0198f4d2e9322e9d9abd` adds the separate real 
 
 The static policy test rejects automatic triggers, unpinned actions, unsafe permission drift, non-ephemeral secret references, cancellation, target/runtime keywords, and missing manual/branch/concurrency/environment constraints. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **104 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32696009922` completed successfully. This is source/configuration quality evidence only; the manual builder workflow has not been dispatched.
 
+### 51.6 Terminal live-image result — private attestation capability unavailable
+
+One authorized manual synthetic candidate was dispatched from the immutable builder-workflow release. Its real checkout, build platform setup, private registry authentication, and build/publish step completed. The run then closed at the provenance-attestation persistence step because GitHub attestation storage is unavailable for the organization’s current private-repository capability. The workflow’s final conclusion is therefore `live_build_attestation_feature_unavailable`, not a successful attested release.
+
+The candidate is terminally closed. No workflow retry, alternate registry, mutable tag, source/base substitution, target pull, Azure action, target binding, Compose render, projection, proof, training, update submission, or aggregation action was attempted. Independent package inventory access is unavailable to the current integration, so no package visibility, locator, image identity, or artifact state is claimed publicly beyond the observed build/publish-step completion and terminal attestation failure.
+
+The next candidate must be a fresh source revision after a separate workflow policy change: GitHub’s unavailable attestation-persistence action will be removed and BuildKit OCI provenance will be enabled directly on the private image build through a fixed `provenance: mode=max` setting. This is a compatibility provenance mechanism, not GitHub attestation storage; its successful use must be separately observed and recorded before target staging. The closed candidate will not be retried.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
