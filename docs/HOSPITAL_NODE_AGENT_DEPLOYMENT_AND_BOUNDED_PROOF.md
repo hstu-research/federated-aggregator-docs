@@ -1481,6 +1481,39 @@ Agent release `c3353e6a2edcfdf3cd299c0e09288ef255685fcb` implements the pure ver
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **126 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32706064358` completed successfully. This is source-quality evidence only: no environment/configuration parsing, filesystem, Docker/Compose, deployment configuration, root, mount, image build, package pull, target, Azure, provider, organization, credential, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. The next safe low-risk slice is a separate target-owned injection-adapter design that preserves raw-root nonenumerability and source-only test boundaries; it is not an authorization to implement or deploy that adapter.
 
+## 57. Design record — target-owned private-root injection adapter
+
+### 57.1 Trust boundary and ownership
+
+The only future component allowed to handle the raw private-root reference is a target-owned infrastructure injector. It runs at target composition time and must hand the application a ready persistence-port capability, never a string, path, root object, configuration envelope, or serializable adapter. The application and every source-only policy continue to receive only scalar configuration intent and the preexisting persistence port. The injector itself may be constructed only by a separately controlled target composition root after the configuration-intent contract has closed as eligible and ready-not-activated.
+
+| Actor | May receive | Must never receive or emit |
+|---|---|---|
+| Target configuration owner | Opaque deployment-held private-root reference. | Application request, status/log/public projection, package/image/credential value. |
+| Target injector | One raw reference, then a private nonenumerable internal capability. | Generic environment map, alternate root, provider/package/Core/identity access, or serializable reference. |
+| Durable-store adapter | Constructor-only private-root capability. | Request-derived path, fallback, deployment metadata, target credential, or status projection. |
+| Application/composition policy | Scalar mode/binding/release/image/activation decision and persistence port. | Raw reference, root object, mount, permission detail, or filesystem operation. |
+
+### 57.2 Injection protocol and validation
+
+The target composition root first obtains a scalar `configuration_ready_not_activated` decision from the reviewed configuration-intent validator. Only then may it invoke the injector with one target-owned opaque reference. The injector performs bounded syntax validation internally: nonempty absolute form; no control characters, home expansion, substitution syntax, traversal segments, generic temporary roots, or provider/URL-shaped value. It then creates a `PrivateRootCapability` whose value is held in a private nonenumerable field; no method returns that value, and `toJSON`, inspection, error, and status behavior emit only allowlisted scalar classes.
+
+The injector passes the capability once to the reviewed durable-store adapter constructor. The adapter remains responsible for actual root/file ownership, type, permission, symlink, temporary-artifact, canonical-record, and atomic-write validation. Any injector-validation or adapter-construction error returns `injection_denied` with retry disabled and immediately selects disabled composition; it does not normalize, repair, create, change, or select a root. It must not read `process.env`, parse arbitrary configuration files, create a mount, invoke Docker/Compose, select an image, issue a package pull, bind a port, or start an Agent.
+
+### 57.3 API/readout, fixtures, and redaction
+
+The future injector API has a narrow one-way shape: `compose(eligibleScalarIntent, targetOwnedOpaqueReference) -> { persistencePort | terminalDisabledReason }`. Only the caller in target composition may hold the opaque reference. Application-visible output is a persistence port or one of `injection_not_requested`, `injection_denied`, `adapter_construction_denied`, `composition_disabled`, and `rollback_binding_removed`. No output exposes reference content, a path/mount, owner/group/mode, byte count, parser input, exception, image/package locator, credential, provider result, or target detail.
+
+Source-only compatibility fixtures must use synthetic opaque sentinels whose raw content cannot resemble a real root. Tests verify nonenumerability, `JSON.stringify`/inspection redaction, one-time handoff, denial-before-adapter on malformed sentinel, adapter-construction failure closure, no fallback/retry, and rollback binding removal. They may not read an environment variable, create a directory, access a developer home, invoke a container, or touch Azure/GitHub/package/Core services.
+
+### 57.4 Activation, rollback, and future staging sequence
+
+The injector is disabled by default and cannot make a composition active. A later target configuration must pair it with an opt-in inert profile, fresh immutable image candidate, new package-access decision, scalar Core health/aggregation-disabled preflight, and a separately documented deployment gate. The current image cannot be reused. The first eventual runtime state is inert/no-port/no-listener and proof remains `not_invoked`.
+
+Rollback destroys the injector/composition binding and returns disabled without deleting a final terminal record, rereading a reference, selecting another root/image, altering a credential, starting a listener, or enabling aggregation. A failed injection closes the candidate and requires a new documented diagnosis before any revised injector candidate. No raw-root implementation, configuration parser, mount, image build/pull, target action, credential, proof, training, submission, or aggregation action is authorized by this record.
+
+> **Hard stop:** this record designs a one-way target-owned injection boundary. It does not create, read, or test a real private-root reference and cannot be treated as configuration, target, durable-state, or runtime evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
