@@ -528,6 +528,48 @@ All tests exercise the edge through injected syscall doubles only. They cover no
 
 This is **source-quality evidence only**, not deployment evidence and not a target proof. The adapter is not bound into an image or Agent composition root, no protected projection binding exists in Azure source, no image has been built or released, and no Azure Compose profile has been rendered. Before a new decision on image binding or target staging, the project still needs a separate target-binding review, release-image evidence, a protected composite source, target render validation, renewed read-only safety preflight, and all retained no-training/no-submission/no-aggregation gates.
 
+## 31. Decision record — Azure test-target binding and release containment
+
+### 31.1 Decision scope and non-authorization
+
+This record defines the **criteria** for a later Azure test-target binding; it does not perform binding, create an image, contact Azure, render a profile, or open a protected projection. The decision accepts `azure_test_hospital_node` only as an opaque target class. It does not expose a host, subscription, resource locator, mount, projection reference, service account, environment variable, image registry, digest, or deployment command.
+
+The deployment binding owner is the protected Azure deployment control plane, outside Agent source and ordinary application configuration. The Agent composition root receives only a versioned scalar binding class and may construct the approved source edge only when a later protected deployment record admits the exact release. The runner, Core client, workspace, private channel, public server, docs application, test readouts, and data plane remain incapable of resolving a target binding.
+
+### 31.2 Immutable release-admission record
+
+Before any later image build is even reviewed, the release process must produce a redacted immutable admission record containing only the fields below. No target command can accept unbound source, a mutable tag, a branch name, a latest pointer, a local image name, or a caller-supplied projection selector.
+
+| Required scalar fact | Binding rule | Failure behavior |
+|---|---|---|
+| Source revision | Exact immutable Agent source revision whose protected-fs guard and quality gate succeeded. | `release_source_unverified`; no image admission. |
+| Dependency identity | Lockfile digest and runtime major/minor class recorded by the release pipeline. | `release_dependency_unverified`; no rebuild fallback. |
+| Image identity | Immutable content digest produced by a later protected build; no tag-only deployment. | `release_image_unverified`; no target bind. |
+| Policy identity | Versioned binding-policy class, allowed Linux capability class, and source import-guard result. | `release_policy_unverified`; fail closed. |
+| Quality identity | Completed Agent Quality Gates result tied to the exact source revision. | `release_quality_unverified`; no waiver. |
+| Deployment identity | Separate protected target deployment record with a nonhuman Agent deployment-identity class. | `target_binding_unverified`; no profile or projection. |
+
+The first three facts do not yet exist for the source-only release; therefore it is deliberately **inadmissible** for target binding. The factual status is `source_validated_target_unbound`, not release candidate, deployed Agent, or proof-ready workload.
+
+### 31.3 Admission state machine and rollback containment
+
+The later control plane may move only through `source_validated_target_unbound → image_reviewed_target_unbound → image_released_target_unbound → target_binding_reviewed → staged_not_invoked → preflight_passed_not_invoked → one_shot_opted_in`. This record establishes only the first state. Every other transition requires a fresh record with exact observed evidence. A denial is terminal for that candidate and cannot silently reuse a different image, identity, binding, or profile.
+
+| State / event | Permitted action | Containment and rollback |
+|---|---|---|
+| `source_validated_target_unbound` | Documentation and local source testing only. | No image, target source, projection, Compose render, or invocation exists to roll back. |
+| Image/release review denial | Preserve scalar denial evidence; retain no target binding. | Revert source or release candidate in source control; do not retry a target route. |
+| Target binding/staging denial | Stop before projection access and before runner start. | Remove candidate binding record/profile admission; leave aggregation disabled. |
+| Post-stage failure (future) | Publish a redacted failure record before any new candidate. | Quarantine the candidate identity/image mapping; no automatic retry or mapping reuse. |
+
+No deployment state may be inferred from Core liveness. Azure Core health and the disabled aggregation marker remain safety observations only; they do not prove Agent image availability, binding validity, platform support, or private projection access.
+
+### 31.4 Verification and next safe boundary
+
+The future target-binding review must use aggregate-safe verification only: exact source/release identities, policy class, quality conclusion, static import-guard conclusion, desired state class, no-runner/no-profile state before staging, and retained disabled aggregation. It must never inspect or publish a binding locator, projection path, secret/token bytes, provider response, headers, bodies, storage facts, database values, or host-level configuration.
+
+The next safe activity is a separate **design-only protected image-build and release-mapping record**. It may describe reproducibility, non-root image constraints, static guard execution, immutable digest admission, and no-runtime default, but cannot build/push an image or stage Azure. Only after that record, its isolated implementation and quality evidence, and a later new authorization could target staging be considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
