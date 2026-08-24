@@ -1306,6 +1306,12 @@ The transition matrix permits only terminal `blocked` outcomes: `organization_au
 
 Local tests must prove valid terminal mapping, malformed/unknown-value denial before fake invocation, fallback-identity denial, repeat/replay closure, redaction, no retry, and absence of provider/runtime imports. This source increment cannot prove organization authorization, package access, machine-account existence, target custody, image availability, or staging readiness. It establishes only deterministic control-state behavior.
 
+### 53.7 Source-quality evidence — scalar authorization diagnostic
+
+Agent release `63359ba52018d3e42afb7090759cb165dbba2043` implements the versioned scalar authorization-diagnostic validator and deterministic fake. The contract accepts a narrow diagnostic identifier and one of two identity-class values; it rejects unknown fields and malformed identifiers before fake invocation. It produces only terminal blocked/no-retry codes for organization authorization unavailable, package access unknown, machine identity uncreated, target custody absent, identity path unavailable, forbidden fallback identity, invalid observation, and replay. The aggregate readout excludes diagnostic identifiers and the source guard prohibits provider/runtime imports.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **110 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32702812459` completed successfully. This is source-quality evidence only; no provider, organization, package, credential, machine account, target, image, Azure, render, Agent start, Core call, proof, training, submission, or aggregation action occurred. The external authorization block remains open. The next safe low-risk slice is source-only scalar persistence/restart design, not another credential or package-access attempt.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
