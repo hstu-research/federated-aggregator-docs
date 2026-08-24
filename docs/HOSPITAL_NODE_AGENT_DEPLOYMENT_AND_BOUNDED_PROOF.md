@@ -1229,6 +1229,12 @@ A later proof dossier must separately require: a fresh Core liveness/readiness c
 
 > **Hard stop:** this dossier authorizes analysis and a later isolated staging gate only. It does not authorize target-secret creation/use, image pull, Azure configuration, Compose render, Agent start, Core call, proof, clinical/patient data, training, model update submission, or aggregation in this design increment.
 
+### 52.9 Read-only Azure preflight evidence
+
+The authoritative Azure test target was inspected through a scalar-only, read-only preflight after publication of this dossier. Target reachability and Docker availability were confirmed. Exactly one labelled Core API candidate and one labelled aggregation-worker candidate were present; the API’s internal liveness and readiness checks both succeeded. The running worker’s resolved enabled state was `disabled`. No Agent candidate was present, and no target secret, package pull, image binding, Compose render, Agent start, Core-to-Agent call, proof, training, submission, or aggregation action was performed.
+
+This is **preflight evidence**, not a staging result. The broad initial container-name heuristic was discarded because it could not identify the aggregation configuration safely; the final check used exact Core Compose project/service labels and a scalar-only resolved-state classifier. A fresh preflight remains required immediately before any later target staging. The only newly permitted slice is static Agent target-composition source with local quality checks.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
