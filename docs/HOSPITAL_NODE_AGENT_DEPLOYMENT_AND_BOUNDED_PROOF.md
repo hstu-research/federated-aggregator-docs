@@ -685,6 +685,44 @@ The release adds a production-source import guard for the orchestration module, 
 
 This validates source-only orchestration and deterministic fake behavior only. No credential or external owner binding was created; no builder/registry/Docker operation, image, pull/push/tag, Azure activity, target binding, Compose render, projection, runner, proof, training, update submission, or aggregation occurred. Any actual external builder execution remains a separately documented authorization and credential-custody decision, followed by separate quality, deployment, staging, and proof gates.
 
+## 37. Decision record — external builder execution readiness and credential custody
+
+### 37.1 Scope, non-delegable authority, and non-authorization
+
+This is a documentation-only readiness decision. It defines the authority separation and evidence that a future external execution decision would need; it does **not** appoint an operator, create or rotate a credential, configure a builder or registry, perform a build/pull/push/tag, create an image, contact Azure, stage a target, render Compose, open a projection, run a proof, train, submit an update, or enable aggregation. The current Agent is still source-validated, image-free, and `source_validated_target_unbound`.
+
+No one role may self-authorize external execution. A future one-candidate decision needs three non-delegable, mutually isolated classes: `agent_release_policy_authority` to bind the admitted source/policy/base facts; `protected_builder_execution_approver` to attest a bounded isolated execution window; and `registry_release_approver` to attest the bounded release channel. Credential lifecycle authority is a fourth, separate `protected_builder_credential_custodian` class. The Agent, Core, target operator, Azure host, runtime image, test process, human/browser session, ML worker, callback identity, documentation publisher, execution approver, and registry approver cannot create, observe, rotate, export, or reuse the future credential.
+
+### 37.2 Readiness state machine and evidence anchors
+
+| Readiness state | Required future evidence anchor | Allowed next state | Terminal failure |
+|---|---|---|---|
+| `execution_not_ready` | Exact source-only admission/orchestration quality evidence and a current no-target-deployment attestation. | `execution_review_pending` | Missing/stale/contradictory facts remain not ready. |
+| `execution_review_pending` | Independently bound immutable source, lockfile, Dockerfile, policy, and base-object identities; one bounded candidate class; independent policy and registry review classes. | `execution_ready_not_authorized` | `execution_review_denied`; no credential lifecycle action. |
+| `execution_ready_not_authorized` | A controlled readiness record with expiry class, audit policy revision, quarantine/revocation owner, and isolated builder class. | none in this decision | It is **not** an execution permit or builder instruction. |
+| `execution_revoked` or `candidate_quarantined` | Allowlisted scalar cause and independent review class. | none | Terminal; no automatic retry, reissue, retag, target binding, or reuse. |
+
+All future readiness anchors must be immutable scalar identities or allowlisted policy/result codes. They may not contain an image value, registry location, credential, token, secret, path, command, environment variable, layer/manifest/signature body, raw tool output, host, target selector, provider response, patient field, or free-text diagnostic. The readiness record must be append-only and redacted; its public readout may show only counts by terminal state and policy class.
+
+### 37.3 Credential lifecycle and external-failure closure
+
+The credential custodian may later create a one-candidate, one-window opaque execution capability only after a distinct execution authorization record exists. Its creation, rotation, and revocation must be independent of the policy, builder-execution, registry-release, Agent, and target roles. The capability must never cross into source control, tests, build arguments, image metadata/layers, logs, runtime environment, Core, Azure target, documentation, or public readout. Rotation cannot extend a candidate scope or revive a terminal record; revocation is immediate policy-side ineligibility, not evidence that a remote system was contacted or that an artifact was deleted.
+
+| Event class | Required future response | Retained proof boundary |
+|---|---|---|
+| Approval expiry, disagreement, or missing anchor | Close as `execution_review_denied`; do not issue or refresh a capability. | Redacted scalar decision and aggregate count only. |
+| Candidate dispute, execution-policy violation, or audit gap | Close as `candidate_quarantined` or `execution_revoked`; independently revoke future eligibility. | Immutable candidate/policy class and allowlisted code only. |
+| Builder/registry/platform failure after a later external route | Stop and publish the redacted failure before any further attempt. No automatic retry or alternate channel. | Bounded duration/resource class and allowlisted failure state only. |
+| Any target/deployment fact appears | Close as `target_separation_denied`; require a separate target-bound dossier. | No target locator, host, configuration, or body is recorded. |
+
+### 37.4 Isolated builder, registry, audit, and retained stop conditions
+
+Any future builder must be disposable, non-root, isolated from the Agent, Core, Azure target, runtime environment, projection, workload identity, public listener, and target credentials. It may receive only a one-candidate admitted source/base/policy identity set after a separate execution authorization. The future registry channel must be release-only, candidate-scoped, and unable to replace immutable inputs with a tag or alternate identity. Base and source pins must be re-verified at the future execution gate; the present source-only validation cannot substitute for that future external fact.
+
+Future audit retains only policy/candidate identity classes, state transitions, bounded duration/resource classes, role classes, and allowlisted outcomes. It must redact invocation details, credential lifecycle material, registry details, host/environment data, commands, tool output, layers, manifests, signatures, and artifact bytes. Candidate deletion and quarantine custody remains with the external policy/custodian boundary and may be reported only as a redacted terminal policy state.
+
+The next safe activity is a source-only readiness-record contract and deterministic fake review, not an external execution. Actual execution remains blocked until that separate source quality evidence exists, a later execution authorization records all independent approvals, credential custody is established outside the Agent and target, and subsequent quality/deployment/staging/proof gates are individually documented and passed.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
