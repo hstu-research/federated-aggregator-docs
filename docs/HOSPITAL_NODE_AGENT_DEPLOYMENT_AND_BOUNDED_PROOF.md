@@ -1298,6 +1298,14 @@ The available repository integration was asked only for the current operator’s
 
 The diagnostic route is closed with no identity switch, browser-role substitution, package query, or retry. The next safe slice is source-only: versioned scalar diagnostic contracts and deterministic denials for organization-authorization-unavailable, package-access-unknown, machine-identity-uncreated, target-custody-absent, and no-retry closure. A future real machine-account provisioning gate remains blocked until an organization-authorized administrator can verify the necessary membership, SSO, and package-read access facts through a separately documented decision. No credential, image pull, render, Agent start, Core call, proof, training, submission, or aggregation action follows from this result.
 
+### 53.6 Source-only diagnostic-contract increment
+
+The next implementation slice introduces a pure, versioned target-machine-identity diagnostic contract in the Agent application layer. Its request accepts only allowlisted scalar classes: `organization_authorization_unavailable`, `package_access_unknown`, `machine_identity_uncreated`, `target_custody_absent`, and `identity_path_unavailable`. It cannot accept a provider response, account/member reference, credential, package/image/repository locator, scope, SSO fact, target location, path, URL, header/body, or free-text diagnostic.
+
+The transition matrix permits only terminal `blocked` outcomes: `organization_authorization_unavailable`, `package_access_unknown`, `machine_identity_uncreated`, `target_custody_absent`, `fallback_identity_denied`, and `diagnostic_replay_denied`. A deterministic fake may supply these scalar classes but cannot read configuration, open a socket, enumerate a package, acquire/mint/store a credential, invoke a browser, access Azure, or activate a target. The public readout contains only a schema version, terminal code, scalar state classes, aggregate invocation count, and `retryAllowed: false`.
+
+Local tests must prove valid terminal mapping, malformed/unknown-value denial before fake invocation, fallback-identity denial, repeat/replay closure, redaction, no retry, and absence of provider/runtime imports. This source increment cannot prove organization authorization, package access, machine-account existence, target custody, image availability, or staging readiness. It establishes only deterministic control-state behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
