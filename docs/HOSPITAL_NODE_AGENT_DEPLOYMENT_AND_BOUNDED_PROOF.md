@@ -1565,6 +1565,20 @@ Because this increment creates no render artifact or target state, rollback is t
 
 The separate staging/proof gate remains blocked. It still requires independently evidenced target-only package-access authorization, a target-only identity mechanism, an eligible fresh candidate without locator disclosure, a target-owned binding review, a new scalar Core/aggregation preflight, a static source-quality result for any renderer, and an explicit inert-staging decision. The prior denied-and-revoked credential path is not a prerequisite and must not be retried, substituted, or reused.
 
+### 58.4 Source-only render-intent and decision contract increment
+
+The next Agent increment is a pure versioned static render-intent policy plus deterministic decision-sink fake. It may accept only these exact scalar labels: configuration `eligible_ready_not_activated`; image `fresh_eligible`; synthetic injection `prepared`; opaque binding `reserved`; activation `disabled`; exposure `no_public_ingress`; restart `no_restart`; and network `no_host_network`. It also accepts one unused bounded synthetic render identifier. The eligible result is only `disabled_not_rendered`; it is a decision about a future shape, not a rendered configuration, file, process, or target state.
+
+Malformed, unknown, missing, fallback, active, exposure-enabled, restart-enabled, host-network-enabled, not-fresh, injection-unprepared, binding-unreserved, sink-failure, duplicate, or replay inputs must close as terminal scalar denials before retry, alternate value, render, or target operation. The fake may record only one scalar disabled decision and aggregate invocation count. It cannot receive a configuration body, render text, filesystem handle, image/root reference, environment map, package/registry fact, credential, target field, provider result, or operational command.
+
+Source guards must prohibit Docker/Compose/render libraries, child-process APIs, filesystem, environment/config parsers, HTTP/registry/cloud/OIDC clients, Core/Agent runtime modules, and trainer/submission/aggregation imports. Tests must cover the one exact eligible disabled-not-rendered decision; every listed denial; fake non-invocation before validation; sink failure closure; replay suppression; frozen/nonenumerable redaction; and aggregate-only serialization. This creates source-quality evidence only and authorizes no renderer implementation, Compose-file change, root/image binding, package access, target action, staging, proof, training, submission, or aggregation.
+
+### 58.5 Source-quality evidence — static render intent
+
+Agent release `ad2e2ed4f0a0863bd08a4f2ce2ce2ea97631a7ce` implements the pure versioned static render-intent validator, terminal decision policy, private deterministic decision sink, frozen readouts, and import guard. The only successful fake handoff records one scalar `disabled_not_rendered` decision. The policy denies malformed, unknown, missing, configuration-ineligible, image-not-fresh, injection-unprepared, opaque-binding-unreserved, fallback-binding, activation-enabled, public-ingress, restart-enabled, host-network, decision-sink failure, and replay cases without retry. A corrected private sink field prevents injected fake state or synthetic identifiers from appearing in policy serialization.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **134 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32707838712` completed successfully. This is source-quality evidence only: no configuration artifact, Compose file, render engine, process, filesystem, environment/configuration parser, root/image binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A focused concrete static-renderer design review remains a separate low-risk boundary; it authorizes neither a renderer implementation nor target configuration.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
