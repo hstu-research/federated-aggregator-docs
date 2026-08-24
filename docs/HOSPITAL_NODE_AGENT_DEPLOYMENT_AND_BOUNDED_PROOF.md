@@ -642,6 +642,49 @@ Before any later builder execution approval, the record must carry a `no_target_
 
 The only prospective follow-up is a **source-only** protected-builder admission-orchestration design and its deterministic fakes. It may model role separation, scalar authorization, terminal quarantine, and redacted readout; it must not mint a credential, call a builder or registry, construct an image, stage a target, render Compose, open a projection, or invoke proof. An actual external build still requires a separately published execution approval, independently established credential/registry custody, quality evidence for the orchestration, and a later target-staging decision.
 
+## 35. Design record — source-only protected-builder admission orchestration
+
+### 35.1 Research value, scope, and explicit non-goals
+
+This narrow slice tests whether the approved scalar facts can move through independent policy and registry-approval seams without collapsing them into the Agent, target, or one another. Its measurable outcome is a deterministic, one-request terminal decision with an aggregate-only readout; it provides **no** evidence of a real builder, registry, image, release channel, credential, or deployment.
+
+The orchestration accepts an already-valid `AgentImageBuildAdmission` and a small scalar request bound to the admission source revision and policy version. It may return only a typed source-only terminal outcome: `authorized_source_only`, `admission_denied`, or `candidate_quarantined`. It stores no candidate identity in a public projection and never yields an image digest, build command, base reference, registry fact, target selector, credential, path, token, manifest, signature, log, byte, or error text.
+
+### 35.2 State machine, ports, and immutable facts
+
+| State | Allowed next state | Required fact | Terminal rule |
+|---|---|---|---|
+| `admission_received` | `policy_authorized` or `admission_denied` | Validated immutable admission plus one bounded request identifier. | Invalid, duplicate, or role-mismatched inputs deny without fallback. |
+| `policy_authorized` | `registry_approved_source_only` or `admission_denied` | Exact source revision and policy version remain bound. | Policy denial closes the request and does not call the next seam. |
+| `registry_approved_source_only` | `authorized_source_only` or `candidate_quarantined` | The same admitted source/policy facts are reconfirmed. | Approval is only a fake scalar attestation; it cannot request execution. |
+| `admission_denied` | none | Allowlisted scalar reason only. | Terminal; no retry, replay under a new role, or quarantine escape. |
+| `candidate_quarantined` | none | Allowlisted quarantine reason only. | Terminal; no automatic retry, remapping, release, or target binding. |
+| `authorized_source_only` | none | A bounded count-only authorization result. | Terminal; it is not a build permit, credential, image identity, or deployment authorization. |
+
+The design uses three injected, source-only ports: `ProtectedBuilderPolicyAuthorityPort`, `ProtectedBuilderRegistryApprovalPort`, and `ProtectedBuilderAdmissionReadout`. Each accepts/returns only strict typed scalar objects. The policy and registry fakes have no filesystem, process, network, Docker, registry SDK, credential, environment, target, or runtime-image dependency. The orchestration itself cannot construct a builder request; its final result is deliberately named `authorized_source_only` to prevent accidental reuse as an execution permission.
+
+### 35.3 Data, validation, observability, and engineering constraints
+
+Input validation rejects unknown fields, mutable references, image-digest fields, tags, base references, registry names, targets, credentials, paths, commands, environment fields, provider facts, payload bytes, free-text diagnostics, and any role outside the fixed allowlist. It validates the existing admission before either seam. The policy seam must run before registry approval. A denial suppresses later seams; a registry quarantine closes the admission record. Each request may be evaluated once only; exact replay, duplicate request identifier, cross-admission replay, conflict, or readout mutation fails closed.
+
+Only aggregate counts—received, authorized, denied, and quarantined—may appear in `ProtectedBuilderAdmissionReadout`. All internal request/admission values stay private. The code must contain a file-level design comment recording that the module is source-only, fake-first, no-execution, and forbidden from importing `node:fs`, child-process, network clients, Docker/registry SDKs, Azure tooling, runtime configuration, projection, runner, or target composition modules. Tests must prove this through allowed imports and deterministic behavior rather than by invoking any external system.
+
+### 35.4 Test plan, quality gate, and stop conditions
+
+The local test suite must cover valid policy-plus-registry fake authorization; malformed/unknown/mutable-shaped input; invalid admission; wrong/duplicate role; policy denial with registry suppression; registry denial; registry quarantine; duplicate and cross-admission replay; readout redaction; and no retry. A new production-source static import guard must deny forbidden execution-capability imports in the orchestration module. The existing Agent `pnpm run ci` gate remains mandatory before any source commit.
+
+This implementation stops after source-only tests and quality evidence. It must not create a credential or owner binding, invoke a builder/registry, build/push/pull/tag an image, touch Azure, bind a target, render Compose, open a projection, start a runner, invoke proof, train, submit an update, or enable aggregation. A later actual build still needs a separate execution-authorization record and distinct deployment/target gates.
+
+## 36. Implementation evidence — source-only protected-builder admission orchestration
+
+Agent release `8052024d820463af655d01474599c1f81fcf6c07` adds a pure `ProtectedBuilderAdmissionOrchestrator` with strict scalar request validation, immutable admission binding, one-request terminal closure, and aggregate-only readout. It composes only injected `ProtectedBuilderPolicyAuthorityPort` and `ProtectedBuilderRegistryApprovalPort` seams. The included deterministic fakes consume an in-memory scalar script and expose only call/remaining counts; they cannot resolve or use an identity, credential, external process, network, Docker engine, registry, image, Azure target, filesystem, projection, runner, or runtime configuration.
+
+The orchestrator validates the existing admission before any policy seam, then binds request source revision and policy version exactly. It suppresses the registry seam on invalid input or policy denial. Valid policy and registry fake attestation yields `authorized_source_only`, whose type and name intentionally prohibit interpretation as an execution/build permission. Registry quarantine is terminal. Invalid fake role/state, duplicate request, cross-admission replay, malformed or unknown fields, and mismatched facts fail closed without retry. Internal request and admission values remain private; snapshots contain only received/authorized/denied/quarantined counts.
+
+The release adds a production-source import guard for the orchestration module, denying Node, process, Docker, cloud SDK, and common HTTP-client imports. Deterministic tests cover authorization, malformed/unknown/mutable-shaped input, invalid admission, source mismatch, policy suppression, duplicate/cross-admission replay, registry quarantine, invalid fake roles, redaction, and no retry. Local `pnpm run ci` passed formatting, the protected filesystem and builder-import guards, strict TypeScript, **81 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32690357676` completed successfully.
+
+This validates source-only orchestration and deterministic fake behavior only. No credential or external owner binding was created; no builder/registry/Docker operation, image, pull/push/tag, Azure activity, target binding, Compose render, projection, runner, proof, training, update submission, or aggregation occurred. Any actual external builder execution remains a separately documented authorization and credential-custody decision, followed by separate quality, deployment, staging, and proof gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
