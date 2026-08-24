@@ -1939,6 +1939,28 @@ Compatibility fixtures must prove the existing authorization-diagnostic store re
 
 This is a design review, not a concrete adapter, root capability, record/file, or target operation. A later source-only local-adapter implementation requires its own documentation record, local temporary-root fixture gate, quality gate, and redacted source-quality evidence. A further target-root injection review, package-access authorization, fresh release mapping, scalar preflight, inert staging, proof, training, submission, and aggregation remain separate blocked decisions.
 
+### 65.4 Parallel local durable adapter increment
+
+The next Agent increment implements the reviewed parallel local durable adapter **only against temporary fixture roots created by tests**. It is a local infrastructure adapter, isolated under the local-state package. It does not enter application composition, receives no target-owned root, and has no environment/configuration, network, provider, package/registry, credential, target, Core/Agent runtime, parser, renderer, trainer, submission, or aggregation dependency.
+
+The constructor receives a test-only private root capability. The adapter stores a versioned canonical scalar claim and a subsequent canonical terminal record inside a non-overlapping private slot. The opaque synthetic correlation remains private to the adapter; no method, result, error, snapshot, serialization, log, or documentation projection exposes it. A load/hydrate call reports only empty, claimed, terminal closed, interrupted closed, or allowlisted denial. Append operations report only stored or denied. Aggregate readout has no root, path, record, byte, identity, or error-detail dimension.
+
+| Fixture lifecycle | Required adapter behavior | Forbidden behavior |
+|---|---|---|
+| Empty temporary root | Validate root, atomically append one canonical claim. | Route invocation, target root fallback, text/configuration artifact, or external access. |
+| Valid claim | Atomically append exactly one matching terminal record. | Claim overwrite, second terminal, record enumeration, or correlation projection. |
+| Valid terminal | Hydrate as terminal closure and suppress later claim/terminal work. | Resume, retry, deletion, rewrite, or alternate correlation. |
+| Orphan claim | Hydrate as interrupted closure. | Resume/range continuation, route replay, or silent repair. |
+| Invalid/faulted root or record | Close with an allowlisted scalar denial and attempt only bounded safe cleanup. | Expose filesystem detail, scan beyond the fixed slot, switch root, or retry. |
+
+The adapter must enforce absolute private fixture root, private ownership/mode, non-symlink root/final/temporary candidates, bounded canonical UTF-8/JSON, exact key allowlist, strictly increasing scalar sequence, atomic temporary create/flush/promote/root-flush ordering, and bounded cleanup. Temporary residue, mode/ownership/symlink, permission, malformed/unknown, duplicate/non-monotonic, corruption, temporary, atomic, or cleanup fault becomes a terminal close. Tests must prove redaction and that the adapter cannot interact with the coordinator, parser, renderer, configuration, target, package, credential, or runtime systems. This is local temporary-root fixture evidence only, not a target-root, staging, proof, or deployment result.
+
+### 65.5 Source-quality evidence — parallel local durable adapter
+
+Agent release `ce171d8` implements the parallel local claim-terminal durable adapter in the local-state package, constructor-injected temporary-root fixture capability, canonical scalar claim/terminal record validation, atomic temporary/flush/promote/root-flush lifecycle, aggregate-only readout, and filesystem import isolation. It is intentionally parallel to the existing authorization-diagnostic store; neither schema nor record slot is changed. The adapter accepts one synthetic opaque correlation internally, persists exactly claim sequence one then terminal sequence two, and hydrates only scalar `empty`, `terminal_closed`, `closed_interrupted`, or `invalid` outcomes.
+
+Temporary-root fixtures prove empty → claim → terminal → terminal closure; duplicate claim/terminal and mismatched-terminal rejection; malformed/noncanonical, temporary-residue, symlink-root, and mode-invalid-root closure; and serialization redaction. Local `pnpm run ci` passed formatting, protected filesystem and source import checks, strict TypeScript, **162 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32723031344` completed successfully. This is local temporary-root source-quality evidence only: no target root, application composition wiring, coordinator call, parser, renderer, configuration text/file, target, package/registry access, credential, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate adapter-port integration design is required before any application composition or target-root consideration.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
