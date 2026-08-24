@@ -1682,6 +1682,43 @@ Agent release `05a87a3` implements the source-only injected static renderer poli
 
 The policy terminally closes malformed, unknown, missing, non-disabled, workspace-unready, fallback, promotion-requested, unavailable/invalid/fallback blueprint, every fixed parser denial class, temporary failure, validation failure, cleanup failure, and replay. Its ports and synthetic identifiers remain private/nonenumerable and absent from serialization. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **144 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32709516280` completed successfully. This is source-quality evidence only: no renderer execution, render text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate concrete abstract-shape validator design is required before replacing the parser fake.
 
+## 61. Design record — concrete abstract-shape validator
+
+### 61.1 Boundary and immutable scalar contract
+
+This review defines a future concrete **abstract-shape validator** that consumes only a versioned synthetic scalar shape object. It does not parse text, inspect a configuration document, read a file/environment, resolve an image/root, access a target, or construct a renderer. Its purpose is to replace the parser fake with a strict local value validator that can distinguish one canonical inert shape from a fixed denial taxonomy. The validator has no target, deployment, package, identity, credential, provider, Core, Agent runtime, training, submission, or aggregation dependency.
+
+| Scalar field class | Sole accepted canonical value | Fixed denial classes |
+|---|---|---|
+| Schema and identity | Versioned schema plus one unused synthetic correlation identity. | malformed, unknown, missing, invalid identity, replay. |
+| Activation | `disabled`. | active, default/unspecified. |
+| Exposure | `no_public_ingress`. | exposed, listener/port/ingress claimed. |
+| Restart and network | `no_restart`, `no_host_network`. | restart-enabled, host-network. |
+| Binding and image | `reserved_opaque_binding`, `fresh_eligible_image`. | fallback/unreserved binding, stale/unavailable/mutable image. |
+| Workload and promotion | `no_workload_command`, `promotion_disabled_by_policy`. | command-bearing, proof/training/submission/aggregation claim, promotion requested/enabled. |
+
+The input must have exactly the allowlisted field names and scalar enum values. The future validator creates a new frozen canonical value after strict validation rather than retaining the caller object. It retains the accepted canonical state and used synthetic identity only in private nonenumerable fields. Public output is only a versioned abstract class `inert_shape` or an allowlisted terminal refusal; neither objects nor outputs may contain a text fragment, configuration field/value, path, root/image/package/registry reference, target, credential, provider result, error body, or free text.
+
+### 61.2 Normalization, denial map, and parser replacement seam
+
+Normalization is a deterministic object-to-object operation: it rejects arrays, non-objects, inherited/mutable prototypes, unexpected keys, missing keys, invalid enum classes, replayed identity, and any value that is not a finite allowlisted scalar. It freezes a new canonical internal object and maps it to `inert_shape` only when every field is exact. The future validator is not responsible for duplicate syntax detection because it receives no text; a preceding future text parser—if ever separately designed—must project any duplicate-field observation as the scalar denial class `duplicate_field_detected` before this boundary. The validator refuses that class rather than attempting repair or choosing a field.
+
+| Denial family | Terminal scalar code | Retry/repair posture |
+|---|---|---|
+| Object/schema | `shape_invalid`, `shape_unknown`, `shape_missing`, `shape_mutable`, `shape_duplicate_detected` | Close identity; no normalization fallback. |
+| Inert controls | `activation_denied`, `exposure_denied`, `restart_denied`, `host_network_denied` | No render/workspace call; no control substitution. |
+| Custody/release | `binding_denied`, `image_denied` | No alternate binding/image or lookup. |
+| Workload/promotion | `command_denied`, `promotion_denied` | No command construction or promotion seam. |
+| Identity/lifecycle | `shape_replay_denied` | Replay-suppressed; no retry. |
+
+The replacement seam is a narrow `AbstractShapeValidatorPort.validate(syntheticScalarShape) -> inert_shape | terminal_deny` interface. The renderer policy remains unchanged in direction: it receives only the abstract result and must call workspace fakes only after `inert_shape`. The validator emits no actual parser output and cannot be treated as a configuration parser, renderer, or target render proof.
+
+### 61.3 Compatibility fixtures, redaction, and future gates
+
+The first implementation must use deterministic synthetic scalar fixtures only. It must prove canonical inert normalization, frozen/nonenumerable ownership, rejected caller mutation after input, every denial family, no fallback, no workspace invocation before success, denial/replay suppression, and serialization/snapshot/error redaction. Tests cannot instantiate a file, render text, YAML/JSON parser, environment map, path, root, image/package/registry locator, target reference, credential, HTTP client, or process.
+
+Source guards must ban filesystem, process, Docker/Compose/render/template/YAML libraries, environment/configuration, HTTP/registry/cloud/OIDC, Core/Agent runtime, trainer, submission, and aggregation imports. Quality evidence is limited to local formatting/types/tests and Hospital Node Quality Gates. A concrete renderer remains a later separate decision requiring a dedicated private-writer review, protected release evidence, independently evidenced package access and target-only identity, fresh eligible release mapping, target-owned binding review, new scalar Core/aggregation-disabled preflight, explicit inert-staging decision, and a separately authorized one-shot proof. No target configuration is authorized by this review.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
