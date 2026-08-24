@@ -973,6 +973,48 @@ The future audit record is append-only and contains only candidate/policy classe
 
 > **Hard stop:** this is a policy decision only. The next safe work is a source-only workflow-policy validator. Environment/package/workflow configuration and every external execution action remain security-critical gates requiring the documented feasibility precheck, external permission boundary, and a later explicit action decision.
 
+## 47. Design record — source-only protected-builder workflow-policy validator
+
+### 47.1 Research value, scope, and non-goals
+
+This source-only slice tests whether a proposed protected-builder policy can be reduced to strict immutable scalar facts and denied before any workflow, environment, package, credential, image, registry, Azure, target, Compose, projection, proof, training, submission, or aggregation capability is introduced. Its measurable result is a deterministic policy decision and aggregate-only readout; it cannot create, parse, modify, or run a workflow definition.
+
+The validator does not model a real GitHub environment, package, user, team, action, secret, job, image, registry, target, or provider response. It validates a synthetic policy class only. A passing result is named `policy_validated_source_only` to ensure it cannot be treated as an environment approval, credential grant, workflow dispatch, package permission, build instruction, release, or deployment authorization.
+
+### 47.2 Technical requirements, schema, and workflow
+
+The module may depend only on strict scalar validation and one injected fake review port. It must not import YAML/workflow engines, filesystem, process, network, Docker, registry/cloud SDKs, runtime configuration, Agent identity, Core client, target composition, workspace, channel, runner, or trainer modules. A dedicated production-source import guard must reject Node, process, Docker, cloud SDK, HTTP-client, and workflow-parser imports.
+
+| Required policy fact | Required fixed value | Denial condition |
+|---|---|---|
+| Activation | `manual_dispatch_only` | Any push, pull request, tag, schedule, reusable, workflow-run, or target-trigger class. |
+| Review | `independent_non_self_review_no_bypass` | Self review, bypass, absent reviewer boundary, or mutable reviewer identity. |
+| Package posture | `private_repository_linked` | Public, internal, unlinked, fork, or alternate registry posture. |
+| Permissions | Exact `contents_read_packages_write_attestations_write_id_token_write` class. | Missing, broad, unknown, credential-shaped, or extra permission class. |
+| Action integrity | `full_commit_sha_pins_only` | Tag, branch, short SHA, free text, or unverified action class. |
+| Runtime control | `single_candidate_no_cancellation` and a bounded timeout class. | Parallel, auto-cancel, unbounded, or target-bound class. |
+| Target state | `target_unbound` | Any target, projection, runner, proof, or Azure-stage class. |
+
+The strict request carries a schema version, bounded request identifier, exact source/policy revision class, the above policy facts, and a scalar expiry. It rejects unknown fields, arrays, nested provider configuration, action names, branch/tag text, commands, paths, URLs, credentials, environment values, package/image identifiers, target selectors, payloads, and free-text diagnostics. The decision state is only `policy_validated_source_only`, `policy_denied`, `policy_revoked`, or `policy_quarantined`; internal facts stay private.
+
+### 47.3 Architecture, test plan, and stop conditions
+
+`ProtectedBuilderWorkflowPolicyValidator` receives a value plus injected `ProtectedBuilderWorkflowPolicyReviewPort`. The deterministic fake may return only `approved`, `denied`, `revoked`, or `quarantined` through fixed role/state objects and aggregate call counts. Validation occurs before the fake. A refusal, invalid role/state, expiry, duplicate request, cross-policy replay, or unknown field closes terminally and suppresses any later operation. Public snapshots expose only received/validated/denied/revoked/quarantined counts. There is no persistence, retry, cache, watcher, configuration mutation, or dispatch.
+
+Tests must cover one valid scalar policy, malformed/unknown/mutable policy values, every forbidden trigger/review/package/permission/pin/runtime/target class, expiry, fake denial/revocation/quarantine, role conflict, duplicate/cross-policy replay, aggregate redaction, and no retry. The delivery slice changes only an application contract, deterministic tests, package quality guard, and public evidence. It must pass local and GitHub quality gates before publication.
+
+> **Hard stop:** the validator proves only source-policy structure. It may not configure a protected environment or package, issue/use credentials, create a workflow file, dispatch a run, build/pull/push/tag an image, contact Azure, bind a target, render Compose, open a projection, invoke proof, train, submit an update, or enable aggregation.
+
+### 47.4 Implementation evidence — source-only workflow-policy validator
+
+Agent release `2b0a018fd98a9946e13e6cbae63e2f6b498a65dc` adds pure `ProtectedBuilderWorkflowPolicyValidator` contracts with a deterministic injected review fake. It accepts only the fixed scalar classes for manual activation, independent non-self review/no bypass, private repository-linked package posture, exact least-privilege permission set, full commit-SHA pinning, single-candidate/no-cancellation runtime control, bounded timeout, and target-unbound state. The validator has no workflow-engine, filesystem, process, network, Docker, registry, cloud, target, projection, runner, proof, training, submission, or aggregation dependency.
+
+Validation occurs before the review fake. Invalid/unknown/mutable-shaped policy values, forbidden activation/review/package/permission/pin/runtime/target classes, expiry, duplicate request, and cross-candidate replay close as `policy_denied`; fake denial, revocation, and quarantine close terminally without retry. A successful four-field fake review closes only as `policy_validated_source_only`, explicitly not an environment approval, workflow dispatch, credential grant, package permission, image build, release, or deployment authorization. Public readout contains aggregate received/validated/denied/revoked/quarantined counts only.
+
+The release adds a production-source import guard denying Node, process, Docker, cloud SDK, HTTP-client, YAML, and workflow-action package imports. Deterministic tests cover valid policy, malformed/unknown/mutable values, forbidden trigger/review/package/permission/pin/runtime/target classes, expiry, duplicate/replay, fake denial/revocation/quarantine, role conflict, aggregate redaction, and no retry. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **101 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32694621127` completed successfully.
+
+This validates source-only policy structure and deterministic fixtures only. No environment, workflow, package, credential, image, registry route, Azure action, target binding, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. The next safe boundary is an evidence-only environment-feasibility record; provider configuration remains a separate security-critical gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
