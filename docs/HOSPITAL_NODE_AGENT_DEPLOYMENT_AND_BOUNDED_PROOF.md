@@ -1986,6 +1986,29 @@ Compatibility fixtures must create two independent operation-scoped ports with d
 
 The first possible implementation is source-only composition against temporary-root fixtures, with no target root. It requires a separate implementation record, local quality gate, and redacted evidence. Any later target-root injection requires independently documented target ownership/custody, no fallback root, least privilege and root validation, access identity/package authorization, fresh release mapping, scalar target preflight, and an explicit inert staging decision. It remains separate from proof, training, submission, and aggregation. This design authorizes no adapter wiring, coordinator runtime modification, root acquisition, target configuration, parser, renderer, configuration artifact, package/credential action, or external runtime behavior.
 
+## 67. Source-only temporary-root port-factory contract
+
+The next increment implements the operation-scoped port described in §66 only for test-created temporary roots. A local-state factory receives a private fixture-root capability and one fixed-format synthetic correlation at construction. It constructs the parallel local durable adapter privately, then returns a scalar `CoordinatorTerminalRecordPort` with `hydrate()`, `appendClaim()`, `appendTerminal(allowlistedCategory)`, `dispose()`, and `snapshot()` operations. No factory output accepts a root or correlation, and no method projects one.
+
+The port is single-use. Hydrate must be invoked before append claim; claim before terminal; a terminal result or explicit dispose marks the port closed. Any later operation returns scalar replay closure and makes no adapter call. Hydrate terminal/interrupted/invalid state closes the port before claim. Claim denial closes before terminal. Terminal denial closes with no retry. Dispose does not delete records or roots; it only suppresses later operations in memory. Snapshot exposes operation counts and scalar state classes only, and every snapshot/result is frozen.
+
+| Port input/state | Required effect | Required projection |
+|---|---|---|
+| Fresh port | One private adapter construction against a temporary fixture root. | No construction/root/correlation detail. |
+| Empty hydrate | Keep port eligible for one claim. | `empty` scalar state. |
+| Claim stored | Allow one terminal append. | `claim_stored` scalar state. |
+| Terminal stored or terminal denial | Close port. | Terminal scalar closure; later use is replay-suppressed. |
+| Terminal/orphan/invalid hydrate or claim denial | Close before a later operation. | Scalar closure only. |
+| Explicit dispose | Close port in memory. | `disposed` then replay-suppressed. |
+
+Fixtures must prove independent ports on independent temporary roots, canonical empty/claim/terminal flow, terminal/orphan/invalid hydrate closure, claim/terminal denial closure, disposal/replay, aggregate snapshot and JSON redaction, and no root/correlation adapter property enumeration. Static source guards must keep the factory in local-state; application, coordinator, parser, renderer, configuration, target, credential, package/registry, network, runtime, proof, training, submission, and aggregation modules cannot import it. This is local temporary-root source-quality work only; it does not wire application composition, inject a target root, or alter any live behavior.
+
+### 67.1 Source-quality evidence — temporary-root port factory
+
+Agent release `059c9c8` implements the local-only temporary-root coordinator terminal-record port factory, private parallel-store/root/correlation closure, frozen scalar readout, single-use lifecycle, compatibility fixtures, and local-state import guard. The returned port exposes only hydrate, claim append, terminal append, dispose, and snapshot. Empty hydration permits one claim and one terminal append. Terminal or interrupted hydration closes before later work; claim/terminal denial closes without retry; explicit disposal closes in memory; all later calls are replay-suppressed. Roots, correlations, records, paths, bytes, adapter state, and error details remain absent from serialization and own-property enumeration.
+
+Temporary-root fixtures prove canonical empty → claim → terminal closure, terminal and orphan hydration closure, claim denial from temporary residue, terminal/replay suppression, independent ports on separate roots, disposal behavior, and redaction. Local `pnpm run ci` passed formatting, protected filesystem and source import checks, strict TypeScript, **166 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32723808639` completed successfully. This is local temporary-root source-quality evidence only: no target root, application composition wiring, coordinator runtime call, parser, renderer, configuration text/file, target, package/registry access, credential, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate source-only coordinator compatibility boundary design is required before any composition wiring.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
