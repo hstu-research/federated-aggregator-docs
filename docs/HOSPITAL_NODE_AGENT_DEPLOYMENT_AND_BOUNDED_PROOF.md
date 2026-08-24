@@ -2391,6 +2391,49 @@ The record may contain only the following aggregate-safe assertions. An outcome 
 
 The future redacted proof record must name the evidence class, immutable proof class, terminal class, cleanup class, retained controls, and the statement that no clinical data, trainer, submission, or aggregation action occurred. It must not include any raw operational detail. A successful synthetic terminal observation proves only that the bounded synthetic proof contract completed under its own controls; it cannot prove hospital integration, model validity, FedProx quality, submission, or aggregation.
 
+## 83. Critical path: FedProx local-training evidence design
+
+The thesis requires a scientific boundary separate from Agent delivery and deployment. This design specifies a future **synthetic-only** FedProx local-training evidence run. It does not fetch or inspect any dataset, invoke the Python trainer, create model weights, start an Agent, submit an update, or enable aggregation. Its purpose is to bind the mathematical claims, fixture provenance, result record, and terminal failure posture before a separately authorized local synthetic-training gate.
+
+### 83.1 Bound mathematical claim
+
+For a selected synthetic client objective, the planned local calculation is the empirical loss plus the FedProx proximal penalty:
+
+> `objective = empirical_loss + (mu / 2) × squared_distance(local_parameters, reference_parameters)`
+
+The existing Python mathematical tests establish only narrow arithmetic behavior: the objective equals empirical loss when `mu = 0`, the expected penalty is added for a fixed toy vector, weighted mean is deterministic for fixed scalar inputs, and incompatible shapes are rejected. They do not train a model, process a dataset, measure accuracy, or represent a hospital workload. A future synthetic experiment may claim only that its declared synthetic arithmetic and local-epoch contract produced the recorded deterministic scalar result under the recorded fixture class.
+
+### 83.2 Immutable experiment manifest and result record
+
+The future runner must validate and freeze one exact manifest before any local step. The manifest and result record carry no raw sample, label, image, model parameter, path, URL, environment value, credential, provider fact, free text, or clinical attribute. The seed is an opaque deterministic seed class, not a disclosed raw seed. Fixture provenance is a synthetic-generator/dimension/distribution class plus an integrity-digest class, not fixture contents.
+
+| Record field class | Permitted projection | Prohibited projection |
+|---|---|---|
+| Contract version | Versioned FedProx synthetic-experiment schema. | Unversioned algorithm or runtime behavior. |
+| Synthetic fixture provenance | Generator, dimension, distribution, and integrity-digest classes. | Dataset name, samples, labels, images, patient facts, or local data location. |
+| Determinism | Opaque seed class and declared replay class. | Raw seed, random-state object, or environment value. |
+| Hyperparameters | Allowlisted `mu`, learning-rate, batch-size, and local-epoch classes. | Arbitrary optimizer object, executable callback, or free-form setting. |
+| Scalar evidence | Count, loss, proximal-penalty, gradient-norm, weighted-mean, and finite-value classes. | Weights, gradients, predictions, per-sample values, or model bytes. |
+| Terminal fact | Completed, rejected, interrupted, or cleanup-closed class. | Raw exception, stack trace, filesystem details, or external service response. |
+
+### 83.3 Deterministic validation and closure matrix
+
+The runner’s eventual input path is finite and one-use. Every rejection happens before a trainer effect, and no rejection can be repaired by replacing inputs or rerunning automatically. A completed synthetic local calculation also closes the manifest; it cannot be reused for update submission or aggregation.
+
+| Check | Required result | Closure on failure |
+|---|---|---|
+| Manifest shape/version | Exact frozen allowlisted keys and schema version. | `manifest_invalid`; no trainer invocation. |
+| Fixture provenance | Synthetic-only class and integrity-digest class match. | `fixture_closed`; no data load. |
+| FedProx arithmetic | Finite scalar loss, nonnegative finite `mu`, compatible shape class, and expected proximal-term calculation. | `arithmetic_closed`; no local epoch. |
+| Local epochs | Positive bounded integer class and declared deterministic sequence. | `epoch_closed`; no partial/retry epoch. |
+| Determinism/replay | Identical manifest class gives only one terminal result class; changed/replayed input closes. | `replay_closed`; no replacement run. |
+| Metrics | Aggregate finite scalar evidence and digest class are internally consistent. | `metric_closed`; no artifact promotion. |
+| Interruption/cleanup | Temporary synthetic state is discarded and terminal closure recorded. | `cleanup_closed`; no resume. |
+
+### 83.4 Scientific non-claims and later gates
+
+Passing future arithmetic or synthetic local-epoch checks would not demonstrate breast-cancer classification accuracy, clinical validity, generalization, privacy performance, data-silo integration, hospital deployment, update submission, or aggregation. It would validate only a bounded deterministic synthetic FedProx local-training contract. The later sequence remains strict: first the separately gated Agent synthetic proof, then independently authorized synthetic training execution, then a distinct update-submission safety boundary, and finally a distinct aggregation boundary. No stage implies the next.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
