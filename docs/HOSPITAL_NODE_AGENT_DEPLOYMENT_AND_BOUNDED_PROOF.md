@@ -1961,6 +1961,31 @@ Agent release `ce171d8` implements the parallel local claim-terminal durable ada
 
 Temporary-root fixtures prove empty → claim → terminal → terminal closure; duplicate claim/terminal and mismatched-terminal rejection; malformed/noncanonical, temporary-residue, symlink-root, and mode-invalid-root closure; and serialization redaction. Local `pnpm run ci` passed formatting, protected filesystem and source import checks, strict TypeScript, **162 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32723031344` completed successfully. This is local temporary-root source-quality evidence only: no target root, application composition wiring, coordinator call, parser, renderer, configuration text/file, target, package/registry access, credential, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate adapter-port integration design is required before any application composition or target-root consideration.
 
+## 66. Design record — local adapter-port integration
+
+### 66.1 Narrow port and private containment
+
+The future integration must not pass a root or correlation through application or coordinator methods. Instead, a local composition root may construct one **operation-scoped** `CoordinatorTerminalRecordPort` whose private closure owns the parallel adapter, its constructor-injected root capability, and opaque correlation. The port exposes only three scalar operations: `hydrate()`, `appendClaim()`, and `appendTerminal(allowlistedTerminalCategory)`. Hydrate returns only empty, terminal closed, interrupted closed, or persistence denied; append methods return only stored or denied. No method accepts or exposes a root/path, correlation/identity, record, text, bytes, error, filesystem status, configuration, parser result, image/package/registry detail, target, credential, provider fact, command, artifact, or runtime object.
+
+The operation-scoped port lifetime begins inside the local composition root before the future coordinator is constructed. It is private to that one coordinator instance and ends permanently when a terminal scalar result is returned. The root capability and correlation cannot be obtained from the port, serialized with the coordinator, copied into an error/readout, reused for another coordinator, or transferred to any external target. The local composition root is not implemented or wired by this design increment.
+
+| Port operation | Adapter mapping | Required projection |
+|---|---|---|
+| `hydrate()` | Read the internal canonical claim/terminal sequence against private state. | `empty`, terminal/restart closure, or scalar persistence denial. |
+| `appendClaim()` | Attempt one atomic first sequence only after empty hydrate. | `stored` or scalar denial. |
+| `appendTerminal(category)` | Attempt one matching atomic terminal sequence only after claim. | `stored` or scalar denial. |
+| Port disposal | Retire after any terminal closure; later use maps to replay suppression. | No raw state, no retry, and no alternate capability. |
+
+### 66.2 Dependency direction and compatibility fixtures
+
+The dependency direction is one-way: local-state adapter → scalar port → future source-only coordinator composition. Application policy may depend only on the port interface, never on local-state classes or filesystem libraries. The local-state package may depend only on its own private root capability and local filesystem primitives; it cannot depend on application coordinator, renderer, parser, configuration, Core/Agent runtime, network, package/registry, credential, target, or model workflow modules. Existing fake composition remains the default compatibility harness; a temporary-root-backed port is an additional **local fixture only**, not an application integration result.
+
+Compatibility fixtures must create two independent operation-scoped ports with distinct private test roots/correlations; prove that an empty sequence performs hydrate → claim → route → terminal exactly once; prove terminal and orphan hydration block route; prove claim failure blocks route; prove terminal failure suppresses future route; prove port disposal/replay closure; and verify all JSON/object/readout/error paths exclude correlations, roots, records, and filesystem details. Static guards must keep filesystem imports in local-state only. Rollback is disposal plus replay suppression, not record deletion, root reuse, coordinator reconstruction, or alternate correlation.
+
+### 66.3 Future root and deployment boundary
+
+The first possible implementation is source-only composition against temporary-root fixtures, with no target root. It requires a separate implementation record, local quality gate, and redacted evidence. Any later target-root injection requires independently documented target ownership/custody, no fallback root, least privilege and root validation, access identity/package authorization, fresh release mapping, scalar target preflight, and an explicit inert staging decision. It remains separate from proof, training, submission, and aggregation. This design authorizes no adapter wiring, coordinator runtime modification, root acquisition, target configuration, parser, renderer, configuration artifact, package/credential action, or external runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
