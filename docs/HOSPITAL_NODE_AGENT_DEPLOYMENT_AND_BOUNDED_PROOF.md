@@ -1388,6 +1388,41 @@ An initial local redaction assertion detected that the injected root capability 
 
 This is source-quality evidence, not deployment evidence. The next safe gate is a separate local composition/configuration design that decides whether and how a private-root capability could be supplied without exposing it to application contracts, public logs, or the Agent status surface. No composition, configuration, target, or runtime activation is implied here.
 
+## 55. Design record — private-root composition, rollout, and rollback for terminal diagnostic state
+
+### 55.1 Ownership and composition boundary
+
+The durable-store adapter may receive a private-root capability only from a new **target composition root**. The target operator owns provisioning; a deployment configuration owner owns an opaque root reference; the infrastructure composition owns validation and adapter construction; and the application owns only the existing persistence-port interface. The Agent status surface, request payload, diagnostic record, Core path, registry path, proof path, environment-derived application configuration, and public documentation must never carry a root reference, mount identity, filesystem location, or permission detail.
+
+The root must be created before process start by the target’s dedicated service identity and have exclusively private ownership and mode. It must be mounted only into the intended Agent execution context, be non-symlinked, and be available before the composition builds the adapter. The adapter’s fixed file name is unchanged. A missing, wrong-owner, wrong-mode, wrong-type, unexpected mount, or pre-existing temporary artifact causes the composition to select a closed/no-store state and prevents diagnostic execution; it cannot fall back to a home directory, shared workspace, temporary global directory, Core volume, or an alternate root.
+
+| Plane | Permitted fact | Prohibited capability |
+|---|---|---|
+| Target operator | Private root is provisioned or absent. | Providing a path/value to application code, status, logs, or public evidence. |
+| Deployment configuration | Opaque root-reference binding and service-identity assignment. | Committing a root location, mounting shared/public storage, or enabling the diagnostic by default. |
+| Infrastructure composition | Scalar root-validity check and adapter construction. | Reading generic environment variables, discovering paths, creating roots, or broadening Agent scope. |
+| Application | Existing terminal persistence port. | Filesystem imports, root handling, target/provider/package/identity access. |
+
+### 55.2 Activation mode and preflight sequence
+
+The composition is opt-in and disabled by default. Its release must not alter the current inert Agent entrypoint, non-public posture, disabled status listener, disabled aggregation, or image/staging status. Before any real activation, a new immutable image candidate and distinct target-staging dossier would be required; the existing successful image candidate predates this source slice and is not silently repurposed.
+
+The future sequence is: first quality-gate source-only composition tests; second build one new private immutable image candidate; third run a scalar-only target preflight that checks only root-state class, Agent absent/inert state, Core liveness/readiness, and aggregation-disabled state; fourth perform one opt-in inert composition activation; fifth publish scalar closure. No package pull, identity/credential change, Core request, proof, training, submission, or aggregation may be bundled into the root-composition gate.
+
+### 55.3 Observability, rollback, and recovery
+
+Composition-level observability is limited to `root_state` (`absent`, `ready`, `invalid`, `temporary_artifact_present`), `adapter_state` (`not_composed`, `composed_closed`, `composed_open`), `activation_state` (`disabled`, `preflight_denied`, `inert_started`, `closed`), `rollback_state` (`not_required`, `stopped`, `preserved_for_investigation`), and a terminal reason code. It must not return filesystem location, owner, group, mode, mount, record content, temporary-file fact beyond its class, error text, stack trace, target identity, image/package locator, credential, or provider output.
+
+Rollback is conservative. Before activation, remove the composition binding only. After an inert start, stop the Agent process, remove the composition binding, and preserve a final terminal record for investigation. A temporary artifact, invalid record, or permission anomaly blocks future activation; it is not repaired, reset, deleted, promoted, or retried by the rollback path. Any cleanup is separately bounded to adapter-owned temporary artifacts only and never deletes a final terminal record. Rollback does not enable a listener, aggregation, proof, or a different identity path.
+
+### 55.4 Test and handoff plan
+
+The next source-only implementation, if separately authorized, should introduce a pure composition contract with deterministic fakes for root states, target posture, and rollback results. It must test default disabled mode, valid binding, every denied root state, no fallback, redacted readout, invalid configuration, no-change rollback, stopped rollback, and release-image incompatibility. It must reject environment configuration, filesystem imports outside the adapter, Docker/Compose imports in application code, provider/registry/Core imports, and runtime activation.
+
+The subsequent target-composition deployment design would need exact service ownership, mount lifecycle, image binding, target-only package identity, Core aggregation-disabled precheck, redacted scalar monitoring, rollout stop conditions, and one-shot proof segregation. Those items are blocked behind this design and separate evidence gates.
+
+> **Hard stop:** this design does not create a private root, add an environment/configuration value, mount storage, change an image, configure Azure, start an Agent, pull a package, or authorize identity, proof, training, submission, or aggregation action.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
