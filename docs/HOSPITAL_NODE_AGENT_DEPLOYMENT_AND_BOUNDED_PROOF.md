@@ -2093,6 +2093,48 @@ The future test-composition interface must accept no caller-supplied root, corre
 
 The implementation handoff is deliberately split. A first low-risk slice may add only a source-only test-composition fake with deterministic injected scripted ports and import guards. A separate target-root decision must later define which protected composition root, if any, receives a concrete root reference, with strict configuration, ownership, permission, cleanup, and evidence rules. A later application/runtime decision must separately define controller authority, error mapping, lifecycle observability, deployment controls, identity seam, and a new proof gate. This review authorizes none of those changes; it does not authorize filesystem use outside existing temporary-root fixtures, application wiring, runtime modification, target-root injection, parser/renderer/configuration behavior, package/credential action, target interaction, staging, proof, training, submission, or aggregation.
 
+## 72. Source-only scripted-port test-composition contract
+
+The first implementation of the ownership review is a **pure scripted-port test composition**. It must not call the temporary-root factory. A caller supplies one exact versioned plain-object script with four scalar outcomes: hydration, claim append, terminal append, and deterministic no-artifact route mode. The composition validates and freezes a new script copy, constructs one fresh in-memory scalar port internally, injects it into one `SyntheticCoordinatorPortCompatibilityFixture`, admits once, and returns a frozen scalar assertion. The script is not a root/correlation/record/path/configuration/target/credential/identity/transport capability, and the assertion must contain none of those values.
+
+| Contract element | Required exact rule | Forbidden expansion |
+|---|---|---|
+| Script input | One exact schema version and only `hydration`, `claim`, `terminal`, and `routeMode` allowlisted scalar fields. Unknown, inherited, mutable, duplicate, or malformed values terminally close before in-memory port construction. | Root, correlation, path, record, bytes, text, configuration, target, credential, identity, callback, or executable input. |
+| Internal port | The composition constructs a fresh deterministic in-memory port and never returns it. The port models only scalar lifecycle/readout transitions. | Temporary-root factory call, filesystem access, port sharing, replacement, enumeration, or stateful capability return. |
+| Composition run | One run consumes the composition even if validation fails. A second call returns a frozen replay assertion without constructing a port. | Retry, resume, new script substitution, fallback port, or coordinator reuse. |
+| Assertion | Versioned, frozen, scalar-only state/code, aggregate durability call counts, and `retryAllowed: false`. | Error text, script object, root/correlation/record/path, object reference, configuration, target, credential, or runtime projection. |
+
+### 72.1 State, closure, and test matrix
+
+The composition begins `fresh`; on its first invocation it moves to `consumed` before validation. A valid script creates exactly one fresh in-memory port/coordinator pair. The coordinator determines normal or denial closure and the composition captures only the scalar receipt/readout. A malformed script returns `script_invalid`; any subsequent invocation returns `composition_replay`. Port disposal occurs at most once: the route-closed case uses the existing scalar fake's disposal path; every other terminal/denial path is already closed by the deterministic port. There is no persistence, restart recovery, cleanup of external material, or durable record.
+
+| Scripted condition | Required result | Required aggregate call shape |
+|---|---|---|
+| `empty` / `stored` / no-artifact / `stored` | `closed_after_terminal` | Hydrate 1, claim 1, terminal 1, dispose 0. |
+| Terminal, orphan, invalid, or denied hydration | `closed_before_route` or terminal replay closure as applicable. | Hydrate 1; claim, terminal, and dispose 0. |
+| Empty then denied claim | `closed_before_route`. | Hydrate 1, claim 1; terminal and dispose 0. |
+| Empty then route-closed | `closed_after_route`. | Hydrate 1, claim 1, terminal 0, dispose 1. |
+| Empty then denied terminal | `closed_after_route`. | Hydrate 1, claim 1, terminal 1, dispose 0. |
+| Malformed initial script or any second run | `script_invalid` or `composition_replay`. | No port calls for malformed/replay. |
+
+### 72.2 Dependency, evidence, and handoff limits
+
+The composition may import only the existing pure fake coordinator interface/types. It must import no local-state durable implementation, temporary-root factory, Node built-in, environment/process API, network/client, package/credential/target/Core/Azure integration, parser, renderer, configuration, trainer, submission, or aggregation module. Tests must prove strict script validation; freezing and redaction; normal and every listed closure; disposal exactly once; replay; independent composition isolation; absence of a temporary-root-factory or runtime import; and no externally observable state beyond frozen scalar assertions.
+
+Passing these tests would establish a pure source-only composition seam, not application wiring, a runtime coordinator, a durable adapter composition, a target-root decision, target configuration, deployment, staging, proof, hospital integration, training, update submission, or aggregation. A later target-root design remains the next separate concrete-capability gate, and a later application/runtime review remains required before any production composition change.
+
+## 73. Source-only scripted-port test composition — quality result
+
+The scripted-port composition is now implemented at Agent revision `923b8eb`. It accepts one frozen exact scalar script, privately constructs one new in-memory port, injects that port into one fake coordinator, consumes the composition once, and returns only a frozen scalar assertion. The implementation does not import or call the temporary-root factory, local-state adapter, Node built-in, environment/process API, network/client, package/credential/target/Core integration, parser, renderer, configuration, trainer, submission, or aggregation module. It returns no stateful object or capability.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and fixture test | Eight deterministic scripted-composition checks passed locally. | In-memory scripted contract behavior only; not application composition or a runtime coordinator. |
+| Full Agent local quality chain | 182 TypeScript tests and 4 Python tests passed. | Source quality only; no Python training or delivery behavior was invoked. |
+| Remote Agent Quality Gates | Run `32725658219` completed successfully for revision `923b8eb`. | CI evidence only; not deployment, staging, or runtime proof. |
+
+The new coverage proves normal closure; terminal, orphan, denied, and replay hydration closure; claim and terminal denial; route-closed disposal exactly once; malformed-script closure before port construction; composition replay; independent composition isolation; scalar assertion freezing/redaction; and absence of temporary-root/local-state/filesystem/runtime imports. This evidence remains strictly source-only. It does not create or wire a temporary-root port from an application composition, modify an existing coordinator runtime, inject a target root, access filesystem/environment/network/package/credential/target/Core/Azure, parse/render/write configuration, deploy, stage, prove, train, submit, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
