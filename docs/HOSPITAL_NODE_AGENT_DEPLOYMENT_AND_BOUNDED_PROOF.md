@@ -1050,6 +1050,28 @@ The evidence result is `feasibility_blocked`, not configuration approval. Read-o
 
 The only next safe decision is whether to authorize a specific protected-environment and private-package configuration plan after assigning independent administrator/reviewer/custodian roles. Actual configuration, credential use, image building, registry publication, Azure staging, target binding, projection access, proof, training, update submission, and aggregation remain separately blocked.
 
+## 49. Evidence record — configuration authority and independent-reviewer blocker
+
+### 49.1 Read-only authority and source-prerequisite findings
+
+Read-only inspection confirms that the existing repository authority has administrator-level repository permission. The repository is not archived, and a tracked container-build source is present for a future protected-builder workflow. These findings establish only that a later configuration proposal has a repository administrator and source prerequisite; they do not approve a provider change, environment creation, package access, credential issuance, image build, registry publication, Azure action, target binding, Compose render, projection, proof, training, update submission, or aggregation.
+
+The organization-plan capability was not exposed to the available read-only integration. Team inventory access was denied to that integration. A separate read-only organization view shows one visible member and no configured teams. The resulting role status is `independent_reviewer_custodian_unavailable`: the currently visible owner identity cannot both dispatch and independently review a protected-builder action, and no existing team can be selected as a separate reviewer/custodian boundary.
+
+### 49.2 Terminal block and required external prerequisite
+
+This is a terminal configuration block, not a temporary implementation error. Creating a synthetic reviewer, reusing the dispatcher/owner identity, disabling self-review prevention, using administrator bypass, exposing a credential, or creating an unprotected environment/package would violate the already published control-plane policy. The project will not create a workaround identity or lower the review requirement.
+
+| Finding class | Recorded conclusion | Configuration consequence |
+|---|---|---|
+| Repository authority | `repository_admin_present` | A future configuration proposal can be reviewed after role separation exists. |
+| Container source | `builder_source_prerequisite_present` | A future synthetic build source may be assessed after workflow-policy and environment gates. |
+| Organization plan feature | `feature_capability_unverified` | Protected-environment feature availability cannot be assumed. |
+| Team visibility | `team_inventory_inaccessible_to_integration` | No team-based reviewer/custodian may be inferred. |
+| Independent role availability | `independent_reviewer_custodian_unavailable` | Environment/package/workflow configuration is blocked. |
+
+To reopen this boundary, an externally controlled second GitHub user or an existing independent team must be assigned repository access and designated as protected-builder reviewer/custodian. After that assignment, a new read-only feasibility record must verify role separation, environment capability, private package access, no-bypass eligibility, and fresh one-candidate source/base facts before any configuration. Until then, all provider configuration, credential use, image build/push, registry route, Azure staging, target binding, projection, proof, training, update submission, and aggregation remain blocked.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
