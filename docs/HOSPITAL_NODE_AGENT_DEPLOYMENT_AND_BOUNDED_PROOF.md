@@ -1805,6 +1805,40 @@ Agent release `26b471b` implements the source-only synthetic admission coordinat
 
 The coordinator terminally closes malformed envelopes and cross-identity inputs before validator/policy invocation; validator denial before policy/workspace; policy precondition denial before workspace; symbolic cleanup denial without an artifact or promotion; and repeated operation identity without re-invocation. Its serialized object contains neither identities nor port state. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **154 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32711294107` completed successfully. This is source-quality evidence only: no parser, renderer execution, configuration text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate coordinator terminal-record/persistence design is required before durable restart behavior is considered.
 
+## 63. Design record — coordinator terminal record and durable persistence
+
+### 63.1 Boundary, minimal scalar ledger, and private-root ownership
+
+This review defines a future **source-only** durability seam for the admission coordinator. It does not wire the existing durable-store adapter, request a private-root capability, create a root, write a record, or modify coordinator behavior. Its purpose is to define how a later adapter may make operation closure restart-safe without persisting a configuration artifact or any protected operational value. The existing local durable terminal diagnostic store remains the only previously allowed filesystem adapter; it is not imported, constructed, or referenced by runtime composition in this increment.
+
+The ledger is append-only and contains only private opaque identity material plus allowlisted scalar classes. A public readout may never expose the opaque operation identity or internal record. No record may contain a shape/render identity, canonical validator object, parser output, configuration/object/text, path/root, image/package/registry locator, target, credential, environment value, provider result, command, error detail, raw log, body/header, model/training/update/submission/aggregation fact, or clinical data.
+
+| Record element | Private durable representation | Aggregate/public projection |
+|---|---|---|
+| Record version and sequence | Fixed schema version plus monotonic append sequence. | Schema-support count only. |
+| Operation correlation | Opaque operation identity retained only inside the private adapter. | Never projected. |
+| Claim state | `claimed` written before coordinator invocation. | Active-claim count only during adapter-private processing; no public identifier. |
+| Terminal state | Allowlisted terminal class: envelope/identity/validator/policy/workspace/no-artifact/replay/persistence close. | Terminal category counts, not raw code/identity. |
+| Integrity/lifecycle | Canonical scalar encoding, atomic-promotion outcome, append/hydrate scalar status. | Closed/invalid/corrupt/permission/temporary-denial aggregate counts. |
+
+### 63.2 Idempotent append, hydrate, and restart closure
+
+The later coordinator persistence sequence is deliberately fail-closed. It must hydrate and validate existing private records before any coordinator route. A valid terminal record suppresses all validator/policy/workspace invocation. A valid `claimed` record without a matching terminal record is treated after restart as `closed_interrupted`; it must not resume, retry, or choose an alternate shape/render identity. A malformed, corrupt, non-canonical, non-monotonic, duplicate, symlink-affected, permission-denied, temporary-write-denied, or atomic-promotion-denied record closes the relevant operation before route invocation.
+
+| Sequence step | Required behavior | Forbidden behavior |
+|---|---|---|
+| Hydrate | Validate private root, record schema, monotonic sequence, canonical scalar fields, and no forbidden-shaped values. | Scan arbitrary files, enumerate a root, expose a path, repair/rewrite corruption, or infer a missing operation. |
+| Claim append | Atomically append one private scalar `claimed` record before validator/policy work. If it fails, close without calling the coordinator. | Best-effort retry, alternate root, shared/human/provider identity, or any route invocation before claim durability. |
+| Coordinator route | Invoke the existing source-only coordinator once only after claim success. | Text parse, renderer/configuration/file/target/package/credential/runtime action. |
+| Terminal append | Append one terminal scalar record after the route. If append fails, close in memory; later hydrate sees the claim and suppresses re-entry. | Replay/continue the coordinator, overwrite a claim, promote an artifact, or treat failure as success. |
+| Restart | Terminal records deny re-entry; orphan claims become closed-interrupted. | Resume range/work, automatic retry, fallback mapping, or silent deletion. |
+
+### 63.3 Failure map, fixtures, rollback, and future gates
+
+The terminal failure map is allowlisted: `hydrate_denied`, `record_corrupt`, `record_permission_denied`, `record_temporary_denied`, `record_atomic_promotion_denied`, `claim_append_denied`, `terminal_append_denied`, `closed_interrupted`, and `replay_suppressed`. Each failure is non-retryable for the private operation correlation. Rollback is not deletion or rewrite: the adapter preserves a scalar closure fact, suppresses re-entry, and leaves all target activation disabled. No record lifecycle can create a configuration artifact, root/image binding, renderer action, target action, or aggregate effect.
+
+Deterministic future fixtures must cover empty private state; valid claim and terminal hydration; terminal replay; orphan claim restart closure; duplicate/non-monotonic/forbidden-field/corrupt scalar record rejection; private-root/file/permission/temporary/atomic/symlink denial; terminal append failure; redacted canonical serialization; and no coordinator invocation until claim append success. Static guards must isolate any later filesystem adapter from the application policy and preserve forbidden imports in the coordinator. A separately documented source-only adapter-composition slice is required before wiring the existing durable store. Target-root injection, actual target configuration, package access, fresh release mapping, Azure preflight, inert staging, proof, training, submission, and aggregation remain separate blocked gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
