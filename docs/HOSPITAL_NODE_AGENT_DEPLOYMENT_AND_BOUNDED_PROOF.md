@@ -2308,6 +2308,44 @@ The following checklist defines the shortest honest route to the thesis proof pa
 
 The next actual runtime gate remains blocked. When, and only when, all prerequisites have separately passed, one synthetic proof may be designed as a single bounded invocation with no clinical data, no trainer effect, no update submission, and aggregation disabled. FedProx training evidence then remains a later local mathematical/training gate; submission and aggregation each remain separate controls and must not be inferred from the adapter result.
 
+## 81. Critical path: protected-composition deployment-readiness review
+
+The remaining path to a bounded synthetic Agent proof is an evidence problem, not a coding problem. This review establishes a minimal protected-composition preflight contract. It does **not** authorize package access, identity creation or use, target inspection/binding, configuration resolution, Agent start, target contact, proof invocation, training, update submission, or aggregation. The review deliberately treats the prior denied-and-revoked package route as historical blocker evidence only; it does not provide a reason to retry that route.
+
+### 81.1 Five independent evidence packets
+
+No single packet admits a proof. Each packet has an owner that observes only its own boundary, records an aggregate-safe redacted outcome, binds the exact expected fact set, and sets a short applicability window. The future protected composition consumes only an admission decision derived from all five packets; it never receives a credential, root, package locator, image locator, target locator, raw response, or secret.
+
+| Packet | Evidence owner | Minimum redacted fact | Does not establish |
+|---|---|---|---|
+| Source-quality | Agent repository quality workflow | Expected source revision passed declared quality gates. | Release selection, deployment, runtime behavior, or proof. |
+| Protected package/identity authorization | Separately authorized identity/governance boundary | Least-privilege route is authorized for the sole declared operation and has not been revoked. | Package contents, target reachability, or Agent start. |
+| Target-bound release | Protected release boundary | Intended synthetic release is immutably associated with the declared bounded target class. | Private-root ownership, process start, Core readiness, or proof. |
+| Protected composition/configuration | Protected composition boundary | Opaque policy/configuration and private-root lifecycle passed the approved deployment review. | External contact, training, submission, or aggregation. |
+| Immediate Core-control preflight | Authoritative Core control boundary | Fresh readiness/control observation confirms aggregation remains disabled and proof guard is closed. | Agent delivery, training, or proof success. |
+
+The packet model prohibits raw target descriptions, package names, registry coordinates, paths, configuration values, roots, secrets, tokens, headers, bodies, database details, patient data, model bytes, and clinical facts in the ledger or public readout. Each owner must use an allowlisted scalar status, revision or opaque binding class, observation class, and expiry class only.
+
+### 81.2 Finite preflight and closure matrix
+
+The protected composition may move only through the following finite sequence. A packet cannot be replaced mid-preflight, and a later packet cannot repair an earlier defect. All invalid paths close without target contact, process start, credential retry, fallback identity, public listener, or cleanup beyond locally owned temporary state.
+
+| State | Entry condition | Next allowed state | Terminal closure |
+|---|---|---|---|
+| `absent` | No packet has been supplied. | `supplied_redacted` for one named packet. | None; proof remains closed. |
+| `supplied_redacted` | Owner supplied the allowlisted scalar packet shape. | `independently_valid` only after owner-bound verification. | `packet_invalid` for malformed, unknown, broadened, or non-redacted input. |
+| `independently_valid` | Required immutable fact class matches its declared boundary. | `current` only inside the packet’s bounded applicability window. | `packet_mismatch` for revision/policy/control disagreement. |
+| `current` | All five packet classes are independently valid and time-bounded current. | `proof_admitted` only after one final aggregate gate evaluation. | `packet_stale` if any packet expires or is revoked. |
+| `proof_admitted` | One bounded synthetic proof plan has explicit unchanged stop conditions. | A separately authorized one-shot proof only. | `proof_closed` after any pre-route cancellation or post-route outcome; no automatic retry. |
+
+The proof-admission decision is scalar-only: `admitted` or a single allowlisted closure code with aggregate packet counts. It must not project which package, target, root, identity, configuration, or Core fact caused a closure. The composition must dispose of locally owned transient decision state after either admission consumption or closure. A duplicated admission, changed packet, stale observation, changed aggregation control, or attempted public listener is terminal proof closure.
+
+### 81.3 One-shot proof boundary and retained thesis gates
+
+If all packets become independently current through a separately authorized external record, the next increment will be a **design-and-preflight only** review of one opt-in synthetic invocation. Before the invocation, the authoritative environment must freshly re-establish the intended release identity, readiness, private non-public process posture, aggregation-disabled control, and cleanup plan. A pre-route stop closes with no start. A post-route result—success, failure, or interruption—must be recorded before any new decision. The proof may use no clinical data, must not invoke the trainer, must not submit an update, and must leave aggregation disabled.
+
+FedProx local-training evidence starts only after the Agent proof has its own recorded result; it remains a separate mathematical and synthetic-data/training dossier. Update submission and aggregation each require later independent safety, state, and evidence gates. Neither source quality nor deployment readiness proves a thesis experiment, model quality, or clinical viability.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
