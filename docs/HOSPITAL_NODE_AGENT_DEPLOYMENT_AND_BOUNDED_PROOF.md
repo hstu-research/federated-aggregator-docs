@@ -1741,6 +1741,47 @@ Agent release `1408470` implements the source-only synthetic scalar abstract-sha
 
 The validator terminally closes malformed, unknown, missing, inherited-prototype, invalid-identity, mutable, duplicate-detected, active, exposed, restart-enabled, host-network, fallback/unreserved-binding, stale/mutable-image, command-bearing/workload-requested, promotion-requested/enabled, and replay cases. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **149 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32710333192` completed successfully. This is source-quality evidence only: no text parser, renderer execution, configuration text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate source-only validator-to-renderer-policy injection design is required before replacing the parser fake.
 
+## 62. Design record — validator-to-renderer-policy injection
+
+### 62.1 Narrow seam and identity ownership
+
+The next design boundary connects two existing source-only contracts without granting either contract a configuration, writer, or runtime capability. A future `SyntheticShapeAdmissionCoordinator` receives only a versioned scalar operation envelope containing an unused synthetic operation identity, a scalar shape request, and scalar policy intent. It returns one frozen scalar receipt. It does not pass the validator’s private canonical object to the renderer policy and does not accept a caller-supplied parser result, configuration object/text, path, root, image/package/registry reference, target, credential, provider response, command, or promotion capability.
+
+| Identity | Owner | First terminal consumer | Required closure |
+|---|---|---|---|
+| Synthetic operation identity | Admission coordinator | The coordinator after envelope acceptance. | Every accepted operation becomes terminal; the same identity is replay-suppressed regardless of a validator or policy outcome. |
+| Synthetic shape identity | Scalar validator | The validator after shape-schema acceptance. | Validator acceptance or denial consumes the shape identity; repeated validation returns only scalar replay closure. |
+| Synthetic renderer identity | Renderer policy | The renderer policy only after a validator scalar `inert_shape` receipt. | Policy outcomes consume the renderer identity; it is not allocated or exposed when validator admission denies. |
+
+The coordinator performs envelope schema validation and cross-identity matching before claiming an operation. A malformed envelope has no trusted identity to consume and returns a non-retryable scalar invalid result; it invokes neither validator nor renderer policy. A cross-identity conflict is terminal before validator/policy invocation, cannot choose an alternate identity, and emits no identity value. For a valid matched envelope, the coordinator claims the operation identity, calls the scalar validator, and invokes the renderer policy only when the validator returns scalar `inert_shape`. There is no code path from a validator denial to a parser, renderer policy, workspace, temporary state, discard, promotion, file, or target action.
+
+### 62.2 Private canonical lifetime and scalar projections
+
+The validator’s canonical inert result remains entirely private to the validator. The coordinator receives a minimal scalar receipt (`inert_shape`, terminal denial, or replay) and stores no canonical object. The renderer policy receives only a coordinator-created scalar admission class, not the validator request or canonical result. The admission class can say `validator_inert_shape_accepted` but cannot include an object, field name/value, text fragment, locator, handle, path, byte count, image/root/package/registry fact, target, credential, provider observation, or error detail.
+
+| Stage | Allowed input | Allowed output | Explicitly absent |
+|---|---|---|---|
+| Coordinator envelope check | Version, synthetic operation/shape/render identity relation, scalar policy intent. | Invalid or admitted scalar operation class. | Parser output, configuration, canonical shape, target/deployment fields. |
+| Validator | Synthetic scalar shape only. | `inert_shape`, scalar deny, or replay. | Public canonical result, mutable caller object, text/file/environment. |
+| Coordinator admission | Validator scalar receipt plus scalar policy intent. | `validator_denied`, `policy_admitted`, or terminal scalar close. | Canonical marker, error detail, replay identity values. |
+| Renderer policy | Scalar admitted class and its own synthetic renderer identity. | Existing symbolic not-rendered/denied/replay receipt. | Validator request/object, text/artifact/workspace capability prior to admission. |
+
+The aggregate readout is limited to received, envelope-invalid, cross-identity-denied, validator-denied, policy-admitted, policy-denied, workspace-denied, no-artifact-discarded, and replay-suppressed counts. It cannot publish raw operation/shape/render identities, canonical object presence, failure detail, private storage state, text, configuration, target, or runtime information.
+
+### 62.3 Ordering matrix, fixtures, and future gates
+
+| Fixture condition | Required call order | Terminal projection |
+|---|---|---|
+| Malformed envelope | No validator; no policy; no workspace. | `envelope_invalid` with retry disabled. |
+| Cross-identity conflict | No validator; no policy; no workspace. | `identity_relation_denied` with retry disabled. |
+| Validator schema/control denial | Validator only; no policy; no workspace. | `validator_denied` with allowlisted family. |
+| Validator inert result plus policy precondition denial | Validator, then policy; no workspace if policy closes before workspace. | `policy_denied` with retry disabled. |
+| Validator inert result plus workspace failure | Validator, policy, then symbolic workspace closure. | `workspace_denied` with no artifact/promotion. |
+| Valid synthetic no-artifact path | Validator, policy, symbolic temporary/validation/discard only. | `not_rendered_after_discard`; promotion disabled. |
+| Replay at any accepted identity | First owning component detects closure; later components are not invoked. | `closed_replay` with retry disabled. |
+
+Deterministic compatibility fixtures must prove private canonical-result non-disclosure, validator denial before policy/workspace, policy denial before workspace where applicable, one-way operation/shape/renderer identity consumption, cross-identity closure, no fallback, frozen scalar receipts/readouts, and no-text/no-artifact serialization. Static guards must reject filesystem, process, Docker/Compose/render/template/YAML, environment/configuration, HTTP/registry/cloud/OIDC, Core/Agent runtime, trainer, submission, and aggregation imports. This review authorizes neither a coordinator implementation nor any modification to validator/policy behavior. A later source-only coordinator slice must be documented and quality-gated separately; text parsing, renderer implementation, private writer, package access, target configuration, staging, proof, training, submission, and aggregation remain separate blocked decisions.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
