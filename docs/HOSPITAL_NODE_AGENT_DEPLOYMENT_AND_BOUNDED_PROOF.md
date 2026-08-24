@@ -1312,6 +1312,16 @@ Agent release `63359ba52018d3e42afb7090759cb165dbba2043` implements the versione
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **110 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32702812459` completed successfully. This is source-quality evidence only; no provider, organization, package, credential, machine account, target, image, Azure, render, Agent start, Core call, proof, training, submission, or aggregation action occurred. The external authorization block remains open. The next safe low-risk slice is source-only scalar persistence/restart design, not another credential or package-access attempt.
 
+### 53.8 Source-only terminal diagnostic persistence and restart boundary
+
+The next increment makes terminal diagnostic closure additive and restart-safe without adding a filesystem, database, network, provider, or deployment adapter. A persistence port may append and reload a minimal terminal record containing only a schema version, bounded sequence, `blocked` state, allowlisted terminal code, `replay_suppressed` state, and `retryAllowed: false`. It must never retain diagnostic identifiers, account/member data, package/image/repository references, credentials, scopes, SSO facts, target details, paths, URLs, raw provider output, free text, timestamps, or fixture payloads.
+
+The restart rule is intentionally conservative: once any terminal diagnostic closure is reloaded, the reconstructed validator enters `closed_after_restart` and denies every subsequent evaluation with `diagnostic_replay_denied` before the deterministic observation fake is called. This proves restart suppression, not durable identity deduplication or permission state. An empty/absent store starts in its ordinary source-only state; a malformed, unknown-schema, unknown-code, non-monotonic, duplicate-sequence, nonterminal, retryable, or redaction-violating record denies hydration and remains closed.
+
+The port direction is application-to-persistence only. The fake store holds scalar records in memory, offers deterministic append/load fault classes, and cannot open a socket, resolve a path, read/write a file, access SQLite, inspect configuration, acquire a credential, query an organization/package, start a target, or invoke proof/training/submission/aggregation. Tests must cover clean startup, append/reload, closed-after-restart suppression before fake invocation, malformed/unknown/tampered record rejection, persistence failure closure, idempotent replay, aggregate readout, and forbidden import scanning.
+
+> **Hard stop:** this contract is not a real durable store and does not authorize a machine account, credential, package access, image pull, target render, Agent start, Core call, proof, training, submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
