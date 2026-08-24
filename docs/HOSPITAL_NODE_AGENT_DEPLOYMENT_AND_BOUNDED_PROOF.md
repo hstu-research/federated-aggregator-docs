@@ -2244,6 +2244,70 @@ The scalar eligibility evaluator is now implemented at Agent revision `139db42`.
 
 The new coverage proves eligible frozen input; unresolved/invalid configuration-intent closure; denied/requested construction closure; root-requested and runtime-dependent closure; mutable/inherited/unknown/malformed envelope closure; replay after eligible and invalid input; independent evaluator isolation; receipt/snapshot freezing and redaction; marker nonenumerability; and import separation. This establishes only a pure scalar pre-construction contract. It does not construct an adapter or port, resolve configuration, inject/inspect a root, access filesystem/environment/network/package/credential/target/Core/Azure, modify an application/runtime, deploy, stage, prove, train, submit, or aggregate.
 
+## 79. Critical path: concrete protected local durable-adapter design review
+
+The direct thesis-critical path now stops adding isolated scalar seams and focuses on the durable local boundary required before a bounded synthetic Agent proof can ever be considered. This section is a **design review**, not an authorization to resolve configuration, access a protected root, modify application composition, deploy an Agent, or invoke training or aggregation. The existing `CoordinatorClaimTerminalStore` is a temporary-test-root source adapter only. It must remain separate from the one-record authorization diagnostic store because their record schemas and state machines differ.
+
+### 79.1 Authority, configuration, and capability flow
+
+Exactly one future protected composition module may receive an opaque root grant after a separately authorized configuration-resolution gate. The application, fake coordinator, public request, test script, and ordinary caller may never provide or receive a root string, configuration value, path, factory, filesystem handle, or adapter constructor. The protected composition validates the capability, constructs one claim-terminal adapter, and injects only the established scalar port. The adapter owns the root privately and never returns it.
+
+| Boundary | Required responsibility | Explicit prohibition |
+|---|---|---|
+| Opaque configuration reference | Symbolically identifies the protected composition policy only. | No environment lookup, secret value, location, path, target, or parsing in the current source slice. |
+| Protected root grant | Future protected composition receives it once and validates it before adapter construction. | No application/coordinator/request ownership; no reuse, export, serialization, or fallback root. |
+| Claim-terminal adapter | Owns private filesystem operations for one operation and projects only hydrate/append/dispose scalar results. | No Core/network/package/credential/trainer/submission/aggregation dependency. |
+| Scalar port | Carries only lifecycle inputs and scalar outcomes. | No root/path/record/bytes/configuration/target/credential/runtime projection. |
+
+### 79.2 Required private-root and record rules
+
+The protected constructor must reject rather than repair a root that is non-absolute, missing, not a directory, symbolic, not privately permissioned, not process-owned, or contains unexpected material. Its known names are only the canonical claim record, canonical terminal record, and one private temporary prefix. Any unexpected entry, pre-existing incompatible record, remaining temporary artifact, lstat failure, or cleanup uncertainty closes the operation. The implementation must not recursively clean, enumerate outside the granted directory, delete unknown files, create a fallback directory, or change ownership or permissions.
+
+Claim and terminal records remain fixed-shape, bounded-size, UTF-8, canonical JSON plus newline. They contain only the existing synthetic correlation, sequence, lifecycle state/category, replay state, and `retryAllowed: false`; they must not add patient, model, weight, dataset, token, URL, path, provider, target, credential, diagnostic text, or free-form fields. A claim is sequence 1 and terminal is sequence 2; existing or malformed records close rather than reopen a workflow. Public readout remains aggregate-only.
+
+### 79.3 Write, cleanup, and replay posture
+
+The future adapter must create one uniquely named private temporary file with exclusive creation and mode `0600`, write the complete canonical byte sequence, flush the file, close it, atomically rename within the same validated root, and flush the directory. A short write, close/flush/rename/directory-flush failure, or discovery of a competing record is terminal failure. Cleanup is best effort only for the owned temporary file; if cleanup is uncertain, later hydration must treat the residue as terminal invalidity. No automatic retry, alternate filename after a failure, root replacement, or terminal-record overwrite is permitted.
+
+| Condition | Required closure | Allowed outward fact |
+|---|---|---|
+| Root or configuration capability invalid | Close before adapter/port construction. | Aggregate `root_closed` or `configuration_closed` only. |
+| Existing/malformed/symlinked/unexpected record material | Close hydration or append without mutation. | Scalar `invalid`/`failed` only. |
+| Write/flush/rename/cleanup uncertainty | Close the operation; retain no retry path. | Scalar `failed`/cleanup count only. |
+| Prior claim without terminal | Close as interrupted; do not resume. | Scalar interrupted closure only. |
+| Prior terminal or repeated caller action | Suppress replay. | Scalar terminal/replay closure only. |
+
+### 79.4 Direct implementation and evidence gates
+
+The next implementation slice may improve only the existing temporary-root claim-terminal adapter's bounded local mechanics: exact full-write handling, root-entry allowlisting, residual temporary closure, canonical read validation, one-use port behavior, and deterministic fault fixtures. It must remain test-root-only and may not add configuration resolution, protected composition, application/runtime wiring, target binding, package/credential access, Agent start, staging, proof, training, submission, or aggregation.
+
+Required tests include private-root acceptance/denial, symbolic-root non-projection, canonical claim/terminal sequence, pre-existing/malformed/symlinked/oversized/interrupted/temp-residue closure, short-write/flush/rename/cleanup failure closure, independent roots, replay suppression, and aggregate-safe redaction. Local and remote quality evidence is a prerequisite only. A later protected deployment review must separately establish identity, configuration ownership, intended release, retained disabled controls, and one opt-in synthetic proof precondition. FedProx training, update submission, and aggregation remain later independent thesis evidence gates.
+
+## 80. Direct path durable-adapter hardening — source-quality result and runtime prerequisites
+
+The temporary-test-root claim-terminal adapter is hardened at Agent revision `6d1235f`. It now allows only the two canonical record names within a test root, treats any temporary or unexpected entry as terminal invalidity, writes the complete canonical byte sequence before flushing and rename, and continues to reject symbolic/non-private roots, record symlinks, malformed/oversized/truncated records, interrupted claim state, duplicate transitions, and replay. The private root, correlation, filenames, records, bytes, and internal error details remain outside public readout. This is still a local test-root adapter; no protected composition, deployment, or runtime binding was introduced.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and temporary-root adapter test | Five deterministic adapter checks passed locally. | Temporary-test-root behavior only; not protected composition or a deployed Agent. |
+| Full Agent local quality chain | 197 TypeScript tests and 4 Python tests passed. | Source quality only; no external configuration, target, training, or update path ran. |
+| Remote Agent Quality Gates | Run `32733992659` completed successfully for revision `6d1235f`. | CI evidence only; not staging, protected deployment, or runtime proof. |
+
+### 80.1 Protected-runtime prerequisite checklist — blocked by design
+
+The following checklist defines the shortest honest route to the thesis proof path. It is not a runtime action plan and authorizes no credential retry, package discovery, target configuration, image pull, Agent start, Core interaction, proof, training, update submission, or aggregation. A blocked item must be resolved through a separately authorized evidence record before moving to the next one.
+
+| Prerequisite | Present evidence | State required before a one-shot synthetic Agent proof |
+|---|---|---|
+| Source boundary | Local quality and remote Quality Gates passed for the bounded adapter. | **Complete as source quality only.** |
+| Protected package/identity route | Earlier package-access route was denied and revoked; it must not be retried in this increment. | A separately authorized, least-privilege, non-human route with redacted success/failure evidence. |
+| Intended target-bound release | Earlier image evidence remained target-unbound. | A protected release record bound to the intended synthetic target; no locator or credential publication. |
+| Protected composition configuration | Only symbolic validator/eligibility contracts and temporary-root fixtures exist. | A separately reviewed protected composition with private-root ownership and configuration evidence. |
+| Agent process and ingress posture | No Agent is started and no public listener is authorized. | Explicit non-public, bounded invocation plan with cleanup and aggregate-only observation. |
+| Core and aggregation controls | Core health was previously observed separately; aggregation remains disabled. | Fresh pre-proof health/control evidence and aggregation-disabled verification immediately before proof. |
+
+The next actual runtime gate remains blocked. When, and only when, all prerequisites have separately passed, one synthetic proof may be designed as a single bounded invocation with no clinical data, no trainer effect, no update submission, and aggregation disabled. FedProx training evidence then remains a later local mathematical/training gate; submission and aggregation each remain separate controls and must not be inferred from the adapter result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
