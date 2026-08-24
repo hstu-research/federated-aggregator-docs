@@ -1719,6 +1719,28 @@ The first implementation must use deterministic synthetic scalar fixtures only. 
 
 Source guards must ban filesystem, process, Docker/Compose/render/template/YAML libraries, environment/configuration, HTTP/registry/cloud/OIDC, Core/Agent runtime, trainer, submission, and aggregation imports. Quality evidence is limited to local formatting/types/tests and Hospital Node Quality Gates. A concrete renderer remains a later separate decision requiring a dedicated private-writer review, protected release evidence, independently evidenced package access and target-only identity, fresh eligible release mapping, target-owned binding review, new scalar Core/aggregation-disabled preflight, explicit inert-staging decision, and a separately authorized one-shot proof. No target configuration is authorized by this review.
 
+### 61.4 Source-only synthetic scalar validator increment
+
+The next Agent increment implements a pure synthetic scalar abstract-shape validator from the preceding design. It accepts exactly one versioned object with a synthetic identity and scalar classes for disabled activation, no public ingress, no restart, no host network, reserved opaque binding, fresh eligible image, no workload command, and promotion disabled by policy. The validator receives no text, file, path, environment value, root/image/package/registry locator, target, credential, provider response, header/body, or free-text diagnostic. It does not compose a configuration, call a parser, invoke the renderer policy/workspace, or create an artifact.
+
+After strict input validation, the validator must construct a new frozen canonical internal result whose state is only `inert_shape`; it must never retain or return the caller object. Its correlation identity and canonical result are private/nonenumerable. A terminal scalar decision projects only `inert_shape`, `denied` with an allowlisted code, or `closed_replay`; it carries no canonical object, field value, object key, text, error detail, or operational observation. Every valid identity becomes terminal on its first decision and all later calls close as replay without a retry or alternate shape.
+
+| Test category | Required synthetic assertion |
+|---|---|
+| Canonical acceptance | The sole exact inert scalar fixture normalizes to a frozen private result and scalar `inert_shape` decision. |
+| Validation boundary | Arrays, non-objects, inherited/mutable prototypes, unknown/missing/invalid fields, invalid identity, and duplicate-detected class deny before internal normalization. |
+| Inert controls | Active, exposed, restart, host-network, fallback/unreserved binding, stale image, command-bearing, proof/training/submission/aggregation, and promotion-requested/enabled classes deny terminally. |
+| Privacy and isolation | Caller mutation after invocation cannot change the result; serialization/inspection/readout expose no identity or canonical fields; no workspace/policy fake is invoked. |
+| Closure | Every denial and canonical acceptance consumes the identity and a subsequent call closes as replay. |
+
+Source guards must prohibit filesystem, process, Docker/Compose/render/template/YAML, environment/configuration, HTTP/registry/cloud/OIDC, Core/Agent runtime, trainer, submission, and aggregation imports. This is source-quality work only. It does not provide a text parser, real shape validator over configuration text, renderer, configuration artifact, private writer, target configuration, package/credential access, staging, proof, training, submission, or aggregation result.
+
+### 61.5 Source-quality evidence — synthetic scalar validator
+
+Agent release `1408470` implements the source-only synthetic scalar abstract-shape validator, private canonical inert marker, immutable request normalization, frozen scalar readout, replay suppression, deterministic fixture coverage, and import guard. Exactly one fully canonical synthetic scalar object produces `inert_shape_validated`. Its private canonical marker and used-identity state are nonenumerable and never projected through serialization, inspection, decision, or readout. The validator contains no port to a workspace, parser, renderer, filesystem, or target.
+
+The validator terminally closes malformed, unknown, missing, inherited-prototype, invalid-identity, mutable, duplicate-detected, active, exposed, restart-enabled, host-network, fallback/unreserved-binding, stale/mutable-image, command-bearing/workload-requested, promotion-requested/enabled, and replay cases. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **149 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32710333192` completed successfully. This is source-quality evidence only: no text parser, renderer execution, configuration text/file, filesystem, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate source-only validator-to-renderer-policy injection design is required before replacing the parser fake.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
