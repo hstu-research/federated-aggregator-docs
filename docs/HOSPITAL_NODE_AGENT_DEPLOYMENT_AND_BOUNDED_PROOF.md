@@ -1522,6 +1522,12 @@ The sentinel must live in a private nonenumerable field whose serialization, ins
 
 Tests must verify reference redaction, one-time handoff, nonenumerability, fake non-invocation on each precondition denial, construction failure closure, replay denial, aggregate-only readout, and import guards. This is an application-contract hypothesis, not a target injector or composition result.
 
+### 57.6 Source-quality evidence — synthetic injection and nonenumerability
+
+Agent release `19340fc661f37f2bd2ecb80b70b09003b8cd9c1f` implements the pure synthetic injection validator, a private-field synthetic reference marker, deterministic construction fake, and redaction fixtures. A sentinel has a fixed non-path format and is retained in a private field; serialization, inspection, own-property enumeration, errors, validator snapshots, and decisions do not project it. Exactly one eligible/ready-not-activated scalar request can hand a synthetic reference to the fake. Malformed, noneligible, fallback, invalid-sentinel, construction-failure, and replay cases close terminally without a retry or alternate reference.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **130 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32706887942` completed successfully. This is source-quality evidence only: no raw private-root reference, environment/configuration parser, filesystem, Docker/Compose, deployment configuration, mount, image build, package pull, target, Azure, provider, organization, credential, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. A static target-composition render design remains the next separate low-risk boundary; no target configuration is authorized.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
