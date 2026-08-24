@@ -1528,6 +1528,43 @@ Agent release `19340fc661f37f2bd2ecb80b70b09003b8cd9c1f` implements the pure syn
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **130 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32706887942` completed successfully. This is source-quality evidence only: no raw private-root reference, environment/configuration parser, filesystem, Docker/Compose, deployment configuration, mount, image build, package pull, target, Azure, provider, organization, credential, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. A static target-composition render design remains the next separate low-risk boundary; no target configuration is authorized.
 
+## 58. Design record — static target-composition render
+
+### 58.1 Boundary, acceptance, and non-goals
+
+This is a **design-only** contract for deciding whether a later target-owned composition would be eligible to remain disabled and not rendered. It neither represents, generates, writes, nor invokes a Compose configuration. It may not accept a raw private-root reference, environment value, image/package identifier, registry location, host/property value, credential, provider response, deployment argument, or free-text diagnostic. It does not revise the existing target-staging template, construct a renderer, bind an image, or configure a target.
+
+| Required design section | Static render-design decision |
+|---|---|
+| Nontechnical requirement | The target owner retains private-root custody while reviewers can establish that an inert configuration shape would remain disabled and non-public. Acceptance is a complete scalar validation/denial matrix, not a target render or staging result. |
+| Technical requirement | A later pure contract may admit only a versioned scalar request whose configuration intent is eligible, image eligibility is fresh, synthetic injection is prepared, opaque root binding is reserved, and activation remains disabled. Unknown fields, fallback state, identity/access claims, or a missing retained control close terminally. |
+| Data and retention | The only future persisted fact is a minimal scalar decision record: contract version, opaque render correlation, allowlisted input-state labels, terminal decision, and allowlisted denial code. It must never store a root, path, image/package/registry reference, target detail, secret, credential, provider output, manifest body, environment value, or free text. |
+| Workflow | Validate exact immutable scalar fields; deny before a render decision on malformed/state-conflicted input; project one disabled/not-rendered or denied scalar result; suppress replay and retry. There is no normal path that creates a manifest, invokes a process, accesses a filesystem, resolves an image, queries a registry, opens a network connection, or contacts a target. |
+| Architecture | The first future code slice is a pure application policy with a deterministic fake decision sink. It may depend only on local value types. It must not import Compose/Docker, child-process, filesystem, environment parser, HTTP/registry/cloud client, token source, Core client, trainer, submission, or aggregation control. |
+| Engineering and observability | Inputs and outputs are frozen scalar values; validators reject unknown keys and sensitive-shaped strings; rendered-text, error, snapshot, and structured-log projections remain absent. A terminal error map is allowlisted and non-retryable. |
+| API/readout | The future typed readout is scalar-only: `disabled_not_rendered`, `denied`, or `closed_replay`, with an allowlisted reason. It has no configuration text, capability, location, process result, target observation, or runtime-health field. |
+| Test/proof plan | Deterministic fixtures will cover the one synthetic eligible matrix plus malformed, unknown, fallback, not-fresh, not-prepared, root-unreserved, activation-enabled, public-ingress, restart-enabled, forbidden-field, decision-sink failure, and replay denials. A future static source test is distinct from any renderer or target proof. |
+| AI handoff and stop condition | The next potential implementation is only a pure scalar render-intent/decision contract and deterministic fake tests. Stop before a render engine, Compose-file update, root injection, release-image binding, target configuration, package access, credential action, Azure preflight, Agent start, proof, training, submission, or aggregation. |
+
+### 58.2 Fixed inert shape and forbidden-field matrix
+
+The fixed design target is a **disabled, non-public, no-restart, no-ingress, no-host-network, no-port** shape. Its later policy must additionally require a target-owned opaque binding state, no fallback root state, an approved fresh-image eligibility label, and a retained no-proof/no-training/no-submission/no-aggregation posture. These are predicates over scalar labels; they neither resolve nor disclose the values they protect.
+
+| Category | Must be present as a scalar policy fact | Must be refused or absent |
+|---|---|---|
+| Activation | `disabled` and `not_rendered` | enabled, automatic start, restart, proof or runtime assertion |
+| Exposure | no-port, no-ingress, no-public-listener, no-host-network | address, hostname, port value, endpoint, listener, target identifier |
+| Private-root custody | opaque target-owned binding reserved and no fallback | root/path/value, mount string, volume text, environment reference, permission detail |
+| Image eligibility | fresh eligibility label only | image/package/registry locator, digest, manifest, pull/result claim |
+| Control plane | Core interaction and aggregation disabled | request, token, callback, training, update, submission, aggregation state mutation |
+| Observability | allowlisted correlation and denial reason | raw configuration, provider output, secret, credential, header/body, free-text diagnostic |
+
+### 58.3 Failure, rollback, and later staging prerequisites
+
+Because this increment creates no render artifact or target state, rollback is the terminal scalar decision `not_rendered` followed by replay suppression; there is nothing to delete, restart, unmount, pull, or roll back. A later render implementation must define its own conservative cleanup rule: leave activation disabled, preserve no-port/no-ingress/no-restart/no-host-network constraints, and close on any validation, source-check, release-mapping, or binding failure without fallback.
+
+The separate staging/proof gate remains blocked. It still requires independently evidenced target-only package-access authorization, a target-only identity mechanism, an eligible fresh candidate without locator disclosure, a target-owned binding review, a new scalar Core/aggregation preflight, a static source-quality result for any renderer, and an explicit inert-staging decision. The prior denied-and-revoked credential path is not a prerequisite and must not be retried, substituted, or reused.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
