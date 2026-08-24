@@ -802,6 +802,50 @@ Audit is append-only and redacted. It may retain only status/policy/candidate/fr
 
 The next safe activity is a source-only one-candidate authorization-envelope contract with deterministic fakes and a forbidden-import guard. It may model freshness, role disagreement, expiry, post-route placeholder failure, revocation, quarantine, and redacted aggregate readout; it cannot create an execution instruction or interact with any external builder, registry, Docker, credential, Azure, target, projection, Compose, runner, proof, training, submission, or aggregation path.
 
+## 41. Design record — source-only one-candidate execution-authorization envelope
+
+### 41.1 Scope, value, and non-execution acceptance
+
+This slice tests whether one exact, already-valid admission and source-only readiness conclusion can be bound to a finite authorization envelope without becoming a capability. Its acceptance criterion is a deterministic terminal scalar result: `ready_not_executable`, `authorization_denied`, `authorization_revoked`, `candidate_quarantined`, or `post_route_placeholder_failed`. It does not identify a real candidate, base object, operator, registry, builder, or target. A ready result is merely local contract evidence that the injected fake reviews agreed over a bounded scalar input.
+
+The source-only request binds a bounded request identifier, exact source revision, policy version, freshness expiry, and the previous `ready_not_authorized` state. It excludes lockfile/base/image/registry/credential values, commands, paths, host/environment facts, target selectors, logs, bodies, bytes, provider facts, and free text. The code may use deterministic fixture strings internally to verify shape, but no such value may appear through its public readout or serialization.
+
+### 41.2 State machine, ports, and one-candidate closure
+
+| State | Required scalar condition | Terminal/next state | Non-execution rule |
+|---|---|---|---|
+| `authorization_received` | Strict request, exact admission/readiness binding, and explicit injected time before expiry. | review sequence or `authorization_denied`. | Malformed, unknown, mismatch, stale, duplicate, or replay closes before a review seam. |
+| `policy_reviewed` | Fixed policy fake agrees. | execution review or `authorization_denied`. | Policy refusal suppresses every later seam. |
+| `execution_reviewed` | Fixed execution-approval fake agrees. | registry review, `authorization_denied`, or `authorization_revoked`. | It cannot issue an execution instruction. |
+| `registry_reviewed` | Fixed registry fake agrees. | custody review, `authorization_denied`, or `candidate_quarantined`. | It cannot name/contact a registry or image. |
+| `custody_reviewed` | Fixed custody fake agrees without credential material. | `ready_not_executable`, `authorization_denied`, or `authorization_revoked`. | It cannot mint, rotate, reveal, or use a credential. |
+| `post_route_placeholder_failed` | A source-only deterministic placeholder models the mandatory later post-route closure. | none. | It asserts no external route occurred and blocks re-evaluation/retry. |
+| any terminal state | Allowlisted scalar code only. | none. | No retry, candidate replacement, alternate reviewer, credential refresh, tag, target binding, or external action. |
+
+The production module will define a strict request, decision, aggregate readout, and four injected review-port interfaces plus a source-only post-route-placeholder closure method. Each review input contains only request/source/policy/freshness facts. The record binds a candidate by source/policy class in private state; duplicate request and candidate replay must fail closed. An explicit scalar `now` parameter is mandatory; the module must not read a system clock.
+
+### 41.3 Architecture, storage, observability, and imports
+
+The module belongs to `packages/application` and depends only on the existing admission/readiness validators and TypeScript language/runtime primitives. It does not become a composition root and cannot import runtime configuration, identity, Core client, workspace, image mapping, target composition, projection, runner, Node built-ins, child-process APIs, HTTP/network clients, Docker/registry/cloud SDKs, or external authorization libraries. Four deterministic fakes consume only bounded in-memory outcome labels and report only call/remaining counts.
+
+Private sets may retain bounded request/candidate keys solely to suppress replay. `snapshot()` exposes only received/ready/denied/revoked/quarantined/post-route-placeholder-failed counts. JSON serialization must not reveal request, source, policy, freshness, or fake-script values. The import guard must reject forbidden execution-capability imports in production source. All errors collapse to allowlisted scalar codes; no raw error, command, header, body, provider, credential, locator, or diagnostic crosses the boundary.
+
+### 41.4 Tests, handoff, and stop conditions
+
+Tests must cover valid four-fake ready-not-executable closure; malformed/unknown/mutable-shaped request; invalid admission/readiness; source/policy/state mismatch; expiry; policy/execution/registry/custody refusal with later-seam suppression; role conflict; duplicate/candidate replay; revocation; quarantine; source-only post-route placeholder closure; redaction; and no retry. The likely files are the new application module, its deterministic tests, and the package quality script for a dedicated import guard. Local and GitHub quality gates must pass before publishing evidence.
+
+The slice stops at source-only contracts and fakes. It must not create an execution instruction, authorization capability, candidate appointment, credential, process, network request, Docker operation, registry interaction, image, Azure action, target binding, Compose render, projection open, runner, proof, training, update submission, or aggregation effect. A later real execution action remains a separate decision that cannot be inferred from this contract.
+
+## 42. Implementation evidence — source-only one-candidate execution-authorization envelope
+
+Agent release `b50fdc9fd3fb5e34808736c52c44fd57be1795f7` adds a pure `ProtectedBuilderAuthorizationEnvelope` with strict admission/readiness/request binding, injected scalar time, one-request and one-candidate closure, and aggregate-only readout. It composes deterministic in-memory policy, execution-approval, registry, and custody fakes. None can issue an execution instruction, appoint a candidate, create/rotate/reveal/use a credential, invoke a process or network request, contact a builder/registry, or access Docker, image, Azure, filesystem, target, projection, Compose, runner, proof, training, submission, or aggregation capability.
+
+The envelope validates admission, exact source/policy facts, prior source-only readiness state, and freshness before any review seam. Policy denial suppresses all later reviews; execution denial/revocation suppresses registry/custody; registry denial/quarantine suppresses custody. Four fake approvals yield only `ready_not_executable`, never an execution permission. Unknown/mutable fields, invalid admission/readiness, mismatch, expiry, duplicate request, candidate replay, invalid role/state, denial, revocation, quarantine, and a deterministic source-only post-route-placeholder failure close terminally without retry. The placeholder records that no external route occurred and permanently blocks ready-request reuse. Private bindings remain unprojected; snapshots expose only aggregate state counts.
+
+The release adds a dedicated production-source import guard for the authorization-envelope module, denying Node, process, Docker, cloud SDK, and common HTTP-client imports. Deterministic tests cover normal ready-not-executable closure, malformed/mutable input, invalid readiness, mismatch, freshness expiry, review suppression, revocation, quarantine, duplicate/replay, invalid role, post-route placeholder closure, redaction, and no retry. Local `pnpm run ci` passed formatting, the protected filesystem, builder-orchestration, readiness, and authorization-envelope import guards, strict TypeScript, **91 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32691244949` completed successfully.
+
+This validates source-only authorization-envelope behavior and deterministic fakes only. No execution instruction, external candidate appointment, credential, builder, registry, Docker, image, Azure, target, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. A later real external execution action remains a separate decision and requires explicit independent credential custody, builder/registry readiness, target separation, and distinct quality/deployment/staging/proof gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
