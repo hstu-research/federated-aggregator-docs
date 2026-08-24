@@ -1878,6 +1878,29 @@ The deterministic design fixture matrix includes empty state; canonical claimed 
 
 Rollback is a scalar terminal closure and re-entry suppression, never deletion, rewrite, root substitution, alternate identity, or target cleanup. A later implementation remains a separate source-only composition slice and must use the existing local durable adapter through an injected private capability. A further, separately documented target-wiring review is required before target root injection. Package authorization, fresh release mapping, scalar target preflight, inert staging, proof, training, submission, and aggregation remain independently blocked.
 
+### 64.4 Source-only deterministic composition adapter increment
+
+The next Agent increment implements a pure, fake-only composition adapter that models the sequence in §64.2 without importing or constructing the durable store. The adapter receives two narrow private ports: a `SyntheticCoordinatorRecordPort` that returns only scalar hydration/claim/terminal classes, and a `SyntheticAdmissionRoutePort` that returns only an allowlisted scalar coordinator terminal category. Both ports are deterministic test fakes. Neither port accepts nor returns a root/path, record text, byte sequence, file state, configuration/object/text, parser result, canonical shape, image/package/registry locator, target, credential, provider response, command, artifact, or workload capability.
+
+The adapter accepts only an unused fixed-format synthetic operation correlation. It calls hydrate first. Terminal and orphan states close before the route. Empty state must append a scalar claim before the route can be invoked. Route output is mapped to a scalar terminal category, after which exactly one terminal append is attempted. A terminal append failure closes the in-memory operation and suppresses later route invocation; it does not retry or change correlation. The adapter owns an operation closure set only; the fake record port retains its own deterministic fixture state. All result and aggregate-readout objects are frozen and expose counts/classes only.
+
+| Hydrate class | Required sequence | Scalar terminal outcome |
+|---|---|---|
+| `empty` | Claim → one fake route → terminal append. | Recorded coordinator terminal category or `terminal_append_denied`. |
+| `terminal_closed` | No claim; no route; no terminal append. | `replay_suppressed`. |
+| `claimed` / `closed_interrupted` | No claim; no route; no terminal append. | `restart_closed`. |
+| Hydrate denial | No claim; no route; no terminal append. | Allowlisted `hydrate_denied`. |
+| Claim denial | No route; no terminal append. | `claim_append_denied`. |
+| Terminal append denial | Route once; no retry; later replay suppresses route. | `terminal_append_denied`. |
+
+Fixtures must prove empty admission; terminal/orphan/replay suppression; corrupt, permission, temporary, atomic, and claim/terminal failure closure; route order; frozen readout; private/nonenumerable port/correlation state; serialization redaction; and forbidden dependency guards. This implementation validates only deterministic scalar fake behavior. It does not wire a concrete durable adapter, request a root capability, create records, alter the existing coordinator, parse text, execute a renderer, write configuration, access filesystem/environment/package/credential/target/Azure/Core, or establish staging, proof, training, submission, or aggregation evidence.
+
+### 64.5 Source-quality evidence — fake durable-store composition adapter
+
+Agent release `34d2d5d` implements the source-only deterministic durable-store composition adapter, private scalar record/route ports, in-memory operation closure set, frozen aggregate readout, deterministic fakes, and import guard. It accepts only a fixed-format synthetic operation correlation and invokes a route only after fake hydration reports `empty` and fake claim append reports `claim_recorded`. A route result is reduced to an allowlisted scalar terminal category, after which exactly one fake terminal append is attempted. The adapter owns no root, record, file, filesystem capability, parser, renderer, or target capability.
+
+The fake suite terminally closes malformed input before any port invocation; valid terminal hydration as replay; claimed/orphan hydration as restart closure; hydration denial; claim denial before route; terminal append denial without route retry; and operation replay after every accepted closure. Port state and operation correlations remain private/nonenumerable and absent from serialization. Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **158 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32721983548` completed successfully. This is source-quality evidence only: no concrete durable store, root capability, record/file, filesystem, parser, renderer execution, configuration text/file, environment, Docker/Compose, image/root binding, package/registry access, credential, target, Azure, Core interaction, Agent runtime, staging, proof, training, submission, or aggregation action occurred. A separate concrete durable-adapter composition review is required before filesystem-backed composition is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
