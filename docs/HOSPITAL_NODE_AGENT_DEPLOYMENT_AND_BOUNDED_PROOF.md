@@ -1423,6 +1423,14 @@ The subsequent target-composition deployment design would need exact service own
 
 > **Hard stop:** this design does not create a private root, add an environment/configuration value, mount storage, change an image, configure Azure, start an Agent, pull a package, or authorize identity, proof, training, submission, or aggregation action.
 
+### 55.5 Source-only private-root composition contract increment
+
+The next Agent increment is a pure versioned composition validator with deterministic fakes. It accepts only allowlisted scalar facts for `root_state`, `binding_state`, `activation_state`, `runtime_posture`, and `rollback_state`; it returns only terminal disabled or blocked decisions with retry disabled. Valid source-only states may model an unbound/disabled composition or a ready-but-not-activated composition. No decision can express a path, mount, user, permission, image, package, credential, target, Azure setting, process result, or public listener.
+
+Malformed/unknown fields, invalid state combinations, fallback roots, default activation, target/runtime capability claims, rollback that deletes/presumes a final record, and replay must be denied before a deterministic fake is invoked. The aggregate readout is limited to decision class, root/binding/activation/rollback classes, blocked count, and retry state. Static guards must reject filesystem, environment, Docker/Compose, provider, credential, package, target, Core, proof, training, submission, and aggregation imports.
+
+This contract proves control-state policy only. It does not construct an adapter, configuration, root, mount, image, container, process, target, identity, or credential. Local/remote quality gates are required before it can be cited as source-quality evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
