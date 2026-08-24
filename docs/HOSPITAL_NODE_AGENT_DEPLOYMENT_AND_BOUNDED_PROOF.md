@@ -1475,6 +1475,12 @@ The only source-only disabled state is exactly `mode=disabled`, `binding_presenc
 
 Aggregate readout is limited to received, disabled, blocked, invalid, stale-image, fallback, and replay counts. Static guards must reject environment, filesystem, Docker/Compose, provider, credential, package, target, Core, proof, training, submission, and aggregation imports. This contract proves only configuration-policy and image-eligibility denial behavior; it cannot inject a root, configure a target, build/pull an image, or activate an Agent.
 
+### 56.5 Source-quality evidence — configuration intent and fresh-image eligibility
+
+Agent release `c3353e6a2edcfdf3cd299c0e09288ef255685fcb` implements the pure versioned configuration-intent validator and deterministic fake. It evaluates only scalar mode, binding presence, source-release, image-binding, and activation facts. Its disabled outcomes are limited to exact disabled/no-binding/no-selected-image and a fully eligible but ready-not-activated private configuration. It terminally denies missing root, unverified source release, not-selected/stale/mutable/unavailable image candidates, active runtime, mode mismatch, unsafe disabled binding/image state, malformed observations, and replay. The fake cannot parse/inject configuration or discover/select/build/publish/pull/bind any root or image.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **126 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32706064358` completed successfully. This is source-quality evidence only: no environment/configuration parsing, filesystem, Docker/Compose, deployment configuration, root, mount, image build, package pull, target, Azure, provider, organization, credential, Agent runtime, Core call, proof, training, submission, or aggregation action occurred. The next safe low-risk slice is a separate target-owned injection-adapter design that preserves raw-root nonenumerability and source-only test boundaries; it is not an authorization to implement or deploy that adapter.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
