@@ -899,6 +899,46 @@ The release adds a dedicated production-source import guard for action-consumpti
 
 This is source-only quality evidence. No real authorization was consumed; no candidate appointment, credential, builder, registry, Docker, image, Azure, target, Compose render, projection, runner, proof, training, update submission, or aggregation action occurred. The next step is not automatic external execution: a separately named external builder/registry provider, explicit credential/permission authority, immutable external candidate/base evidence, target-staging dossier, and user confirmation are required before any security-critical external action.
 
+## 45. Decision record — repository-hosted protected builder and registry control plane
+
+### 45.1 Selected control plane, scope, and retained non-authorization
+
+The selected future control plane is a **dedicated GitHub Actions protected-builder workflow** in the Agent repository with a **private GitHub Container Registry package**. This selection reuses the repository-hosted CI authority already evidenced by Hospital Node Quality Gates, but it does not modify that quality workflow, create a workflow, configure a package, issue a token, build or publish an image, contact Azure, bind a target, render Compose, open a projection, invoke proof, train, submit an update, or enable aggregation.
+
+The future builder is not the existing `Hospital Node Quality Gates` workflow. It must be a separate, disabled-by-default workflow with no pull-request or `pull_request_target` release trigger. It may be enabled only after a later one-candidate authorization record, protected-environment review, and a fresh no-target-deployment attestation. The selected registry package must be private, repository-linked, and unavailable to forks or unrelated repositories. No registry location, package name, image digest, tag, or pull instruction is created by this decision.
+
+### 45.2 Identity, least privilege, and immutable provenance
+
+The future builder job may use the GitHub-issued, ephemeral workflow token rather than a long-lived personal access token. Its job-level permissions are limited to `contents: read`, `packages: write`, `attestations: write`, and `id-token: write`; every other permission remains absent. This matches GitHub’s documented permission set for container-image attestations while preserving least privilege. [6] [7] The workflow must use full-length commit-SHA pins for every third-party action, including checkout, build, and attestation steps. [8]
+
+| Control role | Future authority | Explicit prohibition |
+|---|---|---|
+| `protected_agent_release_builder` | A dedicated Actions job can evaluate one approved immutable source/base policy set after environment review. | It cannot receive a target credential, projection, clinical data, runner configuration, public-listener setting, or direct Azure capability. |
+| `registry_release_approver` | A repository/package administrator can approve private package visibility, repository linkage, and one-candidate publication policy. | It cannot delegate package write to the Agent, Core, test process, target runtime, browser/human session, or callback identity. |
+| `protected_builder_credential_custodian` | A protected GitHub environment controls the job’s temporary approval path and any future secret inventory. | It cannot expose a token, secret, handle, or environment value to source, build arguments, image layers, logs, documentation, or target runtime. |
+| `agent_release_policy_authority` | Reviews the immutable source, lockfile, base identity, quality state, and authorization record. | It cannot open a builder/registry route or self-approve its own external action. |
+
+Every future workflow run must bind the exact admitted source revision, lockfile identity, Dockerfile revision, approved immutable base identity, policy revision, and completed quality conclusion before any build step. A digest and provenance attestation may be recorded only after a later successful external build; no tag is an admissible target identity. GitHub documents build attestations for container images and requires the subject’s digest rather than a tag. [6]
+
+### 45.3 Trigger, review, redaction, quarantine, and revocation
+
+The future workflow’s only release trigger is an approved manual dispatch from a protected environment after the one-candidate record is fresh. It must reject a branch, tag, mutable reference, arbitrary command, build argument, target selector, registry override, credential-shaped input, path, provider fact, or free-text diagnostic. Before a future external route, the workflow must recheck independent policy, execution, registry, and custody readiness; it must then issue an aggregate-safe route declaration without a host, package locator, credential, command, body, header, or target fact.
+
+Build and registry logs must retain only allowlisted state codes, immutable candidate/policy classes, bounded duration/resource classes, and attestation verification state. Commands, environment values, token material, registry details, image layers, manifests, signatures, raw build output, target facts, and provider responses are redacted. GitHub advises least-privilege workflow tokens, required review for protected environment secrets, and removal/rotation when a secret may be exposed. [8] This decision does not create a secret or protected environment.
+
+| Future event | Required terminal policy response | Forbidden response |
+|---|---|---|
+| Missing review, stale source/base fact, or failed provenance verification | `builder_pre_route_denied`; no route, token use, package mutation, or target binding. | Retrying with a branch/tag, fallback base, alternate registry, or changed candidate. |
+| Build or registry failure after a later route | `builder_post_route_failed`; publish one redacted scalar closure and quarantine the candidate. | Automatic retry, a new token, retagging, hidden replacement, or target use. |
+| Credential/policy concern | `builder_credential_revoked`; disable future candidate eligibility through the custody boundary. | Printing, exporting, reusing, or handing a credential to Agent/Core/target/runtime identity. |
+| Package visibility/access mismatch | `registry_visibility_denied`; retain no target release mapping. | Making the package public, granting fork access, or using a human/long-lived token workaround. |
+
+### 45.4 Remaining gates and explicit stop
+
+Before any external build can be considered, the project still requires a committed one-candidate execution authorization, protected-environment/reviewer configuration, private package access verification, immutable base-source confirmation, a dedicated workflow design with SHA-pinned actions, a source-only workflow-policy validator, and fresh quality evidence. Before any target use, it separately requires a target-staging dossier, composite source, render validation, read-only safety preflight, aggregation-disabled confirmation, and a distinct one-shot proof decision.
+
+> **Hard stop:** selecting GitHub Actions and a private GitHub Container Registry package is not an authorization to execute. No provider, credential, package, image, registry route, Azure target, projection, Compose render, proof, training, update submission, or aggregation action occurs in this increment.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -910,3 +950,9 @@ This is source-only quality evidence. No real authorization was consumed; no can
 [4] [Reusable bounded federated control-plane workflow](https://github.com/hstu-research/federated-aggregator-docs/blob/main/docs/CORE_HOSPITAL_NODE_WORKLOAD_CONTRACT.md)
 
 [5] [Hospital Node Core client and private workspace contract](https://github.com/hstu-research/federated-aggregator-docs/blob/main/docs/HOSPITAL_NODE_AGENT_CORE_CLIENT_AND_PRIVATE_WORKSPACE.md)
+
+[6] [GitHub Docs: Using artifact attestations to establish provenance for builds](https://docs.github.com/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds)
+
+[7] [GitHub Docs: Publishing and installing a package with GitHub Actions](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions)
+
+[8] [GitHub Docs: Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
