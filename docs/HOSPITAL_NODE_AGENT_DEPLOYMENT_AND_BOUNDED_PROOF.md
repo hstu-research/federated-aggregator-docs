@@ -723,6 +723,49 @@ Future audit retains only policy/candidate identity classes, state transitions, 
 
 The next safe activity is a source-only readiness-record contract and deterministic fake review, not an external execution. Actual execution remains blocked until that separate source quality evidence exists, a later execution authorization records all independent approvals, credential custody is established outside the Agent and target, and subsequent quality/deployment/staging/proof gates are individually documented and passed.
 
+## 38. Design record — source-only protected-builder execution readiness
+
+### 38.1 Scope, non-goals, and measurable acceptance
+
+This source-only slice tests whether one exact prior admission can be evaluated through separate policy, execution-approval, registry, and credential-custody seams without creating an execution capability. Its sole measurable result is a deterministic terminal readiness projection: `ready_not_authorized`, `not_ready`, `execution_revoked`, or `candidate_quarantined`. A `ready_not_authorized` result means all fake scalar attestations agreed inside the source process; it is expressly not a builder instruction, credential, image identity, registry authorization, target binding, deployment approval, or proof request.
+
+The slice admits only an already-valid `AgentImageBuildAdmission`, a bounded readiness request carrying exact source/policy facts and a scalar expiry, and injected fake ports. It may return only allowlisted state/code pairs and aggregate counts. It never returns a secret, credential handle, image/base/registry fact, command, path, environment value, target selector, manifest, signature, log, byte, provider response, host, or free-text diagnostic.
+
+### 38.2 State machine and strict port contracts
+
+| State | Preconditions | Allowed terminal result | Later seam behavior |
+|---|---|---|---|
+| `readiness_received` | Valid strict request and exact admission/source-policy binding. | `not_ready` | Malformed, unknown, mismatched, expired, or duplicate request closes before any port. |
+| `policy_ready` | Fixed `agent_release_policy_authority` fake attestation. | `not_ready` or continue. | Policy refusal/invalid role suppresses all later seams. |
+| `execution_review_ready` | Fixed `protected_builder_execution_approver` fake attestation. | `not_ready` or `execution_revoked` or continue. | Refusal/revocation suppresses registry and custody seams. |
+| `registry_ready_source_only` | Fixed `registry_release_approver` fake attestation. | `not_ready` or `candidate_quarantined` or continue. | Refusal/quarantine suppresses custody seam. |
+| `custody_ready_source_only` | Fixed `protected_builder_credential_custodian` fake attestation with no credential material. | `ready_not_authorized`, `not_ready`, or `execution_revoked`. | It can attest readiness only; it cannot create, rotate, revoke, export, or use a capability. |
+| terminal states | Allowlisted scalar code only. | none. | No retry, alternate role, replay, target binding, or external action. |
+
+The production module will define strict `ProtectedBuilderExecutionReadinessRequest`, `ProtectedBuilderExecutionReadinessDecision`, and aggregate readout types plus four injected port interfaces. Port inputs bind one request identifier, source revision, policy version, and expiry class only. An explicit scalar `now` argument makes expiry deterministic; the module may not call the system clock. The record is one-use within the process: duplicate request, cross-admission replay, conflict, expired window, role mismatch, malformed state, or mutable/unknown field closes terminally.
+
+### 38.3 Data protection, engineering controls, and fake isolation
+
+Validation rejects mutable references, tags, image/base/registry fields, credential-shaped fields, paths, commands, environment variables, target selectors, provider facts, logs, bytes, and unknown keys. The private record state may retain only values necessary to prevent replay; JSON serialization and public snapshots must expose only aggregate received/ready/not-ready/revoked/quarantined counts. No fake may retain an input identity in its snapshot or expose a scripted reason beyond its fixed scalar outcome.
+
+The module must use a file-level source-only/no-execution design comment and a production-source import guard denying Node built-ins, process APIs, Docker/registry/cloud SDKs, and common HTTP clients. It cannot import runtime configuration, target composition, projection, runner, Agent identity, Core client, workspace, or image release mapping modules. Deterministic tests must inject all ports and prove behavior without a credential, process, network, Docker daemon, registry, image, Azure, filesystem, target, projection, runner, training, submission, or aggregation operation.
+
+### 38.4 Test plan and stop conditions
+
+Tests must cover valid four-fake readiness; malformed/unknown/mutable-shaped request; invalid admission; source/policy mismatch; expired window; policy/approval/registry/custody refusal with later-seam suppression; invalid fake role/state; revocation; quarantine; duplicate and cross-admission replay; aggregate-only redaction; and no retry. The Agent quality gate must pass locally and remotely before any evidence is published.
+
+The implementation stops at source-only contracts and deterministic fake tests. It does not create an external readiness record or appointment, mint/rotate/revoke/use a credential, invoke any external builder/registry, construct/pull/push/tag an image, contact Azure, bind/stage a target, render Compose, open a projection, start a runner, invoke proof, train, submit an update, or enable aggregation. A later actual execution decision remains separately blocked.
+
+## 39. Implementation evidence — source-only protected-builder execution readiness
+
+Agent release `8d3c4150ead15c500c4b5e8509ddc463aee8e89f` adds a pure `ProtectedBuilderExecutionReadinessRecord` with strict request/admission binding, an explicit injected scalar clock, one-use request/candidate closure, and aggregate-only readout. It composes four deterministic in-memory fakes: policy, execution approval, registry approval, and credential custody. None can create, rotate, revoke, read, export, or use a credential; invoke an external process; contact a network service; or access Docker, registry, image, Azure, filesystem, target, projection, runner, runtime configuration, training, submission, or aggregation capability.
+
+The record validates exact source/policy facts and bounded expiry before any seam. Policy refusal suppresses execution, registry, and custody. Execution refusal/revocation suppresses registry and custody. Registry refusal/quarantine suppresses custody. All four fake attestations can close only as `ready_not_authorized`, which cannot be interpreted as an execution permit. Malformed/unknown fields, invalid admission, mismatch, expiry, duplicate request, candidate replay, invalid role/state, revocation, and quarantine are terminal without retry. Internal request/admission bindings are private; snapshots expose only received/ready/not-ready/revoked/quarantined counts.
+
+The release adds a dedicated production-source import guard for the readiness module, denying Node, process, Docker, cloud SDK, and common HTTP-client imports. Deterministic tests cover valid four-fake closure, malformed/unknown/mutable-shaped inputs, invalid admission, mismatch, expiry, policy and execution suppression, revocation, quarantine, duplicate/cross-admission replay, invalid role, aggregate redaction, and no retry. Local `pnpm run ci` passed formatting, the protected filesystem, builder-orchestration, and readiness import guards, strict TypeScript, **86 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32690774152` completed successfully.
+
+This validates source-only readiness and deterministic fake behavior only. No external execution record or appointment exists; no credential, builder, registry, Docker, image, Azure, target, Compose, projection, runner, proof, training, update submission, or aggregation action occurred. Any actual external execution remains subject to a separate authorization record, credential-custody establishment, and separate quality/deployment/staging/proof gates.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
