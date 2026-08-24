@@ -1839,6 +1839,45 @@ The terminal failure map is allowlisted: `hydrate_denied`, `record_corrupt`, `re
 
 Deterministic future fixtures must cover empty private state; valid claim and terminal hydration; terminal replay; orphan claim restart closure; duplicate/non-monotonic/forbidden-field/corrupt scalar record rejection; private-root/file/permission/temporary/atomic/symlink denial; terminal append failure; redacted canonical serialization; and no coordinator invocation until claim append success. Static guards must isolate any later filesystem adapter from the application policy and preserve forbidden imports in the coordinator. A separately documented source-only adapter-composition slice is required before wiring the existing durable store. Target-root injection, actual target configuration, package access, fresh release mapping, Azure preflight, inert staging, proof, training, submission, and aggregation remain separate blocked gates.
 
+## 64. Design record — durable-store composition for coordinator closure
+
+### 64.1 Narrow injected seam and ownership
+
+This review defines the future composition seam between the synthetic admission coordinator and the already quality-gated local durable terminal diagnostic store. It remains **design-only**: no store is imported into application composition, no private-root capability is requested, no record is created, and the coordinator is not modified. The future application receives a narrow injected `CoordinatorTerminalRecordPort`; only the local-state composition root may construct its concrete adapter. The private-root capability belongs exclusively to that composition root and the target owner. It never enters the coordinator request, policy, validator, public readout, documentation, terminal output, or test fixture value.
+
+The application-facing port has no enumeration, query, delete, update, list, path, byte, or raw-record method. It can only hydrate an opaque private correlation into scalar closure status, append one scalar claim, and append one scalar terminal closure. A later port result may express only `empty`, `claimed`, `terminal_closed`, `closed_interrupted`, or an allowlisted denial class. It cannot expose an operation/shape/render identity, root/path, file name, record text, byte count, permission detail, temporary name, symlink detail, checksum, provider result, target fact, or free-text diagnostic.
+
+| Composition concern | Future private-side responsibility | Application-side projection |
+|---|---|---|
+| Root capability | Target-owned composition root injects it into the local durable adapter only. | Absent. |
+| Opaque correlation | Adapter privately maps the accepted operation correlation to a canonical scalar record key. | Never returned or logged. |
+| Hydration | Adapter validates canonical scalar records and reports only closure class. | `empty`, terminal/replay close, or allowlisted persistence denial. |
+| Claim append | Adapter atomically records private scalar `claimed` before coordinator route. | `claim_recorded` or terminal close. |
+| Terminal append | Adapter records one allowlisted terminal category after coordinator result. | `terminal_recorded` or terminal close. |
+| Aggregate readout | Adapter maintains local aggregate facts only. | Counts by closure family, never per-operation facts. |
+
+### 64.2 Canonical record mapping and ordering
+
+The future mapper preserves the coordinator’s finite terminal model without copying its raw request or readout. Each private record is a versioned canonical scalar fact whose identity correlation is private. The claim is append-only, and the terminal record is additive; neither overwrites prior state. The concrete adapter may use an internal atomic-promotion mechanism, but the application sees only its scalar result and cannot observe a temporary record. No promotion refers to model artifacts, configuration, or renderer output.
+
+| Coordinator event family | Private durable record category | Allowed application outcome |
+|---|---|---|
+| First accepted operation | `claimed` | `claim_recorded` |
+| Envelope/identity/validator close | `terminal_validation_closed` | `terminal_closed` |
+| Policy/workspace/no-artifact close | `terminal_no_artifact_closed` | `terminal_closed` |
+| Coordinator replay close | `terminal_replay_closed` | `terminal_closed` |
+| Existing terminal on hydrate | Existing terminal retained unchanged. | `replay_suppressed` |
+| Existing orphan claim on hydrate | `closed_interrupted` closure fact, append-only if safely available. | `restart_closed` |
+| Persistence invalidity/failure | `persistence_closed` when a canonical append is possible; otherwise in-memory terminal close. | Allowlisted denial, retry disabled. |
+
+The defined order is hydrate → validate scalar closure result → append claim if empty → invoke the existing coordinator once → append terminal result → return frozen aggregate-safe receipt. Terminal or interrupted hydrate states suppress coordinator invocation. Claim failure suppresses coordinator invocation. Terminal append failure returns a terminal persistence close; it never replays the coordinator. The future concrete adapter must define atomic behavior internally and fail closed on non-canonical, missing, corrupt, duplicate, non-monotonic, symlink-affected, permission-denied, or temporary/promotion failure.
+
+### 64.3 Fixtures, rollback, and future gates
+
+The deterministic design fixture matrix includes empty state; canonical claimed and terminal state; terminal replay; orphan claim restart closure; malformed/unknown/forbidden-shaped records; duplicate/non-monotonic transition; private-root validation failure; file/permission/temporary/atomic/symlink failure; claim append denial; terminal append denial; immutable aggregate readout; and no coordinator invocation prior to a successful claim append. All fixture identities are synthetic, private, non-path, and absent from serialization. Tests must assert that no configuration, text, artifact, file content, workspace, renderer, image/root binding, target, package, credential, network, provider, Core/Agent runtime, training, submission, or aggregation capability is exposed.
+
+Rollback is a scalar terminal closure and re-entry suppression, never deletion, rewrite, root substitution, alternate identity, or target cleanup. A later implementation remains a separate source-only composition slice and must use the existing local durable adapter through an injected private capability. A further, separately documented target-wiring review is required before target root injection. Package authorization, fresh release mapping, scalar target preflight, inert staging, proof, training, submission, and aggregation remain independently blocked.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
