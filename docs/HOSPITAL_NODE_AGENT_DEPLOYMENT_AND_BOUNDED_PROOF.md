@@ -3643,6 +3643,36 @@ The one fresh-candidate read-only execution-readiness instance completed and emi
 
 No host or Docker resource was created, changed, configured, inspected beyond the scalar posture classes, or retained. No source, receipt value, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No format-stage invocation, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. Any future invocation candidate must be newly designed, bound, and reviewed again.
 
+## 137. Immediate format-stage invocation consumption and final receipt — design-only contract
+
+### 137.1 Atomic private sequence
+
+This record defines the only future path from a fresh candidate to a one-shot format-stage invocation. The candidate must be created, revalidated, decision-bound, final-prestart-checked, consumed, and invoked within one private, finite control sequence. It cannot be returned to a caller, persisted, queued, held across sessions, or observed publicly. Any interruption or transition outside the sequence expires and removes the candidate before source transfer or resource creation.
+
+| Atomic step | Required scalar fact | Immediate closure on any divergence |
+|---|---|---|
+| Fresh candidate creation | `fresh_unused_valid` | `format_stage_commit_closed` |
+| Current control revalidation | `current_exact` | `format_stage_commit_closed` |
+| Fresh target readiness | `format_fresh_candidate_ready` | `format_stage_commit_closed` |
+| Final resource posture | `absent_not_created_nonrunning` | `format_stage_commit_cleanup_closed` |
+| Containment posture | `diagnostic_not_started` | `format_stage_commit_hardening_closed` |
+| Final receipt | `single_exact_unexpired` | `format_stage_commit_receipt_closed` |
+| Consumption | `unused` | `format_stage_commit_replay_closed` |
+
+The sequence receives and retains no identity value, time, source, command, package/provider/registry, image/container reference, target detail, configuration, credential, log, transcript, process, model/data, or database fact. It cannot modify the declared stage, substitute a toolchain, add a later quality step, or grant a reusable execution authority.
+
+### 137.2 Final pre-start receipt and immediate expiry
+
+The final private receipt contains only a schema class, state, one allowlisted decision, and `retry_allowed=false`. Its allowable pre-stage projections are `format_stage_commit_ready`, `format_stage_commit_closed`, `format_stage_commit_hardening_closed`, `format_stage_commit_cleanup_closed`, `format_stage_commit_receipt_closed`, `format_stage_commit_expired`, and `format_stage_commit_replay_closed`. `format_stage_commit_ready` exists only inside the atomic sequence and is consumed immediately by the declared format-stage invocation; it cannot be surfaced as a general authorization, refreshed, replayed, or used after an interrupt.
+
+If a stage invocation does not begin in the same sequence immediately after `format_stage_commit_ready`, the candidate/receipt/decision state expires and is removed. If a stage begins, no second stage, retry, recovery stage, source repair, alternate image/workspace/toolchain/target, identity renewal, or follow-on quality chain may run. The next observable result must be the scalar format-stage outcome and mandatory cleanup closure defined in §133.
+
+### 137.3 Separation from the actual diagnostic
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a real candidate, contact the target, transfer or inspect source, build/pull/run an image/container, invoke formatting, modify source or target state, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+The next gate is one compound, one-shot hardened format-stage execution that implements this exact atomic sequence and the §133 cleanup. It must emit only its allowlisted scalar stage outcome and independently verified cleanup classes, then be published before any subsequent work.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
