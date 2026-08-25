@@ -3242,6 +3242,48 @@ The sealed local receipt, fresh exact-source workspace, and disposable image-loc
 
 The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; all local comparison staging was removed. This establishes only that the designated scalar composition categories matched for this one disposable comparison. It does not establish formatting, source quality, target-host provisioning, release, deployment, runtime proof, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific evidence. Any next gate must be separately designed and bound to current prerequisites.
 
+## 126. Target formatting-check normalization diagnostic — design-only contract
+
+### 126.1 Boundary and requirements
+
+The closed target `format_closed` category, the local `format_no_change` closure, and the later `composition_matches` context permit **one future normalization diagnostic design only**. Its purpose is not to re-run a quality chain or to repair source. It may determine whether the already declared formatting stage can be invoked with an immutable, image-local package-manager command surface and with a fixed, source-declared normalization profile. The contract accepts no source content, formatter output, changed-file identity, diff, path, command text, package/provider/registry fact, target/configuration/credential fact, model/data, or transcript as a public or persisted value.
+
+| Required design section | Formatting-normalization decision |
+|---|---|
+| Nontechnical requirement | Preserve source custody, reviewer traceability, and hospital-data isolation while resolving only the reproducibility precondition for a later formatting diagnostic. Acceptance is a scalar-safe contract, not a formatting pass. |
+| Technical requirement | Bind one reviewed source revision, its declared package-manager class, a canonicalization-profile label, an unused diagnostic identity, and retained hardened-container controls. Any uncertainty terminally closes. |
+| Data and retention | Retain only an ephemeral scalar terminal receipt and aggregate cleanup class. Never retain source/output/diff/file/path/command/package/target/credential/model/data/transcript facts. |
+| Workflow | Validate scalar preconditions, admit one future formatting invocation only if its frozen normalization profile is exact, project one terminal class, remove private transients, and suppress retry/replay. |
+| Architecture | A future collector composes a pure scalar admission policy with an injected command-surface fake. It must not import an Agent runtime, transport, identity, data/model, trainer, update, submission, aggregation, filesystem, Docker API, or target configuration. |
+| Engineering standards | Immutable inputs, deny-before-fake validation, no network/port/privilege/host-network/Docker-socket/mounts at diagnostic runtime, strict read-only collector posture, bounded resources, scalar-only observability, and independent cleanup verification. |
+| API/readout | The only permitted future result is `format_normalized`, `format_normalization_closed`, `format_hardening_closed`, or `format_cleanup_closed`, plus cleanup class. No positive state means formatting passed. |
+| Test/proof plan | Deterministic local fakes cover exact admission, malformed/unknown/mutable/replayed input, missing image-local manager, profile mismatch, hardening failure, fake failure, and cleanup uncertainty. A target diagnostic, source-quality evaluation, release, deployment, or runtime proof is separate. |
+| AI handoff | First implement only the pure source-only admission contract and fakes after its own decision record. Stop before any actual formatter invocation, source mutation, image build, target action, or quality command. |
+
+### 126.2 Fixed normalization profile, state matrix, and denial posture
+
+The canonicalization profile is an internal fixed label bound to the declared formatter semantics and the repository-relative source normalization already used by §125. It cannot select a formatter version, override ignore behavior, alter source, add a flag, read a configuration value, resolve an environment variable, or apply a fallback. The future collector may only receive a scalar `declared_profile_exact` class; it cannot receive the profile body or command construction.
+
+| Scalar precondition | Exact admissible class | Terminal closure on any other class |
+|---|---|---|
+| Reviewed source | `reviewed_revision_bound` | `format_normalization_closed` |
+| Composition context | `composition_context_matched` | `format_normalization_closed` |
+| Package-manager surface | `image_local_manager_available` | `format_normalization_closed` |
+| Normalization profile | `declared_profile_exact` | `format_normalization_closed` |
+| Runtime posture | `no_runtime_capability` | `format_hardening_closed` |
+| Diagnostic identity | `unused` | `format_normalization_closed` |
+| Cleanup posture | `cleanup_confirmable` | `format_cleanup_closed` |
+
+An eligible request may produce only `format_normalized`, meaning that a future isolated diagnostic has normalized its admission context. It does **not** run formatting and cannot mean the formatter is clean, the source is correctly formatted, the quality chain passes, or a protected release is eligible. Malformed, unknown, inherited, mutable, duplicate, profile-mismatched, capability-broadened, or sensitive-shaped input denies before the fake. The fake may emit one scalar command-surface class only; it cannot invoke a formatter, create a container/image, read a repository, write a workspace, resolve packages, or access a target.
+
+### 126.3 Containment, lifecycle, and subsequent gate
+
+The future diagnostic lifecycle is `normalization_intent_sealed` → `scalar_admission_checked` → `command_surface_classified` → `terminal_projection` → `private_transients_removed` → `cleanup_closed`. It must use a new one-use identity, no runtime network, no port, no host network, no privilege, no Docker socket, no mount, no target configuration/secret/data/model input, no identity source, and no Agent/profile/service/listener/Core/trainer/update/submission/aggregation behavior. The post-run closure may inspect only named-container absence, disposable-image absence, and non-running-workspace class.
+
+> **Hard stop:** This is a design record only. It does not implement a collector, invoke formatting, execute a quality stage, modify source, build or run an image/container, access the target, configure an identity, contact Core, read data/model material, train, submit an update, aggregate, or establish a release, deployment, runtime, hospital, or scientific claim.
+
+The next bounded implementation, if undertaken, is a source-only scalar admission validator with deterministic fakes and import guards. It must be documented, quality-gated, and published before any separately designed target diagnostic. No target-facing step is authorized by `composition_matches` or by this record.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
