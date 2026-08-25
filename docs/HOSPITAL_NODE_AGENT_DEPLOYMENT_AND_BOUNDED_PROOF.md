@@ -3982,6 +3982,38 @@ No source, package, Python interpreter/test output, test name/count, path, comma
 
 The ready class is non-consuming and expires. It does not authorize Python tests, a source transfer, resource creation, or a runtime action; a separately documented fresh candidate-consumption and final pre-start receipt boundary remains required before any test-stage invocation.
 
+## 146. Fresh Python test-suite candidate consumption and final pre-start receipt — design-only contract
+
+### 146.1 New candidate and same-sequence admission
+
+This record defines the only future path to consume a Python test-suite candidate. The historical `py_test_execution_ready` result is closed context and cannot be reused. A newly generated opaque private candidate must bind a newly observed current readiness result, reviewed source/Python-test design, image-local package-manager posture, image-local Python-test surface, future-resource absence, and diagnostic-not-started posture inside the same finite control sequence. The candidate is not an Agent, user, workload, Core, source, package, image, container, target, credential, or runtime identity and cannot be returned, queued, persisted, or publicly projected.
+
+| Required current class | Exact admissible state | Immediate closure |
+|---|---|---|
+| Source/Python-test design | `current_exact` | `py_test_stage_commit_closed` |
+| Image-local package manager | `image_local_manager_available` | `py_test_stage_commit_closed` |
+| Image-local Python test surface | `python_test_surface_available` | `py_test_stage_commit_closed` |
+| Fresh readiness | `py_test_execution_ready` | `py_test_stage_commit_closed` |
+| Candidate | `fresh_unconsumed_valid` | `py_test_stage_commit_closed` |
+| Future resources | `absent_not_created_nonrunning` | `py_test_stage_commit_cleanup_closed` |
+| Containment | `diagnostic_not_started` | `py_test_stage_commit_hardening_closed` |
+| Final receipt | `single_exact_unexpired` | `py_test_stage_commit_receipt_closed` |
+| Consumption | `unused` | `py_test_stage_commit_replay_closed` |
+
+The sequence may receive only scalar classes. It cannot receive or retain an identity value, time, source, Python interpreter/test name/count/output, command, package/provider/registry, image/container reference, target, configuration, credential, log, transcript, process, model/data, or database fact. It cannot change the declared stage or add formatting, type-check, TypeScript-test, protected-import, source-repair, or runtime work.
+
+### 146.2 Final receipt, immediate consumption, and expiry
+
+The private receipt contains only schema class, terminal state, one allowlisted decision, and `retry_allowed=false`. Permitted pre-stage projections are `py_test_stage_commit_ready`, `py_test_stage_commit_closed`, `py_test_stage_commit_hardening_closed`, `py_test_stage_commit_cleanup_closed`, `py_test_stage_commit_receipt_closed`, `py_test_stage_commit_expired`, and `py_test_stage_commit_replay_closed`. `py_test_stage_commit_ready` exists only inside the finite sequence and is consumed immediately by one declared Python test-suite stage or expires and removes all private candidate, receipt, and decision state.
+
+An interruption, cancellation, drift, receipt uncertainty, or failure to begin the stage immediately closes the candidate with no retry, refresh, alternate candidate/source/image/workspace/toolchain/target, recovery stage, or quality-chain continuation. After a stage begins, the only next public evidence may be its allowlisted scalar Python test-suite outcome and independent cleanup class.
+
+### 146.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a real candidate; contact the target; transfer or inspect source; build/pull/run an image/container; invoke Python tests; modify source or target state; create a workspace; access configuration, credentials, logs, or transcripts; start an Agent, service, or listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one compound one-shot Python test-suite execution that implements this exact sequence and §144 cleanup. It must emit only the allowed scalar stage outcome and independent cleanup class, then publish before any follow-on work.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
