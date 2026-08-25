@@ -4246,6 +4246,26 @@ The canonical input and closure class are non-enumerable and may not be stored, 
 
 No continuation of this source-quality chain is pre-authorized. Any future work must begin with an independently documented research question and boundary decision; it cannot reopen, retry, reinterpret, or extend the closed chain.
 
+## 153. Independent thesis research question — synthetic FedProx study-intent separation
+
+### 153.1 Selected question and research value
+
+The next independent research question is:
+
+> **Can a descriptor-only synthetic FedProx study-intent declaration make clear, before any trainer, data, model, metric, update, or aggregation action, that a proposed breast-cancer/FedProx research protocol is not an executed empirical result?**
+
+This question is intentionally narrower than model training or evaluation. Its value is methodological: the thesis record should distinguish a proposed synthetic research configuration from observed training behavior, data use, clinical evidence, or comparative performance. It is independent of the closed source-quality chain in §152 and neither changes nor relies on the terminal outcomes recorded there.
+
+### 153.2 Bounded first slice and non-goals
+
+The possible first slice is a **design-only synthetic study-intent contract**. It may later bind only abstract, allowlisted states such as a proposed-study classification, synthetic-only posture, trainer-not-started, data/model-not-accessed, metric-absent, update-not-created, submission-not-started, aggregation-disabled, and no-runtime-capability. No numerical hyperparameter, data identifier, patient fact, model architecture/weight, local path, source revision, command, identity, target, credential, provider, metric, result, or free-text diagnostic is admissible in the future scalar contract.
+
+> **Hard stop:** This selection does not create a study protocol, validation result, dataset/model/trainer, update, aggregation action, or runtime environment. It does not inspect or access source, target, data, model, transcript, configuration, credential, storage, container, service, listener, Core, identity, trainer, metrics, submission, aggregation, release, deployment, hospital system, or clinical material. It makes no scientific, privacy, medical, training-quality, or production-readiness claim.
+
+### 153.3 Success condition and successor rule
+
+The selection is successful only when the public record states the question, the synthetic-first constraint, explicit non-goals, and the separation from the closed source-quality chain. The next potential gate is a separate design record for the scalar synthetic FedProx study-intent contract. That design must not permit implementation, test execution, target activity, or any research-result claim.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
