@@ -4216,6 +4216,36 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 264 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32851972161` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
 
+## 152. Source-only evidence-chain terminal closure — design-only contract
+
+### 152.1 Purpose and exact scalar input boundary
+
+This record defines the only future source-only closure of the scalar evidence chain. Its research value is to make the end of the formatting/type-check/TypeScript-test/Python-test evidence handling path explicit and non-reopenable, rather than infer a pass from accumulated local contracts. Closure is a pure one-use in-memory classification; it must not retain, delete, publish, revise, or operationalize any evidence value.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Disposer receipt schema/state | `disposer_receipt_exact_closed` | `source_quality_chain_closed` |
+| Disposer conclusion | `source_quality_evidence_bundle_disposed` | `source_quality_chain_closed` |
+| Retry posture | `retry_allowed_false` | `source_quality_chain_closed` |
+| Disposer aggregate readout | `single_bundle_disposed_unreplayed` | `source_quality_chain_closed` |
+| Terminal Python posture | `terminal_python_closure_preserved` | `source_quality_chain_closed` |
+| Finalizer identity | `unused` | `source_quality_chain_identity_closed` |
+| Capability posture | `no_target_or_runtime_or_publication_or_storage_or_deletion_capability` | `source_quality_chain_capability_closed` |
+
+The finalizer receives no source/revision, stage code, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, timestamp, identity value, storage location, publication destination, deletion action, or free text. Input must be a frozen exact plain record. Unknown, inherited, mutable, missing, or sensitive-shaped input closes without inspection, reconstruction, retention, deletion, replacement, or chain continuation.
+
+### 152.2 Closure result, non-retention, and no reopening
+
+The one-use finalizer may emit only `source_quality_evidence_chain_closed`, `source_quality_chain_closed`, `source_quality_chain_identity_closed`, `source_quality_chain_capability_closed`, or `source_quality_chain_replay_closed`. A chain-closed class means only that the scalar evidence handling chain has ended while preserving the terminal Python closure. It does not mean a source-quality pass, whole-CI certification, stage diagnosis, retry right, release decision, deployment signal, runtime result, hospital integration, or scientific finding.
+
+The canonical input and closure class are non-enumerable and may not be stored, serialized, returned, forwarded, or used to seed another source-quality chain. Completion, interruption, malformed input, capability broadening, or a second invocation closes terminally with no retry, replacement, alternate finalizer, persistence, deletion operation, evidence reconstruction, or later continuation of this chain.
+
+### 152.3 Hard stop and successor rule
+
+> **Hard stop:** This is a design record only. It does not close a real evidence chain; inspect an evidence record, source, target, or transcript; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace, image/container, file, cache, database, network message, public record, storage object, or deletion action; access configuration, credentials, logs, or a database; start an Agent, service, listener, storage, or publication endpoint; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+No continuation of this source-quality chain is pre-authorized. Any future work must begin with an independently documented research question and boundary decision; it cannot reopen, retry, reinterpret, or extend the closed chain.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
