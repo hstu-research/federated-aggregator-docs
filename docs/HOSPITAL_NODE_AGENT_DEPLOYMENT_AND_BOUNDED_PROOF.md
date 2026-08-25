@@ -2773,6 +2773,24 @@ The local seed feasibility check found a Node 22 runtime class, Corepack, and a 
 
 No network package resolution, provider access, runtime/package download, Corepack activation, target connection, tool installation, source transfer, source build, container/Agent start, Core contact, proof, model/data use, trainer, update, submission, or aggregation action occurred. A future attempt would need a separate immutable acquisition-boundary decision for the exact pnpm class; this result does not authorize a download or substitution.
 
+## 104. Exact pnpm acquisition boundary — design only
+
+The exact package-manager acquisition boundary selects the official pnpm release provenance class for `pnpm@10.16.1`; it does **not** accept a mutable tag, an ambient package-manager version, an arbitrary mirror, a target-side installer, a script piped to a shell, or an unverified cache. Official pnpm guidance supports choosing a specific version and identifies Node 22 as compatible with pnpm v10.[15] Its supply-chain guidance further recommends locked dependencies and cautious handling of package trust.[16] npm provenance can provide a verifiable build/source link, but it is not a claim that a package is harmless; it remains an input to trust evaluation, not a substitute for the integrity gate.[17]
+
+| Boundary fact | Required future acquisition rule | Explicit rejection |
+|---|---|---|
+| Exact selector | Only `pnpm@10.16.1`; one version request; no tag/range/latest resolution. | Different version, substitute package manager, dynamic update, or retry with a changed selector. |
+| Provenance | Accept only the designated official pnpm provenance class plus an internally verified expected integrity class. | Unnamed source, alternate mirror, opaque cache, unverified redirect, or missing/ambiguous provenance. |
+| Acquisition method | One local-only, noninteractive retrieval into transient seed custody after all checks admit it. | Target-side download, installer execution, package activation, global install, configuration mutation, or provider credential. |
+| Verification | Verify exact version class, expected integrity class, finite size class, and read-only self-check before seed admission. | Executing content before verification, raw digest/source/body projection, or retaining an unverified candidate. |
+| Projection | Emit only `provenance_accepted`, `integrity_verified`, or one allowlisted closure class. | URL, registry, package metadata, signature body, cache location, script, logs, headers, or content. |
+
+### 104.1 Finite acquisition lifecycle
+
+The lifecycle is `acquisition_unprepared` → `provenance_accepted` → `integrity_verified` → `local_seed_admitted` → `terminal_closed`. A provenance mismatch, missing or changed integrity fact, expiry, redirect, unexpected content/size, self-check failure, storage uncertainty, or any target/runtime broadening reaches terminal `acquisition_closed`. Terminal closure rejects automatic retry, provenance substitution, cache fallback, activation, seed transfer, tool installation, source transfer/build, target contact, Agent start, Core contact, proof, data/model use, trainer, update, submission, and aggregation.
+
+This is a design-only review. No package resolution, network retrieval, Corepack activation, package verification, seed creation, target transfer, installation, source build, container/Agent start, Core contact, proof, training, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -2802,3 +2820,9 @@ No network package resolution, provider access, runtime/package download, Corepa
 [13] [GitHub Docs: Introduction to GitHub Packages](https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages)
 
 [14] [GitHub Docs: Configuring a package's access control and visibility](https://docs.github.com/en/packages/learn-github-packages/configuring-a-packages-access-control-and-visibility)
+
+[15] [pnpm: Installation and compatibility guidance](https://pnpm.io/installation)
+
+[16] [pnpm: Mitigating supply chain attacks](https://pnpm.io/supply-chain-security)
+
+[17] [npm Docs: Generating provenance statements](https://docs.npmjs.com/generating-provenance-statements/)
