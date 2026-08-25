@@ -3577,6 +3577,43 @@ The one isolated read-only execution-readiness review completed and emitted `for
 
 No source, receipt value, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No formatting command, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. The readiness class expires and does not authorize the diagnostic itself; a separate one-shot candidate-consumption decision remains required.
 
+## 135. Fresh format-stage candidate consumption and immediate expiry — design-only contract
+
+### 135.1 Freshness and consumption boundary
+
+This record defines the sole future decision that may convert a fresh private candidate from `unconsumed` to `consumed_once` for the hardened format-stage diagnostic. The earlier `format_execution_ready` observation is historical evidence and cannot be reused; a future consumption decision must bind a new opaque candidate to a newly observed, current execution-readiness receipt. The candidate is a harness-only correlation, never an Agent, user, workload, Core, source, image, container, target, credential, or runtime identity.
+
+| Required current class | Exact admissible state | Terminal closure on any other state |
+|---|---|---|
+| Source-quality, composition, and admission controls | `current_exact` | `format_candidate_consumption_closed` |
+| Fresh execution-readiness receipt | `format_execution_ready` | `format_candidate_consumption_closed` |
+| Start control | `format_start_authorized` | `format_candidate_consumption_closed` |
+| Candidate | `fresh_unconsumed_valid` | `format_candidate_consumption_closed` |
+| Future container/image/workspace | `absent_not_created_nonrunning` | `format_candidate_consumption_cleanup_closed` |
+| Diagnostic posture | `not_started` | `format_candidate_consumption_hardening_closed` |
+| Consumption decision | `unused` | `format_candidate_consumption_replay_closed` |
+
+The decision has no identity value, timestamp, source, command, package/provider/registry, image/container reference, target detail, configuration, credential, log, transcript, process fact, model/data, or database input. It cannot allocate a workspace, transfer source, build an image, create a container, invoke formatting, alter the declared stage, or broaden capability.
+
+### 135.2 Immediate expiry and terminal state machine
+
+The private lifecycle is `candidate_private` → `current_readiness_bound` → either `consumed_once` or `expired_unconsumed` → `closed`. Consumption is permitted only as the immediately preceding private transition to a separately recorded one-shot invocation. It is not a stage result and cannot be held, queued, renewed, refreshed, or used by another process. If the invocation does not begin immediately under the same candidate, the candidate and all private decision/receipt state expire and are removed.
+
+| Event | Scalar projection | Required closure |
+|---|---|---|
+| Exact current inputs and one unused candidate | `format_candidate_consumption_authorized` | Candidate remains private; next action must be the one-shot invocation or expiry. |
+| Candidate not immediately used | `format_candidate_consumption_expired` | Remove private state; no retry, refresh, or alternate candidate. |
+| Cancellation, predicate drift, or receipt uncertainty before consumption | `format_candidate_consumption_cancelled` or closure | Remove private state; prohibit all diagnostic resources. |
+| Any repeat, reuse, or reopened state | `format_candidate_consumption_replay_closed` | Terminal family closure; no fallback. |
+
+All decisions project `retry_allowed=false`. Any close removes the private candidate, decision, receipt, and transcript state without inspecting or creating source, package, image, container, workspace, configuration, credential, model/data, process, or target resource. A public record may report only the scalar outcome; it must not identify the candidate or disclose timing.
+
+### 135.3 Non-goals and next gate
+
+> **Hard stop:** This is a design record only. It does not create or consume a real candidate, revalidate or contact the target, transfer or inspect source, build/pull/run an image/container, invoke formatting, modify source or target state, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+The next gate is one isolated fresh candidate-binding and execution-readiness invocation that may emit only a new scalar readiness result or terminal closure. It must not consume the candidate or invoke the format stage; any later consumption and stage invocation remain separately recorded.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
