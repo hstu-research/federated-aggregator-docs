@@ -3404,6 +3404,46 @@ The future lifecycle is `fresh_identity_private` → `fresh_predicates_checked` 
 
 The next potential increment is a separate design-only one-use invocation decision that specifies when an admitted identity may be consumed and how pre-start cancellation or immediate expiry closes. It must remain distinct from the eventual target formatting diagnostic.
 
+## 130. One-use formatting-diagnostic invocation decision and pre-start cancellation — design-only contract
+
+### 130.1 Decision authority and immutable inputs
+
+This record governs the narrow decision that may consume a future `admitted_unconsumed` identity after a fresh §129 revalidation. The decision authority is the outer bounded-diagnostic harness policy only; it is not an Agent, target, human, browser, workload, ML-worker, callback, Core, package, image, source, credential, or runtime authority. Its purpose is to prevent the existence of an admitted identity from becoming an implicit execution right.
+
+| Required decision input | Required scalar class | Immediate closure on any other class |
+|---|---|---|
+| Identity revalidation receipt | `format_identity_revalidation_ready` | `format_invocation_closed` |
+| Identity lifecycle | `admitted_unconsumed` | `format_invocation_closed` |
+| Expiry class | `valid` | `format_invocation_expired` |
+| Target containment | `diagnostic_not_started` | `format_invocation_hardening_closed` |
+| Candidate residue | `candidate_resources_absent` | `format_invocation_cleanup_closed` |
+| Decision identity | `unused` | `format_invocation_closed` |
+| Decision scope | `one_declared_format_stage` | `format_invocation_closed` |
+
+The decision receives no identity value, timestamp, source, formatter command, diff, file, package/provider/registry fact, image/container reference, target detail, configuration, credential, model/data, transcript, process result, or runtime capability. It cannot select a different stage, expand the scope, prebuild an image, reserve a workspace, create a container, resolve a package, or access a target.
+
+### 130.2 Decision and cancellation state machine
+
+The lifecycle is `not_decided` → `authorized_unstarted` → either `consumed_once` or `cancelled_prestart` → `closed`. Authorization is a private scalar control state, not an invocation. The only public scalar readouts are `format_invocation_authorized`, `format_invocation_cancelled`, `format_invocation_closed`, `format_invocation_expired`, `format_invocation_hardening_closed`, `format_invocation_cleanup_closed`, and `format_invocation_replay_closed`; all report `retry_allowed=false`.
+
+| Event | Required outcome | Prohibited follow-on |
+|---|---|---|
+| Exact inputs and one unused decision | `format_invocation_authorized` with identity still unconsumed. | No target access or diagnostic start merely because authorization exists. |
+| Expiry before consumption | `format_invocation_expired`; remove private decision/identity state. | Renewal, refresh, reuse, alternate identity, or invocation. |
+| Explicit pre-start cancellation or any predicate drift | `format_invocation_cancelled` or allowlisted closure; remove private state. | Source transfer, image/container action, workspace creation, formatter invocation, or retry. |
+| Any attempted second decision, consumption, or state reopening | `format_invocation_replay_closed`. | Re-entry, next-stage selection, alternate resource, or fallback. |
+| Exactly one separate later invocation consumes authorization | `consumed_once` is retained privately until that invocation publishes closure. | A second invocation, later quality stage, or new authorization. |
+
+The cancellation path runs before **any** diagnostic side effect. It must remove the private decision and identity state without inspecting or creating source, package, image, container, workspace, configuration, credential, log, transcript, model/data, or process resource. A cancellation is a final diagnostic-family closure and requires a new published design decision before a different candidate could be considered.
+
+### 130.3 Observability, cleanup, and stop conditions
+
+The scalar decision receipt may retain only schema class, terminal state, allowlisted decision, and `retry_allowed=false`. It must be removed after cancellation, expiry, or future invocation closure. A public record may state only the scalar decision category and adjacent blocks; it may never identify the decision, identity, time, target, image/container, source, command, package/provider, configuration, credential, transcript, or data/model facts.
+
+> **Hard stop:** This record does not create, revalidate, authorize, or consume a real diagnostic identity; contact the target; transfer source; build/pull/run an image/container; invoke formatting; modify a source or target; create a workspace; read configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is a separate implementation-free target revalidation invocation plan. It may perform one read-only §129 revalidation only after explicitly binding a fresh candidate identity and this decision contract; it remains distinct from the later format-stage diagnostic.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
