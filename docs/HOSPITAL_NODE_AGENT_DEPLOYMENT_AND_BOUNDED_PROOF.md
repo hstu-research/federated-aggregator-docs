@@ -3506,6 +3506,43 @@ The private receipt may contain only schema class, terminal state, allowlisted d
 
 The next potential gate is a narrow one-shot format-stage invocation plan that specifies the exact hardened disposable execution, scalar stage-result parser, mandatory cleanup, and post-invocation closeout. It must be reviewed and published separately before any target invocation.
 
+## 133. Hardened one-shot format-stage diagnostic — design-only invocation contract
+
+### 133.1 Scope, immutable binding, and containment
+
+This record defines the one future **format-stage-only** diagnostic that may consume a current `format_start_authorized` control state. It binds one reviewed source-release class, the matching composition-context class, image-local package-manager availability, fresh revalidation, final start receipt, and one private one-use candidate. The stage is the repository-declared formatting stage only. It cannot select a formatter, alter a version/flag/ignore policy, run a later quality stage, repair source, or invoke any Agent/runtime/profile/service/listener/Core/identity/data/model/trainer/update/submission/aggregation behavior.
+
+| Future execution concern | Required design rule | Explicit prohibition |
+|---|---|---|
+| Source and image | Create a fresh private exact-source bundle and disposable image with the already bounded image-local package-manager pattern. | Source mutation, prior workspace/image reuse, target-host package state, persistent toolchain installation, package/provider/registry output. |
+| Runtime posture | Run once as an unprivileged, read-only, capability-dropped, resource-bounded disposable container with no runtime network, port, host network, mount, restart policy, or Docker socket. | Listener, service, host bind, public exposure, configuration/credential/model/data input, identity source, Core interaction. |
+| Stage scope | Invoke only the declared format stage and project one scalar result. | Import/type/test chain, retries, alternate formatter, source repair, quality/release/deployment claim. |
+| Observability | Parse one allowlisted scalar; discard private stage transcript before publication. | Source/diff/file/path/command/output, package/provider, target/configuration/credential, model/data, process/runtime detail. |
+| Cleanup | Remove private bundle/transcript/build transients, named container, disposable image, and local staging; observe only scalar absence/non-running classes. | Workspace content inspection, cleanup retry with alternate resources, retained diagnostic artifact. |
+
+### 133.2 One-shot stage result parser and terminal matrix
+
+The collector accepts exactly one internally generated stage-result token and a terminal exit classification. It must reject an absent, malformed, multiple, sensitive-shaped, unexpected, or capability-broadened result without retaining any raw output. A clean stage result is **not** a full CI result: it establishes only that this one isolated invocation of the declared formatting stage exited cleanly under the described container posture.
+
+| Future observed condition | Scalar projection | Required terminal action |
+|---|---|---|
+| One exact stage token and clean terminal classification | `format_stage_clean` | Stop; do not run a subsequent stage; begin cleanup. |
+| Declared stage unavailable or non-clean classification | `format_stage_closed` | Discard transcript; begin cleanup; no retry. |
+| Result parsing/receipt uncertainty | `format_stage_receipt_closed` | Discard private material; begin cleanup; no retry. |
+| Hardened runtime posture divergence | `format_stage_hardening_closed` | Do not accept stage outcome; begin cleanup; no fallback. |
+| Cleanup observation uncertainty | `format_stage_cleanup_closed` | Suppress all later work; do not recreate resources or retry. |
+| Any reuse or second invocation | `format_stage_replay_closed` | Terminal family closure; no alternate candidate. |
+
+No result may name an exit code, formatter package/version, changed file, source line, diff, command, path, raw output, image/container, target, configuration, credential, model/data, or transcript fact. The parser is a scalar boundary only; it cannot pass a source-quality, release, deployment, runtime, hospital, Core, identity, training, submission, aggregation, or scientific claim through its outcome.
+
+### 133.3 Mandatory post-invocation closure
+
+The future lifecycle is `start_control_consumed` → `fresh_bundle_sealed` → `disposable_image_built` → `one_stage_invoked` → `scalar_stage_projected` → `private_transients_removed` → `cleanup_classes_observed` → `terminal_closed`. Post-invocation cleanup must remove the private source bundle, private transcript, build transfer/transients, named container, disposable image, and local staging regardless of terminal stage outcome. It may observe only named-container absent, disposable-image absent, and private-workspace non-running/present classes. Any uncertainty closes the entire diagnostic family. There is no retry, retry-with-fix, source repair, package fallback, alternate image/workspace, target change, identity renewal, or later quality stage.
+
+> **Hard stop:** This is a design record only. It does not consume a start control, contact the target, transfer or inspect source, build/pull/run an image/container, invoke formatting, modify source or target state, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+The next gate is an isolated execution readiness review that must bind a freshly generated candidate to all current scalar prerequisites and this design; only then may the single target invocation be considered. Its outcome and cleanup must be published before any subsequent work.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
