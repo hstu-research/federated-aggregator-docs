@@ -3722,6 +3722,36 @@ After every stage or pre-stage closure, remove private source bundle, transcript
 
 The next potential gate is a separate one-use execution-readiness review for this type-check boundary. It must publish its scalar result before any type-check invocation is considered.
 
+## 139. Target type-check execution-readiness review — implementation contract
+
+### 139.1 Read-only purpose and exact predicates
+
+The first permitted successor to §138 is one read-only scalar execution-readiness review for a new private type-check candidate. It confirms only that the current source/control baseline and prospective container posture remain admissible; it does not create/consume a candidate, source bundle, workspace, image, container, or type-check process. It accepts no source, receipt value, error output, path, command, package/provider/registry, image/container reference, target configuration, credential, log, process, model/data, or database fact.
+
+| Required predicate | Exact admissible class | Terminal review closure |
+|---|---|---|
+| Reviewed source/type-check design | `current_exact` | `type_execution_readiness_closed` |
+| Image-local manager posture | `image_local_manager_available` | `type_execution_readiness_closed` |
+| Fresh private candidate | `fresh_unused_valid` | `type_execution_readiness_closed` |
+| Target container engine | `container_engine_available` | `type_execution_readiness_closed` |
+| Future container/image | `absent` | `type_execution_readiness_cleanup_closed` |
+| Future workspace | `not_created_nonrunning` | `type_execution_readiness_cleanup_closed` |
+| Target diagnostic posture | `not_started` | `type_execution_readiness_hardening_closed` |
+
+The review may emit only `type_execution_ready`, `type_execution_readiness_closed`, `type_execution_readiness_hardening_closed`, `type_execution_readiness_cleanup_closed`, or `type_execution_readiness_replay_closed`. A ready state is non-consuming and expires; it cannot authorize the type-check stage, a source transfer, or a resource allocation.
+
+### 139.2 Observation limits, retention, and closure
+
+The target observation may classify only container-engine availability, future named-container absence, future disposable-image absence, future workspace not-created/non-running, and diagnostic-not-started posture. It cannot enumerate or inspect unrelated resources; read source/package/toolchain/configuration/credential/log/process/port/listener/model/data/database facts; create a workspace/resource; mount a Docker socket; or change the host. The private candidate, any receipt/transcript state, and time/allocator facts are removed on every terminal result.
+
+> **Hard stop:** This contract does not create/revalidate/consume a real candidate; contact the target beyond the allowlisted scalar posture check; transfer or inspect source; build/pull/run an image/container; invoke a type check; modify source or target state; create a workspace; access configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+### 139.3 Actual outcome — scalar target type-check readiness
+
+The one read-only target type-check readiness review completed and emitted `type_execution_ready`. It confirmed only the documented current source/control, image-local-manager, candidate target posture, and diagnostic-not-started classes. No candidate was consumed, and no host or Docker resource was created, changed, configured, inspected beyond the allowlisted scalar posture classes, or retained.
+
+No source, receipt value, type-error output, package/provider/registry, image, path, command, configuration, credential, log, transcript, process, model/data, or database fact was read or published. No type-check invocation, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. The readiness class expires and does not authorize a type-check itself; a separate one-shot consumption decision remains required.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
