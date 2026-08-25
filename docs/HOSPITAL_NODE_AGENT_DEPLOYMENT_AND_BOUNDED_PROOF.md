@@ -3290,6 +3290,46 @@ Agent release `6f62662f771ff3f3311ea561108f52934f0c4a13` implements the versione
 
 Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **239 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32826769570` completed successfully. This is source-quality evidence only: no formatter invocation, source mutation beyond this reviewed implementation, image/container build, target access, configuration/credential action, Agent runtime/profile/service/listener, Core interaction, identity use, data/model access, trainer, update submission, aggregation, release, deployment, hospital integration, or scientific result occurred. A later target diagnostic remains a separate design, quality, and one-use evidence gate.
 
+## 127. One-use target formatting diagnostic and cleanup closure — design-only contract
+
+### 127.1 Boundary, authority, and immutable admission facts
+
+This record defines a future **single target formatting diagnostic**, not an execution. Its sole future purpose is to run the declared formatting stage once against a fresh exact-source disposable image after the source-only admission policy and composition context are independently current. The candidate target retains custody of its private workspace, container engine, and image lifecycle; the diagnostic collector owns only its one-use scalar decision. No human/browser/ML-worker/callback/Agent/Core identity may be used. The collector accepts no target configuration, credential, package/provider/registry, command string, source text, changed-file/diff, path, transcript, model/data, or runtime fact.
+
+| Required design section | Target diagnostic and cleanup decision |
+|---|---|
+| Nontechnical requirement | Produce one reviewable scalar formatting-stage outcome without broadening into a quality retry, host provision, source repair, or clinical workload. Acceptance requires terminal closure and cleanup confirmation, not a pass claim. |
+| Technical requirement | Bind one quality-gated source release class, one composition-context match class, one declared image-local manager class, one source-only admission-policy class, one unused diagnostic identity, and no-runtime controls. Any stale, missing, mismatched, mutable, or unsafe class closes before stage invocation. |
+| Data and retention | Hold private receipts/transcript only for the active diagnostic and delete them before publication. Project only one stage outcome and cleanup classes; never retain or project a source/output/diff/file/path/command/image/package/target/credential/model/data/transcript fact. |
+| Workflow | Seal local scalar admission → construct fresh image-local manager image → run exactly the declared stage once under hardened controls → classify one scalar outcome → remove private receipt/transcript/transients/container/image → independently check cleanup classes → terminally close. |
+| Architecture | The future host-side collector is a single-use outer diagnostic harness. The reviewed Agent policy remains source-only and supplies no command, target, identity, filesystem, transport, data/model, trainer, submission, or aggregation capability. |
+| Engineering standards | No runtime network, port, host network, privilege, restart policy, Docker socket, mount, target configuration/secret/data/model input, identity source, listener, service, Agent/profile, Core route, trainer, update, submission, or aggregation behavior. Use read-only, unprivileged, capability-dropped, resource-bounded execution and fixed scalar output parsing. |
+| API/readout | Emit exactly one of `format_stage_clean`, `format_stage_closed`, `format_diagnostic_hardening_closed`, `format_diagnostic_cleanup_closed`, or `format_diagnostic_receipt_closed`, followed by cleanup class. `format_stage_clean` means only that one declared formatting stage exited cleanly in this instance. |
+| Test/proof plan | Review the harness before any execution; test malformed/multiple/sensitive receipt, admission mismatch, hardened-control failure, stage closure, transcript disposal, container/image removal, non-running workspace, and replay suppression. A source-quality chain, release, deployment, runtime proof, or clinical claim remains separate. |
+| AI handoff | Do not invoke the target diagnostic in this design slice. A later execution requires a new immutable diagnostic identity, a preflight design record confirming the retained controls, one isolated run, an independently observed cleanup class, and publication before any follow-on work. |
+
+### 127.2 One-use stage and terminal-output matrix
+
+The only future stage is the repository-declared formatting stage. The harness cannot select an alternate formatter, change version or flags, bypass the declared ignore policy, invoke any later protected-import/compile/test stage, write a repair, accept a source delta, or retry. A normalizer admission class is a necessary control condition; it is not a formatting execution or a substitute for the target-stage receipt.
+
+| Future condition | Internal handling | Public scalar projection |
+|---|---|---|
+| Exact admission, hardening, and one declared stage exits cleanly | Stop immediately; do not run later stages. | `format_stage_clean` |
+| Declared stage is unavailable or exits nonzero | Stop immediately; discard private transcript. | `format_stage_closed` |
+| Missing/malformed/multiple/sensitive admission or receipt | Stop before or at receipt parsing; discard private material. | `format_diagnostic_receipt_closed` |
+| Any forbidden network/exposure/privilege/mount/runtime capability | Stop before stage or on hardened-control check. | `format_diagnostic_hardening_closed` |
+| Cleanup cannot be independently classified | Do not reopen, retry, or retain a diagnostic artifact. | `format_diagnostic_cleanup_closed` |
+
+No projected outcome may name a failed command, diff, file, source line, formatter/package version, package/provider/registry, image, path, target, configuration, credential, model/data, or transcript detail. `format_stage_clean` does not establish full CI, source quality, protected release, target-host provisioning, deployment, runtime proof, hospital integration, Core interaction, identity use, training, update submission, aggregation, or scientific performance.
+
+### 127.3 Cleanup, rollback, and stop conditions
+
+Cleanup is a terminal part of the future diagnostic rather than a best-effort postscript. After every pre-stage closure, stage outcome, interruption, or parser uncertainty, the harness must remove private receipt/transcript records, transfer/build transients, the named container, and the disposable image. It must then observe only three scalar closure facts: named-container absent, disposable-image absent, and private-workspace non-running/present. The workspace remains non-running rather than being inspected for contents. Local staging must be removed. Any uncertain cleanup class suppresses all later work; no alternate image, workspace, source bundle, toolchain, identity, target, or rerun is permitted.
+
+> **Hard stop:** This record does not connect to the target, create a workspace, transfer source, build or run an image/container, invoke formatting, mutate source, read configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, read data/model material, train, submit, aggregate, release, deploy, or prove any runtime behavior.
+
+The next gate is a separate pre-execution review that binds the fresh target diagnostic identity and confirms the source-quality, composition-context, source-only admission, and hardened-cleanup predicates are current. Only after that review may one isolated target diagnostic be considered; it must publish its actual scalar result and cleanup closure before any further work.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
