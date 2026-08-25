@@ -3444,6 +3444,34 @@ The scalar decision receipt may retain only schema class, terminal state, allowl
 
 The next potential gate is a separate implementation-free target revalidation invocation plan. It may perform one read-only §129 revalidation only after explicitly binding a fresh candidate identity and this decision contract; it remains distinct from the later format-stage diagnostic.
 
+## 131. Read-only fresh target-revalidation invocation — design-only plan
+
+### 131.1 Invocation scope and scalar-safe control flow
+
+This plan defines the **one future read-only execution** of the §129 revalidation, not the later formatting diagnostic. It may begin only when a private §130 decision is `authorized_unstarted`, the identity is fresh and valid, and every source-side scalar prerequisite remains current. The invocation uses one opaque candidate identity and one finite target control session; it emits no identity, time, source, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, or runtime fact.
+
+| Invocation step | Permitted internal action | Scalar output or terminal closure |
+|---|---|---|
+| Private candidate binding | Associate one newly generated opaque identity with the authorized decision. | No public identity projection. |
+| Source-side recheck | Confirm the published source-quality, composition-context, and source-only-policy classes. | `format_revalidation_closed` on any stale/missing/mismatched class. |
+| Target scalar recheck | Read only container-engine availability, candidate-resource absence, workspace not-created/non-running, and diagnostic-not-started posture classes. | `format_revalidation_ready` or allowlisted closure. |
+| Private receipt | Freeze one schema/state/decision/retry-disabled receipt. | `format_revalidation_ready`, `format_revalidation_closed`, `format_revalidation_hardening_closed`, `format_revalidation_cleanup_closed`, `format_revalidation_expired`, or `format_revalidation_replay_closed`. |
+| Expiry/closure | Consume the receipt only in the next separately recorded decision or remove it on expiry/closure. | No reuse, refresh, alternate candidate, or target diagnostic. |
+
+### 131.2 Exact target observation and containment boundary
+
+The target session may only perform read-only scalar classification of the four allowed posture categories. It must not enumerate directories, inspect source or package metadata, build/pull/inspect an image, create/start/inspect a container beyond exact candidate-resource absence, create a workspace, query ports/listeners/process arguments, read environment/configuration/secrets/logs/transcripts, access model/data/database content, or mutate the host. It must use no mount, no Docker socket in a runtime container, no published port, no host network, no privileged mode, no restart policy, no Agent/profile/service/listener, no Core route, no identity source, no trainer, no update/submission, and no aggregation behavior.
+
+Any connection, parsing, multiple-result, unknown-result, sensitive-shaped result, predicate drift, capability expansion, private-receipt uncertainty, or cleanup uncertainty closes terminally. The read-only session cannot retry. A failure does not authorize another candidate identity, another target session, a changed source/image/workspace/toolchain, a fallback identity, or the formatting diagnostic.
+
+### 131.3 Receipt, expiry, and post-invocation closure
+
+The future receipt retains only a version class, terminal state, one allowlisted decision, and `retry_allowed=false`. `format_revalidation_ready` means only that this one fresh scalar recheck found the limited predicates exact when observed; it does not consume the decision, start a diagnostic, create a resource, or establish quality/release/deployment/runtime/hospital/Core/identity/data/model/training/submission/aggregation/scientific evidence. The ready receipt is short-lived, private, and must be removed if not immediately consumed by a later separately recorded diagnostic-start decision.
+
+> **Hard stop:** This design record does not bind an identity, contact or revalidate the target, create a workspace, transfer source, build/pull/run an image/container, invoke formatting, modify source or target state, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+The next gate is an independent diagnostic-start decision that can consume only a current `format_revalidation_ready` receipt. It must define pre-start cancellation and terminal cleanup again in the actual candidate context; the declared formatting stage remains a separate future invocation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
