@@ -2655,6 +2655,20 @@ The required source-interface review closed the proposed execution gate before c
 
 The result is `execution_binding_unavailable`, a design-and-source-review blocker rather than a quality, deployment, or runtime failure. No Agent source file changed; no test, trainer, dataset, model, update, request, transport, identity, Core, runtime, protected composition, target, proof, submission, or aggregation action occurred. The remaining direct path is not another symbolic validator: it remains the separately blocked package/identity, target-bound release, protected composition, and fresh Core-control evidence required before any future one-shot synthetic proof can be reconsidered.
 
+## 98. Direct-path reconciliation — no remaining authorized internal increment
+
+The current direct path was reconciled against the chronological dossier and active roadmap. The protected-composition readiness review already defines the five independent packets (§81); the one-shot proof design already fixes its admission, lifecycle, redaction, and cleanup limits (§82); and the FedProx evidence design already separates synthetic mathematical claims from deployment and runtime (§83). The subsequent manifest, arithmetic, epoch, metric, update-envelope, and submission-admission records provide source-quality controls only (§84–95). The proposed next symbolic execution gate was then stopped because it lacks an authorized immutable cross-validator binding (§97).
+
+| Required proof packet | Current recorded state | What remains before it can be considered current |
+|---|---|---|
+| Source quality | Agent revision `44bd982` passed its recorded local and remote quality evidence. | A future proof candidate must independently bind the exact approved source/release facts. |
+| Protected package/identity authorization | Blocked by the previously closed authorization route; no retry is authorized. | A separately authorized, least-privilege identity/governance record. |
+| Target-bound release | Not evidenced. | An immutable candidate-to-declared-target association after the authorization packet is current. |
+| Protected composition/configuration | Source design exists; target-bound deployment review is not evidenced. | An approved protected-composition review and target-bound configuration evidence. |
+| Immediate Core-control preflight | No fresh observation exists for a future invocation. | A new authoritative, aggregate-safe readiness/control observation immediately before any proof decision. |
+
+There is therefore no remaining authorized internal source, test, or documentation increment that advances runtime proof without either duplicating an existing design, creating another isolated symbolic control, or attempting an external boundary. The project will not retry credentials, access a package or target, inspect/bind configuration, start an Agent, contact Core, or invoke proof autonomously. The next action is externally gated: a future separately authorized evidence record must first close the protected package/identity, target-release, protected-composition, and fresh Core-control prerequisites. Until then, no training, update submission, or aggregation action is available.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
