@@ -4132,6 +4132,14 @@ The canonical input is private and non-enumerable; it may not be stored, seriali
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
 
+### 149.4 Actual outcome — source-only scalar partial-readout publication projector and quality evidence
+
+Agent release `cba8b2e` implements the §149 source-only scalar partial-readout publication projector, frozen input/receipt/readout contracts, exact consumer-receipt/readout/terminal-Python/no-retry/identity/capability validation, terminal replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. It may emit only `source_quality_partial_publication_projected` or an allowlisted terminal closure. The projected scalar is deliberately **not** a public write and is not a stage result, score, pass, certification, release decision, deployment signal, or operational authorization.
+
+The implementation operates on deterministic in-memory classes only. It does not project or publish an external record; inspect a source/target/transcript; invoke formatting/type-check/TypeScript/Python/protected-import tests; create a workspace/image/container; access a configuration/credential/log/database; start a service/listener/publication endpoint; contact Core; use an identity; access data/model material; train; submit; or aggregate. Every malformed, mutable, inherited, missing, unknown, receipt/readout/terminal-Python mismatch, identity/capability deviation, or replay closes without replacement.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 254 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32844017282` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
