@@ -3783,6 +3783,14 @@ An interruption, cancellation, drift, receipt uncertainty, or failure to begin t
 
 The next potential gate is one compound one-shot type-check execution that implements this exact sequence and §138 cleanup. It must emit only the allowed scalar stage outcome and independent cleanup class, then publish before any follow-on work.
 
+### 140.4 Actual outcome — one hardened target type-check clean with cleanup confirmed
+
+The single compound one-shot diagnostic completed and emitted `type_stage_clean`, followed by the independent scalar cleanup result `type_stage_cleanup_confirmed`. The declared type-check stage ran once in the disposable image-local package-manager context under the documented unprivileged, read-only, no-network, capability-dropped, resource-bounded container posture. The private candidate was consumed only for that one stage and then terminally closed.
+
+Private source bundle, type-check transcript, build/transient material, named container, disposable image, and local orchestration artifact were removed. The independent closure observed only the allowed aggregate cleanup classes. No raw source, type-error output, filename, path, command, package/provider/registry, image/container identifier, target/configuration/credential, log, process, model/data, or database fact was retained or published.
+
+This proves only that the declared type-check stage exited cleanly in this one hardened target diagnostic with cleanup confirmed. It does **not** establish full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance. The one-shot candidate is closed; no retry or adjacent quality stage is authorized from this result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
