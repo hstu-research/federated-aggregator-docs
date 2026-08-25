@@ -3015,6 +3015,34 @@ One bounded scalar readiness check reached the candidate target. It observed Doc
 
 The terminal result is `target_bootstrap_readiness_closed`. No source was copied; no workspace, image, container, toolchain, dependency, file, service, profile, listener, Core call, identity/credential action, data/model access, trainer, update, submission, or aggregation action occurred. The target is therefore unchanged by this increment. A future bootstrap requires a new, narrow readiness record that can establish isolation without broad target inspection; it must not silently reuse this closed result.
 
+## 117. One-use Docker-isolated source-quality build — implementation contract
+
+The prior host-readiness closure remains final for its instance. The current owner-authorized increment creates a **new** construction boundary: one disposable Docker build container that can compile and test the exact reviewed Agent revision without constructing a Hospital Node runtime. It does not treat host listener or process observations as project state, and it does not inspect, stop, alter, or rely on them. Its limited purpose is target compatibility and repository source-quality evidence.
+
+| Contract element | Fixed decision | Closure / non-goal |
+|---|---|---|
+| Source input | One exact reviewed source revision, copied through an integrity-checked one-way bundle into an empty private target workspace. | Close on revision/integrity mismatch; never alter the source repository or push from target. |
+| Build environment | A disposable Node 22 container with the declared `pnpm@10.16.1` class, no published port, restart policy, host network, privileged mode, Docker socket, target configuration, secret, data/model, or host-root mount. | Close on unavailable/changed toolchain class or any disallowed container setting. |
+| Dependency custody | Package installation is limited to the build container and the declared lockfile before the quality command; no global target package installation or long-lived package process. | No package registry/provider, locator, body, cache, or log projection. |
+| Executable scope | Only the repository's declared `pnpm run ci` quality chain may run. | No Agent status/proof/runtime command, Compose profile, service, listener, Core request, identity/token resolution, trainer, update/submission, or aggregation. |
+| Closure | The container exits, is removed, and leaves no published port or running container. The workspace remains non-running. | Close on quality failure, non-zero teardown, unexpected container capability, or cleanup uncertainty; no automatic retry. |
+
+### 117.1 Sequence, evidence, and retained limits
+
+The source operator first validates the exact source revision and creates an integrity-checked private bundle. The target receives this one bundle into a newly created private workspace. The isolated builder then resolves only the declared Node/package-manager/dependency classes, executes `pnpm run ci`, and removes itself regardless of outcome. A final aggregate check may record only exact revision class, Node/package-manager compatibility class, pass/fail and observed test-count class, no-published-port/no-running-container class, workspace non-running class, and terminal cleanup class.
+
+This is **source-quality evidence on the candidate target only**. It is not a release, deployment, runtime proof, hospital integration, model/data access, training, update-submission, aggregation, or scientific result. It cannot discharge the independent unavailable-provenance, release-authority, protected-composition, or Core-control records. No raw source, package/registry detail, target address, path, target configuration, secret, credential, log, body, patient fact, model/data, or command output may enter the public record.
+
+> **Hard stop:** Any request to publish a port, keep a container, bind the Docker socket, mount a target configuration/secret/data/model location, use host networking/privileged mode, invoke Agent runtime/proof/Compose, contact Core, resolve identity, access a trainer, create an update, submit, or aggregate closes this build instance before that action.
+
+### 117.2 Actual outcome — isolated image built; one quality invocation closed without a pass claim
+
+The exact reviewed source revision was transferred to one new private target workspace through the documented integrity check. A disposable Node 22 / declared package-manager image was built successfully. One container invocation then ran the declared quality command under the documented no-network, no-port, non-privileged, read-only, capability-dropped, unprivileged, resource-bounded configuration. Its scalar terminal result was `isolated_quality_closed`, not a pass claim.
+
+The private quality transcript was intentionally removed during deterministic cleanup before an exact pass/fail/test-count classification could be safely recorded. It is therefore not permissible to infer a quality success, partial success, or source-quality evidence from the image-build result. The one-use contract prohibits a retry. The post-run scalar cleanup check observed an absent named container, absent disposable image, and a retained non-running private source workspace. No listener, service, Agent runtime/profile, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred.
+
+The terminal result is `isolated_quality_outcome_unclassified_closed`. A later quality attempt must be separately documented with a safe deterministic pass/fail/test-count receipt captured before private-log disposal; it must not reuse this closed instance as evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
