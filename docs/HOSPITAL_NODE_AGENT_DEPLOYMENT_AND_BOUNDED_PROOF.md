@@ -2491,6 +2491,34 @@ The pre-arithmetic admission contract is now implemented at Agent revision `7fee
 
 The new coverage proves exact admission; manifest/proximal-term/epoch/nonfinite/shape/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid first input; independent admission isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only an arithmetic-eligibility boundary. It does not calculate an objective, execute an epoch, access data, create a model/weight/gradient, invoke a trainer or Agent, submit an update, or aggregate.
 
+## 88. Source-only synthetic FedProx local-epoch state-machine contract
+
+The next boundary models the **control sequence** of a future bounded local-epoch operation without performing any epoch computation. It is a pure TypeScript state machine that accepts one exact frozen admitted class, `synthetic_arithmetic_admitted`, plus an opaque two-symbolic-epoch declaration and retained controls. The two symbolic positions are deliberately identifiers of control progression only; they are not integer loop values and do not represent data batches, loss calculations, parameters, gradients, optimizer steps, model state, or Python trainer work.
+
+| Phase | Allowed next action | Resulting scalar class | Prohibited behavior |
+|---|---|---|---|
+| `not_started` | `start` | `epoch_one_open` | No trainer, data load, calculation, or external connection. |
+| `epoch_one_open` | `advance` or `interrupt` | `epoch_two_open` or `terminal_interrupted` | No batch, parameter, gradient, model, or metric projection. |
+| `epoch_two_open` | `advance` or `interrupt` | `terminal_sequence_complete` or `terminal_interrupted` | No implicit third epoch, retry, or update construction. |
+| Terminal symbolic sequence | `cleanup` once | `closed_clean` or `closed_cleanup_failed` | No reuse, resume, trainer invocation, submission, or aggregation. |
+| Closed | None | `replay_suppressed` for every later call | No replacement envelope or automatic recovery. |
+
+The frozen initialization envelope must contain only the version, `synthetic_arithmetic_admitted`, `two_symbolic_epochs`, `trainer_not_invoked`, `submission_not_invoked`, and `aggregation_disabled` classes. Any missing, malformed, mutable, inherited, unknown, non-admitted, broadened, or retained-control-invalid envelope closes before the first symbolic phase. A transition receipt and aggregate readout may expose only a state/code/count class. A private marker must be nonenumerable and serialize as an empty record; it must not retain or project the envelope, phase material, parameters, data, model, or capability.
+
+The source file may import no Python runtime, trainer, data/dataset/model/weight/gradient/optimizer library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module. Tests must cover normal symbolic sequence, non-admission, malformed state, count mismatch, invalid transition, interruption, cleanup failure, replay, independent machines, frozen/redacted receipts, marker nonenumerability, and import isolation. Passing tests prove only finite control ordering and terminal closure—not a local epoch, a FedProx objective, training, metrics, update submission, or aggregation.
+
+## 89. Source-only synthetic FedProx local-epoch state machine — quality result
+
+The finite symbolic state machine is now implemented at Agent revision `e755da5`. It accepts one exact frozen arithmetic-admitted envelope, opens only the declared first symbolic position, permits one symbolic advance, closes terminal completion or interruption, requires one cleanup outcome, and suppresses every subsequent replay. It performs no loop, calculation, data load, parameter/gradient/model operation, trainer invocation, or external action. The canonical marker is nonenumerable and serializes to no envelope facts; receipts and readouts are frozen and scalar-only.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and state-machine test | Six deterministic state-machine checks passed locally. | Symbolic control ordering only; not an epoch loop, objective, or trainer. |
+| Full Agent local quality chain | 215 TypeScript tests and 4 Python tests passed. | Source quality only; no data, parameters, gradients, model, Agent, update, or aggregation path ran. |
+| Remote Agent Quality Gates | Run `32801527624` completed successfully for revision `e755da5`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves normal two-symbolic-position closure; arithmetic/declaration/control/malformed/mutable/inherited/unknown initialization closure; invalid transition closure; interruption and cleanup-failure closure; terminal replay suppression; independent machine isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only finite control sequencing and cleanup. It does not execute a local epoch, compute a FedProx objective, access data, create a model/weight/gradient, invoke a trainer or Agent, submit an update, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
