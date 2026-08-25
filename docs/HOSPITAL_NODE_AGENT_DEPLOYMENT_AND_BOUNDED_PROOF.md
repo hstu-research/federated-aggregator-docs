@@ -4307,6 +4307,36 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 269 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32853759899` passed for the release. This is **source-quality evidence only**. It does not establish a study execution, training result, data/model use, metric result, update/submission/aggregation behavior, clinical evidence, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, privacy outcome, or scientific performance.
 
+## 155. Source-only synthetic study-intent consumption — design-only contract
+
+### 155.1 Purpose and exact scalar input boundary
+
+This record defines the only future source-only consumer for the §154 validator’s frozen receipt and aggregate readout. Its research value is a narrow, lossless handoff of the statement that a synthetic FedProx study is **proposed and unexecuted**. Consumption cannot turn a proposal into a protocol execution, trainer authorization, data/model access decision, metric plan, update/submission/aggregation action, or research finding.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Validator receipt schema/state | `study_intent_receipt_exact_closed` | `synthetic_fedprox_study_consumption_closed` |
+| Validator conclusion | `synthetic_fedprox_study_intent_admitted` | `synthetic_fedprox_study_consumption_closed` |
+| Retry posture | `retry_allowed_false` | `synthetic_fedprox_study_consumption_closed` |
+| Validator aggregate readout | `single_proposed_unreplayed` | `synthetic_fedprox_study_consumption_closed` |
+| Non-execution posture | `proposed_study_nonexecution_preserved` | `synthetic_fedprox_study_consumption_closed` |
+| Consumer identity | `unused` | `synthetic_fedprox_study_consumption_identity_closed` |
+| Capability posture | `no_study_or_target_or_runtime_capability` | `synthetic_fedprox_study_consumption_capability_closed` |
+
+The consumer receives no study plan, numeric hyperparameter, client/hospital identifier, dataset/model identifier, architecture/weight, local path, source revision, command, metric, result, diagnosis, patient fact, identity, target, credential, provider, timestamp, storage locator, update package, or free text. The validator’s receipt/readout must be frozen exact plain records with no unknown or inherited fields. A closed value is terminal context, not a request to reconstruct a study or seek a replacement intent.
+
+### 155.2 Consumption result, non-retention, and terminality
+
+The one-use consumer may emit only `synthetic_fedprox_study_intent_consumed`, `synthetic_fedprox_study_consumption_closed`, `synthetic_fedprox_study_consumption_identity_closed`, `synthetic_fedprox_study_consumption_capability_closed`, or `synthetic_fedprox_study_consumption_replay_closed`. A consumed class means only that a frozen proposed-study/non-execution declaration was consumed once while retaining no authority to begin or evaluate a study. It is not a study protocol, schedule, experiment record, score, pass, empirical result, clinical statement, or operational authorization.
+
+The canonical input may not be serialized, enumerated, persisted, returned, or forwarded. The public scalar receipt contains only schema class, terminal state, allowlisted code, and `retry_allowed=false`. Replays, malformed/mutable/unknown input, interruption, or any capability broadening close terminally without retry, replacement, rehydration, alternate validator, target interaction, or later study-chain continuation.
+
+### 155.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not consume a real study intent; inspect a source, target, transcript, study plan, data, model, or metric; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace, image/container, file, cache, database, network message, public record, service, listener, storage, or deployment; access configuration, credentials, logs, identity, Core, hospital, or clinical material; start a trainer; create an update; submit; aggregate; release; or prove runtime behavior.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other study-intent, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
