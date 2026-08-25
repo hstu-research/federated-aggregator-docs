@@ -3219,6 +3219,29 @@ The fresh exact-source workspace and disposable remediation image completed. Its
 
 The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local remediation staging was removed. The target host remains unmodified. No Agent runtime/profile, listener/service, Core call, identity action, data/model access, trainer, update, submission, aggregation, source-quality pass, composition equality, release, deployment, runtime proof, hospital integration, or scientific result occurred. A subsequent fresh collector gate may use this image-local accessibility design only after its own contract is recorded.
 
+## 125. Remediated redacted composition receipt — implementation contract
+
+The `package_manager_accessible` result permits one fresh composition receipt that uses the same **image-local**, scripts-disabled exact package-manager design. It is a new diagnostic identity and does not reuse the earlier closed receipt. The comparison binds the exact reviewed source revision to a sealed local scalar receipt and a fresh target receipt generated from the same exact source in the disposable image. It compares only internal scalar categories and projects exactly one state: `composition_matches`, `composition_differs`, `composition_receipt_closed`, or `composition_hardening_closed`.
+
+| Element | Permitted scope | Excluded facts and activity |
+|---|---|---|
+| Local receipt | Revision class, source-tree aggregate-digest equality class, ignore-policy equality class, Node/package-manager compatibility classes. | Raw count/digest, filename/path, source text, source mutation, package/provider/registry, or persistent receipt. |
+| Target receipt | Same scalar schema from an exact-source disposable image with image-local package-manager accessibility. | Host package state, previous seed, source/runtime install, configuration/credential, raw output, model/data, or target identity. |
+| Comparison | Internal equality test of the schema fields; one allowlisted outcome only. | Dimension-level public readout, formatting/quality command, Agent/profile/service/listener, Core/identity route, trainer, update/submission, or aggregation. |
+| Containment | No network at runtime; no port, host network, privilege, restart, Docker socket, mount, or retained container/image/transient. | Release, deployment, runtime proof, hospital integration, or scientific claim. |
+
+### 125.1 Lifecycle and terminal closure
+
+The lifecycle is `remediated_receipt_sealed` → `local_scalar_receipt_created` → `image_local_manager_built` → `target_scalar_receipt_created` → `comparison_projected` → `hardened_cleanup_closed`. It terminally closes on wrong revision, malformed/multiple/sensitive receipt, absent or mismatched image-local package-manager, unavailable digest/projection, unexpected runtime capability, or cleanup uncertainty. Every closure removes local staging, target transfer/build transients, container, and image; the private workspace stays non-running.
+
+> **Proof limit:** A matching receipt is diagnostic context only. It cannot prove formatting, source quality, target-host provisioning, release, deployment, runtime, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
+
+### 125.2 Actual outcome — remediated composition receipts match
+
+The sealed local receipt, fresh exact-source workspace, and disposable image-local package-manager composition image completed. The single hardened comparison emitted `composition_matches` after the repository-relative digest normalization. No raw receipt value, count, digest, filename, path, source text, package/provider/registry, target/configuration/credential, model/data, or transcript was retained or inspected.
+
+The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; all local comparison staging was removed. This establishes only that the designated scalar composition categories matched for this one disposable comparison. It does not establish formatting, source quality, target-host provisioning, release, deployment, runtime proof, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific evidence. Any next gate must be separately designed and bound to current prerequisites.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
