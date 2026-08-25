@@ -4022,6 +4022,40 @@ The diagnostic retained the documented unprivileged, read-only, no-network, capa
 
 This establishes only that the one declared Python test-suite diagnostic closed terminally in its hardened disposable context and that required cleanup was independently confirmed. It does **not** establish a Python test pass, full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, TypeScript-test results, training, update submission, aggregation, or scientific performance. No formatting, type-check, TypeScript-test, protected-import, repair, retry, alternate-image/workspace/toolchain, or runtime stage followed. Any future source-quality boundary requires a separately documented decision and cannot resume or reinterpret this closed candidate.
 
+## 147. Source-quality evidence synthesis and terminal-separation boundary — design-only contract
+
+### 147.1 Purpose, immutable inputs, and non-combinable limits
+
+This record defines a future documentation-level, scalar-only evidence synthesis boundary. Its research value is limited to preserving the chronology of separately closed stage-level observations without turning their coexistence into a whole-CI or source-quality pass claim. It may consider only already published scalar classes from the isolated formatting, type-check, TypeScript-test, and terminal Python-test records, together with their independently confirmed cleanup classes.
+
+| Evidence input class | Permitted use | Explicitly cannot establish |
+|---|---|---|
+| Formatting-stage scalar class | Preserve its distinct stage-only conclusion. | Full CI, broad source quality, or deployment evidence. |
+| Type-check-stage scalar class | Preserve its distinct stage-only conclusion. | Test execution, release eligibility, or runtime behavior. |
+| TypeScript-test-stage scalar class | Preserve its distinct stage-only conclusion. | Python-test result, full CI, or scientific performance. |
+| Python-test-stage scalar class | Preserve the terminal closure without inspection or repair. | A Python-test pass, diagnostic cause, or retry right. |
+| Independent cleanup classes | Preserve only confirmed removal posture. | Target provisioning, runtime cleanup, or a reusable candidate. |
+
+The synthesis accepts no candidate, source, source revision, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, or timing fact. It may not read a target, invoke a command, create a workspace, construct an image, run a test, amend a result, or search for a cause. The prior `py_test_stage_closed` class is immutable terminal context, not a defect to be diagnosed or retried.
+
+### 147.2 Scalar state model, projection, and terminal separation
+
+The future in-memory readout has one schema class, ordered stage categories, a terminality marker, and an allowlisted conclusion. It may project only the following values:
+
+| Input posture | Scalar synthesis projection | Mandatory interpretation |
+|---|---|---|
+| All expected published scalar classes are exact, and the Python stage is terminally closed | `source_quality_evidence_partial` | Preserve independent stage evidence and the Python closure; do not claim full CI or a pass. |
+| Any input is absent, mutable, unknown, multiple, or sensitive-shaped | `source_quality_evidence_closed` | Suppress synthesis; do not seek replacement evidence. |
+| Reuse or second synthesis attempt | `source_quality_evidence_replay_closed` | Terminal closure of that synthesis instance. |
+
+The scalar readout must state that stage-level evidence remains non-combinable for certification. It may not normalize a closed stage into an unavailable/passing/failing category, calculate a score, disclose a reason, order a retry, or create a release/deployment decision. The sole retained record is the allowlisted projection and `retry_allowed=false`; all private input handling is discarded after one terminal conclusion.
+
+### 147.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not synthesize a real record; create or inspect a candidate; contact the target; transfer or inspect source; build/pull/run an image/container; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; modify source or target state; create a workspace; access configuration, credentials, logs, or transcripts; start an Agent, service, or listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is a separate source-only scalar synthesis implementation or evidence-reading decision. It must preserve the Python-stage terminal closure and publish an actual scalar conclusion before any other source-quality, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
