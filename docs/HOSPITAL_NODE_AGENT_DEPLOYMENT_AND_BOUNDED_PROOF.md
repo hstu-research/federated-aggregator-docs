@@ -4064,6 +4064,36 @@ The implementation uses deterministic in-memory test values only. It neither rea
 
 Local CI passed formatting, protected import guards, strict TypeScript, 244 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32842579553` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
 
+## 148. Source-quality evidence-readout consumption — design-only contract
+
+### 148.1 Purpose and frozen scalar input boundary
+
+This record defines the only future source-only consumer for the §147 reader’s frozen receipt and aggregate readout. Its research value is a narrow, lossless handoff of the conclusion that evidence is partial and terminally bounded. It must not reopen, normalize, score, compare, or derive facts from stage-level evidence; it may consume only the reader’s frozen scalar receipt/readout classes and immediately reduce them to one scalar handoff result.
+
+| Required input class | Exact admissible state | Mandatory handling of deviation |
+|---|---|---|
+| Receipt schema/state | `reader_receipt_exact_closed` | `source_quality_readout_closed` |
+| Receipt conclusion | `source_quality_evidence_partial` | `source_quality_readout_closed` |
+| Retry posture | `retry_allowed_false` | `source_quality_readout_closed` |
+| Aggregate readout | `single_partial_unreplayed` | `source_quality_readout_closed` |
+| Terminal Python posture | `terminal_python_closure_preserved` | `source_quality_readout_closed` |
+| Consumer identity | `unused` | `source_quality_readout_identity_closed` |
+| Capability posture | `no_target_or_runtime_capability` | `source_quality_readout_capability_closed` |
+
+The consumer receives no stage code, source, revision, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, timestamp, or identity value. The reader’s receipt/readout must be frozen exact plain records with no unknown or inherited fields. A closed value is an end state, not a prompt to reconstruct an input or seek an alternate reader.
+
+### 148.2 State transition, projection, and retention
+
+The one-use consumer accepts only `source_quality_evidence_partial` with the exact supporting scalar classes above. It may emit only `source_quality_readout_partial_consumed`, `source_quality_readout_closed`, `source_quality_readout_identity_closed`, `source_quality_readout_capability_closed`, or `source_quality_readout_replay_closed`. `source_quality_readout_partial_consumed` means only that a frozen partial source-quality readout was consumed once while preserving the terminal Python closure; it is not a pass, score, certification, release decision, or operational authorization.
+
+The private canonical input may not be serialized, enumerated, persisted, or returned. The public receipt contains only schema class, terminal state, allowlisted code, and `retry_allowed=false`. Replays, malformed/mutable/unknown input, interruption, or any capability broadening close terminally without retry, replacement, rehydration, alternate reader, target interaction, or later quality-chain continuation.
+
+### 148.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not consume a real reader result; inspect a source, target, transcript, or historical record; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace or image/container; access configuration, credentials, logs, or a database; start an Agent, service, or listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish its actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
