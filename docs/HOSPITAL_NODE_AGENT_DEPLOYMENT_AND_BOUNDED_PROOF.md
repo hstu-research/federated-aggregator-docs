@@ -3832,6 +3832,36 @@ After every stage or pre-stage closure, remove private source bundle, test trans
 
 The next potential gate is a separate one-use execution-readiness review for this TypeScript test-suite boundary. It must publish its scalar result before any TypeScript test-suite invocation is considered.
 
+## 142. Target TypeScript test-suite execution-readiness review — implementation contract
+
+### 142.1 Read-only purpose and exact predicates
+
+The first permitted successor to §141 is one read-only scalar execution-readiness review for a new private TypeScript-test candidate. It confirms only that the current source/control baseline and prospective container posture remain admissible; it does not create/consume a candidate, source bundle, workspace, image, container, or test process. It accepts no source, receipt value, test name/count/output, path, command, package/provider/registry, image/container reference, target configuration, credential, log, process, model/data, or database fact.
+
+| Required predicate | Exact admissible class | Terminal review closure |
+|---|---|---|
+| Reviewed source/test design | `current_exact` | `ts_test_execution_readiness_closed` |
+| Image-local manager posture | `image_local_manager_available` | `ts_test_execution_readiness_closed` |
+| Fresh private candidate | `fresh_unused_valid` | `ts_test_execution_readiness_closed` |
+| Target container engine | `container_engine_available` | `ts_test_execution_readiness_closed` |
+| Future container/image | `absent` | `ts_test_execution_readiness_cleanup_closed` |
+| Future workspace | `not_created_nonrunning` | `ts_test_execution_readiness_cleanup_closed` |
+| Target diagnostic posture | `not_started` | `ts_test_execution_readiness_hardening_closed` |
+
+The review may emit only `ts_test_execution_ready`, `ts_test_execution_readiness_closed`, `ts_test_execution_readiness_hardening_closed`, `ts_test_execution_readiness_cleanup_closed`, or `ts_test_execution_readiness_replay_closed`. A ready state is non-consuming and expires; it cannot authorize the TypeScript test-suite stage, a source transfer, or a resource allocation.
+
+### 142.2 Observation limits, retention, and closure
+
+The target observation may classify only container-engine availability, future named-container absence, future disposable-image absence, future workspace not-created/non-running, and diagnostic-not-started posture. It cannot enumerate or inspect unrelated resources; read source/package/toolchain/configuration/credential/log/process/port/listener/model/data/database facts; create a workspace/resource; mount a Docker socket; or change the host. The private candidate, any receipt/transcript state, and time/allocator facts are removed on every terminal result.
+
+> **Hard stop:** This contract does not create/revalidate/consume a real candidate; contact the target beyond the allowlisted scalar posture check; transfer or inspect source; build/pull/run an image/container; invoke TypeScript tests; modify source or target state; create a workspace; access configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+### 142.3 Actual outcome — scalar target TypeScript test-suite readiness
+
+The one read-only target TypeScript test-suite readiness review completed and emitted `ts_test_execution_ready`. It confirmed only the documented current source/control, image-local-manager, candidate target posture, and diagnostic-not-started classes. No candidate was consumed, and no host or Docker resource was created, changed, configured, inspected beyond the allowlisted scalar posture classes, or retained.
+
+No source, receipt value, test name/count/output, package/provider/registry, image, path, command, configuration, credential, log, transcript, process, model/data, or database fact was read or published. No TypeScript test invocation, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. The readiness class expires and does not authorize tests itself; a separate one-shot consumption decision remains required.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
