@@ -4014,6 +4014,14 @@ An interruption, cancellation, drift, receipt uncertainty, or failure to begin t
 
 The next potential gate is one compound one-shot Python test-suite execution that implements this exact sequence and §144 cleanup. It must emit only the allowed scalar stage outcome and independent cleanup class, then publish before any follow-on work.
 
+### 146.4 Actual outcome — terminal Python test-suite diagnostic and independent cleanup
+
+The one compound diagnostic permitted by §§144 and 146 was consumed exactly once. Its only scalar stage result was `py_test_stage_closed`; the separately observed cleanup result was `py_test_stage_cleanup_confirmed`. The private candidate is terminally closed without a clean Python-test classification and cannot be reused or retried.
+
+The diagnostic retained the documented unprivileged, read-only, no-network, capability-dropped, and resource-bounded containment. Private source material, any test transcript, build/transient material, named container, disposable image, workspace, and local orchestration artifacts were removed before the independent cleanup observation. No source, Python interpreter/test output, count, name, path, command, package/provider/registry, image/container, target, configuration, credential, log, model/data, or database fact was retained or published.
+
+This establishes only that the one declared Python test-suite diagnostic closed terminally in its hardened disposable context and that required cleanup was independently confirmed. It does **not** establish a Python test pass, full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, TypeScript-test results, training, update submission, aggregation, or scientific performance. No formatting, type-check, TypeScript-test, protected-import, repair, retry, alternate-image/workspace/toolchain, or runtime stage followed. Any future source-quality boundary requires a separately documented decision and cannot resume or reinterpret this closed candidate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
