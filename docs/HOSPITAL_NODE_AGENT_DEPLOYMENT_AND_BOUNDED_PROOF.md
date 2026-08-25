@@ -2964,6 +2964,27 @@ The lifecycle is `unassigned` → `candidate_designated` → `evidence_reviewed`
 
 The current protocol remains `unassigned`. No authority has been appointed, no provenance exception or release intent has been authorized, and no target contact, release creation/binding, transfer, installation, source build, listener, service, Agent, container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
 
+## 115. Provenance-exception decision record and evidence matrix — design only
+
+The integrity-verified local seed has unavailable provenance. This decision record structures a future exception review without changing that state. It is not a waiver mechanism: an exception can exist only if a distinct authorized decision is recorded against one immutable seed and one already-defined release intent, with a bounded purpose, expiry, revocation path, independent evidence review, and all other packets current. The record stores scalar classes only and cannot carry a credential, target, source/package/seed locator, provider, configuration, path, log, body, clinical fact, model/data, or runtime capability.
+
+| Decision-record field class | Permitted values | Current class |
+|---|---|---|
+| Seed identity and integrity | Exact selector/integrity class; `verified` or closure. | `verified` |
+| Provenance class | `verified`, `unavailable`, or allowlisted closure. | `unavailable` |
+| Source quality / release identity | `verified` with one release-intent class, or closure. | Source quality verified; release identity design only. |
+| Protected composition | `current`, `closed`, or closure. | `closed` |
+| Fresh Core control | `current`, `absent`, or closure. | `absent` |
+| Authority / reviewer separation | `designated_independent`, `unassigned`, or closure. | `unassigned` |
+| Compensating-control set | Allowlisted private-workspace, no-listener, no-Agent, aggregation-disabled, scalar receipt, cleanup, and expiry classes. | `not_current` |
+| Decision and time bound | `recorded`, `denied`, `expired`, `revoked`, or closure. | `not_recorded` |
+
+### 115.1 Finite exception-review lifecycle
+
+The lifecycle is `unreviewed` → `packets_checked` → `compensating_controls_current` → `independently_reviewed` → `decision_recorded` → `expiry_or_revocation` → `terminal_closed`. It closes at `exception_record_closed` if provenance is absent without an independently authorized exception; integrity is unverified; authority/reviewer separation is missing; source, composition, or Core evidence is stale or absent; the purpose widens; the target/release changes; transfer or runtime activity appears; or a projected field contains sensitive operational material. A denial, expiry, revocation, or closure cannot reopen through retry, substitution, cache reuse, a second target, or a different release intent.
+
+The current matrix is insufficient for a decision: provenance is unavailable, no authority/reviewer is designated, protected composition is closed, Core control is absent, and no release identity has been activated. The result is `provenance_exception_decision_not_recordable`. No owner was appointed, no exception was authorized, no seed status changed, no release was created or bound, and no target contact, transfer, installation, source build, runtime, proof, data/model access, training, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
