@@ -4140,6 +4140,36 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 254 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32844017282` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
 
+## 150. Scalar evidence-bundle freeze — design-only contract
+
+### 150.1 Purpose and exact scalar input boundary
+
+This record defines the only future source-only freeze of a §149 projected partial-readout result. Its research value is to bind the final limited conclusion to a one-use, terminal scalar bundle class without treating that class as stored evidence, a public record, a release artifact, or an operational authorization. The freeze is a pure in-memory classification; it must not create a file, database record, cache entry, network message, public publication, or mutable bundle object.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Projector receipt schema/state | `projector_receipt_exact_closed` | `source_quality_bundle_closed` |
+| Projector conclusion | `source_quality_partial_publication_projected` | `source_quality_bundle_closed` |
+| Retry posture | `retry_allowed_false` | `source_quality_bundle_closed` |
+| Projector aggregate readout | `single_partial_projected_unreplayed` | `source_quality_bundle_closed` |
+| Terminal Python posture | `terminal_python_closure_preserved` | `source_quality_bundle_closed` |
+| Freezer identity | `unused` | `source_quality_bundle_identity_closed` |
+| Capability posture | `no_target_or_runtime_or_publication_or_storage_capability` | `source_quality_bundle_capability_closed` |
+
+The freezer receives no source/revision, stage code, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, timestamp, identity value, storage location, publication destination, or free text. Input must be a frozen exact plain record. Unknown, inherited, mutable, missing, or sensitive-shaped input closes without normalization, persistence, or replacement.
+
+### 150.2 Bundle projection, non-retention, and terminality
+
+The one-use freezer may emit only `source_quality_evidence_bundle_frozen`, `source_quality_bundle_closed`, `source_quality_bundle_identity_closed`, `source_quality_bundle_capability_closed`, or `source_quality_bundle_replay_closed`. A frozen bundle means only that the scalar reader-consumer-projector chain preserved a partial source-quality conclusion and the terminal Python closure in one non-retained class. It does not mean a complete evidence dossier, signed record, score, pass, certification, release decision, deployment signal, runtime result, or scientific finding.
+
+The canonical input and bundle class are non-enumerable and may not be stored, serialized, returned, or forwarded. The scalar receipt contains only schema class, terminal state, allowlisted result, and `retry_allowed=false`. Completion, interruption, malformed input, capability broadening, or a second invocation closes terminally with no retry, replacement, alternate projector, persistence, or later quality-chain continuation.
+
+### 150.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not freeze or store a real bundle; inspect an evidence record, source, target, or transcript; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace, image/container, file, cache, database, network message, or public record; access configuration, credentials, logs, or a database; start an Agent, service, listener, storage, or publication endpoint; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
