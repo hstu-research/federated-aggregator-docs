@@ -3284,6 +3284,12 @@ The future diagnostic lifecycle is `normalization_intent_sealed` → `scalar_adm
 
 The next bounded implementation, if undertaken, is a source-only scalar admission validator with deterministic fakes and import guards. It must be documented, quality-gated, and published before any separately designed target diagnostic. No target-facing step is authorized by `composition_matches` or by this record.
 
+### 126.4 Source-quality evidence — scalar formatting-normalization admission
+
+Agent release `6f62662f771ff3f3311ea561108f52934f0c4a13` implements the versioned source-only formatting-normalization admission validator, a deterministic injected command-surface fake, frozen scalar receipts/readouts, replay suppression, and an import-isolation gate. The policy admits only the exact frozen reviewed-revision, composition-context, image-local-manager, fixed-profile, no-runtime, unused-identity, and cleanup-confirmable classes. It denies malformed, inherited, mutable, unknown, missing, revision, composition, manager, profile, runtime, identity, and cleanup deviations before fake invocation. The fake maps only scalar normalized, closure, hardening-closure, or cleanup-closure classes; it cannot invoke a formatter or create any command, source, image, container, filesystem, target, or runtime capability.
+
+Local `pnpm run ci` passed formatting, all protected import guards, strict TypeScript, **239 TypeScript tests**, and **4 Python tests**. Hospital Node Quality Gates run `32826769570` completed successfully. This is source-quality evidence only: no formatter invocation, source mutation beyond this reviewed implementation, image/container build, target access, configuration/credential action, Agent runtime/profile/service/listener, Core interaction, identity use, data/model access, trainer, update submission, aggregation, release, deployment, hospital integration, or scientific result occurred. A later target diagnostic remains a separate design, quality, and one-use evidence gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
