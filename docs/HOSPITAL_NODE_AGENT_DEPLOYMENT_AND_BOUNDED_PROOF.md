@@ -3096,6 +3096,30 @@ The final instance used a fresh private source bundle, workspace, disposable ima
 
 The post-run scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace. The three bounded target-quality attempts are now exhausted. No further target diagnostic, build, or retry action is permitted without new user guidance. No source-quality pass, release, deployment, runtime proof, hospital integration, Core call, identity/credential action, data/model access, trainer, update submission, aggregation, or scientific result was created.
 
+## 120. Guided redacted stage-level quality diagnostic — implementation contract
+
+After the terminal third attempt, the owner directed the task to proceed. This new increment is not a fourth `pnpm run ci` attempt. It is one distinct, one-use diagnostic that executes the repository's declared quality **stages in order** and emits only the first closed stage class. It retains the same disposable container and no-runtime boundary, and it deletes all transcripts before publication. Its single purpose is to identify a remediation category—not a test, command, source file, package, environment, target, or infrastructure fact.
+
+| Ordered stage class | Internal command family | Public projection |
+|---|---|---|
+| Format | Repository formatting check. | `format_closed` or continue. |
+| Protected imports | The repository's complete protected-import check sequence. | `protected_import_closed` or continue. |
+| TypeScript compile | Strict TypeScript no-emit check. | `typescript_closed` or continue. |
+| TypeScript tests | Repository TypeScript test command. | `typescript_test_closed` or continue. |
+| Python tests | Repository Python test command. | `python_test_closed` or `all_declared_quality_stages_passed`. |
+
+### 120.1 One-use lifecycle and hard stops
+
+The guided diagnostic creates a fourth, fresh private source/workspace/image/container identity; validates the exact source transfer internally; executes exactly one stage at a time in the fixed order; stops immediately at the first non-zero result; emits only that allowlisted stage class; then removes the container, disposable image, private transcript, and transfer/build transients. If every stage exits zero, the only allowed positive readout is `all_declared_quality_stages_passed`. An absent/multiple/unknown/sensitive result closes as `stage_receipt_malformed`.
+
+The container remains no-network, no-port, non-privileged, read-only, unprivileged-user, capability-dropped, no-host-network, no-Docker-socket, and no-target-configuration/secret/data/model-mount. No Agent runtime/profile/service/listener, scheduler, Core route, identity source, trainer, update/submission, or aggregation path may run. The receipt never carries transcript text, stage command, test name, source/package/provider/target/configuration/credential/path/environment/model/data fact. The resulting category may guide a separate remediation design but cannot itself establish a source-quality pass, release, deployment, runtime proof, hospital integration, training, submission, aggregation, or scientific result.
+
+### 120.2 Actual outcome — `format_closed` in the guided stage diagnostic
+
+The guided diagnostic used a fresh private source bundle, workspace, disposable image, and hardened container identity. The exact source transfer and stage-diagnostic image build completed. The first declared stage emitted `format_closed`, so no later protected-import, compile, TypeScript-test, or Python-test stage ran. The result is an allowlisted remediation category only; it identifies neither a specific format difference nor a test, command, file, source line, path, package, provider, target, configuration, credential, environment, transcript, model, or data fact.
+
+The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace. No listener, service, Agent runtime/profile, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred. A later remediation must be separately designed around the `format_closed` category; this diagnostic instance is terminal and cannot be retried.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
