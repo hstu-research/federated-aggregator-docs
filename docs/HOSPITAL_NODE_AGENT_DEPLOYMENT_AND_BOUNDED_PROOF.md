@@ -4299,6 +4299,14 @@ The contract retains no canonical input, study plan, data/model fact, runtime st
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other study-intent, target, or runtime boundary is considered.
 
+### 154.4 Actual outcome — source-only synthetic FedProx study-intent validator and quality evidence
+
+Agent release `5e923fe` implements the §154 source-only scalar synthetic FedProx study-intent validator, frozen input/receipt/readout contracts, exact proposed-study and non-execution posture validation, terminal replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. It may emit only `synthetic_fedprox_study_intent_admitted` or an allowlisted terminal closure. An admitted result means only that a proposed synthetic study has been classified without execution; it is not a study protocol, trainer permission, data/model access decision, metric, update, submission, aggregation action, or empirical result.
+
+The implementation operates on deterministic in-memory classes only. It does not create a study; inspect a source/target/transcript; access a dataset/model/metric; invoke a test, trainer, update, submission, or aggregation action; create a workspace/image/container/file/cache/database/network message/public record; access a configuration/credential/log/database; start a service/listener/storage/publication endpoint; contact Core; use an identity; access hospital or clinical material; release; deploy; or prove runtime behavior. Every malformed, mutable, inherited, missing, unknown, execution-shaped, capability-broadened, or replayed input closes without replacement.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 269 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32853759899` passed for the release. This is **source-quality evidence only**. It does not establish a study execution, training result, data/model use, metric result, update/submission/aggregation behavior, clinical evidence, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, privacy outcome, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
