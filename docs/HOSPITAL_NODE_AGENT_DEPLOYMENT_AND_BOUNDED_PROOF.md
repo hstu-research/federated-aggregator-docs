@@ -2607,6 +2607,40 @@ The pure pre-transport validator is now implemented at Agent revision `44bd982`.
 
 The new coverage proves exact admission; envelope/route/identity/idempotency/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only symbolic pre-transport admission. It does not create an update, construct a request, resolve identity, contact Core, open a connection, submit, or aggregate.
 
+## 96. Design record — bounded source-only synthetic FedProx training-execution gate
+
+### 96.1 Research value, stakeholder boundary, and non-goals
+
+The next low-risk increment is a **symbolic execution-intent gate**, not a trainer or training loop. It tests whether the previously admitted, frozen synthetic submission intent can be bound once to a finite, scalar-safe execution lifecycle while keeping all clinical and protected-runtime capabilities unavailable. Its only measurable source-quality result is deterministic acceptance or terminal closure of an immutable symbolic intent. This adds an explicit bridge between the prior admission ladder and any future independently authorized bounded experiment, while preventing prior control facts from being mistaken for a training result.
+
+The gate must not invoke a trainer, resolve a workload identity, start an Agent, read data, labels, images, models, weights, gradients, artifacts, configuration, or environment values; open a socket, listener, or file; construct an update/request/payload; contact Core; submit; or enable aggregation. It has no hospital, patient, model-quality, clinical-validity, deployment, runtime-proof, update-submission, or aggregation claim.
+
+### 96.2 Technical contract, schema, and scalar-safe readout
+
+The single request is an exact frozen object with schema version `synthetic-fedprox-training-execution-gate/v1`; one prior private admission marker; the fixed `bounded_symbolic_execution_intent` class; a bounded two-position control class; and retained safety classes `trainer_not_invoked`, `data_not_accessed`, `model_not_accessed`, `update_not_created`, `submission_not_invoked`, and `aggregation_disabled`. The private marker binds only an already admitted symbolic submission result; no route, identity, idempotency token, payload, update, descriptor, model, artifact, data, or provider value is copied into the new public result.
+
+| Required gate fact | Sole allowed class | Terminal closure if absent, changed, or broadened |
+|---|---|---|
+| Prior admission binding | `synthetic_submission_admitted` | `admission_closed` |
+| Execution intent | `bounded_symbolic_execution_intent` | `intent_closed` |
+| Position bound | `two_symbolic_positions_only` | `bounds_closed` |
+| Trainer/data/model state | `trainer_not_invoked`, `data_not_accessed`, `model_not_accessed` | `state_closed` |
+| Update/submission/aggregation state | `update_not_created`, `submission_not_invoked`, `aggregation_disabled` | `state_closed` |
+
+The result is only a frozen scalar `execution_intent_admitted` receipt or a terminal closure code. Its public aggregate readout contains received, admitted, invalid, and replay-suppressed counts. A private canonical marker is nonenumerable and serializes to an empty record. It must not retain or expose data, labels, images, model/weight/gradient values, artifact facts, routes, identities, tokens, credentials, targets, requests, responses, headers, bodies, paths, diagnostics, or capabilities.
+
+### 96.3 Workflow, architecture, and failure closure
+
+The gate follows one finite path: strict own-property and freeze validation; private canonicalization; exact prior-admission verification; retained-control and bound checks; one symbolic-intent admission; scalar receipt projection; terminal replay suppression. Any malformed, inherited, mutable, unknown, missing, broadened, non-admitted, or control-violating input closes before an execution intent is admitted. Both invalid and admitted inputs consume their independent one-use identity; neither can reopen after replay. No timer, loop, retry, persistence, cache, scheduler, runner, or background process is permitted.
+
+The planned module is a pure application validator that may depend only on TypeScript value validation. It must import no Python, trainer, data, model, weight, gradient, artifact, filesystem, environment/process, package, network, HTTP, socket, listener, transport, Core, target, credential, identity, local-state, Agent runtime, submission, or aggregation module. A production-source import guard must encode this dependency direction and prevent capability drift.
+
+### 96.4 Engineering, proof, and AI handoff
+
+The implementation slice may change only one application contract, one deterministic test file, and the quality-chain import guard. Tests must cover valid admission; prior-admission, intent, bound, and every retained-control denial; malformed/inherited/mutable/missing/unknown input; replay after valid and invalid input; independent validator isolation; frozen/redacted public projections; marker nonenumerability; and forbidden imports. Local and remote CI evidence may prove deterministic source quality only.
+
+> **Hard stop:** if implementation would require a trainer, dataset, model, update, request, transport, identity, Core interaction, Agent/runtime execution, protected composition, target, proof invocation, submission, or aggregation capability, this increment stops before coding. Any future actual synthetic training experiment requires its own approved dossier, concrete adapter design, protected release, target-bound composition, fresh Core-control evidence, and one-shot runtime proof decision.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
