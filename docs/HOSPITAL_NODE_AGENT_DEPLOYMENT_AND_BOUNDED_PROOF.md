@@ -2715,6 +2715,32 @@ On 25 August 2026, one user-authorized SSH session reached the declared test tar
 
 The aggregate result is `target_access_preflight_closed`. The access test defined in §99.3 was **not attempted** because the required attestation and the other four current packet classes were absent. No package-read request, Agent start, listener, Core contact, proof invocation, trainer, update creation, submission, or aggregation action occurred. This result does not establish release deployment, target composition, hospital integration, training quality, update submission, or aggregation.
 
+## 101. Target-local Hospital Node build path — design and preflight closure
+
+The project owner clarified that no separately supplied Hospital Node application or external release target exists. The SSH-accessible test VM is therefore the candidate Hospital Node target. To avoid inventing a package identity or relying on an unavailable external release provider, the proposed alternative is a **target-local build** from one exact validated Agent source revision. This is a new release boundary, not a continuation of the package-read route, and it remains build-only until its own source-to-target and non-public runtime gates are complete.
+
+| Contract element | Required target-local build rule | Explicitly excluded |
+|---|---|---|
+| Source selection | One exact previously quality-gated Agent revision, represented internally by an immutable revision/integrity class. | Mutable branch pull, repository discovery, package registry access, or source substitution. |
+| Transfer boundary | One authorized, one-way source transfer into a new target-private workspace after integrity verification. | Credential transfer, target-to-source copy, configuration transfer, raw path/log projection, or repeated sync. |
+| Build boundary | A finite local build may use only the declared source and declared toolchain, then return a scalar build receipt. | Model/data access, trainer, update, submission, aggregation, Core contact, listener, or persistent Agent service. |
+| Runtime posture | No process starts as part of source transfer or build. | Public port, daemon, automatic restart, background worker, or health endpoint. |
+| Closure | Any unavailable tool, integrity mismatch, workspace uncertainty, transfer failure, build failure, or cleanup uncertainty is terminal. | Tool installation, automatic repair, fallback toolchain, image pull, retry, or reuse without a new decision. |
+
+### 101.1 Read-only target build-prerequisite observation
+
+One non-modifying SSH check was used to evaluate only scalar build readiness. The target was reachable; a source-control client and a container client were present; private-workspace eligibility and sufficient build-capacity classes were observed; and neither an Agent nor aggregation-related process was observed. The native Node runtime, Corepack, and pnpm toolchain classes were unavailable. No source transfer, package access, configuration inspection, image construction, dependency installation, service start, proof, training, submission, or aggregation action was attempted.
+
+| Preflight fact class | Scalar observation | Consequence |
+|---|---|---|
+| Target reachability | `reachable` | Read-only prerequisite inspection completed. |
+| Private workspace / capacity | `eligible`; `sufficient` | Candidate only; no workspace was created. |
+| Native Node build chain | `node_runtime_missing`; `corepack_missing`; `pnpm_missing` | Terminal build-preflight closure. |
+| Source-control / container client | `available`; `available` | Not a substitute for the required declared build toolchain. |
+| Existing Agent / aggregation process | `agent_not_observed`; `aggregation_not_observed` | Point-in-time posture only; not a runtime or aggregation proof. |
+
+The result is `target_local_build_preflight_closed`. A container-based workaround would require a separately reviewed immutable build-image source and a new provider/image trust boundary, so it is not inferred from the container client’s presence. No target-local source was transferred, no tools or dependencies were installed, no image was built, no container or Agent started, and no model/data/trainer/update/submission/aggregation activity occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
