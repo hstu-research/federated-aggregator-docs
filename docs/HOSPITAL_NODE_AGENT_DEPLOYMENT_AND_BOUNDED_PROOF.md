@@ -2462,6 +2462,35 @@ The pure validator is now implemented at Agent revision `950491e`. It accepts on
 
 The new coverage proves exact eligible intent; fixture, seed, hyperparameter, epoch, shape, and retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after eligible or invalid first input; independent validator isolation; frozen redacted receipt/readout; marker nonenumerability; and import separation. This establishes only synthetic experiment-intent eligibility. It does not access data, create a model or weight, invoke a trainer, compute a metric, start an Agent, submit an update, or aggregate.
 
+## 86. Source-only pure FedProx arithmetic-admission contract
+
+The next bounded source slice is a pure TypeScript admission contract between manifest eligibility and any later synthetic local calculation. It does not calculate over real or synthetic parameter vectors. It accepts one exact frozen envelope of **symbolic arithmetic classes** and answers only whether a future scalar arithmetic check is eligible to proceed under retained no-trainer, no-submission, and aggregation-disabled controls. It has no access to a dataset, weight, gradient, model, local-epoch loop, Python function, metric, file, environment, network, or runtime service.
+
+| Envelope class | Sole allowed class | Closure when absent, changed, or broadened |
+|---|---|---|
+| Manifest result | `synthetic_manifest_eligible`. | `manifest_closed` |
+| Proximal term | `finite_nonnegative_proximal_term`. | `proximal_term_closed` |
+| Local epochs | `bounded_positive_epoch_sequence`. | `epoch_closed` |
+| Numeric safety | `all_scalar_terms_finite`. | `nonfinite_closed` |
+| Shape expectation | `matching_synthetic_vector_shape`. | `shape_closed` |
+| Retained controls | `trainer_not_invoked`, `submission_not_invoked`, `aggregation_disabled`. | `state_closed` |
+
+The one-use admission returns one frozen scalar receipt with `arithmetic_admitted` or an allowlisted terminal closure code. Its readout contains only received, admitted, invalid, and replay-suppressed counts. It must not expose the envelope, numeric values, dimensions, parameter content, manifest, or any capability. A private canonical marker must be nonenumerable and serialize as an empty record. Any replay after a valid or invalid first envelope closes as `arithmetic_replay_suppressed`; no input replacement or automatic retry is permitted.
+
+The implementation file may import no Python/FedProx arithmetic runtime, trainer, data/dataset/model/weight/gradient library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module. Tests must establish exact admission, each denial class, malformed/inherited/mutable/unknown input, replay, independent instances, frozen redacted projections, nonenumerability, and import isolation. Passing tests prove only a scalar pre-arithmetic control boundary, not proximal-term calculation, local-epoch execution, model training, metric generation, update submission, or aggregation.
+
+## 87. Source-only pure FedProx arithmetic admission — quality result
+
+The pre-arithmetic admission contract is now implemented at Agent revision `7fee7a5`. It accepts one exact frozen symbolic envelope, privately canonicalizes only manifest, proximal-term, local-epoch, finite-state, shape, and retained-control classes, and emits a frozen scalar receipt/readout. It computes no term and imports no Python/FedProx runtime, trainer, data/dataset/model/weight/gradient library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module. Its canonical marker remains nonenumerable and serializes to no envelope facts.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and arithmetic-admission test | Six deterministic admission checks passed locally. | Symbolic pre-arithmetic control only; not a proximal calculation or local epoch. |
+| Full Agent local quality chain | 209 TypeScript tests and 4 Python tests passed. | Source quality only; no data, parameters, gradients, trainer, Agent, update, or aggregation path ran. |
+| Remote Agent Quality Gates | Run `32801142127` completed successfully for revision `7fee7a5`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves exact admission; manifest/proximal-term/epoch/nonfinite/shape/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid first input; independent admission isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only an arithmetic-eligibility boundary. It does not calculate an objective, execute an epoch, access data, create a model/weight/gradient, invoke a trainer or Agent, submit an update, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
