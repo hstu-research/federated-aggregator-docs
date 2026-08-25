@@ -3673,6 +3673,14 @@ If a stage invocation does not begin in the same sequence immediately after `for
 
 The next gate is one compound, one-shot hardened format-stage execution that implements this exact atomic sequence and the §133 cleanup. It must emit only its allowlisted scalar stage outcome and independently verified cleanup classes, then be published before any subsequent work.
 
+### 137.4 Actual outcome — one hardened target format stage clean with cleanup confirmed
+
+The single compound one-shot diagnostic completed and emitted `format_stage_clean`, followed by the independent scalar cleanup result `format_stage_cleanup_confirmed`. The declared formatting stage ran once in the disposable image-local package-manager context under the documented unprivileged, read-only, no-network, capability-dropped, resource-bounded container posture. The private candidate was consumed only for that one stage and then terminally closed.
+
+Private source bundle, stage transcript, build/transient material, named container, disposable image, and local orchestration artifact were removed. The independent closure observed only the allowed aggregate cleanup classes. No raw source, formatter output, diff, filename, path, command, package/provider/registry, image/container identifier, target/configuration/credential, log, process, model/data, or database fact was retained or published.
+
+This proves only that the declared formatting stage exited cleanly in this one hardened target diagnostic with cleanup confirmed. It does **not** establish full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance. The one-shot candidate is closed; no retry or adjacent quality stage is authorized from this result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
