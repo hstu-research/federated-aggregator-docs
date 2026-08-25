@@ -2852,6 +2852,32 @@ One read-only evidence review compared the sealed candidate’s locally computed
 
 The review read no credentials and created no new package candidate. It did not activate a package manager, change cache or configuration, contact the target, transfer the seed, install a tool, transfer source, build, start an Agent or container, contact Core, invoke proof, access model/data, train, submit, or aggregate. Registry integrity establishes byte correspondence for the selected candidate; it does not replace unavailable provenance or establish package safety, deployment, runtime, hospital integration, scientific validity, update submission, or aggregation.
 
+## 109. Provenance-exception and target-admission control review — no exception authorized
+
+The integrity-verified local seed lacks available provenance. NIST’s SSDF describes a risk-based, outcome-oriented secure-development framework and includes protecting software components and retaining provenance data as relevant supply-chain practices.[19] SLSA describes provenance as verifiable information about how an artifact was produced so that consumers can assess whether it was built according to expectations.[20] These references support disciplined review; they do **not** turn unavailable provenance into verified provenance or authorize a target exception. This review therefore defines an exception-control contract only; no exception is active.
+
+| Control area | Required rule | Current state |
+|---|---|---|
+| Authorization owner | A designated security/risk owner, distinct from the build operator and Agent runtime, must explicitly approve one bounded exception. | `not_authorized` |
+| Immutable subject | One exact seed identity class tied to the verified selector and registry-integrity result; no substitute, re-download, or mutable selector. | `defined_not_admitted` |
+| Purpose and scope | Private target-local build-toolchain preparation only; never a model, dataset, trainer, update, Core, or aggregation capability. | `defined_not_active` |
+| Expiry / one use / revocation | One bounded decision, short-lived, nonrenewing, and terminable on any mismatch or missing packet. | `defined_not_active` |
+| Compensating controls | Independent source revision evidence, isolated private workspace, non-public/no-listener posture, no Agent start, aggregation disabled, scalar receipt, cleanup, and fresh Core control. | `not_current` |
+| Evidence projection | Allowlisted status classes only; no seed, provider, target, config, credential, raw digest, metadata, or log facts. | `enforced_by_design` |
+
+### 109.1 Target-admission matrix
+
+| Required independently current packet | Current class | Admission rule |
+|---|---|---|
+| Exact seed selector and registry integrity | `verified` | Necessary, never sufficient. |
+| Provenance or explicitly authorized exception | `provenance_unavailable`; `exception_not_authorized` | Deny. |
+| Source/release identity | Source-quality evidence exists, but no target-bound release identity exists. | Deny. |
+| Protected target composition/configuration | `unverified` | Deny. |
+| Fresh Core-control evidence | `unverified` | Deny. |
+| No-public / no-Agent / aggregation-disabled posture | Design-only and point-in-time process observations only. | Deny for any runtime or proof. |
+
+The result is `provenance_exception_not_authorized`. No target contact, transfer, installation, activation, source build, service, Agent, container, Core request, proof, model/data access, trainer, update, submission, or aggregation action is authorized by this review. A future exception decision must be explicit, identify the bounded risk owner, establish expiry and revocation, and still satisfy every other current packet before any target-admission design can be considered. NIST’s risk-based guidance does not lessen the need to preserve evidence and apply controls appropriate to risk.[19] [21]
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -2889,3 +2915,9 @@ The review read no credentials and created no new package candidate. It did not 
 [17] [npm Docs: Generating provenance statements](https://docs.npmjs.com/generating-provenance-statements/)
 
 [18] [npm Docs: Viewing package provenance](https://docs.npmjs.com/viewing-package-provenance/)
+
+[19] [NIST: Secure Software Development Framework (SSDF)](https://csrc.nist.gov/projects/ssdf)
+
+[20] [SLSA: Build Provenance Specification](https://slsa.dev/spec/v1.2/build-provenance)
+
+[21] [NIST: Software Supply Chain Attesting to Conformity](https://www.nist.gov/itl/executive-order-14028-improving-nations-cybersecurity/software-supply-chain-security-guidance-17)
