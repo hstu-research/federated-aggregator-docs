@@ -3543,6 +3543,40 @@ The future lifecycle is `start_control_consumed` → `fresh_bundle_sealed` → `
 
 The next gate is an isolated execution readiness review that must bind a freshly generated candidate to all current scalar prerequisites and this design; only then may the single target invocation be considered. Its outcome and cleanup must be published before any subsequent work.
 
+## 134. Hardened format-stage execution-readiness review — implementation contract
+
+### 134.1 Read-only scope and exact prerequisites
+
+The first permitted successor to §133 is one **read-only execution-readiness review**. It binds a fresh private candidate to the current source-quality, composition-context, source-only admission, revalidation, invocation-decision, start-control, and hardened-execution design classes. The review does not consume the candidate, transfer source, build an image, create a workspace/container, invoke the stage, or change the target. It checks no source, receipt value, command, package/provider/registry fact, image/container identifier, target configuration, credential, process argument, transcript, model/data, or database fact.
+
+| Required prerequisite | Exact admissible class | Terminal review closure |
+|---|---|---|
+| Source-quality evidence | `format_admission_quality_gated` | `format_execution_readiness_closed` |
+| Composition context | `composition_context_matched` | `format_execution_readiness_closed` |
+| Source-only admission | `normalization_admission_quality_gated` | `format_execution_readiness_closed` |
+| Revalidation/decision/start controls | `current_unconsumed` | `format_execution_readiness_closed` |
+| Candidate identity | `fresh_unused_valid` | `format_execution_readiness_closed` |
+| Target engine | `container_engine_available` | `format_execution_readiness_closed` |
+| Future candidate resources | `absent` | `format_execution_readiness_cleanup_closed` |
+| Future workspace | `not_created_nonrunning` | `format_execution_readiness_cleanup_closed` |
+| Target diagnostic posture | `not_started` | `format_execution_readiness_hardening_closed` |
+
+The review may emit only `format_execution_ready`, `format_execution_readiness_closed`, `format_execution_readiness_hardening_closed`, `format_execution_readiness_cleanup_closed`, or `format_execution_readiness_replay_closed`. A ready result neither consumes the candidate nor authorizes/starts the format stage. Unknown, multiple, stale, inherited, mutable, sensitive-shaped, or broadened facts close before the target posture check.
+
+### 134.2 Observation, retention, and terminal closure
+
+The target observation is read-only and may classify only the container-engine availability, future named-container absence, future disposable-image absence, future workspace not-created/non-running, and diagnostic-not-started posture. It cannot enumerate unrelated resources or inspect their contents; read configuration, credentials, logs, source, package/toolchain, ports/listeners, process details, model/data, or database state; mount a Docker socket; create a resource; or change a host setting. The future candidate identity, timestamp, counter, receipt, command transcript, and target detail remain private and are deleted before publication.
+
+The lifecycle is `fresh_candidate_private` → `source_controls_checked` → `target_posture_checked` → `readiness_projected` → `private_review_state_removed_or_expired` → `review_closed`. Every closure removes private review state and prevents revalidation, reuse, alternate target/resource/toolchain, or diagnostic invocation under that candidate. A ready class expires without a separately documented one-shot consumption decision. No source-quality, release, deployment, runtime, hospital, Core, identity, data/model, training, submission, aggregation, or scientific claim may be inferred.
+
+> **Hard stop:** This contract does not bind or consume a real candidate; transfer or inspect source; build/pull/run an image/container; invoke formatting; create a workspace; modify source or target state; access configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+### 134.3 Actual outcome — scalar format-stage execution readiness
+
+The one isolated read-only execution-readiness review completed and emitted `format_execution_ready`. It confirmed only the documented current source/control classes and the candidate target posture classes: container-engine availability, future candidate-resource absence, future workspace not-created/non-running, and diagnostic-not-started. No candidate was consumed, and no host or Docker resource was created, changed, configured, inspected beyond the allowlisted scalar posture classes, or retained.
+
+No source, receipt value, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No formatting command, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. The readiness class expires and does not authorize the diagnostic itself; a separate one-shot candidate-consumption decision remains required.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
