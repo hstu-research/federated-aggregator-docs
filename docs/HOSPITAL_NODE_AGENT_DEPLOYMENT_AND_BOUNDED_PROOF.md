@@ -2700,6 +2700,21 @@ The verifier has one terminal observation. Any failure or uncertainty closes the
 
 > **Hard stop:** this record is an operator handoff and test design only. No identity was created or installed, no credential or package was accessed, no target was contacted or bound, and no Agent/Core/runtime/proof/training/submission/aggregation action occurred.
 
+## 100. Read-only SSH target inspection — pre-route closure
+
+On 25 August 2026, one user-authorized SSH session reached the declared test target for a **read-only scalar inspection**. The inspection did not read configuration, credentials, package contents, service logs, paths, database state, or application data; it did not run privileged commands; and it did not modify, install, start, stop, restart, bind, or invoke anything. The returned process-posture classes were `agent_not_observed` and `aggregation_not_observed`.
+
+| Required evidence class | Read-only scalar observation | Pre-route decision |
+|---|---|---|
+| SSH reachability | `reachable` | The declared target accepted a read-only administrative session; this does not establish package access or release binding. |
+| Target-only package-read attestation | `unverified` | Close; no package validation or credential action. |
+| Immutable target-bound release | `unverified` | Close; no release selection, lookup, or binding. |
+| Protected composition/configuration | `unverified` | Close; no configuration or deployment inspection. |
+| Fresh Core-control preflight | `unverified` | Close; no Core contact or control query. |
+| Agent / aggregation process posture | `agent_not_observed`; `aggregation_not_observed` | A narrow point-in-time observation only; not a runtime, deployment, or aggregation proof. |
+
+The aggregate result is `target_access_preflight_closed`. The access test defined in §99.3 was **not attempted** because the required attestation and the other four current packet classes were absent. No package-read request, Agent start, listener, Core contact, proof invocation, trainer, update creation, submission, or aggregation action occurred. This result does not establish release deployment, target composition, hospital integration, training quality, update submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
