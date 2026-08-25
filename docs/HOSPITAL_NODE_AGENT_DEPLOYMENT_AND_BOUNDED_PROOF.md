@@ -4102,6 +4102,36 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 249 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32843289056` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
 
+## 149. Partial-readout publication projection — design-only contract
+
+### 149.1 Purpose and exact scalar input boundary
+
+This record defines the only future projection of a §148 consumed partial-readout result into a publication-safe scalar. Its research value is to make the limited “partial source-quality evidence only” conclusion explicit without carrying any stage internals forward. It cannot write a public record, contact a service, or make a release decision; it only defines a pure, one-use source-only projection contract.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Consumer receipt schema/state | `consumer_receipt_exact_closed` | `source_quality_publication_closed` |
+| Consumer conclusion | `source_quality_readout_partial_consumed` | `source_quality_publication_closed` |
+| Retry posture | `retry_allowed_false` | `source_quality_publication_closed` |
+| Consumer aggregate readout | `single_partial_consumed_unreplayed` | `source_quality_publication_closed` |
+| Terminal Python posture | `terminal_python_closure_preserved` | `source_quality_publication_closed` |
+| Projection identity | `unused` | `source_quality_publication_identity_closed` |
+| Capability posture | `no_target_or_runtime_or_publication_capability` | `source_quality_publication_capability_closed` |
+
+The projection receives no source/revision, stage code, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, timestamp, identity value, publication destination, or free text. Input must be a frozen exact plain record; unknown, inherited, mutable, missing, or sensitive-shaped input closes instead of being reduced or republished.
+
+### 149.2 Projection result, retention, and terminality
+
+The one-use projector may emit only `source_quality_partial_publication_projected`, `source_quality_publication_closed`, `source_quality_publication_identity_closed`, `source_quality_publication_capability_closed`, or `source_quality_publication_replay_closed`. A projected class means only that the reader-consumer chain preserved its scalar partial conclusion and terminal Python closure; it is not a stage-level result, score, pass, whole-CI certification, target decision, release/deployment authorization, runtime signal, or scientific result.
+
+The canonical input is private and non-enumerable; it may not be stored, serialized, returned, or forwarded. The scalar receipt contains only schema class, terminal state, allowlisted result, and `retry_allowed=false`. Completion, interruption, malformed input, or a second invocation closes terminally with no retry, replacement, alternate consumer, or follow-on quality-chain continuation.
+
+### 149.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not project or publish a real readout; inspect an evidence record, source, target, or transcript; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace or image/container; access configuration, credentials, logs, or a database; start an Agent, service, listener, or publication endpoint; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
