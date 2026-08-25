@@ -2912,6 +2912,20 @@ The lifecycle is `non_admitted` → `authorization_current` → `transfer_prefli
 
 The only permissible receipt classes are `toolchain_selector_verified`, `target_private_scope_verified`, `self_check_verified`, `cleanup_verified`, and one allowlisted closure code. A receipt may never project seed bytes, paths, target/configuration details, credentials, provider facts, installation commands, package content, logs, source, model/data, or runtime facts. No provision was attempted under this design, and no target transfer/install, source build, service, Agent/container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
 
+## 112. Source-to-release identity review — source verified, release binding absent
+
+The published Agent source revision `44bd982` was checked as an immutable local source identity. The local working head matches that revision and its working tree is clean. The recorded remote Hospital Node Quality Gates run `32802753224` for that revision was independently checked as successful. These facts establish source-quality evidence only. They do not identify, create, or bind a release to the candidate target.
+
+| Source packet fact | Scalar outcome | Release consequence |
+|---|---|---|
+| Exact Agent revision | `verified` | Immutable source identity is available for a future release design. |
+| Local source state | `head_matching`; `working_tree_clean` | No unrecorded local source divergence was observed. |
+| Remote quality gate | `verified` | Source quality evidence is current for the reviewed revision. |
+| Toolchain compatibility class | `declared` | Requires the separate target-native provision packet; not evidence of installation. |
+| Target-bound release identity | `absent` | Terminal closure before target binding, transfer, build, or activation. |
+
+The result is `source_quality_verified_release_binding_absent`. The source identity is not a release artifact, target binding, deployment, or Hospital Node runtime. No source was transferred, no package/seed was transferred or installed, no target configuration was inspected or changed, and no build, listener, service, Agent, container, Core request, proof, model/data access, trainer, update, submission, or aggregation action occurred. Any future binding must be one-way, expiry-bounded, integrity-checked, target-specific, and independently current with the provenance-exception, protected-composition, and Core-control packets.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
