@@ -2759,6 +2759,20 @@ The lifecycle is `unprepared` → `toolchain_selected` → `seed_integrity_verif
 
 At this point, the native build seed is not prepared or transferred. The target-native toolchain remains `toolchain_unavailable`; this is a design result, not a package download, installation, deployment, or build result. No source transfer, target change, dependency resolution, image creation, container/Agent start, Core contact, proof, model/data use, trainer, update, submission, or aggregation action occurred.
 
+## 103. Local native-toolchain seed feasibility — pre-seed closure
+
+The local seed feasibility check found a Node 22 runtime class, Corepack, and a pnpm client, but the exact Agent-declared `pnpm@10.16.1` class was not locally available. The design requires exact package-manager equality; accepting the available different pnpm class would make the seed mutable relative to the Agent contract. The outcome is therefore `toolchain_seed_preflight_closed`.
+
+| Seed prerequisite | Scalar observation | Result |
+|---|---|---|
+| Node 22 runtime class | `available` | Necessary but not sufficient. |
+| Corepack class | `available` | Necessary but not sufficient. |
+| Any pnpm client | `available` | Not sufficient because the declared class must match exactly. |
+| Exact `pnpm@10.16.1` class | `unavailable` | Terminal closure before seed creation. |
+| Seed / transfer | `not_prepared`; `not_attempted` | No artifact was created, sealed, read, or moved. |
+
+No network package resolution, provider access, runtime/package download, Corepack activation, target connection, tool installation, source transfer, source build, container/Agent start, Core contact, proof, model/data use, trainer, update, submission, or aggregation action occurred. A future attempt would need a separate immutable acquisition-boundary decision for the exact pnpm class; this result does not authorize a download or substitution.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
