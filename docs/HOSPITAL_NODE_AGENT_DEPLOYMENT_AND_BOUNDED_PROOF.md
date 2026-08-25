@@ -3363,6 +3363,47 @@ The one read-only candidate-VM pre-execution review completed and emitted `forma
 
 No source, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No formatting command, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. This readiness class expires and does not authorize a diagnostic itself; a separately recorded identity revalidation and one-use invocation decision remain required.
 
+## 129. Fresh formatting-diagnostic identity revalidation and receipt — design-only contract
+
+### 129.1 Ownership, identity lifecycle, and expiry
+
+This record defines the future one-use identity that binds a later target formatting diagnostic to a **fresh revalidation** of the expired §128 posture. It is an opaque diagnostic correlation held only by the outer diagnostic harness; it is not an Agent, human, browser, workload, ML-worker, callback, Core, package, image, container, target, source, path, credential, or runtime identity. The identity is never printed, persisted in public records, exposed to application code, or reused after any closure.
+
+| Lifecycle state | Required transition | Terminal or prohibited behavior |
+|---|---|---|
+| `unbound` | Fresh opaque candidate generated only by the future harness. | Cannot inherit or reuse the preflight identity or any closed diagnostic identity. |
+| `revalidation_pending` | Recheck all §128 scalar predicates at the time of the future candidate. | No source transfer, image/container action, formatter invocation, or resource reservation. |
+| `admitted_unconsumed` | Exact fresh revalidation and one unused identity; a private short-lived expiry class remains valid. | Does not mean the diagnostic has started or may be retried. |
+| `consumed` | Exactly one separately authorized diagnostic invocation begins. | No re-entry, reuse, renewal, or second stage. |
+| `closed` | Any precondition failure, expiry, hardening divergence, cleanup uncertainty, or post-start terminal result. | No alternate identity, target, workspace, source, image, toolchain, or retry. |
+
+The time boundary is represented only by private `valid` or `expired` classes. Neither a timestamp, duration, clock, nonce, counter, identity value, nor allocator detail may appear in an API, receipt, event, log, test fixture, status, or public document. A revalidation that is not immediately consumed expires by policy and must not be refreshed or promoted.
+
+### 129.2 Fresh predicate binding and scalar receipt
+
+The future harness must re-evaluate every predicate rather than trust the earlier ready projection. It may accept only the exact scalar classes below and must close before a diagnostic on any unavailable, stale, multiple, unknown, sensitive-shaped, or broadened result.
+
+| Fresh predicate | Required exact class | Closure class on any other result |
+|---|---|---|
+| Source-quality evidence | `format_admission_quality_gated` | `format_identity_revalidation_closed` |
+| Composition context | `composition_context_matched` | `format_identity_revalidation_closed` |
+| Source-only policy | `normalization_admission_quality_gated` | `format_identity_revalidation_closed` |
+| Target container engine | `container_engine_available` | `format_identity_revalidation_closed` |
+| Candidate residue | `candidate_resources_absent` | `format_identity_revalidation_cleanup_closed` |
+| Future workspace | `workspace_not_created_nonrunning` | `format_identity_revalidation_cleanup_closed` |
+| Containment | `diagnostic_not_started` | `format_identity_revalidation_hardening_closed` |
+| Identity and expiry | `fresh_unconsumed_valid` | `format_identity_revalidation_closed` |
+
+The scalar receipt has only a schema-version class, state (`admitted_unconsumed` or `closed`), one allowlisted decision, and `retry_allowed=false`. Permitted decisions are `format_identity_revalidation_ready`, `format_identity_revalidation_closed`, `format_identity_revalidation_hardening_closed`, `format_identity_revalidation_cleanup_closed`, and `format_identity_revalidation_replay_closed`. It must never contain an identity, time, receipt payload, transcript, source, command, package/provider, image/container, target, configuration, credential, model/data, or runtime fact.
+
+### 129.3 Workflow, cleanup, and stop conditions
+
+The future lifecycle is `fresh_identity_private` → `fresh_predicates_checked` → `expiry_checked` → `scalar_receipt_projected` → `receipt_private_state_removed_or_consumed` → `terminal_closed`. Revalidation itself must remain read-only: it may inspect only the fixed scalar target posture categories authorized by §128. It cannot create a workspace, source bundle, image, container, port, listener, profile, configuration, credential, secret, service, or runtime process. If it closes, all private identity/receipt/transcript state is removed and the later diagnostic stays prohibited. If it is ready but not immediately consumed under a separately recorded one-use decision, it expires and is removed without retry.
+
+> **Hard stop:** This is a design record only. It neither creates nor checks a real diagnostic identity, revalidates the target, transfers source, builds/pulls/runs an image/container, invokes formatting, modifies source or target state, reads configuration/credentials/logs/transcripts, starts an Agent/service/listener, contacts Core, uses an identity, accesses data/model material, trains, submits, aggregates, releases, deploys, or proves runtime behavior.
+
+The next potential increment is a separate design-only one-use invocation decision that specifies when an admitted identity may be consumed and how pre-start cancellation or immediate expiry closes. It must remain distinct from the eventual target formatting diagnostic.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
