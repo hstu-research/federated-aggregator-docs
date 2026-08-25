@@ -4094,6 +4094,14 @@ The private canonical input may not be serialized, enumerated, persisted, or ret
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish its actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
 
+### 148.4 Actual outcome — source-only scalar readout consumer and quality evidence
+
+Agent release `93eb5b3` implements the §148 source-only scalar readout consumer, frozen input/receipt/readout contracts, exact reader-receipt/readout/terminal-Python/no-retry/identity/capability validation, terminal replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. It may emit only `source_quality_readout_partial_consumed` or an allowlisted terminal closure. A consumed partial readout remains a bounded handoff and is not a pass, score, certification, release decision, or operational authorization.
+
+The implementation operates on deterministic in-memory classes only. It does not consume an external record, inspect a source/target/transcript, invoke formatting/type-check/TypeScript/Python/protected-import tests, create a workspace/image/container, access a configuration/credential/log/database, start a service/listener, contact Core, use an identity, access data/model material, train, submit, or aggregate. Every malformed, mutable, inherited, missing, unknown, receipt/readout/terminal-Python mismatch, identity/capability deviation, or replay closes without replacement.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 249 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32843289056` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
