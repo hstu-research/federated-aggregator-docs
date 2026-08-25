@@ -3145,6 +3145,30 @@ The local reviewed Agent tree was clean before the one permitted formatter invoc
 
 No target contact or target workspace action occurred. No listener, service, Agent runtime/profile, container, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred.
 
+## 122. Redacted local-to-target formatting composition comparison — implementation contract
+
+The unresolved `format_closed` / local `format_no_change` divergence permits one diagnostic comparison of immutable build-context facts. The comparison does not read or publish source content. A local receipt is derived from a fresh archive of the exact reviewed revision; a separate target receipt is derived inside a fresh no-network disposable container from the same transferred archive. Raw counts/digests exist only in private one-use receipt files; the public projection contains one comparison state and cleanup classes.
+
+| Receipt fact class | Private validation | Public projection |
+|---|---|---|
+| Revision and source-tree composition | Exact revision class, aggregate source-file count, and aggregate content digest equality. | Included only in `composition_matches` / `composition_differs`. |
+| Ignore-policy composition | Presence and aggregate equality of the formatter ignore policy. | Included only in `composition_matches` / `composition_differs`. |
+| Runtime and package-manager class | Expected Node-major and declared package-manager class. | Included only in `composition_matches` / `composition_differs`. |
+| Receipt integrity | Schema, unique instance, required fields, scalar parsing, and one-use lifecycle. | `receipt_closed` if invalid. |
+| Cleanup | Named container/image absence and workspace non-running class. | `cleanup_complete` or `cleanup_closed`. |
+
+### 122.1 Lifecycle, allowed projection, and stop conditions
+
+The lifecycle is `local_receipt_sealed` → `target_receipt_collected` → `comparison_closed` → `private_receipts_removed` → `cleanup_closed`. The target image may install the declared package-manager dependencies while building, but the receipt run has no network, no port, no host network, no privileged mode, no Docker socket, no target configuration/secret/data/model mount, no identity source, and no runtime command. It executes no formatting or quality stage. It may return only `composition_matches`, `composition_differs`, or `receipt_closed`, followed by cleanup class; it may not return a dimension-level difference, raw count, digest, filename, path, source text, package/provider, target identifier, configuration, credential, model/data, or transcript detail.
+
+Any missing/unknown/mutable/multiple/sensitive receipt fact; wrong revision; unexpected container capability; source/package-manager/runtime mismatch; cleanup failure; listener/service/Agent/profile/Core/identity/trainer/update/submission/aggregation behavior; or attempt to reuse a previous instance closes the comparison. A match does not validate formatting, source quality, deployment, runtime, release, hospital integration, training, submission, aggregation, or scientific performance. A difference only authorizes a separately designed remediation category.
+
+### 122.2 Actual outcome — composition receipt closed without a comparison state
+
+The local scalar receipt was sealed from the reviewed source, and the candidate target completed the fresh private workspace, exact source transfer, and disposable composition-image build. The one receipt invocation then closed as `receipt_closed` before emitting either `composition_matches` or `composition_differs`. No dimension-level fact, raw count, digest, filename, path, source text, package/provider, target identifier, configuration, credential, model/data, or transcript detail was retained or inspected.
+
+The post-run scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local receipt/staging artifacts were removed. The result therefore does not explain the formatting divergence and does not establish composition equality or inequality. No listener, service, Agent runtime/profile, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred. Any successor requires a separately designed receipt-closure diagnostic and may not reuse this instance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
