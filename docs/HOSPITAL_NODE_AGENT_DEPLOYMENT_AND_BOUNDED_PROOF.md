@@ -3043,6 +3043,33 @@ The private quality transcript was intentionally removed during deterministic cl
 
 The terminal result is `isolated_quality_outcome_unclassified_closed`. A later quality attempt must be separately documented with a safe deterministic pass/fail/test-count receipt captured before private-log disposal; it must not reuse this closed instance as evidence.
 
+## 118. Fresh isolated quality outcome receipt — implementation contract
+
+This is a new one-use instance, distinct from the closed §117 attempt. Its sole corrective purpose is to classify the next isolated quality invocation without retaining or projecting its transcript. The result is a versioned scalar receipt, not a log summary: it must establish one execution state, the expected TypeScript/Python test-count classes, required hardening classes, and completed cleanup before transcript disposal. It must reject all unknown, absent, mismatched, mutable, stale, sensitive, or prior-instance facts.
+
+| Receipt field class | Allowed values | Terminal closure |
+|---|---|---|
+| Schema / instance | `target-isolated-quality-receipt/v1` and one fresh instance class. | `receipt_identity_closed` |
+| Source | Exact reviewed source-revision class and integrity-verified transfer class. | `source_closed` |
+| Quality state | `quality_passed` or `quality_failed`. | `quality_state_closed` |
+| Test counts | `typescript_expected_233` / `typescript_other`; `python_expected_4` / `python_other`. | `test_count_closed` when state/counts disagree or no count is available. |
+| Container hardening | `network_none`, `ports_absent`, `non_privileged`, `read_only`, `capabilities_dropped`, `unprivileged_user`. | `hardening_closed` |
+| Cleanup | `named_container_removed`, `disposable_image_removed`, `workspace_nonrunning`, `transcript_removed`. | `cleanup_closed` |
+
+### 118.1 Collector order and stop conditions
+
+The collector starts a fresh private workspace/image/container identity; verifies the one source bundle internally; runs only `pnpm run ci` under the fixed isolated configuration; obtains exit state and the two count classes from the private transcript; verifies hardening facts from the stopped container; validates the scalar receipt **before** removing the transcript; removes the named container and disposable image; removes the transcript; then reports the receipt and cleanup classes only. The workspace remains private and non-running. The public ledger must never contain transcript lines, a test name, package/registry detail, source content, path, target address, configuration, credential, environment, model/data, or clinical fact.
+
+`quality_passed` is admissible only with `typescript_expected_233`, `python_expected_4`, all six hardening classes, and all four cleanup classes. A non-zero quality exit, unexpected count, incomplete hardening, malformed receipt, cleanup failure, or any sensitive projection yields an allowlisted terminal closure and no pass claim. This instance must not reuse a container/image/workspace identity or outcome from §117 and has no automatic retry.
+
+> **Hard stop:** The receipt collector may not start a listener/service/Agent/profile, publish a port, retain a container/image, bind a Docker socket, mount target configuration/secret/data/model, use host networking or privileged mode, resolve an identity, contact Core, access data/model, invoke a trainer, create/update/submit anything, or enable aggregation. A classified source-quality result remains neither a release nor deployment/runtime/hospital/scientific evidence.
+
+### 118.2 Actual outcome — fresh receipt closed without a classified quality result
+
+The fresh instance used a distinct private workspace, source bundle, image, and container identity. Its exact reviewed source transfer and disposable Node/package-manager image build completed. The single hardened `pnpm run ci` invocation then closed as `fresh_quality_receipt_closed`; the pre-cleanup collector did not satisfy every required scalar receipt predicate. No raw transcript, individual test name, exit diagnostic, source content, target path, configuration, credential, or package detail was retained or inspected after the closure.
+
+The post-closure scalar check observed an absent named container, absent disposable image, and a retained non-running private workspace. The fresh instance therefore creates no source-quality pass claim and cannot be used to infer a release, deployment, runtime proof, hospital integration, model/data access, training, update submission, aggregation, or scientific result. It is terminal and cannot be retried. A third, separate diagnostic design would need to emit one allowlisted **reason class** before transcript removal while preserving the same no-sensitive-projection boundary.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
