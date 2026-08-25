@@ -2893,6 +2893,25 @@ One user-authorized SSH session completed the protected-composition review using
 
 The result is `target_composition_closed`. No configuration, credential, path, log, process argument, package/seed content, model/data, or database fact was read. No target resource changed, and no seed transfer, tool installation, source transfer/build, listener, service, Agent, container, Core request, proof, trainer, update, submission, or aggregation action occurred. This composition review does not cure the separate provenance-exception, source/release, or fresh Core-control blocks.
 
+## 111. One-use target-native toolchain provision contract — design only
+
+The missing native build toolchain is addressed only by a narrowly bounded provision contract for the locally sealed exact package-manager seed. This is not an authorization to transfer or install it. The seed has verified selector and registry-integrity classes, but provenance remains unavailable and no exception is authorized; source/release, protected composition, and fresh Core-control packets also remain incomplete. The contract therefore defines the controls that would be required before a later execution decision, not a current action.
+
+| Control plane element | Required provision rule | Explicitly prohibited |
+|---|---|---|
+| Authority separation | A distinct risk owner authorizes an exception; a distinct provision operator performs one bounded transfer; the target runtime is not a provision identity. | Human/browser/ML-worker/Agent/Core identity reuse or implicit authority. |
+| Immutable seed | One exact locally sealed seed class, checked again before private target placement. | Substitute, re-download, mutable selector, cache fallback, or unverified artifact. |
+| Target custody | One new private target workspace, one private toolchain scope, and no exposure beyond the declared build boundary. | Global path/system installation, shared workspace, user-profile mutation, automatic update, or package network fetch. |
+| Transfer and install | One-way, one-use transfer followed by private local self-check only after all current packets admit it. | Range/resume, retry, return transfer, target-side resolution, postinstall script, or dependency install. |
+| Runtime separation | Provisioning returns a scalar toolchain receipt and then closes. | Listener, service, container, Agent, Core request, proof, trainer, model/data access, update, submission, or aggregation. |
+| Cleanup and revocation | Expiry, one-use consumption, cleanup verification, and terminal closure on any uncertainty. | Replay, automatic repair, rollover, continued seed retention, or silent re-open. |
+
+### 111.1 Finite provision lifecycle
+
+The lifecycle is `non_admitted` → `authorization_current` → `transfer_preflight_passed` → `private_install_permitted` → `self_check_passed` → `scalar_receipt_emitted` → `cleanup_verified` → `terminal_closed`. Any missing/expired authorization, unavailable provenance exception, stale packet, seed or integrity mismatch, workspace uncertainty, native-toolchain drift, listener/runtime broadening, cleanup uncertainty, or unrecognized fact reaches `provision_closed` before transfer or installation. A terminal closure prohibits retry or a different provision route without a new independently recorded decision.
+
+The only permissible receipt classes are `toolchain_selector_verified`, `target_private_scope_verified`, `self_check_verified`, `cleanup_verified`, and one allowlisted closure code. A receipt may never project seed bytes, paths, target/configuration details, credentials, provider facts, installation commands, package content, logs, source, model/data, or runtime facts. No provision was attempted under this design, and no target transfer/install, source build, service, Agent/container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
