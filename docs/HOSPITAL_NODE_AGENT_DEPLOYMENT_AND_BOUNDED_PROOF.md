@@ -4178,6 +4178,36 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 259 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32844741282` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
 
+## 151. Terminal evidence-bundle disposition — design-only contract
+
+### 151.1 Purpose and exact scalar input boundary
+
+This record defines the only future source-only terminal disposition of a §150 frozen scalar bundle result. Its research value is to close the in-memory evidence-handling chain with an explicit discard class, rather than leave a frozen scalar eligible for storage, publication, replay, or operational interpretation. Disposition is a pure one-use in-memory classification; it must not delete or retain an external record because none may be created by the preceding chain.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Freezer receipt schema/state | `freezer_receipt_exact_closed` | `source_quality_disposition_closed` |
+| Freezer conclusion | `source_quality_evidence_bundle_frozen` | `source_quality_disposition_closed` |
+| Retry posture | `retry_allowed_false` | `source_quality_disposition_closed` |
+| Freezer aggregate readout | `single_bundle_frozen_unreplayed` | `source_quality_disposition_closed` |
+| Terminal Python posture | `terminal_python_closure_preserved` | `source_quality_disposition_closed` |
+| Disposer identity | `unused` | `source_quality_disposition_identity_closed` |
+| Capability posture | `no_target_or_runtime_or_publication_or_storage_capability` | `source_quality_disposition_capability_closed` |
+
+The disposer receives no source/revision, stage code, test output/count/name, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, database, timestamp, identity value, storage location, publication destination, or free text. Input must be a frozen exact plain record. Unknown, inherited, mutable, missing, or sensitive-shaped input closes without inspection, reconstruction, persistence, deletion, or replacement.
+
+### 151.2 Disposition result, non-retention, and terminality
+
+The one-use disposer may emit only `source_quality_evidence_bundle_disposed`, `source_quality_disposition_closed`, `source_quality_disposition_identity_closed`, `source_quality_disposition_capability_closed`, or `source_quality_disposition_replay_closed`. A disposed class means only that the scalar reader-consumer-projector-freezer chain has reached a non-retained terminal conclusion while preserving the terminal Python closure. It does not mean that a bundle was stored and deleted, an evidence record was erased, a score/pass/certification was reached, a release decision was made, or an operational action was authorized.
+
+The canonical input and disposition class are non-enumerable and may not be stored, serialized, returned, forwarded, or made observable beyond an allowlisted scalar receipt. Completion, interruption, malformed input, capability broadening, or a second invocation closes terminally with no retry, replacement, alternate freezer, persistence, deletion operation, or later quality-chain continuation.
+
+### 151.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not dispose a real bundle or external record; inspect an evidence record, source, target, or transcript; invoke formatting, type checks, TypeScript tests, Python tests, or protected-import checks; create a workspace, image/container, file, cache, database, network message, public record, storage object, or deletion action; access configuration, credentials, logs, or a database; start an Agent, service, listener, storage, or publication endpoint; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
