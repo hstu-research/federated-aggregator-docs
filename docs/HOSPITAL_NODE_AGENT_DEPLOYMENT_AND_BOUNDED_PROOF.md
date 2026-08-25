@@ -2577,6 +2577,36 @@ The pure pre-packaging validator is now implemented at Agent revision `d61409c`.
 
 The new coverage proves exact eligibility; metric-integrity/envelope/descriptor/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after eligible or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only a symbolic pre-packaging boundary. It does not create, serialize, package, persist, expose, submit, or aggregate an update; access data; or invoke a trainer, Agent, or Core service.
 
+## 94. Source-only synthetic FedProx update-submission admission contract
+
+The next boundary controls **whether a future update submission could enter a separately gated transport review**. It does not construct a request or send anything. It accepts one exact frozen symbolic update-envelope eligibility and only declared route, identity, idempotency, and retained-control classes. It must reject an unknown, mutable, malformed, broadened, inconsistent, or non-admitted request before it reaches any request builder, body/header encoder, socket, listener, Core route, identity source, credential, target, or submission port.
+
+| Admission class | Sole allowed class | Closure if absent, changed, or broadened |
+|---|---|---|
+| Update-envelope eligibility | `synthetic_update_envelope_eligible`. | `envelope_closed` |
+| Route intent | `core_submission_route_declared`. | `route_closed` |
+| Identity intent | `workload_identity_not_resolved`. | `identity_closed` |
+| Idempotency intent | `single_use_submission_intent`. | `idempotency_closed` |
+| Trainer state | `trainer_not_invoked`. | `state_closed` |
+| Submission state | `submission_not_invoked`. | `state_closed` |
+| Aggregation state | `aggregation_disabled`. | `state_closed` |
+
+The one-use validator returns only a frozen scalar `submission_admitted` receipt or a terminal closure code. Its aggregate readout contains only received, admitted, invalid, and replay-suppressed counts. A private canonical marker must be nonenumerable and serialize as an empty record. It must not retain or expose an update, descriptor, payload, byte sequence, digest, route, identity, token, credential, target, request, response, header, body, socket, listener, callback, model/weight/gradient, artifact, or free-text diagnostic.
+
+The source file may import no request/HTTP/client/socket/listener/transport/Core/target/credential/identity/Python/trainer/data/model/weight/gradient/artifact library, environment/process API, filesystem, local-state adapter, Agent runtime, submission, or aggregation module. Tests must cover admission; envelope/route/identity/idempotency/control denial; malformed/inherited/mutable/unknown input; replay; independent validators; frozen/redacted projections; marker nonenumerability; and import isolation. Passing tests prove only pre-transport symbolic admission. They do not create an update, construct a request, contact Core, resolve identity, open a connection, submit, or aggregate.
+
+## 95. Source-only synthetic FedProx update-submission admission — quality result
+
+The pure pre-transport validator is now implemented at Agent revision `44bd982`. It accepts one exact frozen symbolic envelope, privately canonicalizes only update-envelope, route, identity, idempotency, and retained-control classes, and emits a frozen scalar receipt/readout. It contains no update, payload, route, identity, token, credential, target, request, response, header, body, socket, listener, callback, transport, Core, or capability. The canonical marker is nonenumerable and serializes to no envelope facts.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and submission-admission test | Six deterministic validator checks passed locally. | Pre-transport admission only; not request construction, identity resolution, Core contact, or submission. |
+| Full Agent local quality chain | 233 TypeScript tests and 4 Python tests passed. | Source quality only; no update/request/transport/trainer/Agent/Core/submission/aggregation path ran. |
+| Remote Agent Quality Gates | Run `32802753224` completed successfully for revision `44bd982`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves exact admission; envelope/route/identity/idempotency/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only symbolic pre-transport admission. It does not create an update, construct a request, resolve identity, contact Core, open a connection, submit, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
