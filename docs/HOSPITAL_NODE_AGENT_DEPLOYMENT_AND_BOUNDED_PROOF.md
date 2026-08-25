@@ -2641,6 +2641,20 @@ The implementation slice may change only one application contract, one determini
 
 > **Hard stop:** if implementation would require a trainer, dataset, model, update, request, transport, identity, Core interaction, Agent/runtime execution, protected composition, target, proof invocation, submission, or aggregation capability, this increment stops before coding. Any future actual synthetic training experiment requires its own approved dossier, concrete adapter design, protected release, target-bound composition, fresh Core-control evidence, and one-shot runtime proof decision.
 
+## 97. Review result — symbolic execution gate stopped before implementation
+
+The required source-interface review closed the proposed execution gate before coding. The published submission-admission validator is deliberately one-use and keeps its canonical admission facts in a private marker. Its public receipt contains only a schema version, terminal state, allowlisted code, and `retryAllowed: false`; the source exposes no immutable cross-validator binding that a second validator can safely verify. Reusing the public `submission_admitted` code would be forgeable and would not demonstrate continuity with the prior admission. Exporting the private marker or adding a public proof token would create a new cross-module capability/binding boundary that the current dossier has not authorized.
+
+| Review question | Observed source fact | Decision |
+|---|---|---|
+| Who is authorized to bind admission to execution intent? | No separate authorization or cross-validator binding authority exists. | Stop; do not infer authorization from a scalar receipt. |
+| What immutable fact can the next gate verify? | Only an internal private canonical marker; it is intentionally not exported. | Stop; do not manufacture or expose a marker. |
+| What would cross the boundary? | The public receipt is scalar-safe but cannot prove provenance. | Do not treat its code as evidence of prior admission. |
+| How does failure close? | The current validator terminally suppresses replay but does not compose with another validator. | Record `execution_binding_unavailable`; no source change or retry. |
+| What is proved? | The review proved that the current interface intentionally lacks the required binding. | No trainer, execution, training, runtime, submission, or aggregation claim. |
+
+The result is `execution_binding_unavailable`, a design-and-source-review blocker rather than a quality, deployment, or runtime failure. No Agent source file changed; no test, trainer, dataset, model, update, request, transport, identity, Core, runtime, protected composition, target, proof, submission, or aggregation action occurred. The remaining direct path is not another symbolic validator: it remains the separately blocked package/identity, target-bound release, protected composition, and fresh Core-control evidence required before any future one-shot synthetic proof can be reconsidered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
