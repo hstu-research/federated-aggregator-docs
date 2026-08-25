@@ -2985,6 +2985,36 @@ The lifecycle is `unreviewed` → `packets_checked` → `compensating_controls_c
 
 The current matrix is insufficient for a decision: provenance is unavailable, no authority/reviewer is designated, protected composition is closed, Core control is absent, and no release identity has been activated. The result is `provenance_exception_decision_not_recordable`. No owner was appointed, no exception was authorized, no seed status changed, no release was created or bound, and no target contact, transfer, installation, source build, runtime, proof, data/model access, training, submission, or aggregation action occurred.
 
+## 116. Reversible private target-local source-quality bootstrap — implementation contract
+
+The task owner has directed a concrete Hospital Node build on the existing candidate VM. This increment is deliberately smaller than a protected release or proof: it creates one isolated, private source-quality workspace and runs only the repository quality chain. The owner's operational authorization for this reversible build does **not** appoint a release authority, approve the unavailable-provenance exception, bind a release, or admit a protected runtime proof. The only claim sought is whether the exact reviewed source revision can be built and tested on the candidate target in a non-public, non-running state.
+
+| Boundary | Allowed once in this increment | Explicitly excluded |
+|---|---|---|
+| Source | Transfer exactly one reviewed Agent revision through a one-way integrity-checked channel into a new private workspace. | Source mutation, branch substitution, target-origin push, or any clinical/model/data material. |
+| Toolchain | Prefer an isolated, disposable Node 22 build container with the declared package-manager class; no global runtime/package-manager or system-repository mutation. | Service installation, daemon enablement, global dependency installation, or unbounded toolchain reuse. |
+| Build and test | Run the declared source-quality command only, with no published ports and no retained process after completion. | Agent start, Compose profile, Core call, token/credential resolution, HTTP/socket/listener, model/data access, trainer, update submission, or aggregation. |
+| Evidence | Retain only revision, exact-toolchain compatibility, finite quality outcome, container-cleanup, and no-listener/no-active-Agent aggregate classes. | Locators, digests, registry/package details, target address, paths, logs, source content, configuration, credentials, patient facts, model/data, or raw command output. |
+| Cleanup | Remove the disposable build container and leave the private workspace non-running; a failed setup/build closes this instance without automatic retry. | Runtime promotion, release declaration, proof invocation, or reuse as evidence for a release decision. |
+
+### 116.1 Lifecycle, ownership, and stop conditions
+
+The lifecycle is `bootstrap_not_started` → `target_readiness_checked` → `isolated_method_selected` → `source_copied` → `quality_running` → `quality_closed` → `workspace_nonrunning` → `terminal_closed`. The source operator may create and remove only this workspace; the disposable build container may execute only the source-quality command; neither may create a public listener, service, scheduling rule, Core route, identity source, or target-wide configuration. The target is the factual source for build and cleanup observations, but its observations cannot become a release, deployment, runtime-proof, hospital-integration, training, update-submission, aggregation, or scientific claim.
+
+This increment stops terminally before or during execution on absent private workspace eligibility, unavailable isolated Node/package-manager compatibility, revision or transfer-integrity mismatch, dependency-install failure, quality failure, unexpected listener/process, any request for a secret/credential/identity, any Core/network/trainer/data/model/update/submission/aggregation behavior, or failure to remove the disposable container. It has no automatic retry. A later repair requires a newly recorded bootstrap instance and must not silently reuse this instance's result.
+
+### 116.2 Test and publication plan
+
+The target checks only scalar capacity/workspace/Docker/readiness and inactive-process classes. The implementation then transfers the reviewed revision, runs the repository's declared quality command inside the isolated build method, and records exact test counts only if observed. The closure check confirms no published port, no retained Agent/container, and a non-running workspace. The dossier, Research Ledger, Hospital Node page, and roadmap will report the observed outcome and every retained limitation after the command ends.
+
+> **Hard stop:** This is not a release-authority, provenance-exception, protected-composition, Core-control, Agent/Core proof, training, submission, or aggregation increment. No package locator, credential, data/model, target address, or raw build output may be published. No action may activate an Agent runtime, listener, profile, service, or worker.
+
+### 116.3 Readiness outcome — bootstrap stopped before workspace creation
+
+One bounded scalar readiness check reached the candidate target. It observed Docker availability and a writable home/workspace class, while native Node remained absent. The same deliberately non-inspective check returned non-empty listener and `hospital-node` process-match classes. Those classes are not attributed to this project and no process, port, configuration, package, log, credential, or target content was inspected to resolve them. Under §116 they are sufficient ambiguity to close this bootstrap instance before selecting a method or creating a workspace.
+
+The terminal result is `target_bootstrap_readiness_closed`. No source was copied; no workspace, image, container, toolchain, dependency, file, service, profile, listener, Core call, identity/credential action, data/model access, trainer, update, submission, or aggregation action occurred. The target is therefore unchanged by this increment. A future bootstrap requires a new, narrow readiness record that can establish isolation without broad target inspection; it must not silently reuse this closed result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
