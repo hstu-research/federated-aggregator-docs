@@ -2823,6 +2823,21 @@ The lifecycle is `npm_route_unprepared` → `exact_request_authorized` → `priv
 
 No npm resolution, download, candidate inspection, signature check, seed creation, target transfer, installation, source build, runtime, proof, data/model use, training, submission, or aggregation action has occurred for this independent route.
 
+## 107. One-use npm-client acquisition — local seed retained, target use blocked
+
+One independent npm-client acquisition attempt for exact `pnpm@10.16.1` completed into private transient custody with scripts disabled. The candidate’s manifest exact-version class, finite-size class, and locally computed integrity class were verified before it was sealed into private local custody. Registry integrity metadata was present but not independently cross-verified, and no provenance attestation was evaluated. The sealed object is therefore **not admitted for target transfer, installation, or build use**; it is a local integrity witness only.
+
+| Evidence class | Observed scalar outcome | Permitted conclusion |
+|---|---|---|
+| Independent route | `completed_once` | The alternate client route did not reuse Corepack. |
+| Exact package-manager version | `verified` | The locally sealed candidate matches the declared version class. |
+| Local integrity / self-check | `verified` | The sealed candidate remained readable and matched its locally recorded integrity class. |
+| Registry integrity metadata | `present_not_cross_verified` | Do not describe registry integrity as independently verified. |
+| Provenance attestation | `not_evaluated` | Do not treat the candidate as provenance-verified or target-admissible. |
+| Target / runtime controls | `untouched` | No transfer, install, source build, Agent/Core/runtime, proof, data/model/trainer, submission, or aggregation action. |
+
+The result is `local_seed_integrity_verified_provenance_unassessed`. The local seed is private and inert; it cannot be copied, installed, activated, used to resolve dependencies, or exposed to the target. A later separate provenance and registry-integrity review must decide whether it is eligible for a target-admission design. No claims are made about package safety, deployment, Hospital Node operation, model/data handling, training, update submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
