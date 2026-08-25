@@ -3330,6 +3330,39 @@ Cleanup is a terminal part of the future diagnostic rather than a best-effort po
 
 The next gate is a separate pre-execution review that binds the fresh target diagnostic identity and confirms the source-quality, composition-context, source-only admission, and hardened-cleanup predicates are current. Only after that review may one isolated target diagnostic be considered; it must publish its actual scalar result and cleanup closure before any further work.
 
+## 128. Target formatting-diagnostic pre-execution review — implementation contract
+
+### 128.1 Narrow purpose and scalar preconditions
+
+The first permitted successor to §127 is one **read-only scalar pre-execution review**. It does not construct, reserve, or run the diagnostic; instead, it confirms whether a later one-use identity could be admitted without reusing a closed container/image/workspace or relaxing the retained controls. The review checks no source text, receipt, transcript, diff, command, package/provider/registry, image identifier, target configuration, credential, model/data, process argument, or runtime output.
+
+| Precondition class | Exact admissible state | Terminal review closure |
+|---|---|---|
+| Source-quality evidence | `format_admission_quality_gated` | `format_preflight_closed` |
+| Composition context | `composition_context_matched` | `format_preflight_closed` |
+| Source-only policy | `normalization_admission_quality_gated` | `format_preflight_closed` |
+| Target container engine | `container_engine_available` | `format_preflight_closed` |
+| Future one-use identity | `unused_candidate_identity` | `format_preflight_closed` |
+| Disposable resource residue | `candidate_resources_absent` | `format_preflight_cleanup_closed` |
+| Future workspace posture | `workspace_not_created_nonrunning` | `format_preflight_cleanup_closed` |
+| Runtime containment | `diagnostic_not_started` | `format_preflight_hardening_closed` |
+
+The review may emit only `format_preflight_ready`, `format_preflight_closed`, `format_preflight_hardening_closed`, or `format_preflight_cleanup_closed`. It does not grant a general target capability, establish a release, or begin a diagnostic. Any unrecognized, multiple, sensitive-shaped, or broadened result closes as `format_preflight_closed`.
+
+### 128.2 Read-only workflow, ownership, and terminal cleanup
+
+The target operator owns the candidate VM and container engine; the review performs no mutation. The finite lifecycle is `preflight_identity_selected` → `source_context_checked` → `target_scalar_posture_checked` → `preflight_projected` → `review_transcript_removed` → `review_closed`. The only target observation categories are container-engine availability, exact future-resource absence, future-workspace not-created/non-running, and diagnostic-not-started. No directory enumeration, package/toolchain/configuration inspection, image pull/build, source transfer, workspace creation, container create/start, port query, environment read, listener probe, process argument read, Docker socket mount, secret/credential access, or host change is permitted.
+
+The review stores no persistent fact beyond its scalar projection. Its private command transcript is removed before publication. A closed review cannot be retried under the same identity and cannot fall back to a different target, workspace, source, image, toolchain, container, identity, or runtime posture. A ready review expires before a later target diagnostic and must be revalidated within that separately recorded diagnostic identity; it does not authorize a source-quality rerun, release, deployment, runtime, hospital integration, Core call, data/model access, training, submission, aggregation, or scientific claim.
+
+> **Hard stop:** This contract does not contact a package/provider, transfer or inspect source, build/pull/run a container/image, invoke a formatter, mutate the target, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+### 128.3 Actual outcome — scalar formatting-diagnostic preflight ready
+
+The one read-only candidate-VM pre-execution review completed and emitted `format_preflight_ready`. It confirmed only the documented container-engine, unused future-resource, not-created/non-running workspace, and diagnostic-not-started posture classes alongside the already published source-quality, composition-context, and source-only policy evidence. No host or Docker resource was created, changed, configured, inspected beyond the allowlisted scalar posture classes, or retained.
+
+No source, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No formatting command, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. This readiness class expires and does not authorize a diagnostic itself; a separately recorded identity revalidation and one-use invocation decision remain required.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
