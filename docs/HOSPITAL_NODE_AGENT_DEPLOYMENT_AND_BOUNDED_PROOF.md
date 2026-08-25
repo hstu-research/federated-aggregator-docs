@@ -3195,6 +3195,30 @@ The fresh source bundle, private workspace, and disposable closure-diagnostic im
 
 The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local diagnostic staging artifacts were removed. The outcome identifies a collector-remediation category only. It does not establish composition equality, formatting, source quality, release, deployment, runtime proof, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific evidence. A successor must separately design a package-manager accessibility remediation and cannot reuse this diagnostic instance.
 
+## 124. Image-local package-manager accessibility remediation — implementation contract
+
+The `receipt_package_manager_closed` result permits one narrowly scoped remediation of the **disposable image only**. It does not activate the earlier local seed, provision the target host, or alter the Agent source. During an image build with its normal build-time network boundary, the image may install exactly the package-manager version declared by the reviewed Agent manifest through scripts-disabled package installation. The final validation runs as the unprivileged collector user in a read-only, no-network runtime and projects only accessibility/version equality or an allowlisted closure.
+
+| Boundary | Required condition | Excluded action |
+|---|---|---|
+| Version binding | Exact declared package-manager version only; private build check rejects mismatch. | Floating version, alternate manager, or package-manager activation on the host. |
+| Installation scope | Image layer only; discarded with the named image. | Host global install, system package change, Corepack state change, seed transfer/activation, or persistent cache. |
+| Build action | Scripts-disabled exact install, private logs, fresh image identity. | Agent dependency install, quality stage, source mutation, listener/service/profile, Core/identity route, or data/model access. |
+| Runtime validation | Unprivileged user; read-only root; no network/port/host network/privilege/Docker socket/mounts. | Agent execution, training, update submission, aggregation, or public evidence beyond scalar result. |
+| Projection and closure | `package_manager_accessible`, `package_manager_version_closed`, `package_manager_access_closed`, or `package_manager_hardening_closed` plus cleanup class. | Version string, executable/cache/path, registry/provider, raw logs, target fact, credential, model/data, or transcript projection. |
+
+### 124.1 Lifecycle and proof limit
+
+The lifecycle is `remediation_instance_sealed` → `exact_image_install_built` → `unprivileged_access_checked` → `hardened_cleanup_closed`. A build/install/version/access/hardening/cleanup failure closes this instance without retry. The target workspace is private and non-running; the image, container, transfer/build transients, and local staging are removed after the scalar receipt. A successful receipt establishes only that the disposable image-local package-manager surface is accessible to the hardened collector user. It cannot establish host provisioning, source quality, composition equality, release, deployment, runtime, hospital integration, training, submission, aggregation, or scientific evidence.
+
+> **Hard stop:** No host package state, target-native toolchain, previous seed, Agent source, service, listener, profile, Core route, identity, data/model, trainer, update, submission, or aggregation path is changed by this remediation.
+
+### 124.2 Actual outcome — image-local package-manager accessibility validated
+
+The fresh exact-source workspace and disposable remediation image completed. Its image-local, scripts-disabled exact package-manager installation completed during the isolated build, and the single unprivileged, read-only, no-network validation emitted `package_manager_accessible`. This validates only the accessibility of the image-local exact package-manager surface to the hardened collector user. No version string, executable/cache/location, package/provider/registry, target configuration, credential, source content, data/model, or transcript was retained or inspected.
+
+The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local remediation staging was removed. The target host remains unmodified. No Agent runtime/profile, listener/service, Core call, identity action, data/model access, trainer, update, submission, aggregation, source-quality pass, composition equality, release, deployment, runtime proof, hospital integration, or scientific result occurred. A subsequent fresh collector gate may use this image-local accessibility design only after its own contract is recorded.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
