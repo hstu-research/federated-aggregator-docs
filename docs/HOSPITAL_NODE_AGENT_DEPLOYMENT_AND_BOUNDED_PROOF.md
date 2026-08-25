@@ -3752,6 +3752,37 @@ The one read-only target type-check readiness review completed and emitted `type
 
 No source, receipt value, type-error output, package/provider/registry, image, path, command, configuration, credential, log, transcript, process, model/data, or database fact was read or published. No type-check invocation, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. The readiness class expires and does not authorize a type-check itself; a separate one-shot consumption decision remains required.
 
+## 140. Fresh type-check candidate consumption and final pre-start receipt — design-only contract
+
+### 140.1 New candidate and same-sequence admission
+
+This record defines the only future path to consume a type-check candidate. The historical `type_execution_ready` result is closed context and cannot be reused. A newly generated opaque private candidate must bind a newly observed current readiness result, reviewed source/type-check design, image-local manager posture, future-resource absence, and diagnostic-not-started posture inside the same finite control sequence. The candidate is not an Agent, user, workload, Core, source, image, container, target, credential, or runtime identity and cannot be returned, queued, persisted, or publicly projected.
+
+| Required current class | Exact admissible state | Immediate closure |
+|---|---|---|
+| Source/type-check design | `current_exact` | `type_stage_commit_closed` |
+| Image-local manager | `image_local_manager_available` | `type_stage_commit_closed` |
+| Fresh readiness | `type_execution_ready` | `type_stage_commit_closed` |
+| Candidate | `fresh_unconsumed_valid` | `type_stage_commit_closed` |
+| Future resources | `absent_not_created_nonrunning` | `type_stage_commit_cleanup_closed` |
+| Containment | `diagnostic_not_started` | `type_stage_commit_hardening_closed` |
+| Final receipt | `single_exact_unexpired` | `type_stage_commit_receipt_closed` |
+| Consumption | `unused` | `type_stage_commit_replay_closed` |
+
+The sequence may receive only these scalar classes. It cannot receive or retain an identity value, time, source, type-error output, command, package/provider/registry, image/container reference, target, configuration, credential, log, transcript, process, model/data, or database fact. It cannot change the declared stage or add formatting/tests/import guards/source repair/runtime work.
+
+### 140.2 Final receipt, immediate consumption, and expiry
+
+The private receipt contains only schema class, terminal state, one allowlisted decision, and `retry_allowed=false`. Permitted pre-stage projections are `type_stage_commit_ready`, `type_stage_commit_closed`, `type_stage_commit_hardening_closed`, `type_stage_commit_cleanup_closed`, `type_stage_commit_receipt_closed`, `type_stage_commit_expired`, and `type_stage_commit_replay_closed`. `type_stage_commit_ready` exists only inside the finite sequence and is consumed immediately by one declared type-check stage or expires and removes all private candidate/receipt/decision state.
+
+An interruption, cancellation, drift, receipt uncertainty, or failure to begin the stage immediately closes the candidate with no retry, refresh, alternate candidate/source/image/workspace/toolchain/target, recovery stage, or quality-chain continuation. After a stage begins, the only next public evidence may be its allowlisted scalar type-check outcome and independent cleanup class.
+
+### 140.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a real candidate; contact the target; transfer or inspect source; build/pull/run an image/container; invoke a type check; modify source or target state; create a workspace; access configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one compound one-shot type-check execution that implements this exact sequence and §138 cleanup. It must emit only the allowed scalar stage outcome and independent cleanup class, then publish before any follow-on work.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
