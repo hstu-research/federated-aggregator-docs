@@ -3943,6 +3943,37 @@ After every pre-stage closure or stage result, remove the private source bundle,
 
 The next potential gate is a separate one-use scalar execution-readiness review for this Python test-suite boundary. It must publish its outcome before any Python test-suite candidate is considered for consumption.
 
+## 145. Target Python test-suite execution-readiness review — design-only implementation contract
+
+### 145.1 Read-only purpose and exact predicates
+
+The first permitted successor to §144 is one read-only scalar execution-readiness review for a new private Python-test candidate. Its only purpose is to classify whether the current reviewed source/control baseline and prospective hardened container posture remain admissible. It does not create, consume, persist, or return a candidate; transfer source; allocate a workspace; build an image; create a container; or invoke the declared Python test suite.
+
+| Required predicate | Exact admissible class | Terminal review closure |
+|---|---|---|
+| Reviewed source/Python-test design | `current_exact` | `py_test_execution_readiness_closed` |
+| Image-local package-manager posture | `image_local_manager_available` | `py_test_execution_readiness_closed` |
+| Image-local Python test surface | `python_test_surface_available` | `py_test_execution_readiness_closed` |
+| Fresh private candidate | `fresh_unused_valid` | `py_test_execution_readiness_closed` |
+| Target container engine | `container_engine_available` | `py_test_execution_readiness_closed` |
+| Future container/image | `absent` | `py_test_execution_readiness_cleanup_closed` |
+| Future workspace | `not_created_nonrunning` | `py_test_execution_readiness_cleanup_closed` |
+| Target diagnostic posture | `not_started` | `py_test_execution_readiness_hardening_closed` |
+
+The review may emit only `py_test_execution_ready`, `py_test_execution_readiness_closed`, `py_test_execution_readiness_hardening_closed`, `py_test_execution_readiness_cleanup_closed`, or `py_test_execution_readiness_replay_closed`. A ready result is non-consuming, expires, and cannot authorize a Python test stage, source transfer, resource allocation, or runtime activity.
+
+### 145.2 Observation limits, retention, and closure
+
+The target observation may classify only the declared container-engine availability, future named-container absence, future disposable-image absence, future workspace not-created/non-running, and diagnostic-not-started posture. It cannot enumerate or inspect unrelated resources; read source/package/toolchain/configuration/credential/log/process/port/listener/model/data/database facts; create any resource; mount a Docker socket; change the host; or retain private review, candidate, receipt, or timing state.
+
+Any unavailable, stale, multiple, mutable, sensitive-shaped, or capability-broadened fact closes without a retry, substitute candidate, alternate source/image/workspace/toolchain/target, or further quality/runtime step. The only publication is one scalar review result and retained boundary statement.
+
+### 145.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a real candidate; contact the target; transfer or inspect source; build/pull/run an image/container; invoke Python tests; modify source or target state; create a workspace; access configuration, credentials, logs, or transcripts; start an Agent, service, or listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is one implementation of this exact read-only review. It must publish its scalar outcome before a separate candidate-consumption contract or any Python test-suite invocation is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
