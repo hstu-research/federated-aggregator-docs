@@ -3472,6 +3472,40 @@ The future receipt retains only a version class, terminal state, one allowlisted
 
 The next gate is an independent diagnostic-start decision that can consume only a current `format_revalidation_ready` receipt. It must define pre-start cancellation and terminal cleanup again in the actual candidate context; the declared formatting stage remains a separate future invocation.
 
+## 132. Isolated formatting-diagnostic start decision and final pre-start cleanup — design-only contract
+
+### 132.1 Decision boundary and exact admissibility
+
+This record defines the last **decision-only** gate before any target format-stage diagnostic could be invoked. It may consume only one current private `format_revalidation_ready` receipt that belongs to one authorized, unconsumed candidate. The decision does not create a source bundle, workspace, image, container, or runtime process; it neither invokes the declared formatting stage nor changes the target. Its purpose is to prove that no earlier authorization, revalidation, or cleanup state silently becomes a start.
+
+| Required input class | Exact admissible state | Closure on any other state |
+|---|---|---|
+| Invocation decision | `format_invocation_authorized` | `format_start_closed` |
+| Fresh revalidation | `format_revalidation_ready` | `format_start_closed` |
+| Candidate state | `authorized_unstarted` | `format_start_closed` |
+| Receipt expiry | `valid` | `format_start_expired` |
+| Named future container | `absent` | `format_start_cleanup_closed` |
+| Disposable future image | `absent` | `format_start_cleanup_closed` |
+| Future workspace | `not_created_nonrunning` | `format_start_cleanup_closed` |
+| Diagnostic process | `not_started` | `format_start_hardening_closed` |
+| Start decision | `unused` | `format_start_replay_closed` |
+
+The decision receives only those scalar classes. It cannot receive a receipt value, identity, time, target, source, command, package/provider/registry fact, image/container reference, path, configuration, credential, log, transcript, process detail, model/data, or database fact. Any malformed, multiple, unknown, sensitive-shaped, stale, inherited, mutable, or broadened input closes before resource creation.
+
+### 132.2 Final cleanup check and cancellation sequence
+
+The final pre-start cleanup check is read-only and observes only three candidate-resource classes—named future container absent, disposable future image absent, and future workspace not-created/non-running—plus diagnostic-not-started. It does not inspect existing unrelated containers/images/workspaces, contents, package/toolchain state, source, logs, configuration, credentials, ports, listeners, processes, data/model material, or database state. A check failure is terminal for this candidate and produces no cleanup attempt that might widen scope.
+
+The state machine is `pending_start` → `prestart_cleanup_checked` → either `start_authorized_unconsumed` or `cancelled_prestart` → `closed`. A cancellation, expiry, revalidation drift, receipt uncertainty, cleanup failure, or replay removes the private candidate/receipt/decision record and forbids source transfer, image/container construction, workspace creation, or formatter invocation. It cannot renew, revalidate, retry, select an alternate candidate, or fall back to another target/source/image/toolchain/identity. `format_start_authorized` is private control evidence only; it is not a formatting outcome and expires if not consumed immediately by a later separately recorded one-shot invocation.
+
+### 132.3 Receipt, readout, and hard stop
+
+The private receipt may contain only schema class, terminal state, allowlisted decision, and `retry_allowed=false`. Its public projection is exactly one of `format_start_authorized`, `format_start_cancelled`, `format_start_closed`, `format_start_expired`, `format_start_hardening_closed`, `format_start_cleanup_closed`, or `format_start_replay_closed`. The receipt must be removed on every closure or when the later invocation terminally closes.
+
+> **Hard stop:** This is a design record only. It does not create or consume a real start authorization, contact the target, transfer or inspect source, build/pull/run an image/container, invoke formatting, modify source or target state, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+The next potential gate is a narrow one-shot format-stage invocation plan that specifies the exact hardened disposable execution, scalar stage-result parser, mandatory cleanup, and post-invocation closeout. It must be reviewed and published separately before any target invocation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
