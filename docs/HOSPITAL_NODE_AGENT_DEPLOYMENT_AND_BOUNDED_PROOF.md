@@ -4170,6 +4170,14 @@ The canonical input and bundle class are non-enumerable and may not be stored, s
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other source-quality, target, or runtime boundary is considered.
 
+### 150.4 Actual outcome — source-only scalar evidence-bundle freezer and quality evidence
+
+Agent release `d57facd` implements the §150 source-only scalar evidence-bundle freezer, frozen input/receipt/readout contracts, exact projector-receipt/readout/terminal-Python/no-retry/identity/capability validation, terminal replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. It may emit only `source_quality_evidence_bundle_frozen` or an allowlisted terminal closure. The frozen scalar is deliberately non-retained: it is not a file, cache entry, database record, network message, public record, signed dossier, stage result, score, pass, certification, release decision, deployment signal, or operational authorization.
+
+The implementation operates on deterministic in-memory classes only. It does not freeze or store an external record; inspect a source/target/transcript; invoke formatting/type-check/TypeScript/Python/protected-import tests; create a workspace/image/container/file/cache/database/network message/public record; access a configuration/credential/log/database; start a service/listener/storage/publication endpoint; contact Core; use an identity; access data/model material; train; submit; or aggregate. Every malformed, mutable, inherited, missing, unknown, projector/readout/terminal-Python mismatch, identity/capability deviation, or replay closes without replacement.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 259 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32844741282` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
