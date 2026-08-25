@@ -2945,6 +2945,25 @@ The lifecycle is `unbound` → `all_packets_current` → `release_authority_pres
 
 Current packet state closes at `unbound`: source quality is verified, but provenance exception is not authorized, the seed is not target-admissible, protected composition remains closed on an absent native toolchain, fresh Core control is unavailable, and no release authority or target identity has been supplied. The result is `target_release_identity_design_only`. No release was created or bound; no target was contacted or inspected; and no source/seed transfer, installation, build, listener, service, Agent, container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
 
+## 114. Release-authority attestation protocol — design only
+
+The release-authority protocol governs a future decision; it does not appoint an authority or authorize an exception. Its purpose is to ensure that the authority who may later decide on one target-bound release is distinguishable from the source operator, provision operator, target runtime, Agent, Core, and any human/browser/ML-worker execution identity. The protocol retains scalar evidence only and cannot represent a target address, source/package/seed locator, provider, credential, configuration, path, raw body/header, log, clinical fact, model/data, or runtime capability.
+
+| Protocol dimension | Required control | Current state |
+|---|---|---|
+| Authority eligibility | A designated risk/release owner, independent of source, provision, and runtime operation, is required. | `unassigned` |
+| Purpose | One expiry-bounded decision for one already-defined release intent only. | `design_only` |
+| Evidence inputs | Scalar classes for source quality, seed integrity/provenance decision, protected composition, Core control, release intent, and target identity. | `not_current` |
+| Decision readout | Only `attestation_recorded`, `attestation_denied`, `attestation_expired`, `attestation_revoked`, or allowlisted closure. | `not_active` |
+| Retention | Minimal append-only scalar decision/expiry/revocation/closure facts, with no raw decision rationale or operational detail. | `not_active` |
+| Separation | The attestor cannot self-approve a widened purpose or substitute packet/target/release identity. | `required` |
+
+### 114.1 Finite lifecycle
+
+The lifecycle is `unassigned` → `candidate_designated` → `evidence_reviewed` → `decision_recorded` → `expiry_or_revocation` → `terminal_closed`. It closes at `attestation_closed` if the authority is ambiguous, self-approving, unavailable, or stale; if any packet is missing/stale/mismatched; if the purpose broadens; if a second target/release is introduced; if transfer/runtime behavior appears; or if a projected field contains sensitive operational material. A terminal close cannot be reopened by retry, substitution, or a second decision without a new independently recorded protocol instance.
+
+The current protocol remains `unassigned`. No authority has been appointed, no provenance exception or release intent has been authorized, and no target contact, release creation/binding, transfer, installation, source build, listener, service, Agent, container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
