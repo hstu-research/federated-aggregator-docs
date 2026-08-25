@@ -3070,6 +3070,32 @@ The fresh instance used a distinct private workspace, source bundle, image, and 
 
 The post-closure scalar check observed an absent named container, absent disposable image, and a retained non-running private workspace. The fresh instance therefore creates no source-quality pass claim and cannot be used to infer a release, deployment, runtime proof, hospital integration, model/data access, training, update submission, aggregation, or scientific result. It is terminal and cannot be retried. A third, separate diagnostic design would need to emit one allowlisted **reason class** before transcript removal while preserving the same no-sensitive-projection boundary.
 
+## 119. Final isolated quality reason-class receipt — implementation contract
+
+This third instance is the final target-quality attempt for the reviewed source under this workstream. It inherits every prior isolation control and introduces only a finite **reason-class** projection so that a terminal outcome can be actionable without exposing a transcript. It is not a new runtime, release, deployment, or proof path. Its fresh workspace/image/container identity is distinct from §117 and §118; both prior instances remain closed and are never reused.
+
+| Reason class | Strict precedence condition | What it does not reveal |
+|---|---|---|
+| `quality_exit_nonzero` | The declared quality command exits non-zero. | No command output, failing step/test, stack trace, source, path, package, or environment fact. |
+| `typescript_count_mismatch` | Quality exits zero but the observed TypeScript count is not the exact expected class. | No test names, files, or output. |
+| `python_count_mismatch` | Prior conditions pass but the observed Python count is not the exact expected class. | No test names, files, or output. |
+| `hardening_mismatch` | Prior conditions pass but any required isolated-container class is absent or changed. | No container ID, mount/source detail, port, or configuration value. |
+| `cleanup_mismatch` | Prior conditions pass but transcript/container/image removal or final absence fails. | No target/container/image/path detail. |
+| `receipt_malformed` | The collector cannot produce exactly one valid state/reason pair. | No raw collector/transcript detail. |
+| `quality_passed_expected_counts` | Quality exits zero; both expected count classes, all hardening classes, and all cleanup classes are exact. | No transcript, test name, target, source, package, or configuration detail. |
+
+### 119.1 Final collector lifecycle and terminal limit
+
+The final collector creates a fresh private source bundle/workspace/image/container identity, validates the source transfer internally, runs `pnpm run ci` once in the fixed no-network/no-port/non-privileged/read-only/no-mount configuration, derives exactly one reason by the table's precedence, removes the named container and disposable image, deletes the transcript and transfer/build transients, confirms final absence, and emits only the reason class plus `workspace_nonrunning`. It must not start a listener, service, Agent, profile, scheduler, Core route, identity source, trainer, update/submission, or aggregation path.
+
+No target-quality retry is allowed after this instance. If the result is not `quality_passed_expected_counts`, the target-quality path stops and future work requires user guidance before any new diagnostic or build action. Even a passed result establishes source-quality evidence on the candidate target only; it cannot discharge provenance, release-authority, protected-composition, Core-control, runtime, hospital, data/model, training, submission, aggregation, or scientific boundaries.
+
+### 119.2 Actual outcome — final reason class is `quality_exit_nonzero`; target-quality retries stop
+
+The final instance used a fresh private source bundle, workspace, disposable image, and hardened container identity. The exact reviewed source transfer and image build completed. Its single declared quality invocation emitted the scalar reason class `quality_exit_nonzero`. By design, this does not identify a failing command, test, file, package, source line, path, environment fact, target configuration, credential, or transcript content. The private transcript and build-transfer transients were removed before publication.
+
+The post-run scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace. The three bounded target-quality attempts are now exhausted. No further target diagnostic, build, or retry action is permitted without new user guidance. No source-quality pass, release, deployment, runtime proof, hospital integration, Core call, identity/credential action, data/model access, trainer, update submission, aggregation, or scientific result was created.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
