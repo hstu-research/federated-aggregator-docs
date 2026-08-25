@@ -3120,6 +3120,31 @@ The guided diagnostic used a fresh private source bundle, workspace, disposable 
 
 The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace. No listener, service, Agent runtime/profile, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred. A later remediation must be separately designed around the `format_closed` category; this diagnostic instance is terminal and cannot be retried.
 
+## 121. Local formatting-only source remediation — implementation contract
+
+The guided `format_closed` category permits a narrow remediation on the local reviewed Agent source only. The fixed baseline is the reviewed source revision used in the stage diagnostic. The remediation runs the repository's declared formatter exactly once and accepts a resulting revision only when every changed file is a formatter-produced whitespace/layout change. It does not contact the candidate target, reuse any target workspace, change a package/lock/configuration/workflow/test/runtime file, or alter semantics. It is a local source-custody action, not a target proof or release decision.
+
+| Control | Required state | Terminal closure |
+|---|---|---|
+| Baseline | Exact reviewed Agent revision with a clean pre-format working tree. | `format_baseline_closed` |
+| Allowed action | One declared formatter invocation only. | `format_invocation_closed` |
+| Allowed delta | Formatter-only whitespace/layout change in existing source-controlled files. | `format_delta_closed` |
+| Precluded delta | Dependency, lock, configuration, workflow, test intent, behavior, API, runtime, secret, model/data, or target artifact change. | `non_format_delta_closed` |
+| Validation | Local declared quality chain passes after the formatter. | `format_quality_closed` |
+| Publication | Exact local outcome, changed/no-change class, local quality class, and retained limits only. | `format_publication_closed` |
+
+### 121.1 Lifecycle and non-goals
+
+The lifecycle is `format_baseline_checked` → `formatter_invoked` → `delta_classified` → `local_quality_closed` → `format_commit_or_no_change_closed`. A no-change result closes as `format_no_change_closed`; a valid formatting-only delta may be committed with the required author identity after the local quality chain passes. Any disallowed delta or non-zero local quality result closes without manual repair or target follow-on. The remediation must not start a listener, service, Agent, container, profile, scheduler, Core route, identity path, trainer, update/submission, or aggregation path; it must not access clinical data or a model.
+
+> **Hard stop:** A local formatter result is neither candidate-target evidence nor a source-to-release/protected-composition/Core-control/provenance exception. It cannot establish deployment, runtime, hospital integration, training, update submission, aggregation, or scientific evidence.
+
+### 121.2 Actual outcome — declared formatter produced `format_no_change`
+
+The local reviewed Agent tree was clean before the one permitted formatter invocation. The declared formatter completed and produced `format_no_change`: no tracked source delta was created. Consequently, the quality chain did not run and no source revision was committed or pushed. This local result does not explain, negate, or override the candidate target's redacted `format_closed` category; it only closes this local remediation instance without a change.
+
+No target contact or target workspace action occurred. No listener, service, Agent runtime/profile, container, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
