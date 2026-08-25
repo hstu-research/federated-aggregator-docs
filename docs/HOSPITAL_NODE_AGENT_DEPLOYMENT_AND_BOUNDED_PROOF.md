@@ -3614,6 +3614,35 @@ All decisions project `retry_allowed=false`. Any close removes the private candi
 
 The next gate is one isolated fresh candidate-binding and execution-readiness invocation that may emit only a new scalar readiness result or terminal closure. It must not consume the candidate or invoke the format stage; any later consumption and stage invocation remain separately recorded.
 
+## 136. Fresh candidate execution-readiness instance — implementation contract
+
+### 136.1 Purpose, candidate lifetime, and exact scalar boundary
+
+This increment is one fresh-instance rehearsal of the §135 candidate rule: bind a new opaque candidate privately, make one read-only target posture observation, project one scalar result, and immediately expire/remove the candidate without consumption. It is not a durable admission, start authorization, or format-stage invocation. It cannot reuse the earlier execution-readiness evidence or carry this candidate into a later task.
+
+| Required observation | Exact admissible class | Terminal closure |
+|---|---|---|
+| Published source/control baseline | `current_exact` | `format_fresh_candidate_closed` |
+| Candidate | `fresh_unused_valid` | `format_fresh_candidate_closed` |
+| Container engine | `container_engine_available` | `format_fresh_candidate_closed` |
+| Future candidate container/image | `absent` | `format_fresh_candidate_cleanup_closed` |
+| Future candidate workspace | `not_created_nonrunning` | `format_fresh_candidate_cleanup_closed` |
+| Diagnostic posture | `not_started` | `format_fresh_candidate_hardening_closed` |
+
+The only projected results are `format_fresh_candidate_ready`, `format_fresh_candidate_closed`, `format_fresh_candidate_hardening_closed`, `format_fresh_candidate_cleanup_closed`, and `format_fresh_candidate_replay_closed`. No candidate identity, time, source, receipt value, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, or database fact may be stored or published.
+
+### 136.2 Read-only run and terminal expiry
+
+The one run performs no source transfer/inspection, image/container/workspace creation, formatter invocation, package resolution, target configuration, environment/secret/log/process inspection, port/listener query, mount, Docker socket use, Agent/profile/service/Core/identity/data/model/trainer/submission/aggregation behavior, or host mutation. It may classify only the allowlisted engine, named-future-resource absence, workspace posture, and diagnostic-not-started states. Every non-ready or malformed/multiple/sensitive/broadened state closes. A ready result expires immediately after projection; the private candidate and review transcript are removed, no follow-on authorization is retained, and no retry or alternate candidate/resource/target/toolchain is permitted.
+
+> **Hard stop:** This contract does not create or consume a real candidate, contact the target beyond the allowlisted scalar posture check, transfer or inspect source, build/pull/run an image/container, invoke formatting, modify source or target state, create a workspace, access configuration/credentials/logs/transcripts, start an Agent/service/listener, contact Core, use an identity, access data/model material, train, submit, aggregate, release, deploy, or prove runtime behavior.
+
+### 136.3 Actual outcome — fresh candidate readiness emitted and expired
+
+The one fresh-candidate read-only execution-readiness instance completed and emitted `format_fresh_candidate_ready`. It confirmed only the current baseline/control and allowlisted candidate target posture classes. The private candidate was not consumed, immediately expired after projection, and was removed with its private review state; no follow-on authorization remains.
+
+No host or Docker resource was created, changed, configured, inspected beyond the scalar posture classes, or retained. No source, receipt value, package/provider/registry, image, path, command, configuration, credential, log, transcript, process argument, model/data, or database fact was read or published. No format-stage invocation, source transfer, image/container build or run, workspace creation, Agent/profile/service/listener, Core call, identity action, data/model access, trainer, update submission, aggregation, release, deployment, runtime proof, hospital integration, or scientific result occurred. Any future invocation candidate must be newly designed, bound, and reviewed again.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
