@@ -2838,6 +2838,20 @@ One independent npm-client acquisition attempt for exact `pnpm@10.16.1` complete
 
 The result is `local_seed_integrity_verified_provenance_unassessed`. The local seed is private and inert; it cannot be copied, installed, activated, used to resolve dependencies, or exposed to the target. A later separate provenance and registry-integrity review must decide whether it is eligible for a target-admission design. No claims are made about package safety, deployment, Hospital Node operation, model/data handling, training, update submission, or aggregation.
 
+## 108. Read-only seed evidence review — integrity verified, provenance unavailable
+
+One read-only evidence review compared the sealed candidate’s locally computed registry-integrity class with the exact registry-integrity class for the declared selector. The classes matched. No provenance/attestation metadata was available for this review, so package provenance remains unavailable. The outcome is `local_seed_registry_integrity_verified_provenance_unavailable`.
+
+| Review fact | Scalar outcome | Target-admission consequence |
+|---|---|---|
+| Exact selector | `verified` | Matches the declared `pnpm@10.16.1` class. |
+| Local sealed seed | `read_only` | No activation, extraction, mutation, transfer, or dependency resolution. |
+| Registry integrity | `verified` | The local seed matches the exact registry-integrity class. |
+| Provenance / attestation | `not_available` | Terminal non-admissibility for the current target path. |
+| Target-admission decision | `blocked` | Do not transfer/install/use the seed or begin any source build. |
+
+The review read no credentials and created no new package candidate. It did not activate a package manager, change cache or configuration, contact the target, transfer the seed, install a tool, transfer source, build, start an Agent or container, contact Core, invoke proof, access model/data, train, submit, or aggregate. Registry integrity establishes byte correspondence for the selected candidate; it does not replace unavailable provenance or establish package safety, deployment, runtime, hospital integration, scientific validity, update submission, or aggregation.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
