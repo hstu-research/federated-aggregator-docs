@@ -2741,6 +2741,24 @@ One non-modifying SSH check was used to evaluate only scalar build readiness. Th
 
 The result is `target_local_build_preflight_closed`. A container-based workaround would require a separately reviewed immutable build-image source and a new provider/image trust boundary, so it is not inferred from the container client’s presence. No target-local source was transferred, no tools or dependencies were installed, no image was built, no container or Agent started, and no model/data/trainer/update/submission/aggregation activity occurred.
 
+## 102. Native target build-toolchain boundary — design only
+
+The validated Agent metadata declares the exact package-manager class `pnpm@10.16.1` and carries Node 22 type definitions; it does not declare a Node engine range. The local quality witness used a Node 22 runtime class, while the target preflight found no native Node, Corepack, or pnpm toolchain. The target-local build therefore requires one deliberate toolchain seed rather than an ambient package installation, container image pull, or mutable system repository route.
+
+| Requirement | Selected design rule | Not established or permitted in this increment |
+|---|---|---|
+| Runtime class | One fixed Node 22 native-runtime class compatible with the previously observed quality witness and target platform class. | Package URL, system repository, dynamic version selection, or target-side network download. |
+| Package-manager class | Exact `pnpm@10.16.1`, as declared by the Agent. | Substitution with the target’s ambient tooling, mutable latest resolution, or arbitrary package-manager version. |
+| Seed provenance | A future local seed must contain only the declared runtime and package-manager classes and carry one internally checked integrity class before transfer. | Credential, registry/package locator, raw checksum, archive contents, source code, or target filesystem detail in public evidence. |
+| Target custody | One private build-toolchain workspace owned only by the designated target build identity; it is used for one finite build and then closed. | Global system installation, shared host toolchain, profile mutation, automatic update, service account reuse, or persistence beyond a separately authorized decision. |
+| Build consequence | A compatible, integrity-checked seed may admit exactly one source-build attempt under no-listener/no-runtime/no-data controls. | Agent startup, Core contact, proof, training, update, submission, aggregation, or automatic retry. |
+
+### 102.1 Finite toolchain lifecycle
+
+The lifecycle is `unprepared` → `toolchain_selected` → `seed_integrity_verified` → `private_build_admitted` → `terminal_closed`. Any missing, changed, incompatible, unavailable, untrusted, or cleanup-uncertain toolchain reaches `toolchain_closed` before source transfer or build. A terminal outcome does not permit fallback to another runtime, package manager, system install, container image, provider, retry, or runtime action. Only a later separately reviewed decision may select a new toolchain class.
+
+At this point, the native build seed is not prepared or transferred. The target-native toolchain remains `toolchain_unavailable`; this is a design result, not a package download, installation, deployment, or build result. No source transfer, target change, dependency resolution, image creation, container/Agent start, Core contact, proof, model/data use, trainer, update, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
