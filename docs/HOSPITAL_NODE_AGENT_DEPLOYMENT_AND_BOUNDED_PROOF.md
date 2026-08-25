@@ -2519,6 +2519,35 @@ The finite symbolic state machine is now implemented at Agent revision `e755da5`
 
 The new coverage proves normal two-symbolic-position closure; arithmetic/declaration/control/malformed/mutable/inherited/unknown initialization closure; invalid transition closure; interruption and cleanup-failure closure; terminal replay suppression; independent machine isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only finite control sequencing and cleanup. It does not execute a local epoch, compute a FedProx objective, access data, create a model/weight/gradient, invoke a trainer or Agent, submit an update, or aggregate.
 
+## 90. Source-only synthetic FedProx metric-integrity contract
+
+The next thesis boundary validates the **integrity envelope for a future aggregate metric record**, not a metric computation. It accepts one exact frozen symbolic terminal local-epoch closure and a set of declared aggregate-result classes. It may state only whether a future record has the required terminal, finiteness, consistency, cleanup, and retained-control classes. It may not receive, calculate, persist, return, or inspect a loss, accuracy, gradient norm, sample count, prediction, label, model parameter, model byte, artifact, dataset field, or clinical fact.
+
+| Envelope class | Sole allowed class | Closure if absent, changed, or broadened |
+|---|---|---|
+| Terminal local epoch | `synthetic_epoch_sequence_closed`. | `terminal_closed` |
+| Aggregate metric result | `aggregate_metrics_declared`. | `metric_closed` |
+| Finiteness evidence | `all_aggregate_metrics_finite`. | `nonfinite_closed` |
+| Cross-field consistency | `manifest_metric_integrity_matched`. | `consistency_closed` |
+| Cleanup | `synthetic_epoch_cleanup_clean`. | `cleanup_closed` |
+| Retained controls | `trainer_not_invoked`, `submission_not_invoked`, `aggregation_disabled`. | `state_closed` |
+
+The one-use validator returns only a frozen scalar `integrity_admitted` receipt or one terminal closure code. Its aggregate readout consists only of received, admitted, invalid, and replay-suppressed counts. A private canonical marker must be nonenumerable and serialize as an empty record. No receipt, readout, marker, public document, or test result may project raw or derived metric values, artifact/model/weight facts, data, paths, URLs, credentials, environment values, raw exceptions, or a capability.
+
+The source file may import no metric/loss/accuracy/trainer/data/dataset/model/weight/gradient/optimizer/Python library, environment/process API, filesystem, local-state adapter, network/client, package/credential/target/Core/Azure integration, Agent runtime, submission, or aggregation module. Tests must cover admission; terminal/metric/nonfinite/consistency/cleanup/control denial; malformed/inherited/mutable/unknown input; replay; independent validators; frozen/redacted projections; marker nonenumerability; and import isolation. Passing tests prove only synthetic metric-record eligibility. They do not calculate metrics, perform a local epoch, train, create artifacts, submit updates, or aggregate.
+
+## 91. Source-only synthetic FedProx metric integrity — quality result
+
+The pure metric-integrity validator is now implemented at Agent revision `b37bd21`. It accepts one exact frozen symbolic aggregate-record envelope, privately canonicalizes only terminal, metric-result, finiteness, consistency, cleanup, and retained-control classes, and emits a frozen scalar receipt/readout. It contains no metric values, sample counts, predictions, labels, parameters, gradients, model, artifact, data, trainer, or runtime capability. The canonical marker is nonenumerable and serializes to no record facts.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and metric-integrity test | Six deterministic validator checks passed locally. | Aggregate-record eligibility only; not metric computation or artifact creation. |
+| Full Agent local quality chain | 221 TypeScript tests and 4 Python tests passed. | Source quality only; no data, metric, model, trainer, Agent, update, or aggregation path ran. |
+| Remote Agent Quality Gates | Run `32801979010` completed successfully for revision `b37bd21`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves exact integrity admission; terminal/metric/nonfinite/consistency/cleanup/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only an aggregate metric-record control boundary. It does not calculate or expose a metric, access data, create a model/weight/artifact, invoke a trainer or Agent, submit an update, or aggregate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
