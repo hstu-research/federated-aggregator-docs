@@ -2926,6 +2926,25 @@ The published Agent source revision `44bd982` was checked as an immutable local 
 
 The result is `source_quality_verified_release_binding_absent`. The source identity is not a release artifact, target binding, deployment, or Hospital Node runtime. No source was transferred, no package/seed was transferred or installed, no target configuration was inspected or changed, and no build, listener, service, Agent, container, Core request, proof, model/data access, trainer, update, submission, or aggregation action occurred. Any future binding must be one-way, expiry-bounded, integrity-checked, target-specific, and independently current with the provenance-exception, protected-composition, and Core-control packets.
 
+## 113. One-way target-bound release identity contract — design only
+
+The verified Agent source is not yet a target-bound release. This contract defines the only acceptable future binding: a release authority, distinct from the provision operator and runtime, binds one immutable source-quality class, one exact toolchain/seed class, and one declared target-identity class for one expiry-bounded build admission. The binding is an internal scalar control fact; it must never become a raw source location, package locator, target address, configuration, credential, artifact, or runtime capability.
+
+| Binding element | Required rule | Explicitly prohibited |
+|---|---|---|
+| Source / quality | Use the already verified source revision and successful quality-gate class only. | Mutable branch/tag/image/package selection, source substitution, or artifact creation. |
+| Toolchain / seed | Bind the exact declared toolchain and integrity-reviewed seed class only after the provenance/exception packet becomes current. | Ambient toolchain, seed replacement, re-download, cache fallback, or unverified dependency. |
+| Target identity | Bind one opaque declared target-identity class, independently checked at admission time. | Host/address/path/configuration disclosure, target scanning, target selection drift, or identity reuse. |
+| Authority separation | Release authority is distinct from source operator, provision operator, and target runtime. | Implicit authority, browser/human/ML-worker/Agent/Core identity reuse, or self-approval. |
+| One-way lifecycle | One intent, one expiry, one independent verification, one terminal close. | Rebind, rollback, replay, automatic retry, dual target, or concurrent release intent. |
+| Readout | Emit only `release_intent_bound`, `binding_verified`, `binding_expired`, or allowlisted closure classes. | Raw revision, seed, target, provider, configuration, credential, path, log, or runtime fact. |
+
+### 113.1 Finite binding lifecycle and current closure
+
+The lifecycle is `unbound` → `all_packets_current` → `release_authority_present` → `release_intent_bound` → `independently_verified` → `terminal_closed`. A missing provenance exception, source or seed mismatch, unavailable target identity, stale protected-composition or Core-control evidence, identity reuse, expiry, or any transfer/runtime broadening reaches `release_binding_closed` before a target is contacted or a release is created.
+
+Current packet state closes at `unbound`: source quality is verified, but provenance exception is not authorized, the seed is not target-admissible, protected composition remains closed on an absent native toolchain, fresh Core control is unavailable, and no release authority or target identity has been supplied. The result is `target_release_identity_design_only`. No release was created or bound; no target was contacted or inspected; and no source/seed transfer, installation, build, listener, service, Agent, container, Core request, proof, data/model access, training, submission, or aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
