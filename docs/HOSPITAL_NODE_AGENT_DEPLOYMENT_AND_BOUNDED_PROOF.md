@@ -4266,6 +4266,39 @@ The possible first slice is a **design-only synthetic study-intent contract**. I
 
 The selection is successful only when the public record states the question, the synthetic-first constraint, explicit non-goals, and the separation from the closed source-quality chain. The next potential gate is a separate design record for the scalar synthetic FedProx study-intent contract. That design must not permit implementation, test execution, target activity, or any research-result claim.
 
+## 154. Scalar synthetic FedProx study-intent contract — design-only boundary
+
+### 154.1 Purpose, research value, and exact admissible states
+
+This record defines a future source-only contract for declaring that a **synthetic FedProx study is proposed, not executed**. Its research value is methodological clarity for the breast-cancer/FedProx thesis: a planned research protocol must remain distinguishable from data access, model handling, trainer execution, metrics, updates, aggregation, or empirical conclusions. The contract is a pure scalar design; it neither represents a dataset nor models a FedProx run.
+
+| Required field | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Intent schema | `synthetic_fedprox_study_intent_v1` | `synthetic_fedprox_study_intent_invalid` |
+| Study classification | `synthetic_study_proposed` | `synthetic_fedprox_study_intent_closed` |
+| Trainer posture | `trainer_not_started` | `synthetic_fedprox_study_intent_closed` |
+| Data posture | `data_not_accessed` | `synthetic_fedprox_study_intent_closed` |
+| Model posture | `model_not_accessed` | `synthetic_fedprox_study_intent_closed` |
+| Metric posture | `metric_absent` | `synthetic_fedprox_study_intent_closed` |
+| Update posture | `update_not_created` | `synthetic_fedprox_study_intent_closed` |
+| Submission posture | `submission_not_started` | `synthetic_fedprox_study_intent_closed` |
+| Aggregation posture | `aggregation_disabled` | `synthetic_fedprox_study_intent_closed` |
+| Capability posture | `no_runtime_or_target_capability` | `synthetic_fedprox_study_intent_capability_closed` |
+
+The future value contains no numeric hyperparameter, client/hospital identifier, dataset/model identifier, model architecture/weight, local path, source revision, command, metric, result, diagnosis, patient fact, identity, target, credential, provider, timestamp, storage locator, update package, or free text. Its only allowed conclusion is `synthetic_fedprox_study_intent_admitted`, which means a proposed synthetic study has been classified without any study execution or evidence of an empirical result.
+
+### 154.2 State transition, retention, and terminal closure
+
+The future source-only validator may emit only `synthetic_fedprox_study_intent_admitted`, `synthetic_fedprox_study_intent_invalid`, `synthetic_fedprox_study_intent_closed`, `synthetic_fedprox_study_intent_capability_closed`, or `synthetic_fedprox_study_intent_replay_closed`. It is one-use. A valid proposed-study intent is immediately terminal and cannot be promoted into trainer permission, data/model access, metric computation, update creation, submission, aggregation, target activity, deployment, or scientific evidence. Any missing, mutable, inherited, unknown, sensitive-shaped, execution-shaped, or replayed input closes without fallback, repair, retry, replacement, or later execution.
+
+The contract retains no canonical input, study plan, data/model fact, runtime state, or output beyond a scalar receipt/readout. It cannot serialize or publish a protocol, write storage, or open a successor capability. The design intentionally refuses the common but unsupported inference that a formally stated FedProx plan implies a tested model or research finding.
+
+### 154.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not create a study, source, target, dataset, model, trainer, metric, update, submission, aggregation, workspace, image/container, file, cache, database, network message, public record, service, listener, storage, or deployment. It does not access source, transcript, configuration, credential, identity, Core, data/model material, hospital system, patient material, or clinical information. It does not invoke a test or make a scientific, medical, privacy, training-quality, runtime, or production-readiness claim.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other study-intent, target, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
