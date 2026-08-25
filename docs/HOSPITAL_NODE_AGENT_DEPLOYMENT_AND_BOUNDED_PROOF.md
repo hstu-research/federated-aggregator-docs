@@ -2878,6 +2878,21 @@ The integrity-verified local seed lacks available provenance. NIST’s SSDF desc
 
 The result is `provenance_exception_not_authorized`. No target contact, transfer, installation, activation, source build, service, Agent, container, Core request, proof, model/data access, trainer, update, submission, or aggregation action is authorized by this review. A future exception decision must be explicit, identify the bounded risk owner, establish expiry and revocation, and still satisfy every other current packet before any target-admission design can be considered. NIST’s risk-based guidance does not lessen the need to preserve evidence and apply controls appropriate to risk.[19] [21]
 
+## 110. Read-only protected target-composition review — terminal closure
+
+One user-authorized SSH session completed the protected-composition review using only scalar posture checks. The candidate target has an eligible private workspace and cleanup posture; no Agent, aggregation-related process, or corresponding application listener was observed at that point in time. Its native Node/Corepack/pnpm toolchain class is absent, so target composition closes before any seed transfer, installation, source build, or service activation.
+
+| Composition fact | Scalar observation | Scope limit |
+|---|---|---|
+| Private workspace | `eligible` | No workspace was created or inspected beyond eligibility. |
+| Cleanup posture | `eligible` | No cleanup operation was run. |
+| Agent process | `not_observed` | Point-in-time process class; not a deployment or runtime proof. |
+| Aggregation-related process | `not_observed` | Point-in-time posture only; not aggregation evidence. |
+| Application listener | `not_observed` | Relative only to the absent Agent; not a network/firewall certification. |
+| Native build toolchain | `absent` | Blocks target-local tool installation, build, and activation under the current contract. |
+
+The result is `target_composition_closed`. No configuration, credential, path, log, process argument, package/seed content, model/data, or database fact was read. No target resource changed, and no seed transfer, tool installation, source transfer/build, listener, service, Agent, container, Core request, proof, trainer, update, submission, or aggregation action occurred. This composition review does not cure the separate provenance-exception, source/release, or fresh Core-control blocks.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
