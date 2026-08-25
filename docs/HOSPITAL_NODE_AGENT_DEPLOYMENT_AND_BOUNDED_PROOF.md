@@ -2805,6 +2805,24 @@ One local acquisition attempt for the exact `pnpm@10.16.1` class was executed un
 
 The failure internals, provider response, package content, source, URL, cache detail, and diagnostic text are deliberately not projected. This outcome proves only that the designed one-use acquisition closed safely before package-manager admission; it does not establish package availability, integrity, toolchain readiness, release build, deployment, hospital integration, training, update submission, or aggregation. A subsequent acquisition would require a new separately recorded decision rather than reuse or retry of this closed attempt.
 
+## 106. Independent npm-client exact pnpm acquisition route — design only
+
+The closed Corepack attempt is not retried. A separate local npm-client route is instead defined for the same exact `pnpm@10.16.1` selector. A local compatibility check confirms that the alternate client is available and supports an exact-version package request; it did not resolve or download a package. npm documents that provenance can establish where and how a package was published and that signature/provenance checks can expose missing or invalid attestations after a package download.[18] Provenance is useful evidence, not a claim that package contents are safe.[17]
+
+| Independent route fact | Required rule | Terminal denial |
+|---|---|---|
+| Client separation | Use only the local npm-client class, not Corepack, for one declared exact-version request. | Corepack reuse, mixed-client fallback, global activation, or multiple requests. |
+| Selector | Only `pnpm@10.16.1`; no tag, range, latest, alias, mirror, or alternate registry. | Any non-exact or redirected selector. |
+| Local custody | Receive into a newly created private transient directory, with scripts disabled and no reuse of ambient cache. | Shared cache, project dependency change, arbitrary postinstall execution, or target-facing output. |
+| Verification | Before seed admission, confirm exact manifest version, finite size, independently computed integrity class, and available provenance/signature evidence class. | Missing/mismatched version, integrity uncertainty, unexpected content/size, absent/invalid required evidence, or unreadable candidate. |
+| Outcome | Return only `npm_route_admitted` or an allowlisted terminal closure code. | Raw package bytes, source, URL, metadata, signature, cache path, header, body, or failure text. |
+
+### 106.1 Independent route lifecycle
+
+The lifecycle is `npm_route_unprepared` → `exact_request_authorized` → `private_candidate_received` → `version_integrity_provenance_verified` → `local_seed_admitted` → `terminal_closed`. The first uncertain stage—request failure, redirect, provenance absence/invalidity, version mismatch, integrity/size mismatch, self-check failure, residual-custody uncertainty, or any target/runtime broadening—closes the route and removes transient material. A terminal result permits no retry, provenance substitution, package-manager substitution, global activation, target transfer, tool installation, source transfer/build, Agent start, Core contact, proof, data/model use, trainer, update, submission, or aggregation.
+
+No npm resolution, download, candidate inspection, signature check, seed creation, target transfer, installation, source build, runtime, proof, data/model use, training, submission, or aggregation action has occurred for this independent route.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
@@ -2840,3 +2858,5 @@ The failure internals, provider response, package content, source, URL, cache de
 [16] [pnpm: Mitigating supply chain attacks](https://pnpm.io/supply-chain-security)
 
 [17] [npm Docs: Generating provenance statements](https://docs.npmjs.com/generating-provenance-statements/)
+
+[18] [npm Docs: Viewing package provenance](https://docs.npmjs.com/viewing-package-provenance/)
