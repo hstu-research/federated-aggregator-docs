@@ -2791,6 +2791,20 @@ The lifecycle is `acquisition_unprepared` → `provenance_accepted` → `integri
 
 This is a design-only review. No package resolution, network retrieval, Corepack activation, package verification, seed creation, target transfer, installation, source build, container/Agent start, Core contact, proof, training, submission, or aggregation action occurred.
 
+## 105. One-use exact pnpm acquisition attempt — terminal closure
+
+One local acquisition attempt for the exact `pnpm@10.16.1` class was executed under the boundary in §104. The attempt did not reach exact-version verification, integrity admission, or seed sealing. Its transient custody was closed, and a post-attempt scalar check confirmed that no sealed local seed remained. The result is `pnpm_acquisition_closed`.
+
+| Attempt fact | Observed scalar result | Required closure |
+|---|---|---|
+| Attempt cardinality | `one` | No automatic retry or alternate acquisition route. |
+| Exact-version verification | `not_reached` | Do not admit a package-manager class. |
+| Integrity verification | `not_reached` | Do not create or transfer a seed. |
+| Sealed local seed | `absent` | No artifact remains eligible for target transfer or activation. |
+| Target/runtime boundary | `untouched` | No target change, source build, Agent/Core/runtime/proof/data/training/submission/aggregation action. |
+
+The failure internals, provider response, package content, source, URL, cache detail, and diagnostic text are deliberately not projected. This outcome proves only that the designed one-use acquisition closed safely before package-manager admission; it does not establish package availability, integrity, toolchain readiness, release build, deployment, hospital integration, training, update submission, or aggregation. A subsequent acquisition would require a new separately recorded decision rather than reuse or retry of this closed attempt.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
