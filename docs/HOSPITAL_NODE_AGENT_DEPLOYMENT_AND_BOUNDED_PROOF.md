@@ -2548,6 +2548,35 @@ The pure metric-integrity validator is now implemented at Agent revision `b37bd2
 
 The new coverage proves exact integrity admission; terminal/metric/nonfinite/consistency/cleanup/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after admitted or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only an aggregate metric-record control boundary. It does not calculate or expose a metric, access data, create a model/weight/artifact, invoke a trainer or Agent, submit an update, or aggregate.
 
+## 92. Source-only synthetic FedProx update-envelope eligibility contract
+
+The next boundary controls **whether a future update envelope could enter a separately gated packaging review**. It does not create an update. It accepts one exact frozen symbolic metric-integrity admission and only declared envelope/descriptor/retained-control classes. It must reject an unknown, mutable, malformed, broadened, inconsistent, or non-admitted request before it reaches any serializer, model representation, file, byte buffer, transport, Core route, or submission port.
+
+| Envelope class | Sole allowed class | Closure if absent, changed, or broadened |
+|---|---|---|
+| Metric-integrity admission | `synthetic_metric_integrity_admitted`. | `integrity_closed` |
+| Update-envelope intent | `synthetic_update_envelope_declared`. | `envelope_closed` |
+| Descriptor intent | `aggregate_safe_update_descriptor_declared`. | `descriptor_closed` |
+| Trainer state | `trainer_not_invoked`. | `state_closed` |
+| Submission state | `submission_not_invoked`. | `state_closed` |
+| Aggregation state | `aggregation_disabled`. | `state_closed` |
+
+The one-use validator returns only a frozen scalar `update_envelope_eligible` receipt or a terminal closure code. Its aggregate readout contains only received, eligible, invalid, and replay-suppressed counts. A private canonical marker must be nonenumerable and serialize as an empty record. It must not retain or expose an envelope, descriptor, payload, byte sequence, digest, model/weight/gradient, metric, path, URL, token, target, response, capability, or free-text diagnostic.
+
+The source file may import no model/weight/gradient/artifact/package/serializer/compression/Python/trainer/data library, environment/process API, filesystem, local-state adapter, network/client, Core/target/credential/Azure integration, Agent runtime, submission, or aggregation module. Tests must cover eligibility; integrity/envelope/descriptor/control denial; malformed/inherited/mutable/unknown input; replay; independent validators; frozen/redacted projections; marker nonenumerability; and import isolation. Passing tests prove only pre-packaging symbolic eligibility. They do not create, serialize, package, persist, expose, submit, or aggregate an update.
+
+## 93. Source-only synthetic FedProx update-envelope eligibility — quality result
+
+The pure pre-packaging validator is now implemented at Agent revision `d61409c`. It accepts one exact frozen symbolic envelope, privately canonicalizes only metric-integrity, envelope, descriptor, and retained-control classes, and emits a frozen scalar receipt/readout. It contains no update, descriptor, payload, bytes, digest, model/weight/gradient, artifact, transport, or capability. The canonical marker is nonenumerable and serializes to no envelope facts.
+
+| Quality evidence | Observed result | Scope limitation |
+|---|---|---|
+| Focused strict TypeScript and update-envelope test | Six deterministic validator checks passed locally. | Pre-packaging eligibility only; not update creation, serialization, persistence, or submission. |
+| Full Agent local quality chain | 227 TypeScript tests and 4 Python tests passed. | Source quality only; no update/model/artifact/trainer/Agent/Core/submission/aggregation path ran. |
+| Remote Agent Quality Gates | Run `32802372949` completed successfully for revision `d61409c`. | CI evidence only; not training, deployment, runtime proof, or scientific result. |
+
+The new coverage proves exact eligibility; metric-integrity/envelope/descriptor/retained-control closure; mutable/inherited/malformed/missing/unknown rejection; replay after eligible or invalid input; independent validator isolation; frozen redacted projections; marker nonenumerability; and import separation. This establishes only a symbolic pre-packaging boundary. It does not create, serialize, package, persist, expose, submit, or aggregate an update; access data; or invoke a trainer, Agent, or Core service.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
