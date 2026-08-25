@@ -4056,6 +4056,14 @@ The scalar readout must state that stage-level evidence remains non-combinable f
 
 The next potential gate is a separate source-only scalar synthesis implementation or evidence-reading decision. It must preserve the Python-stage terminal closure and publish an actual scalar conclusion before any other source-quality, target, or runtime boundary is considered.
 
+### 147.4 Actual outcome — source-only scalar evidence reader and quality evidence
+
+Agent release `4518773` implements the §147 source-only scalar evidence reader, versioned frozen input/receipt/readout contracts, exact stage and cleanup-class validation, terminal Python-closure preservation, one-use replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. The reader can emit only `source_quality_evidence_partial` or an allowlisted terminal closure; it cannot represent a whole-CI or source-quality pass, diagnostic cause, retry right, release decision, or runtime result.
+
+The implementation uses deterministic in-memory test values only. It neither reads historical transcripts nor reaches a source repository, target, image/container, workspace, filesystem, environment, package provider, credential, identity, Core route, data/model, trainer, submission, or aggregation capability. A malformed, mutable, inherited, missing, unknown, stage-mismatched, cleanup-mismatched, or replayed value closes without replacement or reconstruction.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 244 TypeScript tests, and 4 Python tests. Hospital Node Quality Gates `32842579553` passed for the release. This is **source-quality evidence only**. It does not establish a Python-test pass, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
