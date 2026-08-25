@@ -3169,6 +3169,32 @@ The local scalar receipt was sealed from the reviewed source, and the candidate 
 
 The post-run scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local receipt/staging artifacts were removed. The result therefore does not explain the formatting divergence and does not establish composition equality or inequality. No listener, service, Agent runtime/profile, Core call, identity/credential action, data/model access, trainer, update, submission, aggregation, source-quality pass, release, deployment, runtime proof, hospital integration, or scientific result occurred. Any successor requires a separately designed receipt-closure diagnostic and may not reuse this instance.
 
+## 123. Redacted composition-receipt closure diagnostic — implementation contract
+
+The closed §122 receipt permits one successor diagnostic whose purpose is limited to classifying the first collector boundary that cannot project a composition state. It creates a fresh source bundle, workspace, image, and container identity. It runs no formatting or quality stage and compares no source values. Instead, it internally checks the ordered receipt prerequisites and emits exactly one scalar category. This is a collector-health diagnostic, not a composition or source-quality evaluation.
+
+| Ordered internal boundary | Allowed scalar projection |
+|---|---|
+| Required receipt inputs are readable, scalar-shaped, and complete. | `receipt_input_closed` |
+| Runtime command surface needed by the collector is available. | `receipt_runtime_closed` |
+| Declared package-manager surface needed by the collector is available. | `receipt_package_manager_closed` |
+| Aggregate-digest operation can execute on the private source tree. | `receipt_digest_closed` |
+| Scalar state can be emitted through the collector projection. | `receipt_projection_closed` |
+| Hardened container/cleanup facts remain exact. | `receipt_hardening_closed` |
+| All ordered collector prerequisites and hardening facts are exact. | `receipt_collector_ready` |
+
+### 123.1 Lifecycle and strict output boundary
+
+The lifecycle is `closure_instance_sealed` → `inputs_checked` → `runtime_checked` → `package_manager_checked` → `digest_checked` → `projection_checked` → `hardened_cleanup_closed`. The diagnostic stops at its first failed internal boundary and projects only that allowlisted class; when all prerequisites and hardening facts are exact, it projects `receipt_collector_ready`. It never outputs a command, stderr/stdout line, file, path, source text, package/provider, target identity, configuration, credential, raw digest/count, model/data, or transcript. An unknown/multiple/missing/sensitive value returns `receipt_projection_closed`.
+
+The fresh container remains no-network, no-port, non-privileged, read-only, unprivileged-user, capability-dropped, no host network, no Docker socket, and no configuration/secret/data/model mount. It has no listener, service, Agent/profile, Core route, identity path, trainer, update/submission, or aggregation behavior. Transcript, receipt, container, image, and transfer/build transients are removed before publication. This diagnostic is terminal and may guide only a separately designed collector remediation; it cannot establish composition equality, formatting, source quality, release, deployment, runtime, hospital, training, submission, aggregation, or scientific evidence.
+
+### 123.2 Actual outcome — package-manager collector boundary closed
+
+The fresh source bundle, private workspace, and disposable closure-diagnostic image were created successfully. The one hardened invocation emitted `receipt_package_manager_closed`: the collector's declared package-manager surface was not available to the unprivileged, read-only diagnostic context. No version value, executable location, cache state, command, stderr/stdout content, path, configuration, credential, source/package/provider/target fact, model/data, or transcript was retained or inspected.
+
+The scalar closure check observed an absent named container, absent disposable image, and a retained non-running private workspace; local diagnostic staging artifacts were removed. The outcome identifies a collector-remediation category only. It does not establish composition equality, formatting, source quality, release, deployment, runtime proof, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific evidence. A successor must separately design a package-manager accessibility remediation and cannot reuse this diagnostic instance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
