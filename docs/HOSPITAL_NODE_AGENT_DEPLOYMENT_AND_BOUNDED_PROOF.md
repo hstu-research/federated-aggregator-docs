@@ -3901,6 +3901,48 @@ The declared TypeScript test suite ran only in its fresh disposable image-local 
 
 This establishes only that the declared TypeScript test-suite stage exited cleanly once in the hardened disposable context and that the required cleanup was independently confirmed. It does **not** establish full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, Python-test results, training, update submission, aggregation, or scientific performance. No formatting, type-check, Python-test, protected-import, repair, retry, alternate-image/workspace/toolchain, or runtime stage followed. The next possible work requires a separately documented boundary; this result authorizes none.
 
+## 144. Isolated target Python test-suite diagnostic and cleanup closure — design-only contract
+
+### 144.1 Scope, research value, and immutable admission
+
+This record defines one future target diagnostic for the repository-declared **Python test-suite stage only**. Its narrow value is to distinguish a potential Python-test-stage result from the already closed TypeScript-test result without treating either as whole CI or research-runtime evidence. It does not reuse any closed quality candidate and cannot include TypeScript tests, formatting, type checking, protected-import checks, source repair, or an Agent/runtime path.
+
+| Required class | Exact admissible state | Terminal closure |
+|---|---|---|
+| Reviewed source release | `reviewed_revision_bound` | `py_test_stage_closed` |
+| Image-local package manager | `image_local_manager_available` | `py_test_stage_closed` |
+| Image-local Python test surface | `python_test_surface_available` | `py_test_stage_closed` |
+| Candidate readiness | `fresh_unused_valid` | `py_test_stage_closed` |
+| Container engine | `container_engine_available` | `py_test_stage_closed` |
+| Future resources | `absent_not_created_nonrunning` | `py_test_stage_cleanup_closed` |
+| Containment | `diagnostic_not_started` | `py_test_stage_hardening_closed` |
+| Stage selection | `declared_python_test_only` | `py_test_stage_closed` |
+
+The future stage may select only the declared `pnpm run test:python` package contract. The Python interpreter/test harness, package manager, dependencies, source bundle, and test output must remain image-local and private; no host provision, system package change, target path, package/provider/registry fact, source content, test name/count, configuration, credential, data/model, or database detail may enter the public record. Unknown, stale, multiple, mutable, sensitive-shaped, or capability-broadened facts close before the stage.
+
+### 144.2 Hardened one-shot execution and scalar-safe result map
+
+If separately admitted later, one fresh private exact-source disposable image may expose only the declared Python test surface and run exactly the declared Python test-suite stage once. The invocation must be unprivileged, read-only, no-network, capability-dropped, resource-bounded, port-free, mount-free, restart-free, and without a Docker socket, host network, target configuration/credential, identity input, model/data input, Agent profile/service/listener, Core call, trainer, update, submission, or aggregation action. Private standard output, standard error, receipts, and transcripts must be discarded before publication.
+
+| Future observed condition | Scalar projection | Mandatory action |
+|---|---|---|
+| One exact clean Python-test classification | `py_test_stage_clean` | Stop; begin cleanup; no later stage. |
+| Non-clean or unavailable declared stage | `py_test_stage_closed` | Discard output; begin cleanup; no retry. |
+| Missing, malformed, multiple, or sensitive-shaped result | `py_test_stage_receipt_closed` | Discard private material; begin cleanup. |
+| Containment divergence | `py_test_stage_hardening_closed` | Suppress stage result; begin cleanup. |
+| Cleanup uncertainty | `py_test_stage_cleanup_closed` | Suppress all follow-on work. |
+| Reuse or second invocation | `py_test_stage_replay_closed` | Terminal diagnostic-family closure. |
+
+`py_test_stage_clean`, if ever emitted, would establish only that this one declared Python test-suite stage exited cleanly in its isolated disposable context. It cannot establish full CI, broad source quality, release, target-host provisioning, deployment, runtime, hospital integration, Core interaction, identity use, data/model access, TypeScript-test results, training, update submission, aggregation, or scientific performance.
+
+### 144.3 Cleanup, retention, and explicit stop conditions
+
+After every pre-stage closure or stage result, remove the private source bundle, Python test transcript, build/transient material, named container, disposable image, workspace, and local staging. Independently observe only scalar cleanup categories for named-container absence, disposable-image absence, and workspace non-running/absence. A closure cannot be repaired, retried, refreshed, transferred to another source/image/workspace/toolchain/target, or followed by another quality or runtime stage.
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a candidate; contact the target; transfer or inspect source; construct/pull/run an image/container; invoke Python tests; modify source or target state; create a workspace; access configuration, credentials, logs, or transcripts; start an Agent, service, or listener; contact Core; use an identity; access data/model material; invoke a trainer; submit an update; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is a separate one-use scalar execution-readiness review for this Python test-suite boundary. It must publish its outcome before any Python test-suite candidate is considered for consumption.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
