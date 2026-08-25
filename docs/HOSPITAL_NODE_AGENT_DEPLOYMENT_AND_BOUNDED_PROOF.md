@@ -3791,6 +3791,47 @@ Private source bundle, type-check transcript, build/transient material, named co
 
 This proves only that the declared type-check stage exited cleanly in this one hardened target diagnostic with cleanup confirmed. It does **not** establish full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, training, update submission, aggregation, or scientific performance. The one-shot candidate is closed; no retry or adjacent quality stage is authorized from this result.
 
+## 141. Isolated target TypeScript test-suite diagnostic and cleanup closure — design-only contract
+
+### 141.1 Scope and immutable admission
+
+This record defines one future target diagnostic for the repository-declared **TypeScript test-suite stage only**. It does not reuse either closed formatting/type-check candidate and does not include the Python test suite, any agent command, or any trainer/data/model path. A new private candidate must bind the reviewed source-release class, image-local package-manager availability, a fresh scalar posture review, and absent future resources. The stage cannot invoke formatting, type checking, protected-import checks, Python tests, source repair, runtime code, or any Agent/profile/service/listener/Core/identity/data/model/trainer/update/submission/aggregation behavior.
+
+| Required class | Exact admissible state | Terminal closure |
+|---|---|---|
+| Reviewed source release | `reviewed_revision_bound` | `ts_test_stage_closed` |
+| Image-local manager | `image_local_manager_available` | `ts_test_stage_closed` |
+| Candidate readiness | `fresh_unused_valid` | `ts_test_stage_closed` |
+| Container engine | `container_engine_available` | `ts_test_stage_closed` |
+| Future resources | `absent_not_created_nonrunning` | `ts_test_stage_cleanup_closed` |
+| Containment | `diagnostic_not_started` | `ts_test_stage_hardening_closed` |
+| Stage selection | `declared_ts_test_only` | `ts_test_stage_closed` |
+
+No input or public record may contain a candidate identity, timestamp, source, test name/count/output, filename, path, command, package/provider/registry, image/container, target, configuration, credential, log, transcript, process, model/data, or database fact. Unknown, stale, multiple, sensitive-shaped, mutable, or capability-broadened facts close before the stage.
+
+### 141.2 Hardened one-shot execution and scalar parser
+
+The future execution may build a fresh private exact-source disposable image with the existing image-local package-manager pattern, then run exactly the declared TypeScript test-suite stage once as an unprivileged, read-only, no-network, capability-dropped, resource-bounded container with no port, host network, mount, restart policy, Docker socket, configuration/credential, model/data, or runtime input. It must parse only one internally generated scalar stage class and discard private test output before publication.
+
+| Future observed condition | Scalar projection | Mandatory action |
+|---|---|---|
+| One exact clean TypeScript-test classification | `ts_test_stage_clean` | Stop; no later stage; begin cleanup. |
+| Non-clean/unavailable declared stage | `ts_test_stage_closed` | Discard output; begin cleanup; no retry. |
+| Missing/malformed/multiple/sensitive result | `ts_test_stage_receipt_closed` | Discard private material; begin cleanup. |
+| Containment divergence | `ts_test_stage_hardening_closed` | Do not accept stage result; begin cleanup. |
+| Cleanup uncertainty | `ts_test_stage_cleanup_closed` | Suppress all follow-on work. |
+| Reuse/second invocation | `ts_test_stage_replay_closed` | Terminal diagnostic-family closure. |
+
+`ts_test_stage_clean` would establish only that this one declared TypeScript test-suite stage exited cleanly in its isolated container. It cannot establish full CI, broad source quality, release, target provisioning, deployment, runtime, hospital, Core, identity, data/model, Python-test, training, submission, aggregation, or scientific evidence.
+
+### 141.3 Cleanup and stop conditions
+
+After every stage or pre-stage closure, remove private source bundle, test transcript, build/transient material, named container, disposable image, and local staging. Independently observe only scalar cleanup categories for container absence, image absence, and workspace non-running/absence. A closure cannot be retried, repaired, renewed, transferred to another source/image/workspace/toolchain/target, or followed by any other quality/runtime stage.
+
+> **Hard stop:** This is a design record only. It does not create/revalidate/consume a real candidate; contact the target; transfer or inspect source; build/pull/run an image/container; invoke TypeScript tests; modify source or target state; create a workspace; access configuration/credentials/logs/transcripts; start an Agent/service/listener; contact Core; use an identity; access data/model material; train; submit; aggregate; release; deploy; or prove runtime behavior.
+
+The next potential gate is a separate one-use execution-readiness review for this TypeScript test-suite boundary. It must publish its scalar result before any TypeScript test-suite invocation is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
