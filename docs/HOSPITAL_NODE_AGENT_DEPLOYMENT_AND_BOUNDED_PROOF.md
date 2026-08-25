@@ -2669,6 +2669,37 @@ The current direct path was reconciled against the chronological dossier and act
 
 There is therefore no remaining authorized internal source, test, or documentation increment that advances runtime proof without either duplicating an existing design, creating another isolated symbolic control, or attempting an external boundary. The project will not retry credentials, access a package or target, inspect/bind configuration, start an Agent, contact Core, or invoke proof autonomously. The next action is externally gated: a future separately authorized evidence record must first close the protected package/identity, target-release, protected-composition, and fresh Core-control prerequisites. Until then, no training, update submission, or aggregation action is available.
 
+## 99. Design record — target-only package-read operator handoff and bounded access test
+
+### 99.1 Scope, roles, and retained non-goals
+
+This handoff converts the remaining package/identity blocker into one externally operated, testable prerequisite. It permits a designated external administrator to establish one **target-only, package-read** identity and provide a redacted attestation. It does not authorize this repository, Agent source, Core, browser/human identity, ML worker, callback identity, or documentation process to create, receive, print, store, inspect, or reuse a credential. It also does not authorize package listing, package-content publication, release binding, target configuration discovery, Agent start, Core contact, proof invocation, training, update submission, or aggregation.
+
+| Role | Sole responsibility | Explicit prohibition |
+|---|---|---|
+| Package authority | Scope one private read grant to the declared test target and the single approved release class. | No broad organization grant, public visibility change, source-code credential, or personal-token substitution. |
+| Target administrator | Install the identity only in the target’s protected host-level custody boundary and retain revocation control. | No pass-through to Agent/Core/environment variables/logs, no embedding in image/source, and no identity reuse. |
+| Evidence owner | Return only an allowlisted redacted attestation and terminal state. | No credential, package/target identifier, command, raw log, response, header/body, host, path, or provider detail. |
+| Project operator | Review scalar evidence and advance only after all five packets are current. | No credential retry, package access, target binding, runtime activation, or proof by this handoff. |
+
+### 99.2 Attestation contract and failure closure
+
+The external operator’s public evidence is a frozen scalar record, `target-package-access-attestation/v1`. It contains only an opaque evidence class, an access state (`configured`, `verified`, `denied`, `revoked`, or `expired`), an identity-separation state, a one-release read-scope state, a target-custody state, an expiry class, and a terminal closure class. It must never include a credential, secret reference, identity name, package coordinate, release locator, target name, target path, command, provider response, network detail, or free-text diagnostic.
+
+| Condition | Required redacted outcome | Required response |
+|---|---|---|
+| Target-only separation, one-release read scope, protected custody, and bounded validity are independently attested. | `target_package_access_configured` | The packet remains pending until the bounded target verification is separately authorized. |
+| The bounded verifier confirms the declared immutable release class through the target custody boundary. | `target_package_access_verified` | The evidence owner records only the scalar success class; package data remains unprojected. |
+| Any missing scope/custody/separation fact, denial, expiry, revocation, or ambiguity occurs. | `target_package_access_denied`, `target_package_access_revoked`, or `target_package_access_expired` | Terminal closure; no retry, identity substitution, package fallback, target configuration change, or proof. |
+
+### 99.3 Bounded target access-verification protocol
+
+No package-read verification begins until the external attestation exists and the other independently required packet owners have supplied current source-quality, target-release, protected-composition/configuration, and Core-control classes. A separately authorized verifier then performs one target-local, no-output check of only the declared immutable release class. It returns a scalar `verified`, `denied`, `revoked`, `expired`, or `uncertain` outcome. It must not disclose bytes, metadata, image/package names, locators, headers, bodies, commands, host facts, paths, logs, or errors; start the Agent; contact Core; open a listener; create a workspace; invoke a trainer; create an update; submit; or enable aggregation.
+
+The verifier has one terminal observation. Any failure or uncertainty closes the candidate and requires a new external decision; it cannot retry, refresh an identity, select another release, modify a target, or continue toward proof. A verified package-read result proves only the access boundary for one immutable release class. It is not a release deployment, Agent startup, protected-composition proof, hospital integration, training result, update submission, or aggregation result.
+
+> **Hard stop:** this record is an operator handoff and test design only. No identity was created or installed, no credential or package was accessed, no target was contacted or bound, and no Agent/Core/runtime/proof/training/submission/aggregation action occurred.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
