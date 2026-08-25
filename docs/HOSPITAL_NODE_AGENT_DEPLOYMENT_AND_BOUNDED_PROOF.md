@@ -3893,6 +3893,14 @@ An interruption, cancellation, drift, receipt uncertainty, or failure to begin t
 
 The next potential gate is one compound one-shot TypeScript test-suite execution that implements this exact sequence and §141 cleanup. It must emit only the allowed scalar stage outcome and independent cleanup class, then publish before any follow-on work.
 
+### 143.4 Actual outcome — one hardened TypeScript test-suite stage and independent cleanup
+
+The one compound diagnostic permitted by §§141 and 143 was executed exactly once. Its scalar stage result was `ts_test_stage_clean`; the separately observed cleanup result was `ts_test_stage_cleanup_confirmed`. The private candidate is consumed and terminally closed.
+
+The declared TypeScript test suite ran only in its fresh disposable image-local package-manager context under the documented unprivileged, read-only, no-network, capability-dropped, and resource-bounded containment. Private source material, test transcript, build/transient material, named container, disposable image, workspace, and local orchestration artifacts were removed before the independent cleanup observation. No source/test output, count, name, path, command, package/provider/registry, image/container, target, configuration, credential, log, model/data, or database fact was retained or published.
+
+This establishes only that the declared TypeScript test-suite stage exited cleanly once in the hardened disposable context and that the required cleanup was independently confirmed. It does **not** establish full CI, broad source quality, release eligibility, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, data/model access, Python-test results, training, update submission, aggregation, or scientific performance. No formatting, type-check, Python-test, protected-import, repair, retry, alternate-image/workspace/toolchain, or runtime stage followed. The next possible work requires a separately documented boundary; this result authorizes none.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
