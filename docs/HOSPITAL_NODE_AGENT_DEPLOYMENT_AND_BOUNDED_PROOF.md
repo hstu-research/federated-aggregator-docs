@@ -4630,6 +4630,12 @@ The new [Synthetic FedProx Thesis Manuscript Assembly and Citation Map](./SYNTHE
 
 This is a documentation-only manuscript map. It does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 178. Thesis defense narrative and anticipated-question brief — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Defense Narrative and Anticipated-Question Brief](./SYNTHETIC_FEDPROX_THESIS_DEFENSE_BRIEF.md) provides a concise opening, research question, method, result, limitation, closing, and anticipated-question answers for oral defense. Every answer preserves the source-only contribution and explicit non-results.
+
+This is a documentation-only defense-preparation artifact. It does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
