@@ -4460,6 +4460,12 @@ The new [Synthetic FedProx Related Work and Literature-Positioning Outline](./SY
 
 This is a documentation-only literature synthesis. It does not add data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
 
+## 165. Pre-empirical evaluation readiness protocol — design-only bridge
+
+The new [Synthetic FedProx Pre-Empirical Evaluation Readiness Protocol](./SYNTHETIC_FEDPROX_PREEMPIRICAL_EVALUATION_READINESS_PROTOCOL.md) records the independent authority, governance, data stewardship, protocol, metric, reproducibility, monitoring, and reporting gates required before an empirical study could be considered. Every gate is currently unassigned and unsatisfied; missing or ambiguous states close.
+
+This is a non-executing design record. It does not add approval, data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
