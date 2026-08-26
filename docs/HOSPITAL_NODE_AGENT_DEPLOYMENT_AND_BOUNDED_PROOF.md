@@ -4337,6 +4337,14 @@ The canonical input may not be serialized, enumerated, persisted, returned, or f
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local/remote source-quality evidence before any other study-intent, target, or runtime boundary is considered.
 
+### 155.4 Actual outcome — source-only synthetic study-intent consumer and bounded quality evidence
+
+Agent release `d6f121c` implements the §155 source-only scalar synthetic study-intent consumer, frozen input/receipt/readout contracts, exact proposed-study/non-execution/no-retry/identity/capability validation, terminal replay suppression, non-enumerable canonical handling, deterministic negative fixtures, and a dedicated forbidden-import guard. It may emit only `synthetic_fedprox_study_intent_consumed` or an allowlisted terminal closure. A consumed result means only that a proposed, unexecuted synthetic study declaration was handled once; it is not a study execution, trainer permission, data/model access decision, metric, update, submission, aggregation action, or empirical result.
+
+The implementation operates on deterministic in-memory classes only. It does not create or inspect a study, source, target, transcript, dataset, model, metric, trainer, update, submission, or aggregation action; create a workspace/image/container/file/cache/database/network message/public record; access a configuration/credential/log/database; start a service/listener/storage/publication endpoint; contact Core; use an identity; access hospital or clinical material; release; deploy; or prove runtime behavior. Every malformed, mutable, inherited, missing, unknown, execution-shaped, capability-broadened, or replayed input closes without replacement.
+
+Local CI passed formatting, protected import guards, strict TypeScript, 274 TypeScript tests, and 4 Python tests. During the bounded remote observation window, a matching Hospital Node Quality Gates run for this release was not observed. The active workflow did not expose manual dispatch, and a commit-status observation was unavailable to the integration. Therefore this record makes **no remote-quality-gate pass claim**. It is local source-quality evidence only and does not establish a study execution, training result, data/model use, metric result, update/submission/aggregation behavior, clinical evidence, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, privacy outcome, or scientific performance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
