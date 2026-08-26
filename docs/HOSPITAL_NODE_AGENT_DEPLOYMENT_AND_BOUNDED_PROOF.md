@@ -4374,6 +4374,22 @@ The canonical input and observation state may not be stored, serialized, returne
 
 The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local source-quality evidence before any live remote observation, target, study, or runtime boundary is considered.
 
+## 157. Source-only remote quality-gate state classifier — local evidence
+
+### 157.1 Implemented boundary and local evidence
+
+The documented source-only classifier is implemented and locally validated. It accepts only a frozen, exact, scalar declaration whose observation class is `observed_pass`, `observed_fail`, or `unobserved`; it projects one frozen scalar receipt whose remote-observation and execution postures are both `not_attempted` and `not_performed`. It then closes, suppressing replay. Mutable, inherited, unknown, malformed, capability-broadened, or replayed declarations close without replacement or fallback.
+
+Deterministic in-memory fixtures cover every allowlisted scalar class, invalid declaration closure, and replay closure. An import-isolation guard excludes workflow, provider, GitHub, transport, filesystem, source, target, study, trainer, data/model, metric, update, submission, aggregation, runtime, credential, identity, package, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote workflow state was queried or observed.
+
+### 157.2 Evidence boundary and retained prohibitions
+
+> **What this proves:** a deterministic source-only classifier can distinguish one declared scalar state from malformed or replayed input while retaining explicit `not_attempted` remote observation and `not_performed` execution postures.
+
+> **What this does not prove:** any remote quality-gate state, source-quality certification, study authority, target permission, deployment eligibility, runtime proof, hospital integration, clinical or privacy outcome, or scientific result.
+
+No live remote API or CLI call, workflow query, dispatch, retry, cancellation, configuration change, annotation/log/status access, source/target/transcript access, workspace/container/file/cache/database/network operation, or study/test/trainer/data/model/metric/update/submission/aggregation/runtime action occurred. The classifier does not authorize a later live observation; any such boundary needs its own authorized execution record and factual evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
