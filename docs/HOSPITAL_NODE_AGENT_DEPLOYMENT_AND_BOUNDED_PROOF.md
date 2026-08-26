@@ -4624,6 +4624,12 @@ The new [Synthetic FedProx Thesis Conclusion and Future Work Draft](./SYNTHETIC_
 
 This is a documentation-only thesis-writing artifact. It does not add data/model access, training, inference, metric, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 177. Thesis manuscript assembly and citation map — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Manuscript Assembly and Citation Map](./SYNTHETIC_FEDPROX_THESIS_MANUSCRIPT_ASSEMBLY_MAP.md) orders the completed abstract, literature, methodology, traceability, results, discussion, conclusion, and governance artifacts into a claim-safe thesis sequence. It gives each artifact a narrow purpose and requires recurring absence statements where empirical, clinical, privacy, operational, and deployment evidence is unavailable.
+
+This is a documentation-only manuscript map. It does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
