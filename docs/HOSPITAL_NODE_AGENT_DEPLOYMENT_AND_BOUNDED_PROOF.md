@@ -4430,6 +4430,12 @@ Deterministic in-memory fixtures cover the canonical unassigned closure, a broad
 
 No live remote API or CLI call, identity acquisition, workflow query, dispatch, retry, cancellation, configuration change, source/target/transcript access, workspace/container/file/cache/database/network operation, or study/test/trainer/data/model/metric/update/submission/aggregation/runtime action occurred. The validator does not authorize a later live observation; the §158 prerequisites remain unmet.
 
+## 160. Thesis evidence boundary matrix — documentation-only bridge
+
+The new [Synthetic FedProx Thesis Evidence Boundary Matrix](./SYNTHETIC_FEDPROX_THESIS_EVIDENCE_MATRIX.md) separates the documented study question, source-only contract evidence, and unperformed empirical claims. It permits thesis language about the distinction between a proposed synthetic FedProx protocol and an executed result, while explicitly excluding accuracy, loss, F1, AUC, convergence, communication-cost, privacy, clinical, hospital, release, deployment, runtime, or scientific-performance claims.
+
+This is a documentation-only synthesis. It does not add a study, dataset, model, trainer, metric, update, submission, aggregation, remote query, target action, runtime invocation, or empirical result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
