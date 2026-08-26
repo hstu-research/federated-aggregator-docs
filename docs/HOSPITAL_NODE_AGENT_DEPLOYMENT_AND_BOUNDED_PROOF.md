@@ -4454,6 +4454,12 @@ The new [Synthetic FedProx Thesis Abstract and Contributions Draft](./SYNTHETIC_
 
 This is a documentation-only writing artifact. It does not add data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
 
+## 164. Related-work and literature-positioning outline — documentation-only bridge
+
+The new [Synthetic FedProx Related Work and Literature-Positioning Outline](./SYNTHETIC_FEDPROX_RELATED_WORK_OUTLINE.md) positions the thesis against FedProx’s heterogeneity motivation, healthcare federated-learning translation literature, and governance literature. It preserves the narrow source-only contribution: separating a proposed protocol from an executed result. Published literature is contextual, not evidence of this project’s empirical, clinical, privacy, or operational outcome.
+
+This is a documentation-only literature synthesis. It does not add data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
