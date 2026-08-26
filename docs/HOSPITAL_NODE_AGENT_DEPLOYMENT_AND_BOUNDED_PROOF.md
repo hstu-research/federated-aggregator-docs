@@ -4482,6 +4482,22 @@ Deterministic in-memory fixtures cover the canonical all-unassigned closure, a b
 
 No governance authority was acquired; no data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/file/cache/database/network operation, hospital integration, or clinical evaluation occurred. The validator does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
 
+## 167. Source-only pre-empirical readiness-receipt consumer — local evidence
+
+### 167.1 Implemented one-use closure consumer
+
+The §166 frozen all-gates-unassigned receipt is now consumed by a source-only, one-use consumer. It accepts only the exact frozen receipt whose readiness is `ineligible`, empirical evaluation is `not_started`, execution is `not_performed`, and closure reason is `all_gates_unassigned`. It emits one frozen scalar closed readout preserving that same ineligible, non-evaluating, non-executing posture, then suppresses replay. Malformed, broadened, mutable, and unknown-field receipts terminally close without a substitute input, stored record, or capability.
+
+Deterministic in-memory fixtures cover canonical consumption, broadened readiness denial, mutable and unknown-field denials, and replay closure. A dedicated import-isolation guard excludes persistence, workflow, provider, remote service, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, source, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote quality state was queried or observed.
+
+### 167.2 Evidence boundary and hard stop
+
+> **What this proves:** a local one-use consumer can preserve and project an already-ineligible readiness closure without turning it into permission, persistence, or an evaluation path.
+
+> **What this does not prove:** authorization; approval; data stewardship; empirical protocol registration; model validity; metric integrity; reproducibility; privacy; performance; clinical benefit; hospital integration; deployment readiness; or any runtime result.
+
+No persistence, governance authority, data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/file/cache/database/network operation, hospital integration, or clinical evaluation occurred. The consumer does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
