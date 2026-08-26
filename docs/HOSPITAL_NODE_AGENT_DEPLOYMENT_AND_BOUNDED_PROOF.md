@@ -4448,6 +4448,12 @@ The new [Synthetic FedProx Thesis Traceability Appendix](./SYNTHETIC_FEDPROX_THE
 
 This is a documentation-only traceability artifact. It does not inspect or expose source internals, add data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, or performance evidence.
 
+## 163. Thesis abstract and contribution statement — documentation-only bridge
+
+The new [Synthetic FedProx Thesis Abstract and Contributions Draft](./SYNTHETIC_FEDPROX_THESIS_ABSTRACT_AND_CONTRIBUTIONS.md) provides a thesis-ready title, abstract, keywords, and contribution table aligned with the evidence matrix, methodology, and traceability records. It defines the contribution as source-only governance and contract evidence rather than an empirical machine-learning or clinical result.
+
+This is a documentation-only writing artifact. It does not add data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
