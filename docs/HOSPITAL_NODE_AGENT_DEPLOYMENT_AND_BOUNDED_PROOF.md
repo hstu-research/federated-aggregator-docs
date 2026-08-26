@@ -4498,6 +4498,42 @@ Deterministic in-memory fixtures cover canonical consumption, broadened readines
 
 No persistence, governance authority, data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/file/cache/database/network operation, hospital integration, or clinical evaluation occurred. The consumer does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
 
+## 168. Source-only pre-empirical readiness terminal ledger — design contract
+
+### 168.1 Research value, hard boundary, and acceptance
+
+The next narrow slice may retain the already-ineligible pre-empirical readiness closure across a deterministic in-memory restart simulation. Its value is to show that the source-only receipt cannot silently reopen into an evaluation path when a terminal scalar record is replayed. The ledger is not external persistence, a database, a file, a cache, an audit system, or a governance record.
+
+Acceptance requires one exact frozen default-closed receipt to project one fixed terminal scalar record; a restored canonical terminal record must suppress later consumption; malformed, broadened, unknown, mutable, replacement, or replayed records must close without fallback. The slice must preserve empirical evaluation `not_started` and execution `not_performed` in every readout.
+
+### 168.2 Scalar schema, workflow, and storage prohibition
+
+The only record class is a fixed frozen scalar record containing an allowlisted terminal state, ineligible readiness, evaluation-not-started posture, execution-not-performed posture, and an allowlisted closure reason. It contains no identifier, name, authority, dataset/model, metric, configuration, timestamp, digest, path, locator, credential, provider fact, raw evidence, free text, or payload.
+
+The lifecycle is `empty → terminal_closed`; canonical restart hydration enters `terminal_closed` and suppresses all later receipt consumption. Invalid hydration enters `terminal_closed` with a scalar denial. There is no reopen, retry, replacement, merge, promotion, cleanup side effect, or external write. All state lives only in a deterministic in-memory fake used by tests.
+
+### 168.3 Architecture, isolation, and proof plan
+
+The implementation is one application-layer terminal-ledger module plus deterministic fixtures. It accepts only an exact receipt-shaped value and a fixed scalar restart snapshot; it returns frozen scalar outcomes. It imports no persistence, filesystem, database, cache, workflow, provider, remote service, governance, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, or source dependencies.
+
+The test plan covers canonical terminalization, malformed and broadened receipt denial, canonical restart suppression, malformed restart closure, and replay closure. Local source-quality gates are required before publication. No external persistence or runtime proof is permitted by this design.
+
+## 169. Source-only pre-empirical readiness terminal ledger — local evidence
+
+### 169.1 Implemented terminal closure and restart posture
+
+The §168 terminal ledger is implemented with deterministic in-memory fixtures only. It accepts one exact frozen default-closed readiness receipt and retains one frozen scalar `terminal_closed` record whose readiness remains `ineligible`, empirical evaluation remains `not_started`, and execution remains `not_performed`. A canonical in-memory restart snapshot restores that terminal posture and suppresses later receipt consumption. Malformed, broadened, mutable, or invalid-restart inputs transition to a scalar terminal denial; replay cannot replace, reopen, or retry the record.
+
+Deterministic fixtures cover canonical terminalization, malformed and broadened receipt closure, canonical restart suppression, malformed restart closure, and replay closure. A dedicated import-isolation guard excludes persistence, workflow, provider, remote service, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, source, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote quality state was queried or observed.
+
+### 169.2 Evidence boundary and hard stop
+
+> **What this proves:** a deterministic in-memory fixture can retain and restore a terminal scalar closure without allowing a later receipt to reopen an evaluation path.
+
+> **What this does not prove:** external persistence; authorization; approval; data stewardship; empirical protocol registration; model validity; metric integrity; reproducibility; privacy; performance; clinical benefit; hospital integration; deployment readiness; or any runtime result.
+
+No database, file, cache, external persistence, governance authority, data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/network operation, hospital integration, or clinical evaluation occurred. The terminal ledger does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
