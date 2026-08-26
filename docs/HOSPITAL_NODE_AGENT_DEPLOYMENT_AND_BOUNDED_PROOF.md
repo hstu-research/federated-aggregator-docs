@@ -4612,6 +4612,12 @@ The new [Synthetic FedProx Thesis Submission-Readiness Audit](./SYNTHETIC_FEDPRO
 
 This is a documentation-only audit. It does not make a degree, ethics, legal, clinical, privacy, security, or deployment decision, and it does not add contact, approval, data/model access, adapter work, training, inference, metric, update, submission, aggregation, remote, runtime, hospital, or clinical activity.
 
+## 175. Thesis Results and Discussion draft — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Results and Discussion Draft](./SYNTHETIC_FEDPROX_THESIS_RESULTS_AND_DISCUSSION_DRAFT.md) reports only the bounded source-only findings: frozen proposed-study intent, terminal closure, default-closed readiness, and disabled application projection. It explicitly states the absence of data/model, training, metric, privacy, clinical, hospital, operational, deployment, and runtime evidence.
+
+This is a documentation-only thesis-writing artifact. It does not add data/model access, training, inference, metric, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
