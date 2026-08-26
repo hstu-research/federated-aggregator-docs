@@ -4414,6 +4414,22 @@ The lifecycle is `unassigned → separately_authorized → scope_validated → r
 
 > **Hard stop:** the classifier remains a source-only local contract. A future real observation would require a separately published authority, scope, transport, redaction, denial, cleanup, and factual-evidence record before any remote access is considered. This design does not satisfy those prerequisites.
 
+## 159. Source-only remote observation eligibility validator — local evidence
+
+### 159.1 Implemented default-closure contract
+
+The §158 default-ineligible posture is now implemented as a source-only validator. It accepts only one frozen exact declaration: unassigned authority, no bound scope, fixed scalar redaction, non-mutating posture, and retained adjacent safety. It emits one frozen scalar receipt that remains `ineligible`, with remote observation `not_attempted` and execution `not_performed`, then closes. It cannot issue eligibility.
+
+Deterministic in-memory fixtures cover the canonical unassigned closure, a broadened authority denial, and replay suppression. A dedicated import-isolation guard excludes workflow, provider, GitHub, transport, filesystem, source, target, study, trainer, data/model, metric, update, submission, aggregation, runtime, credential, identity, package, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote state was queried or observed.
+
+### 159.2 Evidence boundary and hard stop
+
+> **What this proves:** a local validator can preserve the present unassigned posture as a terminal scalar closure and reject a broadened authority claim without making an external call.
+
+> **What this does not prove:** authorization, remote workflow access, remote quality state, source-quality certification, target permission, study authority, deployment eligibility, runtime proof, hospital integration, clinical or privacy outcome, or scientific result.
+
+No live remote API or CLI call, identity acquisition, workflow query, dispatch, retry, cancellation, configuration change, source/target/transcript access, workspace/container/file/cache/database/network operation, or study/test/trainer/data/model/metric/update/submission/aggregation/runtime action occurred. The validator does not authorize a later live observation; the §158 prerequisites remain unmet.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
