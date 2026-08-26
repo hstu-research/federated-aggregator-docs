@@ -4345,6 +4345,35 @@ The implementation operates on deterministic in-memory classes only. It does not
 
 Local CI passed formatting, protected import guards, strict TypeScript, 274 TypeScript tests, and 4 Python tests. During the bounded remote observation window, a matching Hospital Node Quality Gates run for this release was not observed. The active workflow did not expose manual dispatch, and a commit-status observation was unavailable to the integration. Therefore this record makes **no remote-quality-gate pass claim**. It is local source-quality evidence only and does not establish a study execution, training result, data/model use, metric result, update/submission/aggregation behavior, clinical evidence, full CI certification for the target, target-host provisioning, deployment, runtime/service/listener behavior, hospital integration, Core interaction, identity use, privacy outcome, or scientific performance.
 
+## 156. Read-only remote quality-gate observation — design-only contract
+
+### 156.1 Purpose and exact scalar input boundary
+
+This record defines the only future read-only observer for remote quality-gate state. Its narrow value is to distinguish **remote state observed** from **remote state unobserved** without treating either class as a target, study, runtime, or scientific result. The observer may not dispatch, retry, cancel, configure, rerun, approve, merge, publish, or alter a remote workflow. It may only reduce a release-scoped observation to one allowlisted scalar state.
+
+| Required input class | Exact admissible state | Mandatory deviation outcome |
+|---|---|---|
+| Observation schema | `remote_quality_gate_observation_v1` | `remote_quality_gate_observation_invalid` |
+| Release scope | `single_release_selector_without_identifier` | `remote_quality_gate_observation_closed` |
+| Workflow observation | `state_observed_once` or `state_unobserved_once` | `remote_quality_gate_observation_closed` |
+| Remote action posture | `read_only_no_dispatch_no_retry_no_configuration` | `remote_quality_gate_observation_capability_closed` |
+| Identity posture | `unused` | `remote_quality_gate_observation_identity_closed` |
+| Target/study/runtime posture | `no_target_or_study_or_runtime_capability` | `remote_quality_gate_observation_capability_closed` |
+
+The future observation receives no workflow identifier, commit/revision, repository URL, provider token, workflow log, annotation, command, job/step name, artifact, source, path, package, credential, provider response, identity, target, study plan, data/model/metric fact, update, submission, aggregation, timestamp, or free text. The release selector is a non-enumerable scalar boundary class, not a commit value or remote locator.
+
+### 156.2 State projection, retention, and terminal closure
+
+The one-use observer may emit only `remote_quality_gate_observed_pass`, `remote_quality_gate_observed_fail`, `remote_quality_gate_unobserved`, `remote_quality_gate_observation_invalid`, `remote_quality_gate_observation_closed`, `remote_quality_gate_observation_identity_closed`, `remote_quality_gate_observation_capability_closed`, or `remote_quality_gate_observation_replay_closed`. A remote pass class means only that a remote quality-state was observed under this contract; it does not confer source-quality certification, study/trainer authority, target permission, deployment eligibility, runtime proof, hospital integration, clinical evidence, privacy outcome, or scientific performance.
+
+The canonical input and observation state may not be stored, serialized, returned, forwarded, or paired with raw remote facts. An unobserved class is terminal for its observation instance and cannot become a reason to dispatch/retry or otherwise mutate remote state. Missing, mutable, inherited, unknown, sensitive-shaped, capability-broadened, interrupted, or replayed input closes without fallback or replacement.
+
+### 156.3 Hard stop and next gate
+
+> **Hard stop:** This is a design record only. It does not observe a real remote workflow; inspect or retain a workflow identifier, commit, log, annotation, job, step, artifact, provider response, source, target, transcript, configuration, credential, or identity; dispatch, retry, cancel, configure, approve, merge, publish, or modify any workflow; invoke a test; create a workspace, image/container, file, cache, database, network message, public record, service, listener, storage, or deployment; start a study, trainer, metric, update, submission, aggregation, or runtime action; access data/model, hospital, or clinical material; or make a privacy or scientific claim.
+
+The next potential gate is one source-only implementation with deterministic in-memory fixtures and an import-isolation guard. It must publish actual local source-quality evidence before any live remote observation, target, study, or runtime boundary is considered.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
