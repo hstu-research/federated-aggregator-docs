@@ -4466,6 +4466,22 @@ The new [Synthetic FedProx Pre-Empirical Evaluation Readiness Protocol](./SYNTHE
 
 This is a non-executing design record. It does not add approval, data/model access, training, inference, metrics, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, or performance evidence.
 
+## 166. Source-only pre-empirical readiness validator — local evidence
+
+### 166.1 Implemented default-closure contract
+
+The §165 all-gates-unassigned posture is implemented as a source-only validator. It accepts only one frozen exact declaration whose authority, governance, data stewardship, protocol, evaluation, reproducibility, monitoring, and reporting gates are all unassigned and whose action posture is not permitted. It emits one frozen `ineligible` scalar receipt with empirical evaluation `not_started` and execution `not_performed`, then closes. It cannot issue readiness, authority, or an evaluation path.
+
+Deterministic in-memory fixtures cover the canonical all-unassigned closure, a broadened authority denial, mutable and unknown-field denials, and replay suppression. A dedicated import-isolation guard excludes workflow, provider, remote service, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, source, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote quality state was queried or observed.
+
+### 166.2 Evidence boundary and hard stop
+
+> **What this proves:** a local validator can preserve the present all-gates-unassigned readiness posture, reject broadened or unsafe input, and suppress replay without making an external call.
+
+> **What this does not prove:** authorization; ethics or legal approval; data stewardship; a registered empirical protocol; model validity; metric integrity; reproducibility; privacy; performance; clinical benefit; hospital integration; deployment readiness; or any runtime result.
+
+No governance authority was acquired; no data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/file/cache/database/network operation, hospital integration, or clinical evaluation occurred. The validator does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
