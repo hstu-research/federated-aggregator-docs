@@ -4390,6 +4390,30 @@ Deterministic in-memory fixtures cover every allowlisted scalar class, invalid d
 
 No live remote API or CLI call, workflow query, dispatch, retry, cancellation, configuration change, annotation/log/status access, source/target/transcript access, workspace/container/file/cache/database/network operation, or study/test/trainer/data/model/metric/update/submission/aggregation/runtime action occurred. The classifier does not authorize a later live observation; any such boundary needs its own authorized execution record and factual evidence.
 
+## 158. Future remote quality-state observation eligibility — design-only closure record
+
+### 158.1 Decision and nontechnical boundary
+
+The source-only classifier in §157 does not create authority to inspect a remote workflow. A future live read-only observation is therefore **ineligible by default**. The only research value of this record is to prevent a local classification capability from being misread as access, approval, source-quality certification, or a permission to operate a workflow.
+
+No remote observation, workflow action, target access, source/transcript access, test, study, trainer, data/model, metric, update, submission, aggregation, runtime, hospital, clinical, privacy, or scientific activity is authorized by this record.
+
+### 158.2 Minimum eligibility matrix
+
+| Required scalar control | Eligible class | Closure class | Prohibited projection |
+|---|---|---|---|
+| Independent observation authority | Separately assigned for one read-only purpose | Unassigned, ambiguous, self-approved, expired, or replayed | Person, account, credential, or role value |
+| Bounded observation scope | One declared release-scoped state class | Missing, mutable, broadened, or multi-scope | Workflow, provider, repository, or revision identifier |
+| Redacted readout policy | Fixed allowlisted scalar state taxonomy | Missing, widened, or free-text policy | Log, annotation, job, step, status, source, or transcript fact |
+| Non-mutating posture | No-dispatch/no-retry/no-cancel/no-configure/no-publish class | Any action-capable or uncertain posture | Request, endpoint, header, body, or response fact |
+| Adjacent safety controls | No target/study/runtime capability | Missing, stale, or capability-broadened control | Target, data/model, metric, update, or operational fact |
+
+### 158.3 Lifecycle and hard stop
+
+The lifecycle is `unassigned → separately_authorized → scope_validated → read_only_eligible → terminal_closed`; all malformed, unavailable, action-capable, or replayed states transition directly to terminal closure. The only current state is `unassigned`. No implementation, remote client, API/CLI command, identity acquisition, capability configuration, live query, or readout is permitted.
+
+> **Hard stop:** the classifier remains a source-only local contract. A future real observation would require a separately published authority, scope, transport, redaction, denial, cleanup, and factual-evidence record before any remote access is considered. This design does not satisfy those prerequisites.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
