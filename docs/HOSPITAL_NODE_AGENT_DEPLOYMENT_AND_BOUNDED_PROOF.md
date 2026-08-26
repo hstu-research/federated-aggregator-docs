@@ -4436,6 +4436,12 @@ The new [Synthetic FedProx Thesis Evidence Boundary Matrix](./SYNTHETIC_FEDPROX_
 
 This is a documentation-only synthesis. It does not add a study, dataset, model, trainer, metric, update, submission, aggregation, remote query, target action, runtime invocation, or empirical result.
 
+## 161. Thesis methodology and limitations draft — documentation-only bridge
+
+The new [Synthetic FedProx Thesis Methodology and Limitations Draft](./SYNTHETIC_FEDPROX_THESIS_METHODS_AND_LIMITATIONS_DRAFT.md) translates the evidence matrix into a thesis-ready scope, research question, procedure, conformance analysis plan, validity considerations, limitations, and results wording. It preserves the conclusion that no empirical result is available.
+
+This is a documentation-only thesis-writing artifact. It does not add data/model access, training, inference, metric evaluation, update, submission, aggregation, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, or performance claim.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
