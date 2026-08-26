@@ -4600,6 +4600,12 @@ Any missing, ambiguous, broadened, mutable, action-capable, or replayed conditio
 
 No adapter code, configuration, connection, credential, request, source/target access, data/model action, training, metric, update, submission, aggregation, runtime, hospital, or clinical activity occurred.
 
+## 173. Thesis-facing governance handoff brief — documentation-only closure record
+
+The new [Synthetic FedProx Governance Handoff Brief](./SYNTHETIC_FEDPROX_GOVERNANCE_HANDOFF_BRIEF.md) consolidates the independent authority, governance, data stewardship, protocol, evaluation, reproducibility, safety, reporting, and adapter-review decisions required before an empirical FedProx study could be considered. Every decision area remains unassigned, and the brief retains a terminal no-action posture.
+
+This is a documentation-only handoff. It does not contact any stakeholder, request or receive approval, bind data/model facts, create a protocol, design or implement an adapter, access storage or transport, train, infer, calculate metrics, submit updates, aggregate, query remotely, invoke runtime, integrate a hospital system, conduct clinical work, or report an empirical result.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
