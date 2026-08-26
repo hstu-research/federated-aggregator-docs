@@ -4534,6 +4534,42 @@ Deterministic fixtures cover canonical terminalization, malformed and broadened 
 
 No database, file, cache, external persistence, governance authority, data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container/network operation, hospital integration, or clinical evaluation occurred. The terminal ledger does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
 
+## 170. Source-only pre-empirical readiness application fake — design contract
+
+### 170.1 Research value, hard boundary, and acceptance
+
+The next narrow slice may pass a fixed terminal readiness record to a deterministic in-memory application fake. Its only research value is to demonstrate that a terminal ineligible state projects a disabled scalar outcome instead of constructing an evaluation workflow. The fake is not a storage client, a transport, a trainer, a data/model client, a deployment component, or a hospital integration.
+
+Acceptance requires one exact frozen terminal record to project one frozen disabled outcome retaining ineligible readiness, evaluation `not_started`, and execution `not_performed`. Malformed, broadened, replacement, or replayed records must project only a disabled terminal closure. The fake must not construct a request, allocate a workspace, emit a capability, or expose an action path.
+
+### 170.2 Schema, workflow, and dependency direction
+
+The input is a fixed frozen scalar terminal record containing terminal closure, ineligible readiness, evaluation-not-started posture, execution-not-performed posture, and one allowlisted closure reason. The output is a fixed frozen scalar disabled outcome with the same readiness, evaluation, and execution posture. Neither input nor output may contain an identifier, authority, dataset/model, metric, configuration, timestamp, path, locator, credential, provider fact, free text, raw evidence, request, response, or payload.
+
+The lifecycle is `terminal_record → disabled_outcome → terminal_closed`; invalid or replayed input follows the same closed projection. The fake has no state beyond one-use closure and no restart, persistence, cleanup, retry, fallback, or external side effect.
+
+### 170.3 Architecture, proof plan, and retained prohibitions
+
+The implementation is one application-layer fake module plus deterministic fixtures. It imports no storage, filesystem, database, cache, network, workflow, provider, governance, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, or source dependency. The test plan covers canonical disabled projection, malformed and broadened denial, and replay/replacement closure.
+
+The local quality gate is the only permitted proof. No concrete adapter design, persistence design, external operation, or runtime proof is included in this boundary.
+
+## 171. Source-only pre-empirical readiness application fake — local evidence
+
+### 171.1 Implemented disabled application projection
+
+The §170 deterministic in-memory application fake is implemented. It accepts one exact frozen terminal readiness record whose state is terminally closed, readiness is `ineligible`, empirical evaluation is `not_started`, execution is `not_performed`, and reason is `all_gates_unassigned`. It emits one frozen scalar outcome whose application posture is `disabled`, then closes. Malformed, broadened, mutable, replacement, or replayed records project only an invalid or replay-closed disabled outcome; no action-capable result exists.
+
+Deterministic fixtures cover canonical disabled projection, malformed and broadened closure, and replay/replacement suppression. A dedicated import-isolation guard excludes storage, filesystem, database, cache, workflow, provider, remote service, governance, study, trainer, data/model, metric, update, submission, aggregation, target, runtime, identity, transport, container, package, credential, source, and related operational dependencies. The complete local Agent source-quality suite passed its formatting, protected-import, strict TypeScript, TypeScript-suite, and Python-suite gates. The source-only change was published; no remote quality state was queried or observed.
+
+### 171.2 Evidence boundary and hard stop
+
+> **What this proves:** a deterministic in-memory fake can project a fixed disabled scalar outcome from an already-terminal readiness record without constructing an evaluation workflow.
+
+> **What this does not prove:** a storage client, transport, authorization, approval, data stewardship, empirical protocol registration, model validity, metric integrity, reproducibility, privacy, performance, clinical benefit, hospital integration, deployment readiness, or any runtime result.
+
+No storage, filesystem, database, cache, network, workflow, governance authority, data/model, training, inference, metric, update, submission, aggregation, remote query, target action, workspace/container operation, hospital integration, or clinical evaluation occurred. The fake does not authorize a future evaluation; every §165 readiness gate remains unassigned and unsatisfied.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
