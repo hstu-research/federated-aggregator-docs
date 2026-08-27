@@ -4702,6 +4702,12 @@ The [Synthetic FedProx Patient-Data Marker Rejection Boundary Design](./SYNTHETI
 
 This is local source-only contract evidence. It does not ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
 
+## 190. Synthetic marker-rejection receipt consumption — local source-only evidence record
+
+The [Synthetic Patient-Data Marker Rejection Receipt Consumption Design](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_RECEIPT_CONSUMPTION_DESIGN.md) was implemented as an isolated one-use Agent consumer, and the [Synthetic Patient-Data Marker Rejection Receipt Consumption Evidence](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_RECEIPT_CONSUMPTION_EVIDENCE.md) records the outcome. The consumer accepts only one exact frozen scalar local-rejection receipt, retains blocked/no-evaluation/no-execution posture, denies altered or broadened receipts, keeps its retained sentinel private, and suppresses replay. The Agent’s aggregate local quality suite passed.
+
+This is local source-only contract evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
