@@ -4660,6 +4660,12 @@ The new [Synthetic FedProx Thesis Final Editorial Handoff Checklist](./SYNTHETIC
 
 This is a documentation-only editorial handoff record. It does not record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 183. Editable thesis manuscript delivery — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Editable Manuscript Delivery](./SYNTHETIC_FEDPROX_THESIS_EDITABLE_MANUSCRIPT_DELIVERY.md) records a formatted Word companion to the integrated thesis manuscript. It retains the source-only research question, method, bounded local findings, explicit non-results, and independently governed future-work path while providing only editorial cover-page placeholders and an editable contents field.
+
+This is a documentation-only file delivery record. It does not record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
