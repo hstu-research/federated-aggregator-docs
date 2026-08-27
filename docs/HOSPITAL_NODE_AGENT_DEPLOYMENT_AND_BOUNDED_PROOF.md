@@ -4750,6 +4750,12 @@ The [Authority-Ready Data-Use Decision Worksheet](./KAGGLE_BREAST_CANCER_DATASET
 
 This is a blank review aid, not an approval, consent, ethics, license, data-protection, or technical-access record. It does not collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
 
+## 198. Supervisor governance handoff — ineligible data-use record
+
+The [Supervisor Governance Handoff](./KAGGLE_BREAST_CANCER_DATASET_SUPERVISOR_GOVERNANCE_HANDOFF.md) now summarizes the limited public-metadata review, governance dossier, and blank decision worksheet for an independent academic or governance authority. It asks the reviewer only to identify the appropriate accountable review route, while preserving the status of every supplied candidate as `ineligible`.
+
+This is a documentation-only handoff, not a request for data access or a substitute for authority. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
