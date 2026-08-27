@@ -6,6 +6,7 @@ import { ArrowUpRight, CalendarDays, CheckCircle2, ChevronDown, CircleStop, Data
 import { StatusStamp } from "@/components/StatusStamp";
 
 const entries = [
+  { date: "27 AUG 2026", title: "Concise viva Q&A brief preserves defensible oral claim boundaries", status: "PROVISIONAL" as const, icon: FileText, body: "A concise viva brief now prepares responses on the source-only contribution, proposed FedProx context, public-metadata-only review, governance stop condition, local-control limits, explicit non-results, and conditional future work. It is not an empirical script or approval record. Every supplied candidate remains ineligible, the study remains unexecuted, and no authorization, data/model, clinical, privacy, deployment, or runtime evidence was added." },
   { date: "27 AUG 2026", title: "Blank evidence-review register keeps documentation, governance, local-control, and absent empirical evidence distinct", status: "PROVISIONAL" as const, icon: FileText, body: "A blank evidence-review register now classifies the thesis-support record without elevating a document or source-only control into independent approval or empirical proof. It records empirical and operational evidence as absent in this branch. Every supplied candidate remains ineligible, the study remains unexecuted, and no authorization, data/model, clinical, privacy, deployment, or runtime evidence was added." },
   { date: "27 AUG 2026", title: "Final thesis consistency checklist retains the source-only evidence boundary", status: "PROVISIONAL" as const, icon: FileText, body: "An editorial consistency checklist now reviews proposal-versus-result clarity, candidate ineligibility, governance wording, source-only control limits, explicit non-results, conditional future work, and chronological integrity across the thesis package. It is not an independent authority review. The study remains unexecuted and no authorization, data/model, empirical, clinical, privacy, deployment, or runtime evidence was added." },
   { date: "27 AUG 2026", title: "One-page examiner summary preserves the source-only assessment boundary", status: "PROVISIONAL" as const, icon: FileText, body: "A concise examiner summary now states the actual thesis contribution, data-governance stop condition, explicit non-results, and conditional future path. It directs review to existing evidence records only. Every supplied candidate remains ineligible, the study remains unexecuted, and no authorization, data/model, empirical, clinical, privacy, deployment, or runtime evidence was added." },
@@ -337,19 +338,40 @@ const VOLUME_SIZE = 12;
 
 const volumeTitles = [
   "Data governance and source-only closure",
-  "Thesis manuscript and review record",
+  "Thesis manuscript and examination record",
   "Pre-empirical readiness and default closure",
   "Local Agent contracts and evidence controls",
   "Source-quality boundaries and decision discipline",
   "Core and Agent delivery architecture",
-  "Authorization, descriptor, and stream safeguards"
+  "Authorization, descriptor, and stream safeguards",
+  "Protected identity and private-workspace control",
+  "Runtime seams and proof-channel design",
+  "Core local composition and lifecycle closure",
+  "Release admission and target-unbound controls",
+  "Protected deployment and topology decisions",
+  "Federated architecture and repository alignment",
+  "Data-modeling assumptions and safety scope",
+  "Aggregator lifecycle and release policy",
+  "Research requirements and acceptance criteria",
+  "Evidence contract and handbook record",
+  "Protocol and documentation consolidation",
+  "Federated-learning literature positioning",
+  "Initial method and baseline diagnostics",
+  "Early project framing and scope selection",
+  "Foundational system specification records",
+  "Initial controlled-workflow decisions",
+  "Architecture framing and decision history",
+  "Project-origin research record",
+  "Foundational terminology and safety posture",
+  "Opening requirements and system intent",
+  "Archive origin and first project decisions"
 ] as const;
 
 function archiveVolume(index: number) {
   const number = Math.floor(index / VOLUME_SIZE) + 1;
   const start = index + 1;
   const end = Math.min(index + VOLUME_SIZE, entries.length);
-  const title = volumeTitles[number - 1] ?? `Archived chronology / ${entries[index].date}`;
+  const title = volumeTitles[number - 1] ?? `Preserved chronology cluster / ${entries[index].date}`;
   return {
     number,
     label: `VOLUME / ${String(number).padStart(2, "0")}`,
@@ -376,9 +398,9 @@ export default function ResearchLog() {
           const volume = archiveVolume(start);
           const records = entries.slice(start, start + VOLUME_SIZE);
           return <section className={`archive-volume ${volume.number === 1 ? "archive-volume-current" : "archive-volume-closed"}`} key={volume.label}>
-            <header className="log-chapter"><div className="log-chapter-tab"><span>{volume.label}</span><small>{volume.range}</small></div><div><span className="chapter-kicker">BOUND CHRONOLOGY</span><h2>{volume.title}</h2><p>{volume.note}</p></div><aside className="volume-evidence"><span>PROVENANCE SPINE</span><strong>{volume.range}</strong><small>proof states retained</small></aside></header>
+            <header className="log-chapter"><div className="log-chapter-tab"><em>AGG · LEDGER</em><span>{volume.label}</span><small>{volume.range}</small></div><div><span className="chapter-kicker">{volume.number === 1 ? "CURRENT EVIDENCE CLUSTER" : "SEALED ARCHIVE CHAPTER"}</span><h2>{volume.title}</h2><p>{volume.note}</p></div><aside className="volume-evidence"><span>PROVENANCE SPINE</span><strong>{volume.range}</strong><small>{volume.number === 1 ? "active record review" : "sealed record review"}</small></aside></header>
             <details className="archive-records" open={volume.number === 1}>
-              <summary><span>{volume.number === 1 ? "CURRENT VOLUME / OPEN" : "ARCHIVED VOLUME / SELECT TO REVIEW"}</span><small>{records.length} RECORDS · {volume.range}</small><b>{volume.number === 1 ? "ACTIVE INDEX" : "SEALED INDEX"}</b><ChevronDown size={16} /></summary>
+              <summary><span>{volume.number === 1 ? "CURRENT VOLUME / OPEN" : `SEALED CHAPTER ${String(volume.number).padStart(2, "0")} / SELECT TO REVIEW`}</span><small>{records.length} RECORDS · {volume.range}</small><b>{volume.number === 1 ? "ACTIVE INDEX" : "SEALED INDEX"}</b><ChevronDown size={16} /></summary>
               <div className="archive-record-list">{records.map((entry, offset) => {
                 const index = start + offset;
                 const Icon = entry.icon;

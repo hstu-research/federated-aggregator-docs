@@ -71,3 +71,6 @@
 - Hospital Node document records use named archival volumes with a dedicated provenance lane per volume; generic document rows remain a quiet substrate beneath the ruled tab, range, status stamp, and evidence context.
 - Research Log volumes default closed except the current record cluster, so a full-page scan surfaces named ranges, archive tabs, and provenance context before individual entries; every retained record remains available through its volume’s explicit review control.
 - The shared `AGGREGATOR / LEDGER` mark functions as an institutional archive seal on every route. Research Log volume treatment visibly distinguishes the current evidence cluster, sealed archived volumes, and individual records without weakening the factual evidence hierarchy.
+- Evidence margins remain secondary proof spines: the editorial document column is visually primary, while dark ink is reserved for archive seals, index tabs, current-state markers, and bounded evidence blocks.
+- Closed Research Log volumes use distinct archival chapter names, visible index ranges, and sealed-review language; generic repeated archive labels are not used as the dominant scan pattern.
+- Mineral Teal `#0D7C78` signals validated, active, navigational, or proof-state meaning only. Decorative title emphasis uses deep ink instead.
