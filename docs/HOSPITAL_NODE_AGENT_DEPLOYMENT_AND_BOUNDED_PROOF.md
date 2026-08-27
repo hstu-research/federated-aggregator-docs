@@ -4648,6 +4648,12 @@ The new [Synthetic FedProx Thesis Executive Brief](./SYNTHETIC_FEDPROX_THESIS_EX
 
 This is a documentation-only summary artifact. It does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 181. Integrated thesis manuscript — documentation-only assembly record
+
+The new [Synthetic FedProx Thesis Integrated Manuscript](./SYNTHETIC_FEDPROX_THESIS_INTEGRATED_MANUSCRIPT.md) assembles the completed abstract, literature positioning, methodology, bounded implementation, results and discussion, limitations, future-work, traceability, and editorial claim controls into a single six-chapter thesis draft. It uses published literature only as context and states local source-only findings separately from every absent empirical category.
+
+This is a documentation-only manuscript assembly record. It does not certify academic submission, ethics, legal, clinical, privacy, security, operational, deployment, or runtime readiness, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
