@@ -4774,6 +4774,12 @@ The [Blank Deviation-and-Amendment Log](./SYNTHETIC_FEDPROX_PREEMPIRICAL_DEVIATI
 
 This is a blank change-control template, not a protocol amendment, approval, or technical request. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, model artifact, training output, metric, update, or submission. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, model behavior, performance, training, inference, evaluation, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible, and empirical work remains not started, pending independent evidence for every listed gate.
 
+## 202. One-page examiner summary — claim-safe assessment record
+
+The [One-Page Examiner Summary](./SYNTHETIC_FEDPROX_THESIS_EXAMINER_SUMMARY.md) now concisely identifies the thesis’s source-only contribution, documented evidence boundary, data-governance stop condition, explicit non-results, and conditional future-work path. It also directs an examiner to the integrated manuscript, evidence matrix, governance crosswalk, and data-governance records without elevating any preparatory material into authority or an empirical result.
+
+This is an assessment aid, not an empirical abstract, protocol approval, data-use authorization, clinical assessment, privacy assessment, or deployment report. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, model artifact, training output, metric, update, or submission. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, model behavior, performance, training, inference, evaluation, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible, and empirical work remains not started, pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
