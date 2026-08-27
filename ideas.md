@@ -68,3 +68,4 @@
 - The ledger mark and compressed `AGGREGATOR / LEDGER` wordmark recur as an institutional archive seal in the left rail and Research Log header, rather than appearing as isolated navigation branding.
 - Research Log chapter clusters use dark index tabs, volume labels, visible index ranges, and stronger ruled divisions so the chronology reads as a bound ledger rather than a uniform feed.
 - The evidence margin carries proof-state, semantic status stamp, record number, and chronology label as mandatory evidence infrastructure; titles, stamps, metadata, and body text follow a deliberately scan-first editorial hierarchy.
+- Hospital Node document records use named archival volumes with a dedicated provenance lane per volume; generic document rows remain a quiet substrate beneath the ruled tab, range, status stamp, and evidence context.

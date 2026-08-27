@@ -6,6 +6,7 @@ import { ArrowUpRight, CalendarDays, CheckCircle2, CircleStop, Database, FileTex
 import { StatusStamp } from "@/components/StatusStamp";
 
 const entries = [
+  { date: "27 AUG 2026", title: "Independent governance dossier keeps all supplied dataset candidates ineligible", status: "PROVISIONAL" as const, icon: FileText, body: "A separate data-use governance dossier now names the authority, source-chain, license, ethics/data-protection, isolation, and analysis-plan evidence required before any future data-use decision. It records only a scalar ineligible posture and routes every unresolved issue to independent review. No asset was downloaded, opened, copied, processed, stored, transferred, trained on, inferred from, or evaluated; this is not data, privacy, clinical, model, deployment, or runtime evidence." },
   { date: "27 AUG 2026", title: "Public dataset-page review closes all supplied candidates as ineligible for data use", status: "PROVISIONAL" as const, icon: FileText, body: "Three user-supplied public dataset pages were reviewed for visible description and license/access presentation only. No candidate passed a data-use gate: page-level terms, an unresolved license, or unresolved upstream source conditions require separate governance. No asset was downloaded, opened, copied, or processed. This is public-metadata evidence only—not provenance, consent, privacy, clinical, data-quality, model, performance, deployment, or runtime evidence." },
   { date: "27 AUG 2026", title: "Final local audit confirms the completed synthetic marker-rejection chain remains source-only", status: "PROVISIONAL" as const, icon: FileText, body: "The current aggregate Agent quality suite and focused import checks passed for the marker validator, one-use receipt consumer, in-memory terminal ledger, disabled application fake, and fixed composition. The chain retains immutable scalar closure from a generated declaration to a blocked/no-evaluation/no-execution readout. This is a final local source-only audit—not real patient-data detection, transfer prevention, privacy, security, hospital integration, clinical evidence, deployment, or runtime proof." },
   { date: "27 AUG 2026", title: "Fixed source-only composition projects the completed marker-rejection chain as one blocked scalar result", status: "PROVISIONAL" as const, icon: FileText, body: "A deterministic Agent composition now constructs one generated scalar marker internally and composes the validator, one-use consumer, in-memory ledger, and disabled fake into one fresh frozen blocked/no-evaluation/no-execution readout. It accepts no caller input and exposes no inner object or capability; the aggregate Agent quality suite passed. This is not an actual upload, data detector, end-to-end service, privacy outcome, hospital integration, clinical result, deployment, or runtime proof." },
@@ -324,15 +325,31 @@ const entries = [
   { date: "19 AUG 2026", title: "Legacy low-specificity / high-sensitivity result is retained as a diagnostic", status: "PROVISIONAL" as const, icon: FileWarning, body: "The pattern is not a thesis claim. It remains a debugging signal pending a corrected aggregation implementation, grouped data split, reproducible configuration, and independent metric recalculation." },
 ];
 
-const chapterMarkers: Readonly<Record<number, { label: string; title: string; note: string }>> = {
-  0: { label: "CURRENT RECORD", title: "Core-to-Agent handoff", note: "Source gates are green, but a deliberate pre-route block remains until the target private Agent proof composition exists." },
-  16: { label: "STREAM RECORD", title: "Core-mediated delivery", note: "The deployment, proof contract, and deliberately limited generated-fixture transfer boundary." },
-  19: { label: "INTENT RECORD", title: "Authorization before bytes", note: "Descriptor-only intent evidence, corrected pre-route failures, and explicit no-storage-access limits." },
-  26: { label: "DESCRIPTOR RECORD", title: "Immutable model authority", note: "Registry, assignment, and lease decisions that freeze what later workload requests may reference." },
-  34: { label: "AGENT RECORD", title: "Local synthetic boundary", note: "Private Agent state, restart safety, typed fakes, and the retained hospital-data prohibition." },
-  45: { label: "OPERATIONAL RECORD", title: "Control-plane resilience", note: "Bounded worker evidence, hosting authority, and retained infrastructure uncertainty." },
-  57: { label: "FOUNDATION RECORD", title: "Architecture decisions", note: "The research and authority assumptions that shaped the Core before runtime execution." }
-};
+const VOLUME_SIZE = 12;
+
+const volumeTitles = [
+  "Data governance and source-only closure",
+  "Thesis manuscript and review record",
+  "Pre-empirical readiness and default closure",
+  "Local Agent contracts and evidence controls",
+  "Source-quality boundaries and decision discipline",
+  "Core and Agent delivery architecture",
+  "Authorization, descriptor, and stream safeguards"
+] as const;
+
+function archiveVolume(index: number) {
+  const number = Math.floor(index / VOLUME_SIZE) + 1;
+  const start = index + 1;
+  const end = Math.min(index + VOLUME_SIZE, entries.length);
+  const title = volumeTitles[number - 1] ?? `Archived chronology / ${entries[index].date}`;
+  return {
+    number,
+    label: `VOLUME / ${String(number).padStart(2, "0")}`,
+    title,
+    note: `Records ${String(start).padStart(2, "0")}—${String(end).padStart(2, "0")} are preserved as one chronological evidence cluster; each record retains its own proof state and stated limits.`,
+    range: `INDEX / ${String(start).padStart(2, "0")}—${String(end).padStart(2, "0")}`
+  };
+}
 
 const evidenceLanguage = {
   VALIDATED: "verified evidence",
@@ -348,15 +365,16 @@ export default function ResearchLog() {
       <section className="log-ledger">
         {entries.map((entry, index) => {
           const Icon = entry.icon;
-          const chapter = chapterMarkers[index];
+          const chapter = index % VOLUME_SIZE === 0 ? archiveVolume(index) : null;
+          const volume = archiveVolume(Math.floor(index / VOLUME_SIZE) * VOLUME_SIZE);
           return (
             <div className="ledger-record" key={entry.title}>
-              {chapter ? <div className="log-chapter"><div className="log-chapter-tab"><span>{chapter.label}</span><small>VOLUME / 12</small></div><div><h2>{chapter.title}</h2><p>{chapter.note}</p></div><small>INDEX / {String(index + 1).padStart(2, "0")}—{String(Math.min(index + 9, entries.length)).padStart(2, "0")}</small></div> : null}
+              {chapter ? <div className="log-chapter"><div className="log-chapter-tab"><span>{chapter.label}</span><small>{chapter.range}</small></div><div><h2>{chapter.title}</h2><p>{chapter.note}</p></div><small>{chapter.range}</small></div> : null}
               <article className={`log-entry status-${entry.status.toLowerCase()}`} data-evidence-state={entry.status}>
                 <div className="log-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
                 <div className="log-date">{entry.date}</div>
                 <div className="log-content"><div className="log-title-row"><h2>{entry.title}</h2><StatusStamp status={entry.status} /></div><p>{entry.body}</p><a href="#open-decisions">Evidence and decision record <ArrowUpRight size={15} /></a></div>
-                <aside className="log-evidence"><div className="evidence-ledger-head"><span className="evidence-kicker">PROOF STATE</span><small>REC. {String(index + 1).padStart(2, "0")}</small></div><div className="evidence-state-pair"><Icon size={20} /><StatusStamp status={entry.status} /></div><strong>{entry.status}</strong><span>{evidenceLanguage[entry.status]}</span><small>chronology / 12</small></aside>
+                <aside className="log-evidence"><div className="evidence-ledger-head"><span className="evidence-kicker">PROOF STATE</span><small>REC. {String(index + 1).padStart(2, "0")}</small></div><div className="evidence-state-pair"><Icon size={20} /><StatusStamp status={entry.status} /></div><strong>{entry.status}</strong><span>{evidenceLanguage[entry.status]}</span><small>{volume.label} / {entry.date}</small></aside>
               </article>
             </div>
           );

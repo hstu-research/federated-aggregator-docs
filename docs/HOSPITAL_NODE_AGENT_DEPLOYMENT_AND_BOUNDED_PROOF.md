@@ -4738,6 +4738,12 @@ The [Kaggle Breast-Cancer Dataset Public Metadata Review Plan](./KAGGLE_BREAST_C
 
 This is public-metadata-only evidence. It does not access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending separate independent governance.
 
+## 196. Independent data-use governance dossier — ineligible data-use record
+
+The [Independent Data-Use Governance Dossier for Supplied Breast-Cancer Dataset Candidates](./KAGGLE_BREAST_CANCER_DATASET_INDEPENDENT_DATA_USE_GOVERNANCE_DOSSIER.md) now records the separate authority, provenance, license, ethics/data-protection, technical isolation, and analysis-plan gates that must be independently satisfied before a future data-use decision can be considered. It defines a scalar `ineligible` outcome and routes every unresolved condition to accountable review rather than to the source-only Agent.
+
+This is documentation-only governance preparation. It does not authorize access to any candidate and does not access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
