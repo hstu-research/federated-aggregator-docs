@@ -4696,6 +4696,12 @@ The new [Synthetic FedProx Thesis Verified Front-Matter Application](./SYNTHETIC
 
 This is a documentation-only front-matter review and formatting record. It does not identify a candidate, certify institution-specific submission compliance, record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof. It adds no data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 189. Synthetic patient-data marker rejection — local source-only evidence record
+
+The [Synthetic FedProx Patient-Data Marker Rejection Boundary Design](./SYNTHETIC_FEDPROX_PATIENT_DATA_MARKER_REJECTION_BOUNDARY_DESIGN.md) was implemented as an isolated Agent validator, and the [Synthetic FedProx Patient-Data Marker Rejection Evidence Record](./SYNTHETIC_FEDPROX_PATIENT_DATA_MARKER_REJECTION_EVIDENCE.md) records the outcome. The control accepts only an exact frozen generated scalar marker, returns a scalar blocked/no-evaluation/no-execution receipt, rejects malformed or broadened declarations, and suppresses replay. The Agent’s aggregate local quality suite passed.
+
+This is local source-only contract evidence. It does not ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
