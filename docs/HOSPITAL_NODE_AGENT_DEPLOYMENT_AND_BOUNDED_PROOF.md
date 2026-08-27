@@ -4726,6 +4726,12 @@ The [Synthetic Patient-Data Marker Rejection Composition Design](./SYNTHETIC_PAT
 
 This is local source-only composition evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not an end-to-end data, clinical, hospital, service, deployment, or runtime workflow. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
 
+## 194. Synthetic marker-rejection chain completion audit — local source-only record
+
+The [Synthetic Patient-Data Marker Rejection Chain Completion Audit Plan](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_CHAIN_COMPLETION_AUDIT_PLAN.md) was completed, and the [Synthetic Patient-Data Marker Rejection Chain Completion Audit](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_CHAIN_COMPLETION_AUDIT.md) records the outcome. The current aggregate Agent quality suite passed with focused import-boundary checks for the validator, consumer, in-memory ledger, disabled fake, and fixed composition. The five controls retain one immutable scalar terminal boundary from an internally generated declaration to a final blocked/no-evaluation/no-execution composition readout.
+
+This is a final local source-only chain audit. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not create or assess a detector, transport, storage, persistence layer, user interface, application service, provider connection, privacy mechanism, security control, hospital workflow, clinical activity, training, inference, metric, update, submission, aggregation, deployment, or runtime process.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
