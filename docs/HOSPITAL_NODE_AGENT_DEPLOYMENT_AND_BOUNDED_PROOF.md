@@ -4768,6 +4768,12 @@ The [Thesis Governance Appendix Crosswalk](./SYNTHETIC_FEDPROX_THESIS_GOVERNANCE
 
 This is a thesis-editing crosswalk, not a manuscript amendment, protocol registration, or authorization. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, model artifact, training output, metric, update, or submission. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, model behavior, performance, training, inference, evaluation, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible, and empirical work remains not started, pending independent evidence for every listed gate.
 
+## 201. Blank deviation-and-amendment log — non-execution change-control record
+
+The [Blank Deviation-and-Amendment Log](./SYNTHETIC_FEDPROX_PREEMPIRICAL_DEVIATION_AND_AMENDMENT_LOG.md) now sets a documentation-only change-control structure for any future protocol question. It preserves the base record, requires independent review and impact assessment for any scope or design change, names terminal closure conditions, and records that no amendment or deviation exists in the current branch.
+
+This is a blank change-control template, not a protocol amendment, approval, or technical request. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, model artifact, training output, metric, update, or submission. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, model behavior, performance, training, inference, evaluation, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible, and empirical work remains not started, pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
