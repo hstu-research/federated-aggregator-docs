@@ -4642,6 +4642,12 @@ The new [Synthetic FedProx Thesis Consistency and Claim Audit](./SYNTHETIC_FEDPR
 
 This is a documentation-only cross-artifact audit. It does not certify academic submission, ethics, legal, clinical, privacy, security, operational, or deployment readiness, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 180. Thesis executive brief — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Executive Brief](./SYNTHETIC_FEDPROX_THESIS_EXECUTIVE_BRIEF.md) concisely summarizes the research question, source-only method, bounded local findings, explicit non-results, and independently governed future-work path for supervisor or examiner review. It names the work as a source-only governance contribution and retains every empirical, privacy, clinical, operational, deployment, and runtime category as absent.
+
+This is a documentation-only summary artifact. It does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
