@@ -4732,6 +4732,12 @@ The [Synthetic Patient-Data Marker Rejection Chain Completion Audit Plan](./SYNT
 
 This is a final local source-only chain audit. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not create or assess a detector, transport, storage, persistence layer, user interface, application service, provider connection, privacy mechanism, security control, hospital workflow, clinical activity, training, inference, metric, update, submission, aggregation, deployment, or runtime process.
 
+## 195. Public metadata review of user-supplied data pages — ineligible data-use record
+
+The [Kaggle Breast-Cancer Dataset Public Metadata Review Plan](./KAGGLE_BREAST_CANCER_DATASET_PUBLIC_METADATA_REVIEW_PLAN.md) was completed, and the [Kaggle Breast-Cancer Dataset Public Metadata and Eligibility Review](./KAGGLE_BREAST_CANCER_DATASET_PUBLIC_METADATA_AND_ELIGIBILITY_REVIEW.md) records the outcome. Three user-supplied public dataset pages were read for page-level description and displayed license/access information only. No candidate passed a data-use gate: one page displayed a license requiring additional primary-source and governance review, one displayed an unresolved license, and one displayed a public-domain label alongside unresolved upstream source and transformation conditions.
+
+This is public-metadata-only evidence. It does not access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending separate independent governance.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
