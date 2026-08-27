@@ -31,6 +31,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           <span>
             <strong>AGGREGATOR</strong>
             <em>LEDGER</em>
+            <small>ARCHIVE / 12</small>
           </span>
         </Link>
         <button className="mobile-nav-toggle" type="button" aria-label={isOpen ? "Close documentation navigation" : "Open documentation navigation"} aria-expanded={isOpen} onClick={() => setIsOpen((open) => !open)}>

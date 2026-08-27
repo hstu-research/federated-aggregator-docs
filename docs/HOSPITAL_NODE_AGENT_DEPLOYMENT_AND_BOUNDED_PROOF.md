@@ -4756,6 +4756,12 @@ The [Supervisor Governance Handoff](./KAGGLE_BREAST_CANCER_DATASET_SUPERVISOR_GO
 
 This is a documentation-only handoff, not a request for data access or a substitute for authority. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
 
+## 199. Blank pre-empirical protocol-registration checklist — non-execution record
+
+The [Blank Pre-Empirical Protocol-Registration Checklist](./SYNTHETIC_FEDPROX_PREEMPIRICAL_PROTOCOL_REGISTRATION_CHECKLIST.md) now provides blank, non-authoritative fields for an independently governed study question, design, data-use gate, model plan, evaluation plan, reproducibility controls, limitations, reporting, amendments, and independent sign-off. It records the present study state as proposed and unexecuted and preserves every supplied candidate as `ineligible` for data use.
+
+This is documentation-only protocol preparation, not a registration or authorization. It does not request, collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, model artifact, training output, metric, update, or submission. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, model behavior, performance, training, inference, evaluation, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible, and empirical work remains not started, pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
