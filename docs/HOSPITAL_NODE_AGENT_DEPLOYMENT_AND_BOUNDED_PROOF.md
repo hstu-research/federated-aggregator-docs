@@ -4684,6 +4684,12 @@ The new [Synthetic FedProx Thesis Final Package Readiness Record](./SYNTHETIC_FE
 
 This is a documentation-only package-readiness record. It does not record a supervisor decision, academic submission, institutional-format certification, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof. It adds no data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 187. Professional generic thesis formatting — documentation-only delivery record
+
+The new [Synthetic FedProx Thesis Professional Manuscript Delivery](./SYNTHETIC_FEDPROX_THESIS_PROFESSIONAL_MANUSCRIPT_DELIVERY.md) records a professionally formatted generic university-style Word companion and the corresponding refreshed review archive. The document adds formal preliminary-page placeholders and consistent academic formatting while retaining the integrated source-only manuscript unchanged in substance.
+
+This is a documentation-only formatting and file-delivery record. It does not identify a candidate or institution, certify institution-specific compliance, record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof. It adds no data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
