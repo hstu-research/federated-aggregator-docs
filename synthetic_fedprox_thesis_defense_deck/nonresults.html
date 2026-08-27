@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What This Work Does Not Establish</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { font-family: 'Courier New', monospace; color: #617068; font-size: 11px; }
+    .content { flex: 1; margin: 43px 96px 0 112px; }
+    .eyebrow { color: #b2472f; font-size: 11px; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-weight: 500; font-size: 50px; line-height: 1; letter-spacing: -2.3px; margin-top: 13px; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .lead { max-width: 710px; margin-top: 15px; font-size: 17px; line-height: 1.45; color: #536057; }
+    .matrix { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #b9b0a0; border-left: 1px solid #b9b0a0; }
+    .cell { height: 126px; border-right: 1px solid #b9b0a0; border-bottom: 1px solid #b9b0a0; padding: 17px 18px 0; background: #f1ecdf; }
+    .cell:nth-child(2), .cell:nth-child(5) { background: #eee6da; }
+    .cell:nth-child(3), .cell:nth-child(6) { background: #f3efe6; }
+    .code { color: #b2472f; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 1.6px; text-transform: uppercase; }
+    .cell h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 23px; font-weight: 500; letter-spacing: -0.7px; margin-top: 7px; }
+    .cell p { color: #566159; font-size: 13px; line-height: 1.35; margin-top: 6px; max-width: 285px; }
+    .rule { margin-top: 26px; height: 70px; background: #16352f; display: grid; grid-template-columns: 210px 1fr; align-items: center; color: #edf1ea; }
+    .rule-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 1.4px; color: #c7dcd5; text-transform: uppercase; padding-left: 20px; }
+    .rule p { border-left: 1px solid #60938c; padding-left: 22px; font-family: Georgia, 'Times New Roman', serif; font-size: 20px; line-height: 1.2; font-weight: 500; max-width: 720px; }
+    .page { height: 44px; margin: 0 64px; border-top: 1px solid #b9b0a0; display: flex; justify-content: space-between; align-items: center; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #526058; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">07 / Evidence boundary</span><span class="folio">08 / 11</span></div>
+    <main class="content">
+      <div class="eyebrow">Explicit non-results</div>
+      <h1>What this work does <em>not</em> establish.</h1>
+      <p class="lead">The documented branch is source-only. Absence of empirical evidence is a result of scope—not a gap to be filled by inference.</p>
+      <section class="matrix" aria-label="Evidence categories that remain absent">
+        <article class="cell"><div class="code">Absent / 01</div><h2>Data & model</h2><p>No dataset, patient record, medical image, or model artifact entered this boundary.</p></article>
+        <article class="cell"><div class="code">Absent / 02</div><h2>Evaluation</h2><p>No training, inference, metric calculation, update, submission, or aggregation occurred.</p></article>
+        <article class="cell"><div class="code">Absent / 03</div><h2>Privacy outcome</h2><p>Controls and prohibitions are documented; privacy was not empirically assessed.</p></article>
+        <article class="cell"><div class="code">Absent / 04</div><h2>Clinical & hospital</h2><p>No clinical utility, patient benefit, hospital workflow, or integration result exists.</p></article>
+        <article class="cell"><div class="code">Absent / 05</div><h2>Deployment</h2><p>No concrete adapter, external connection, target action, or deployment proof exists.</p></article>
+        <article class="cell"><div class="code">Absent / 06</div><h2>Runtime evidence</h2><p>No runtime behavior or operational reliability claim is supported by this branch.</p></article>
+      </section>
+      <section class="rule"><div class="rule-label">Claim-control rule</div><p>Do not convert a local contract finding into a machine-learning, clinical, privacy, or operational conclusion.</p></section>
+    </main>
+    <div class="page"><span>NON-RESULTS ARE EXPLICIT</span><span>Source-only / no empirical inference</span></div>
+  </div>
+</body>
+</html>

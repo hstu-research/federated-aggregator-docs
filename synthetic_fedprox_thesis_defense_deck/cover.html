@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synthetic FedProx Thesis Defense</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; margin-top: -2px; }
+    .topline { height: 78px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .kicker { font-size: 12px; letter-spacing: 2.6px; text-transform: uppercase; color: #007c76; font-weight: 700; }
+    .status { border: 1px solid #007c76; color: #007c76; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; padding: 8px 12px; font-weight: 700; }
+    .main { flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; margin: 0 88px 0 112px; align-items: center; }
+    .identity { border-left: 5px solid #007c76; padding-left: 24px; max-width: 620px; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 67px; line-height: 0.95; letter-spacing: -3.2px; font-weight: 500; margin: 20px 0 24px; max-width: 610px; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .subtitle { max-width: 545px; font-size: 20px; line-height: 1.45; color: #4e5a54; margin: 0; }
+    .footerline { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #6b716b; margin-top: 38px; }
+    .diagram { min-height: 390px; border: 1px solid #cfc6b6; background: #efeadf; display: flex; flex-direction: column; justify-content: space-between; padding: 28px; position: relative; }
+    .diagram-label { color: #007c76; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+    .circle { width: 94px; height: 94px; border: 2px solid #007c76; border-radius: 50%; position: absolute; right: 74px; top: 92px; }
+    .circle::after { content: ''; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: #c7a24a; left: 36px; top: 36px; }
+    .line-one { position: absolute; width: 175px; height: 1px; background: #007c76; transform: rotate(-28deg); right: 122px; top: 196px; transform-origin: right; }
+    .line-two { position: absolute; width: 142px; height: 1px; background: #b2472f; transform: rotate(42deg); right: 103px; top: 233px; transform-origin: right; }
+    .node { position: absolute; width: 22px; height: 22px; border: 2px solid #007c76; background: #f5f1e8; border-radius: 50%; }
+    .node.one { right: 245px; top: 218px; } .node.two { right: 44px; top: 282px; }
+    .diagram-bottom { border-top: 1px solid #cfc6b6; padding-top: 18px; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.55; color: #34423b; }
+    .page { height: 50px; margin: 0 64px; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #526058; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="topline"><span class="kicker">Thesis defense / synthetic research branch</span><span class="status">Source-only</span></div>
+    <main class="main">
+      <section class="identity">
+        <div class="kicker">Evidence before execution</div>
+        <h1>Synthetic FedProx<br /><em>Thesis Defense</em></h1>
+        <p class="subtitle">Distinguishing a proposed breast-cancer/FedProx study from an executed empirical result.</p>
+        <p class="footerline">Research-governance contribution · claim-safe briefing</p>
+      </section>
+      <section class="diagram" aria-label="Abstract evidence boundary motif">
+        <div class="diagram-label">Study intent / evidence boundary</div>
+        <div class="circle"></div><div class="line-one"></div><div class="line-two"></div><div class="node one"></div><div class="node two"></div>
+        <div class="diagram-bottom">DECLARATION → LOCAL CLOSURE →<br />NO EMPIRICAL INFERENCE</div>
+      </section>
+    </main>
+    <div class="page"><span>01 / 11</span><span>Accountable distinction before evidence</span></div>
+  </div>
+</body>
+</html>

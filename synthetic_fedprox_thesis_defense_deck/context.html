@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Positioning the Contribution</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { color: #617068; font: 11px 'Courier New', monospace; }
+    .main { flex: 1; margin: 42px 86px 0 112px; display: grid; grid-template-columns: 270px 1fr 286px; gap: 30px; }
+    .intro { padding-top: 2px; }
+    .eyebrow { color: #007c76; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+    h1 { font: 500 48px/1.02 Georgia, 'Times New Roman', serif; letter-spacing: -2.2px; margin-top: 14px; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .intro p { margin-top: 23px; max-width: 240px; color: #526058; font-size: 16px; line-height: 1.48; }
+    .strands { height: 405px; border-top: 2px solid #007c76; border-bottom: 1px solid #b9b0a0; }
+    .strand { height: 135px; display: grid; grid-template-columns: 48px 1fr; gap: 15px; align-items: start; border-top: 1px solid #cfc6b6; padding-top: 18px; }
+    .strand:first-child { border-top: 0; }
+    .n { color: #c7a24a; font: 700 12px 'Courier New', monospace; }
+    .strand h2 { font: 500 24px/1 Georgia, 'Times New Roman', serif; letter-spacing: -0.7px; }
+    .strand p { margin-top: 8px; max-width: 430px; color: #526058; font-size: 14px; line-height: 1.4; }
+    .strand cite { color: #007c76; font-style: normal; font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: .5px; }
+    .position { margin-top: 22px; height: 342px; background: #16352f; color: #edf1ec; padding: 26px 23px 0; }
+    .position-label { color: #c7dcd5; font: 10px 'Courier New', monospace; letter-spacing: 1.4px; text-transform: uppercase; }
+    .position h2 { font: 500 30px/1.05 Georgia, 'Times New Roman', serif; letter-spacing: -1px; margin-top: 17px; }
+    .position h2 em { color: #c7a24a; font-style: normal; }
+    .position p { margin-top: 20px; color: #d9e6df; font-size: 15px; line-height: 1.48; }
+    .position-rule { height: 1px; background: #60938c; margin-top: 21px; }
+    .position small { display: block; margin-top: 13px; color: #b8d2cb; font: 10px/1.45 'Courier New', monospace; letter-spacing: .4px; }
+    .rule { height: 65px; margin: 25px 112px 0; background: #eee6da; border-top: 1px solid #c7a24a; display: flex; align-items: center; }
+    .rule b { width: 220px; padding-left: 21px; color: #9a693f; font: 10px 'Courier New', monospace; letter-spacing: 1.2px; text-transform: uppercase; }
+    .rule p { border-left: 1px solid #c7a24a; padding-left: 20px; font-size: 15px; line-height: 1.35; color: #53534e; }
+    .page { height: 40px; margin: 0 64px; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; color: #526058; font: 11px 'Courier New', monospace; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">09 / Related-work positioning</span><span class="folio">09 / 11</span></div>
+    <main class="main">
+      <section class="intro"><div class="eyebrow">Context, not transfer</div><h1>Position the <em>contribution.</em></h1><p>Published work explains why FedProx and governance matter. It does not supply results for this project.</p></section>
+      <section class="strands" aria-label="Three literature strands">
+        <article class="strand"><div class="n">01</div><div><h2>FedProx</h2><p>Provides a proposed federated optimization context for heterogeneous settings.</p><cite>[1] Algorithmic context only</cite></div></article>
+        <article class="strand"><div class="n">02</div><div><h2>Healthcare federated learning</h2><p>Distinguishes technical research activity from real-world translation and clinical evidence.</p><cite>[2] Translation context only</cite></div></article>
+        <article class="strand"><div class="n">03</div><div><h2>Governance</h2><p>Motivates explicit procedures, roles, scope, and structural controls for responsible research.</p><cite>[3] Governance context only</cite></div></article>
+      </section>
+      <section class="position"><div class="position-label">This thesis</div><h2>A <em>pre-empirical</em> governance boundary</h2><p>The contribution is the distinction between proposed study intent and executed empirical evidence.</p><div class="position-rule"></div><small>NOT A NEW OPTIMIZER<br />NOT A BENCHMARK<br />NOT A CLINICAL APPLICATION</small></section>
+    </main>
+    <section class="rule"><b>Interpretation rule</b><p>Literature is cited for context; no outside performance, privacy, or clinical outcome is transferred to this project.</p></section>
+    <div class="page"><span>FEDPROX / HEALTHCARE FL / GOVERNANCE</span><span>Context without inference</span></div>
+  </div>
+</body>
+</html>

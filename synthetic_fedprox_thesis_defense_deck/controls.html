@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controls Preserve the Default Close</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; letter-spacing: 2.2px; text-transform: uppercase; font-weight: 700; }
+    .folio { color: #617068; font: 11px 'Courier New', monospace; }
+    /* reduced top margin of main by 13px (46 -> 33) to save vertical space */
+    .main { margin: 33px 94px 0 112px; }
+    .eyebrow { color: #007c76; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+    h1 { font: 500 51px/1.02 Georgia, 'Times New Roman', serif; letter-spacing: -2.4px; margin-top: 14px; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .lead { max-width: 705px; margin-top: 15px; color: #526058; font-size: 17px; line-height: 1.46; }
+    /* reduced sequence top margin by 16px (46 -> 30) to save vertical space */
+    .sequence { height: 263px; margin-top: 30px; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .spine { position: absolute; height: 2px; background: #007c76; left: 0; right: 0; top: 43px; }
+    .stage { position: relative; padding-top: 0; }
+    .number { width: 88px; height: 88px; border: 2px solid #007c76; background: #f5f1e8; display: flex; align-items: center; justify-content: center; color: #007c76; font: 700 23px 'Courier New', monospace; position: relative; z-index: 1; }
+    .stage.final .number { border-color: #b2472f; color: #b2472f; }
+    .stage h2 { font: 500 26px/1.1 Georgia, 'Times New Roman', serif; letter-spacing: -0.8px; margin-top: 24px; max-width: 190px; }
+    .stage p { font-size: 14px; line-height: 1.46; color: #536058; margin-top: 11px; max-width: 205px; }
+    .stage .tag { margin-top: 15px; color: #007c76; font: 10px 'Courier New', monospace; letter-spacing: 1px; text-transform: uppercase; }
+    .stage.final .tag { color: #b2472f; }
+    .outcome { height: 94px; margin-top: 18px; display: grid; grid-template-columns: 220px 1fr; align-items: center; background: #16352f; color: #edf2ed; }
+    .outcome-label { font: 10px 'Courier New', monospace; letter-spacing: 1.5px; text-transform: uppercase; color: #b9d2cd; padding-left: 25px; }
+    .outcome-text { border-left: 1px solid #618f88; padding-left: 26px; font: 500 23px/1.15 Georgia, 'Times New Roman', serif; letter-spacing: -0.6px; }
+    .outcome-text em { color: #c7dcd5; font-style: normal; }
+    .page { height: 42px; margin: 27px 64px 0; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; color: #526058; font: 11px 'Courier New', monospace; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">05 / Control sequence</span><span class="folio">06 / 11</span></div>
+    <main class="main">
+      <div class="eyebrow">Default-closed by design</div>
+      <h1>Each control preserves the <em>same boundary.</em></h1>
+      <p class="lead">The sequence moves only toward terminal local closure. It does not construct an evaluation path or connect an external system.</p>
+      <section class="sequence" aria-label="Source-only control sequence">
+        <div class="spine"></div>
+        <article class="stage"><div class="number">01</div><h2>Exact validation</h2><p>Only a frozen, allowlisted non-executing declaration is accepted.</p><div class="tag">Unsafe input closes</div></article>
+        <article class="stage"><div class="number">02</div><h2>One-use consumption</h2><p>One valid receipt is consumed once; replay cannot substitute a new path.</p><div class="tag">Replay suppressed</div></article>
+        <article class="stage"><div class="number">03</div><h2>Terminal ledger</h2><p>An in-memory terminal state remains closed after a canonical restart simulation.</p><div class="tag">No persistence client</div></article>
+        <article class="stage final"><div class="number">04</div><h2>Disabled projection</h2><p>The application fake returns only a disabled scalar outcome.</p><div class="tag">No action capability</div></article>
+      </section>
+      <section class="outcome"><div class="outcome-label">Retained posture</div><div class="outcome-text"><em>Ineligible · not started · not performed</em></div></section>
+    </main>
+    <div class="page"><span>VALIDATION → CONSUMPTION → TERMINAL CLOSE</span><span>No external connection</span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Was Established Locally</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { font-family: 'Courier New', monospace; color: #617068; font-size: 11px; }
+    .content { margin: 42px 88px 0 112px; }
+    .heading { display: grid; grid-template-columns: 1fr 330px; gap: 42px; align-items: end; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 50px; line-height: 1; letter-spacing: -2.3px; font-weight: 500; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .scope { border-left: 3px solid #c7a24a; padding-left: 16px; color: #526058; font-size: 15px; line-height: 1.4; }
+    .matrix { margin-top: 32px; border-top: 2px solid #007c76; border-bottom: 1px solid #b9b0a0; }
+    .row { display: grid; grid-template-columns: 250px 1fr 285px; min-height: 70px; border-top: 1px solid #d1c8b8; align-items: center; }
+    .row.head { min-height: 42px; border-top: 0; background: #e9f0ec; }
+    .cell { padding: 0 18px; font-size: 14px; line-height: 1.35; color: #4f5953; }
+    .head .cell { font-family: 'Courier New', monospace; color: #007c76; font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .finding { color: #14231f; font-weight: 700; font-size: 15px; }
+    .nonclaim { color: #7b5446; }
+    .index { color: #c7a24a; font-family: 'Courier New', monospace; font-size: 11px; display: inline-block; width: 30px; }
+    .conclusion { height: 104px; margin-top: 27px; background: #16352f; color: #ecf1ec; display: grid; grid-template-columns: 178px 1fr; align-items: center; }
+    .conclusion-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 1.2px; color: #c7dcd5; text-transform: uppercase; padding-left: 24px; }
+    .conclusion-text { border-left: 1px solid #60938c; padding-left: 23px; font-family: Georgia, 'Times New Roman', serif; font-size: 24px; line-height: 1.18; max-width: 730px; }
+    .page { height: 42px; margin: 13px 64px 0; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; color: #526058; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">06 / Bounded findings</span><span class="folio">07 / 11</span></div>
+    <main class="content">
+      <section class="heading"><h1>What was established <em>locally.</em></h1><p class="scope">The evidence below concerns source-only contract behavior and local validation—not model, clinical, or operational outcomes.</p></section>
+      <section class="matrix" aria-label="Bounded source-only findings">
+        <div class="row head"><div class="cell">Finding</div><div class="cell">Local evidence</div><div class="cell">Explicit non-claim</div></div>
+        <div class="row"><div class="cell finding"><span class="index">01</span>Frozen study intent</div><div class="cell">A proposed non-executing protocol state can be represented as an exact declaration.</div><div class="cell nonclaim">No trainer, dataset, or model was used.</div></div>
+        <div class="row"><div class="cell finding"><span class="index">02</span>Terminal closure</div><div class="cell">Malformed, broadened, mutable, and replayed input closes in the bounded contract.</div><div class="cell nonclaim">No external workflow or runtime was protected or tested.</div></div>
+        <div class="row"><div class="cell finding"><span class="index">03</span>Default-closed readiness</div><div class="cell">Unassigned empirical-readiness gates stay ineligible through local processing.</div><div class="cell nonclaim">No authority, approval, or protocol registration exists.</div></div>
+        <div class="row"><div class="cell finding"><span class="index">04</span>Disabled projection</div><div class="cell">A deterministic in-memory fake returns only a disabled scalar outcome.</div><div class="cell nonclaim">No storage, transport, adapter, or deployment exists.</div></div>
+      </section>
+      <section class="conclusion"><div class="conclusion-label">Bounded conclusion</div><div class="conclusion-text">The branch establishes accountable distinction before evidence—not a FedProx performance result.</div></section>
+    </main>
+    <div class="page"><span>LOCAL / SOURCE-ONLY / TRACEABLE</span><span>No empirical inference</span></div>
+  </div>
+</body>
+</html>

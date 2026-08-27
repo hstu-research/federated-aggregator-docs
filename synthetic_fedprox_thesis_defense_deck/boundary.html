@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposal Is Not Execution</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { font-family: 'Courier New', monospace; color: #617068; font-size: 11px; }
+    .heading { margin: 42px 112px 0; display: flex; justify-content: space-between; align-items: flex-end; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 48px; line-height: 1; letter-spacing: -2.2px; font-weight: 500; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .rule-note { font-family: 'Courier New', monospace; font-size: 11px; color: #8a7047; letter-spacing: 1px; text-transform: uppercase; }
+    .flow { height: 388px; margin: 42px 112px 0; display: grid; grid-template-columns: 1fr 170px 1.15fr; align-items: stretch; }
+    .intent { background: #e2eeea; border-top: 5px solid #007c76; padding: 31px 33px 0; }
+    .intent .label, .excluded .label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .intent .label { color: #007c76; }
+    .intent h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 36px; line-height: 1.06; font-weight: 500; letter-spacing: -1.4px; margin-top: 21px; max-width: 360px; }
+    .intent p { font-size: 16px; line-height: 1.52; max-width: 360px; color: #44534d; margin-top: 22px; }
+    .gate { background: #17362f; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #eaf0eb; }
+    .gate-box { border: 1px solid #86b8ad; width: 88px; height: 88px; display: flex; align-items: center; justify-content: center; font-family: Georgia, 'Times New Roman', serif; font-size: 42px; color: #c7a24a; }
+    .gate p { font-family: 'Courier New', monospace; margin-top: 16px; max-width: 120px; text-align: center; font-size: 11px; letter-spacing: 1px; line-height: 1.45; text-transform: uppercase; color: #c8dad4; }
+    .excluded { border-top: 5px solid #b2472f; background: #eee4dc; padding: 31px 33px 0; position: relative; }
+    .excluded .label { color: #b2472f; }
+    .excluded h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 36px; line-height: 1.06; font-weight: 500; letter-spacing: -1.4px; margin-top: 21px; color: #5f4a43; }
+    .excluded ul { list-style: none; margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; max-width: 480px; }
+    .excluded li { font-size: 15px; color: #66534c; padding-top: 9px; border-top: 1px solid #d4c0b7; }
+    .slash { position: absolute; top: 121px; left: 26px; width: 490px; height: 3px; background: #b2472f; transform: rotate(-8deg); opacity: .9; }
+    .caption { margin: 29px 112px 0; border-top: 1px solid #b9b0a0; padding-top: 15px; display: grid; grid-template-columns: 140px 1fr; gap: 22px; }
+    .caption b { color: #007c76; font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .caption p { font-size: 15px; color: #526058; line-height: 1.4; }
+    .page { height: 38px; margin: 18px 64px 0; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 11px; color: #526058; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">03 / Evidence boundary</span><span class="folio">04 / 11</span></div>
+    <div class="heading"><h1>Proposal <em>is not</em> execution.</h1><span class="rule-note">State must not cross the gate</span></div>
+    <main class="flow">
+      <section class="intent"><div class="label">Allowed source-only state</div><h2>Frozen study intent</h2><p>A descriptor states a proposed research protocol while retaining a non-executing posture.</p></section>
+      <section class="gate"><div class="gate-box">≠</div><p>Explicit<br />boundary gate</p></section>
+      <section class="excluded"><div class="label">Explicitly excluded</div><h2>Empirical execution</h2><div class="slash"></div><ul><li>Dataset access</li><li>Model artifact use</li><li>Trainer invocation</li><li>Metric calculation</li><li>Update submission</li><li>Aggregation action</li></ul></section>
+    </main>
+    <section class="caption"><b>Interpretation</b><p>A source-only declaration supports a statement about intent classification—not a statement that a federated-learning study occurred.</p></section>
+    <div class="page"><span>THESIS DEFENSE / BOUNDARY</span><span>No empirical action</span></div>
+  </div>
+</body>
+</html>

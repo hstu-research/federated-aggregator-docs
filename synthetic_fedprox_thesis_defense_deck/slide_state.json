@@ -1,0 +1,133 @@
+{
+  "project_info": {
+    "title": "Synthetic FedProx Thesis Defense",
+    "created": 1787803536.572,
+    "last_updated": 1787803773.879,
+    "total_slides": 11
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "problem",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "question",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "boundary",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "method",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "controls",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "findings",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "nonresults",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "context",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "future",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "close",
+      "state": "edited",
+      "pageNum": 11
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "Synthetic FedProx Thesis Defense",
+      "summary": "Cover slide with title, subtitle, and the central study-intent versus evidence theme.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "problem",
+      "title": "The Problem Is a Category Error",
+      "summary": "Explain why a proposed protocol must not be presented as an empirical result.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "question",
+      "title": "The Research Question",
+      "summary": "State the narrow descriptor-only synthetic FedProx study-intent question.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "boundary",
+      "title": "Proposal Is Not Execution",
+      "summary": "Show the explicit boundary between frozen study intent and excluded execution actions.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "method",
+      "title": "A Source-Only Method",
+      "summary": "Summarize frozen declarations, strict validation, terminal closure, and deterministic fixtures.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "controls",
+      "title": "Controls Preserve the Default Close",
+      "summary": "Show the validation, one-use consumption, terminal ledger, and disabled fake sequence.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "findings",
+      "title": "What Was Established Locally",
+      "summary": "Present bounded source-only findings without metrics or performance claims.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "nonresults",
+      "title": "What This Work Does Not Establish",
+      "summary": "Clearly display the non-results across data, model, evaluation, privacy, clinical, and runtime categories.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "context",
+      "title": "Positioning the Contribution",
+      "summary": "Position the work relative to FedProx, healthcare FL, and governance literature without transferring outcomes.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "future",
+      "title": "Future Work Requires Governance First",
+      "summary": "Show the independent authority, stewardship, protocol, evaluation, safety, reporting, and adapter-review gates.",
+      "image_plan": "Use a suitable image if needed"
+    },
+    {
+      "id": "close",
+      "title": "Accountable Distinction Before Evidence",
+      "summary": "Closing slide emphasizing evidence discipline over performance claims.",
+      "image_plan": "Use a suitable image if needed"
+    }
+  ]
+}

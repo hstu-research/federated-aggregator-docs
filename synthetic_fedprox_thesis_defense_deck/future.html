@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future Work Requires Governance First</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { font-family: 'Courier New', monospace; color: #617068; font-size: 11px; }
+    .content { flex: 1; margin: 43px 80px 0 112px; }
+    .heading { display: grid; grid-template-columns: 1fr 310px; gap: 38px; align-items: end; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 48px; line-height: 1; letter-spacing: -2.2px; font-weight: 500; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .scope { border-left: 3px solid #c7a24a; padding-left: 16px; font-size: 15px; line-height: 1.42; color: #526058; }
+    .gates { height: 258px; margin-top: 42px; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 2px solid #007c76; border-bottom: 1px solid #b9b0a0; }
+    .gate { border-right: 1px solid #cfc6b6; padding: 18px 15px 0; position: relative; }
+    .gate:last-child { border-right: 0; }
+    .gate:nth-child(2n) { background: #efe9dc; }
+    .number { font-family: 'Courier New', monospace; color: #c7a24a; font-size: 11px; letter-spacing: 1px; }
+    .bar { width: 28px; height: 5px; background: #007c76; margin-top: 22px; }
+    .gate h2 { margin-top: 18px; font-family: Georgia, 'Times New Roman', serif; font-size: 22px; line-height: 1.04; letter-spacing: -0.7px; font-weight: 500; }
+    .gate p { margin-top: 12px; font-size: 12px; line-height: 1.38; color: #566159; }
+    .status { position: absolute; bottom: 16px; left: 15px; font: 9px 'Courier New', monospace; letter-spacing: 1px; text-transform: uppercase; color: #b2472f; }
+    .stop { height: 106px; margin-top: 28px; background: #16352f; color: #edf1ea; display: grid; grid-template-columns: 212px 1fr; align-items: center; }
+    .stop-label { padding-left: 24px; color: #c7dcd5; font: 10px 'Courier New', monospace; letter-spacing: 1.4px; text-transform: uppercase; }
+    .stop-text { border-left: 1px solid #60938c; padding-left: 24px; font-family: Georgia, 'Times New Roman', serif; font-size: 23px; line-height: 1.2; max-width: 740px; }
+    .stop-text em { color: #c7a24a; font-style: normal; }
+    .page { height: 44px; margin: 0 64px; border-top: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; color: #526058; font-size: 11px; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">09 / Future work</span><span class="folio">10 / 11</span></div>
+    <main class="content">
+      <section class="heading"><h1>Future work requires <em>governance first.</em></h1><p class="scope">The next step is not implementation. Independent decisions must precede any empirical study consideration.</p></section>
+      <section class="gates" aria-label="Independent readiness gates">
+        <article class="gate"><div class="number">GATE 01</div><div class="bar"></div><h2>Authority</h2><p>A responsible body assigns one bounded research purpose.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 02</div><div class="bar"></div><h2>Stewardship</h2><p>Applicable ethics, legal, consent, and data controls are determined.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 03</div><div class="bar"></div><h2>Protocol</h2><p>Question, design, comparator, and stop rules are prespecified.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 04</div><div class="bar"></div><h2>Evaluation</h2><p>Metrics, uncertainty, and analysis rules are independently fixed.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 05</div><div class="bar"></div><h2>Safety</h2><p>Reproducibility, security, privacy, and incident controls are set.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 06</div><div class="bar"></div><h2>Reporting</h2><p>Technical findings remain separate from clinical and deployment claims.</p><div class="status">Unassigned</div></article>
+        <article class="gate"><div class="number">GATE 07</div><div class="bar"></div><h2>Adapter review</h2><p>Only then may a focused external-adapter review be considered.</p><div class="status">Unassigned</div></article>
+      </section>
+      <section class="stop"><div class="stop-label">Current stop condition</div><div class="stop-text">Every gate is <em>unassigned</em>. No empirical study, external adapter, or runtime work begins from this branch.</div></section>
+    </main>
+    <div class="page"><span>INDEPENDENT GOVERNANCE → SEPARATE PROTOCOL → FUTURE REVIEW</span><span>No action authorized</span></div>
+  </div>
+</body>
+</html>

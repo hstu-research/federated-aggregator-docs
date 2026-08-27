@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Problem Is a Category Error</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #f5f1e8; color: #14231f; font-family: Arial, Helvetica, sans-serif; }
+    .top { height: 70px; margin: 0 64px; border-bottom: 1px solid #b9b0a0; display: flex; align-items: center; justify-content: space-between; }
+    .meta { color: #007c76; font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .folio { font-family: 'Courier New', monospace; color: #617068; font-size: 11px; }
+    .content { margin: 46px 88px 0 112px; }
+    h1 { font-family: Georgia, 'Times New Roman', serif; font-size: 52px; line-height: 1; letter-spacing: -2.4px; font-weight: 500; max-width: 760px; }
+    h1 em { color: #007c76; font-weight: 500; }
+    .lead { margin-top: 18px; max-width: 670px; color: #57625c; font-size: 18px; line-height: 1.48; }
+    .planes { margin-top: 42px; display: grid; grid-template-columns: 1fr 110px 1fr; align-items: stretch; height: 294px; }
+    .plane { border-top: 5px solid #007c76; border-bottom: 1px solid #b9b0a0; background: #efe9dc; padding: 28px 30px 0; }
+    .plane.right { border-top-color: #b2472f; background: #eee5dc; }
+    .plane-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: #007c76; }
+    .right .plane-label { color: #b2472f; }
+    .plane h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 33px; font-weight: 500; line-height: 1.05; letter-spacing: -1px; margin-top: 16px; max-width: 360px; }
+    .plane p { font-size: 16px; line-height: 1.45; margin-top: 16px; color: #4f5953; max-width: 360px; }
+    .divide { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .divide span { display: block; width: 62px; height: 1px; background: #c7a24a; position: relative; }
+    .divide span::after { content: ''; position: absolute; right: 0; top: -4px; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 8px solid #c7a24a; }
+    .divide b { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 1px; color: #8d7650; margin-top: 14px; text-transform: uppercase; }
+    .bottom { margin: 34px 64px 0; padding-top: 14px; border-top: 1px solid #b9b0a0; display: flex; justify-content: space-between; font-size: 12px; color: #526058; }
+    .bottom strong { color: #14231f; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="top"><span class="meta">01 / Problem framing</span><span class="folio">02 / 11</span></div>
+    <main class="content">
+      <h1>The risk is a <em>category error.</em></h1>
+      <p class="lead">A proposed federated protocol can look like a result when intent, implementation, and evidence are not explicitly separated.</p>
+      <section class="planes">
+        <article class="plane"><div class="plane-label">What may exist</div><h2>A proposed study declaration</h2><p>A protocol-shaped intention may name a research direction without any empirical action.</p></article>
+        <div class="divide"><span></span><b>must not<br />collapse</b></div>
+        <article class="plane right"><div class="plane-label">What it is not</div><h2>An executed empirical result</h2><p>No training, dataset, model, metric, update, or aggregation event follows from a declaration alone.</p></article>
+      </section>
+    </main>
+    <div class="bottom"><span><strong>Thesis response:</strong> preserve evidence boundaries before execution.</span><span>Source-only / no empirical inference</span></div>
+  </div>
+</body>
+</html>
