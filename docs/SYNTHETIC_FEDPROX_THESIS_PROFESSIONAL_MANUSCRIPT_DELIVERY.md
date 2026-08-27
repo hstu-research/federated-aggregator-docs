@@ -4,9 +4,9 @@
 
 ## Delivered document
 
-[Download the professional generic editable thesis manuscript](/manus-storage/SYNTHETIC_FEDPROX_THESIS_PROFESSIONAL_EDITABLE_MANUSCRIPT_d587478e.docx).
+[Download the verified-front-matter professional editable thesis manuscript](/manus-storage/SYNTHETIC_FEDPROX_THESIS_PROFESSIONAL_EDITABLE_MANUSCRIPT_d2be78c8.docx).
 
-The document applies a restrained academic presentation to the integrated source-only manuscript: A4 pages, conventional thesis margins, Times New Roman typography, double-spaced body text, numbered pages, chapter hierarchy, tables, and references. It also includes a formal title page, degree and identity placeholders, declaration of originality, approval-page placeholder, acknowledgements placeholder, editorial-and-evidence notice, table-of-contents field, and list of abbreviations.
+The document applies a restrained academic presentation to the integrated source-only manuscript: A4 pages, conventional thesis margins, Times New Roman typography, double-spaced body text, numbered pages, chapter hierarchy, tables, and references. The supplied thesis materials corroborated the institution’s course, degree, department, location, title-page sequence, and certificate-role conventions, which have been applied. Candidate identity, student ID, supervisor, signature, and final-date fields remain blank because they were not verified for this manuscript.
 
 ## Generic-template boundaries
 
@@ -27,7 +27,7 @@ The document retains the integrated manuscript’s source-only research question
 
 ## Review-package update
 
-The current review archive has been refreshed to include the professional generic manuscript and its updated reviewer guide: [Download the refreshed final source-only thesis review package](/manus-storage/SYNTHETIC_FEDPROX_THESIS_FINAL_REVIEW_PACKAGE_b90b6cf9.zip).
+The current review archive has been refreshed to include the verified-front-matter professional manuscript and updated reviewer guide: [Download the refreshed final source-only thesis review package](/manus-storage/SYNTHETIC_FEDPROX_THESIS_FINAL_REVIEW_PACKAGE_2b729747.zip).
 
 ## References
 

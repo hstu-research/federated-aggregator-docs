@@ -4690,6 +4690,12 @@ The new [Synthetic FedProx Thesis Professional Manuscript Delivery](./SYNTHETIC_
 
 This is a documentation-only formatting and file-delivery record. It does not identify a candidate or institution, certify institution-specific compliance, record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof. It adds no data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 188. Verified front-matter application — documentation-only delivery record
+
+The new [Synthetic FedProx Thesis Verified Front-Matter Application](./SYNTHETIC_FEDPROX_THESIS_VERIFIED_FRONT_MATTER_APPLICATION.md) records selective use of the supplied thesis PDF and pre-defense presentation for institutional formatting conventions. It applies only the corroborated course, degree, department, location, title-page sequence, and certificate-role conventions to the editable manuscript, retaining personal and approval fields blank when they are not verified for this manuscript.
+
+This is a documentation-only front-matter review and formatting record. It does not identify a candidate, certify institution-specific submission compliance, record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof. It adds no data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
