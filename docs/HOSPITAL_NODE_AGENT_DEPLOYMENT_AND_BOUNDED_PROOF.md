@@ -4708,6 +4708,12 @@ The [Synthetic Patient-Data Marker Rejection Receipt Consumption Design](./SYNTH
 
 This is local source-only contract evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
 
+## 191. Synthetic marker-rejection terminal ledger — local source-only evidence record
+
+The [Synthetic Patient-Data Marker Rejection Terminal Ledger Design](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_TERMINAL_LEDGER_DESIGN.md) was implemented as an isolated deterministic in-memory Agent fixture, and the [Synthetic Patient-Data Marker Rejection Terminal Ledger Evidence](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_TERMINAL_LEDGER_EVIDENCE.md) records the outcome. The ledger records only frozen scalar terminal closure, denies invalid receipts and snapshots, suppresses replay, and initializes a new fake-ledger instance closed from valid or invalid in-memory snapshots. The Agent’s aggregate local quality suite passed.
+
+This is local source-only in-memory state-machine evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not a database, filesystem, cache, queue, provider, service, network, audit trail, or persistent restart mechanism. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
