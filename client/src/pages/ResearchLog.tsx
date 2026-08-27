@@ -2,10 +2,11 @@
  * Research Ledger design: chronological research entries preserve uncertainty in an editorial ledger,
  * with explicit evidence stamps, archival chapter clusters, and a durable right-side provenance spine.
  */
-import { ArrowUpRight, CalendarDays, CheckCircle2, CircleStop, Database, FileText, FileWarning, GitCommitHorizontal, Lightbulb, ShieldCheck, Workflow } from "lucide-react";
+import { ArrowUpRight, CalendarDays, CheckCircle2, ChevronDown, CircleStop, Database, FileText, FileWarning, GitCommitHorizontal, Lightbulb, ShieldCheck, Workflow } from "lucide-react";
 import { StatusStamp } from "@/components/StatusStamp";
 
 const entries = [
+  { date: "27 AUG 2026", title: "Blank authority-ready worksheet preserves the ineligible data-use posture", status: "PROVISIONAL" as const, icon: FileText, body: "A blank decision worksheet now gives independent reviewers fields for accountable roles, bounded scope, redacted evidence references, rationale, expiry, and escalation. It is not an approval or data-intake tool: every supplied candidate remains ineligible until independent evidence supports every listed gate. No asset was collected, downloaded, opened, copied, processed, stored, transferred, trained on, inferred from, or evaluated." },
   { date: "27 AUG 2026", title: "Independent governance dossier keeps all supplied dataset candidates ineligible", status: "PROVISIONAL" as const, icon: FileText, body: "A separate data-use governance dossier now names the authority, source-chain, license, ethics/data-protection, isolation, and analysis-plan evidence required before any future data-use decision. It records only a scalar ineligible posture and routes every unresolved issue to independent review. No asset was downloaded, opened, copied, processed, stored, transferred, trained on, inferred from, or evaluated; this is not data, privacy, clinical, model, deployment, or runtime evidence." },
   { date: "27 AUG 2026", title: "Public dataset-page review closes all supplied candidates as ineligible for data use", status: "PROVISIONAL" as const, icon: FileText, body: "Three user-supplied public dataset pages were reviewed for visible description and license/access presentation only. No candidate passed a data-use gate: page-level terms, an unresolved license, or unresolved upstream source conditions require separate governance. No asset was downloaded, opened, copied, or processed. This is public-metadata evidence only—not provenance, consent, privacy, clinical, data-quality, model, performance, deployment, or runtime evidence." },
   { date: "27 AUG 2026", title: "Final local audit confirms the completed synthetic marker-rejection chain remains source-only", status: "PROVISIONAL" as const, icon: FileText, body: "The current aggregate Agent quality suite and focused import checks passed for the marker validator, one-use receipt consumer, in-memory terminal ledger, disabled application fake, and fixed composition. The chain retains immutable scalar closure from a generated declaration to a blocked/no-evaluation/no-execution readout. This is a final local source-only audit—not real patient-data detection, transfer prevention, privacy, security, hospital integration, clinical evidence, deployment, or runtime proof." },
@@ -363,21 +364,26 @@ export default function ResearchLog() {
       <header className="doc-topbar log-topbar"><div className="log-institutional-seal" aria-label="Aggregator Ledger institutional archive seal"><span className="seal-rules" aria-hidden="true"><i /><i /><i /><b /></span><p>12 / RESEARCH LOG</p></div><span className="topbar-meta"><CalendarDays size={15} />GMT+6 chronology</span></header>
       <section className="page-title"><p className="folio">12.0 / DECISIONS OVER TIME</p><h1>Keep the failed runs.<br /><i>They are evidence too.</i></h1><p>Every consequential change records its context, evidence, decision, consequence, status, and next action. The log is chronological by design.</p></section>
       <section className="log-ledger">
-        {entries.map((entry, index) => {
-          const Icon = entry.icon;
-          const chapter = index % VOLUME_SIZE === 0 ? archiveVolume(index) : null;
-          const volume = archiveVolume(Math.floor(index / VOLUME_SIZE) * VOLUME_SIZE);
-          return (
-            <div className="ledger-record" key={entry.title}>
-              {chapter ? <div className="log-chapter"><div className="log-chapter-tab"><span>{chapter.label}</span><small>{chapter.range}</small></div><div><h2>{chapter.title}</h2><p>{chapter.note}</p></div><small>{chapter.range}</small></div> : null}
-              <article className={`log-entry status-${entry.status.toLowerCase()}`} data-evidence-state={entry.status}>
-                <div className="log-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
-                <div className="log-date">{entry.date}</div>
-                <div className="log-content"><div className="log-title-row"><h2>{entry.title}</h2><StatusStamp status={entry.status} /></div><p>{entry.body}</p><a href="#open-decisions">Evidence and decision record <ArrowUpRight size={15} /></a></div>
-                <aside className="log-evidence"><div className="evidence-ledger-head"><span className="evidence-kicker">PROOF STATE</span><small>REC. {String(index + 1).padStart(2, "0")}</small></div><div className="evidence-state-pair"><Icon size={20} /><StatusStamp status={entry.status} /></div><strong>{entry.status}</strong><span>{evidenceLanguage[entry.status]}</span><small>{volume.label} / {entry.date}</small></aside>
-              </article>
-            </div>
-          );
+        {Array.from({ length: Math.ceil(entries.length / VOLUME_SIZE) }, (_, volumeIndex) => {
+          const start = volumeIndex * VOLUME_SIZE;
+          const volume = archiveVolume(start);
+          const records = entries.slice(start, start + VOLUME_SIZE);
+          return <section className="archive-volume" key={volume.label}>
+            <header className="log-chapter"><div className="log-chapter-tab"><span>{volume.label}</span><small>{volume.range}</small></div><div><span className="chapter-kicker">BOUND CHRONOLOGY</span><h2>{volume.title}</h2><p>{volume.note}</p></div><aside className="volume-evidence"><span>PROVENANCE SPINE</span><strong>{volume.range}</strong><small>proof states retained</small></aside></header>
+            <details className="archive-records" open={volume.number === 1}>
+              <summary><span>{volume.number === 1 ? "CURRENT VOLUME / OPEN" : "ARCHIVED VOLUME / SELECT TO REVIEW"}</span><small>{records.length} RECORDS · {volume.range}</small><ChevronDown size={16} /></summary>
+              <div className="archive-record-list">{records.map((entry, offset) => {
+                const index = start + offset;
+                const Icon = entry.icon;
+                return <article className={`log-entry status-${entry.status.toLowerCase()}`} data-evidence-state={entry.status} key={entry.title}>
+                  <div className="log-marker"><span>{String(index + 1).padStart(2, "0")}</span></div>
+                  <div className="log-date">{entry.date}</div>
+                  <div className="log-content"><div className="log-title-row"><h2>{entry.title}</h2><StatusStamp status={entry.status} /></div><p>{entry.body}</p><a href="#open-decisions">Evidence and decision record <ArrowUpRight size={15} /></a></div>
+                  <aside className="log-evidence"><div className="evidence-ledger-head"><span className="evidence-kicker">PROOF STATE</span><small>REC. {String(index + 1).padStart(2, "0")}</small></div><div className="evidence-state-pair"><Icon size={20} /><StatusStamp status={entry.status} /></div><strong>{entry.status}</strong><span>{evidenceLanguage[entry.status]}</span><small>{volume.label} / {entry.date}</small></aside>
+                </article>;
+              })}</div>
+            </details>
+          </section>;
         })}
       </section>
       <section id="open-decisions" className="open-questions"><div><span>OPEN DECISION / 008</span><h2>Which normalization policy belongs in the production vision model?</h2></div><p>Before the actual vision architecture enters a federated round, document whether BatchNorm buffers are aggregated, retained locally, frozen, or replaced. The answer must be tested on that architecture, not inferred from the earlier MLP simulation.</p><StatusStamp status="BLOCKED" /></section>

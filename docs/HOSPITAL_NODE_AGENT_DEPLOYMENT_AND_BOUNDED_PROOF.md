@@ -4744,6 +4744,12 @@ The [Independent Data-Use Governance Dossier for Supplied Breast-Cancer Dataset 
 
 This is documentation-only governance preparation. It does not authorize access to any candidate and does not access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
 
+## 197. Authority-ready data-use decision worksheet — ineligible data-use record
+
+The [Authority-Ready Data-Use Decision Worksheet](./KAGGLE_BREAST_CANCER_DATASET_DATA_USE_DECISION_WORKSHEET.md) now supplies blank, non-authoritative fields for independent evidence references, accountable roles, bounded scope, decision rationale, expiry, and escalation. Its gate register preserves every supplied candidate at `ineligible` and provides no route by which the documentation site or source-only Agent can approve, collect, receive, inspect, or use a dataset asset.
+
+This is a blank review aid, not an approval, consent, ethics, license, data-protection, or technical-access record. It does not collect, access, download, open, copy, process, inspect, classify, store, retrieve, or transfer any dataset asset, patient data, medical image, clinical text, identifier, label, annotation, metadata export, or model artifact. It does not establish provenance, consent, de-identification, license sufficiency, legal or institutional approval, privacy, clinical suitability, data quality, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior. All data-use eligibility remains unassigned and ineligible pending independent evidence for every listed gate.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)

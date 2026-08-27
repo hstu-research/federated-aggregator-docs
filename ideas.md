@@ -69,3 +69,4 @@
 - Research Log chapter clusters use dark index tabs, volume labels, visible index ranges, and stronger ruled divisions so the chronology reads as a bound ledger rather than a uniform feed.
 - The evidence margin carries proof-state, semantic status stamp, record number, and chronology label as mandatory evidence infrastructure; titles, stamps, metadata, and body text follow a deliberately scan-first editorial hierarchy.
 - Hospital Node document records use named archival volumes with a dedicated provenance lane per volume; generic document rows remain a quiet substrate beneath the ruled tab, range, status stamp, and evidence context.
+- Research Log volumes default closed except the current record cluster, so a full-page scan surfaces named ranges, archive tabs, and provenance context before individual entries; every retained record remains available through its volume’s explicit review control.
