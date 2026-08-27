@@ -4654,6 +4654,12 @@ The new [Synthetic FedProx Thesis Integrated Manuscript](./SYNTHETIC_FEDPROX_THE
 
 This is a documentation-only manuscript assembly record. It does not certify academic submission, ethics, legal, clinical, privacy, security, operational, deployment, or runtime readiness, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
 
+## 182. Final editorial handoff checklist — documentation-only closure record
+
+The new [Synthetic FedProx Thesis Final Editorial Handoff Checklist](./SYNTHETIC_FEDPROX_THESIS_EDITORIAL_HANDOFF_CHECKLIST.md) provides a bounded review sequence for the integrated manuscript. It permits clarity, organization, citation, and institution-specific format review only while retaining the mandatory source-only absence statements and routing any requested stronger claim to independent future governance.
+
+This is a documentation-only editorial handoff record. It does not record a supervisor decision, academic submission, ethics determination, research authorization, clinical review, privacy assessment, security conclusion, deployment decision, or runtime proof, and it does not add data/model access, training, inference, metrics, update, submission, aggregation, external adapter, remote observation, target action, runtime invocation, hospital integration, clinical evaluation, privacy outcome, performance result, or deployment evidence.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
