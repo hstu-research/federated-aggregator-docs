@@ -4714,6 +4714,12 @@ The [Synthetic Patient-Data Marker Rejection Terminal Ledger Design](./SYNTHETIC
 
 This is local source-only in-memory state-machine evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not a database, filesystem, cache, queue, provider, service, network, audit trail, or persistent restart mechanism. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
 
+## 192. Synthetic marker-rejection disabled application fake — local source-only evidence record
+
+The [Synthetic Patient-Data Marker Rejection Disabled Application Design](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_DISABLED_APPLICATION_DESIGN.md) was implemented as an isolated deterministic Agent fake, and the [Synthetic Patient-Data Marker Rejection Disabled Application Evidence](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_DISABLED_APPLICATION_EVIDENCE.md) records the outcome. The fake accepts only one exact frozen terminal record and projects a frozen disabled blocked/no-evaluation/no-execution outcome; it denies altered records and suppresses replay. The Agent’s aggregate local quality suite passed.
+
+This is local source-only test-double evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not an application service, application endpoint, user interface, transport, provider, storage layer, data classifier, or runtime deployment. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
