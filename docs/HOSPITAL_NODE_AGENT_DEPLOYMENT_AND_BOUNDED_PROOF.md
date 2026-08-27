@@ -4720,6 +4720,12 @@ The [Synthetic Patient-Data Marker Rejection Disabled Application Design](./SYNT
 
 This is local source-only test-double evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not an application service, application endpoint, user interface, transport, provider, storage layer, data classifier, or runtime deployment. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
 
+## 193. Synthetic marker-rejection composition — local source-only evidence record
+
+The [Synthetic Patient-Data Marker Rejection Composition Design](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_COMPOSITION_DESIGN.md) was implemented as one fixed generated-marker Agent composition check, and the [Synthetic Patient-Data Marker Rejection Composition Evidence](./SYNTHETIC_PATIENT_DATA_MARKER_REJECTION_COMPOSITION_EVIDENCE.md) records the outcome. The check composes the existing validator, one-use consumer, in-memory terminal ledger, and disabled fake into one fresh frozen scalar blocked/no-evaluation/no-execution readout. It accepts no caller input and exposes no inner receipt, record, or capability. The Agent’s aggregate local quality suite passed.
+
+This is local source-only composition evidence. It does not receive, ingest, upload, access, inspect, classify, store, retrieve, or process patient data, medical images, clinical text, identifiers, datasets, model artifacts, or real payloads. It is not an end-to-end data, clinical, hospital, service, deployment, or runtime workflow. It does not demonstrate patient-data detection, transfer prevention in an operating system, privacy, security, compliance, hospital integration, clinical utility, training, inference, metrics, update, submission, aggregation, deployment, or runtime behavior.
+
 ## References
 
 [1] [NIST SP 800-207: Zero Trust Architecture](https://csrc.nist.gov/pubs/sp/800/207/final)
