@@ -32,6 +32,7 @@ export default function Home() {
           <h1>A global model is a release,<br /><i>not a score.</i></h1>
           <p className="hero-lede">A documentation-first research ledger for the central service that validates hospital updates, coordinates federated rounds, and publishes approved model versions with traceable evidence.</p>
           <div className="hero-actions">
+            <Link href="/demo" className="editorial-link" style={{ background: "#0d7c78", color: "#ffffff", padding: "8px 16px", borderRadius: "6px", fontWeight: "600" }}>Launch Live Demo Cockpit <ChevronRight size={17} /></Link>
             <Link href="/architecture" className="editorial-link">Read the architecture <ChevronRight size={17} /></Link>
             <Link href="/api" className="editorial-link muted">Inspect the API contract <ChevronRight size={17} /></Link>
           </div>

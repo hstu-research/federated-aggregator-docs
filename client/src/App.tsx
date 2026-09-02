@@ -8,6 +8,7 @@ import EngineeringStandards from "@/pages/EngineeringStandards";
 import ImplementationPlan from "@/pages/ImplementationPlan";
 import ApiReference from "@/pages/ApiReference";
 import Home from "@/pages/Home";
+import DemoCockpit from "@/pages/DemoCockpit";
 import HospitalNode from "@/pages/HospitalNode";
 import NotFound from "@/pages/NotFound";
 import Requirements from "@/pages/Requirements";
@@ -23,6 +24,7 @@ function Router() {
     <DocsShell>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/demo" component={DemoCockpit} />
         <Route path="/requirements" component={Requirements} />
         <Route path="/technical-requirements" component={TechnicalRequirements} />
         <Route path="/architecture" component={Architecture} />

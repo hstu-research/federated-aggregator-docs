@@ -203,7 +203,29 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
+function vitePluginDemoApi(): Plugin {
+  return {
+    name: "demo-api-middleware",
+    async configureServer(server: ViteDevServer) {
+      const { createDemoApiRouter } = await import("./server/demo-backend.js");
+      const express = (await import("express")).default;
+      const app = express();
+      app.use(express.json());
+      app.use(createDemoApiRouter());
+      server.middlewares.use(app);
+    },
+  };
+}
+
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  vitePluginManusRuntime(),
+  vitePluginManusDebugCollector(),
+  vitePluginStorageProxy(),
+  vitePluginDemoApi(),
+];
 
 export default defineConfig({
   plugins,
