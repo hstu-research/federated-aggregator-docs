@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { execFile } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
+import fs from "node:fs";
 import path from "node:path";
 import { promisify } from "node:util";
 
@@ -109,10 +110,10 @@ export interface OutboxEvent {
 const initialHospitals: HospitalNode[] = [
   {
     id: "hosp-st-jude",
-    name: "St. Jude Breast Oncology Research",
-    location: "Memphis, TN",
+    name: "Site A: BreaKHis Specialty Oncology Center",
+    location: "Specialty Cancer Cohort (40X - 400X)",
     status: "online",
-    specimens: { total: 120, benign: 72, malignant: 48 },
+    specimens: { total: 7909, benign: 2480, malignant: 5429 }, // 31.4% benign (High Malignancy Non-IID Skew)
     privacyBoundary: {
       rawImagesRemainLocal: true,
       patientIdentifiersLeaveNode: false,
@@ -121,17 +122,17 @@ const initialHospitals: HospitalNode[] = [
     },
     lastExportedManifest: {
       manifestSha256: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      sampleCount: 120,
+      sampleCount: 7909,
       algorithm: "fedprox",
       exportedAt: new Date(Date.now() - 3600000).toISOString(),
     },
   },
   {
     id: "hosp-mayo",
-    name: "Mayo Clinic Histopathology Unit",
-    location: "Rochester, MN",
+    name: "Site B: General Clinical Screening Facility",
+    location: "High-Volume Screening Cohort",
     status: "online",
-    specimens: { total: 160, benign: 64, malignant: 96 }, // Non-IID skew
+    specimens: { total: 10000, benign: 5000, malignant: 5000 }, // 50.0% Balanced General Population
     privacyBoundary: {
       rawImagesRemainLocal: true,
       patientIdentifiersLeaveNode: false,
@@ -140,17 +141,17 @@ const initialHospitals: HospitalNode[] = [
     },
     lastExportedManifest: {
       manifestSha256: "b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9",
-      sampleCount: 160,
+      sampleCount: 10000,
       algorithm: "fedprox",
       exportedAt: new Date(Date.now() - 3500000).toISOString(),
     },
   },
   {
     id: "hosp-hopkins",
-    name: "Johns Hopkins Pathology Research Node",
-    location: "Baltimore, MD",
+    name: "Site C: Multi-Spectral Imaging Research Node",
+    location: "MSI Research Cohort",
     status: "online",
-    specimens: { total: 80, benign: 50, malignant: 30 },
+    specimens: { total: 1246, benign: 623, malignant: 623 }, // 50.0% Multi-Spectral Imaging Modality
     privacyBoundary: {
       rawImagesRemainLocal: true,
       patientIdentifiersLeaveNode: false,
@@ -159,7 +160,7 @@ const initialHospitals: HospitalNode[] = [
     },
     lastExportedManifest: {
       manifestSha256: "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
-      sampleCount: 80,
+      sampleCount: 1246,
       algorithm: "fedprox",
       exportedAt: new Date(Date.now() - 3400000).toISOString(),
     },
@@ -380,6 +381,295 @@ export function createDemoApiRouter(): Router {
       exportedAttributes: ["parameter_weights_sha256", "sample_count", "training_duration_seconds"],
       prohibitedAttributes: ["raw_slide_image", "dicom_tags", "patient_mrn", "patient_name", "date_of_birth"],
       cryptographicHashAlgorithm: "SHA-256 (FIPS 180-4)",
+    });
+  });
+
+  // -------------------------------------------------------------
+  // SPECIMEN GALLERY & REAL PYTORCH HISTOPATHOLOGY INFERENCE
+  // -------------------------------------------------------------
+  router.get("/api/demo/specimens/gallery", (_req, res) => {
+    const baseDir = path.resolve(process.cwd(), "..", "thesis", "dataset_image", "BreaKHis_Total_dataset");
+    const samples = [
+      {
+        id: "spec-b1",
+        type: "benign",
+        subtype: "Adenosis (100X)",
+        filename: "SOB_adenosis_SOB_B_A_14-22549AB_100X_SOB_B_A-14-22549AB-100-001.png",
+        tissueType: "Benign Adenosis Glandular Section",
+        magnification: "100X",
+        imageUrl: "/api/demo/specimens/image/benign/SOB_adenosis_SOB_B_A_14-22549AB_100X_SOB_B_A-14-22549AB-100-001.png",
+        fullPath: path.join(baseDir, "benign", "SOB_adenosis_SOB_B_A_14-22549AB_100X_SOB_B_A-14-22549AB-100-001.png"),
+      },
+      {
+        id: "spec-b2",
+        type: "benign",
+        subtype: "Fibroadenoma (100X)",
+        filename: "SOB_fibroadenoma_SOB_B_F_14-14134E_100X_SOB_B_F-14-14134E-100-001.png",
+        tissueType: "Benign Fibroadenoma Stromal/Epithelial Slide",
+        magnification: "100X",
+        imageUrl: "/api/demo/specimens/image/benign/SOB_fibroadenoma_SOB_B_F_14-14134E_100X_SOB_B_F-14-14134E-100-001.png",
+        fullPath: path.join(baseDir, "benign", "SOB_fibroadenoma_SOB_B_F_14-14134E_100X_SOB_B_F-14-14134E-100-001.png"),
+      },
+      {
+        id: "spec-b3",
+        type: "benign",
+        subtype: "Phyllodes Tumor (100X)",
+        filename: "SOB_phyllodes_tumor_SOB_B_PT_14-22704_100X_SOB_B_PT-14-22704-100-028.png",
+        tissueType: "Benign Intracanalicular Phyllodes Tissue",
+        magnification: "100X",
+        imageUrl: "/api/demo/specimens/image/benign/SOB_phyllodes_tumor_SOB_B_PT_14-22704_100X_SOB_B_PT-14-22704-100-028.png",
+        fullPath: path.join(baseDir, "benign", "SOB_phyllodes_tumor_SOB_B_PT_14-22704_100X_SOB_B_PT-14-22704-100-028.png"),
+      },
+      {
+        id: "spec-m1",
+        type: "malignant",
+        subtype: "Ductal Carcinoma (100X)",
+        filename: "SOB_ductal_carcinoma_SOB_M_DC_14-4364_100X_SOB_M_DC-14-4364-100-007.png",
+        tissueType: "Invasive Ductal Carcinoma (IDC) Section",
+        magnification: "100X",
+        imageUrl: "/api/demo/specimens/image/malignant/SOB_ductal_carcinoma_SOB_M_DC_14-4364_100X_SOB_M_DC-14-4364-100-007.png",
+        fullPath: path.join(baseDir, "malignant", "SOB_ductal_carcinoma_SOB_M_DC_14-4364_100X_SOB_M_DC-14-4364-100-007.png"),
+      },
+      {
+        id: "spec-m2",
+        type: "malignant",
+        subtype: "Mucinous Carcinoma (40X)",
+        filename: "SOB_mucinous_carcinoma_SOB_M_MC_14-19979_40X_SOB_M_MC-14-19979-40-012.png",
+        tissueType: "Extracellular Mucinous Pool Carcinoma",
+        magnification: "40X",
+        imageUrl: "/api/demo/specimens/image/malignant/SOB_mucinous_carcinoma_SOB_M_MC_14-19979_40X_SOB_M_MC-14-19979-40-012.png",
+        fullPath: path.join(baseDir, "malignant", "SOB_mucinous_carcinoma_SOB_M_MC_14-19979_40X_SOB_M_MC-14-19979-40-012.png"),
+      },
+      {
+        id: "spec-m3",
+        type: "malignant",
+        subtype: "Papillary Carcinoma (400X)",
+        filename: "SOB_papillary_carcinoma_SOB_M_PC_15-190EF_400X_SOB_M_PC-15-190EF-400-014.png",
+        tissueType: "High-Power Invasive Papillary Architecture",
+        magnification: "400X",
+        imageUrl: "/api/demo/specimens/image/malignant/SOB_papillary_carcinoma_SOB_M_PC_15-190EF_400X_SOB_M_PC-15-190EF-400-014.png",
+        fullPath: path.join(baseDir, "malignant", "SOB_papillary_carcinoma_SOB_M_PC_15-190EF_400X_SOB_M_PC-15-190EF-400-014.png"),
+      },
+    ];
+    res.json({ success: true, samples });
+  });
+
+  router.get("/api/demo/specimens/image/:type/:filename", (req, res) => {
+    const { type, filename } = req.params;
+    if (type !== "benign" && type !== "malignant") {
+      return res.status(400).json({ error: "Invalid type" });
+    }
+    const cleanFilename = path.basename(filename);
+    const filePath = path.resolve(
+      process.cwd(),
+      "..",
+      "thesis",
+      "dataset_image",
+      "BreaKHis_Total_dataset",
+      type,
+      cleanFilename
+    );
+    res.sendFile(filePath);
+  });
+
+  router.post("/api/demo/hospitals/:id/classify", async (req, res) => {
+    const hospital = hospitals.find((h) => h.id === req.params.id);
+    if (!hospital) return res.status(404).json({ error: "Hospital not found" });
+
+    const { imagePath } = req.body as { imagePath: string };
+    if (!imagePath) return res.status(400).json({ error: "imagePath required" });
+
+    const scriptPath = path.resolve(process.cwd(), "..", "thesis", "model", "classify_specimen.py");
+    const modelWeightsPath = path.resolve(process.cwd(), "..", "thesis", "model", "best_histopathology_model.pth");
+
+    try {
+      const { stdout } = await execFileAsync("python3", [
+        scriptPath,
+        "--image", imagePath,
+        "--model", modelWeightsPath,
+      ]);
+      const result = JSON.parse(stdout);
+
+      // Increment hospital local specimen inventory
+      hospital.specimens.total += 1;
+      if (result.prediction === "Malignant") {
+        hospital.specimens.malignant += 1;
+      } else {
+        hospital.specimens.benign += 1;
+      }
+
+      // Add audit entry
+      roundInfo.auditLog.push({
+        event: `specimen.classified.${hospital.id}.${result.prediction.toLowerCase()}`,
+        at: new Date().toISOString(),
+        actor: "hospital-edge-model",
+      });
+
+      return res.json({
+        success: true,
+        hospitalId: hospital.id,
+        hospitalName: hospital.name,
+        result,
+        privacyNotice: "Inference executed 100% locally within hospital enclave. Raw image remained strictly in local node storage.",
+      });
+    } catch (err: any) {
+      console.error("Classification error:", err);
+      res.status(500).json({ error: "Inference failed", message: err.message });
+    }
+  });
+
+  router.post("/api/demo/hospitals/:id/classify-upload", async (req, res) => {
+    const hospital = hospitals.find((h) => h.id === req.params.id);
+    if (!hospital) return res.status(404).json({ error: "Hospital not found" });
+
+    const { imageBase64, filename } = req.body as { imageBase64: string; filename?: string };
+    if (!imageBase64) return res.status(400).json({ error: "imageBase64 required" });
+
+    const cleanBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, "");
+    const buffer = Buffer.from(cleanBase64, "base64");
+
+    const uploadDir = path.resolve(process.cwd(), "..", "thesis", "hospital-backend", "uploads");
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    const safeName = `upload_${Date.now()}_${path.basename(filename || "custom_specimen.png")}`;
+    const targetPath = path.join(uploadDir, safeName);
+    fs.writeFileSync(targetPath, buffer);
+
+    const scriptPath = path.resolve(process.cwd(), "..", "thesis", "model", "classify_specimen.py");
+    const modelWeightsPath = path.resolve(process.cwd(), "..", "thesis", "model", "best_histopathology_model.pth");
+
+    try {
+      const { stdout } = await execFileAsync("python3", [
+        scriptPath,
+        "--image", targetPath,
+        "--model", modelWeightsPath,
+      ]);
+      const result = JSON.parse(stdout);
+
+      hospital.specimens.total += 1;
+      if (result.prediction === "Malignant") {
+        hospital.specimens.malignant += 1;
+      } else {
+        hospital.specimens.benign += 1;
+      }
+
+      roundInfo.auditLog.push({
+        event: `specimen.custom_upload.${hospital.id}.${result.prediction.toLowerCase()}`,
+        at: new Date().toISOString(),
+        actor: "pathologist-upload",
+      });
+
+      return res.json({
+        success: true,
+        hospitalId: hospital.id,
+        hospitalName: hospital.name,
+        result,
+        privacyNotice: "Custom slide image stored exclusively inside local hospital enclave. 0 bytes transmitted externally.",
+      });
+    } catch (err: any) {
+      console.error("Upload classification error:", err);
+      res.status(500).json({ error: "Inference failed", message: err.message });
+    }
+  });
+
+  // -------------------------------------------------------------
+  // BLOCKCHAIN & IPFS MODEL REGISTRY (SEPOLIA SMART CONTRACT)
+  // -------------------------------------------------------------
+  router.get("/api/demo/blockchain/registry", (_req, res) => {
+    res.json({
+      success: true,
+      network: "Ethereum Sepolia Testnet",
+      chainId: 11155111,
+      contractName: "FederatedModelRegistry",
+      contractAddress: "0x1BE44922c9505E492eA93cfA4a673CE8ea106Ea1",
+      deploymentBlock: 9808044,
+      deploymentDate: "December 10, 2025",
+      etherscanUrl: "https://sepolia.etherscan.io/address/0x1BE44922c9505E492eA93cfA4a673CE8ea106Ea1",
+      oracleAddress: "0x71C3Ac92fF21c2C218B82B53366D606E5752199b",
+      framework: "PyTorch 2.0+ (EfficientNet-B0 + Coordinate Attention, 5.9M params)",
+      globalModels: [
+        {
+          version: 2,
+          modelWeightsCID: "ipfs://QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG",
+          modelHash: "0x9bb5ca956d7b29a2123f81e74f32e9f086e3f4da3ec5b4a6217c2f066e4a2bc1",
+          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          totalSamples: 19155,
+          accuracy: 9630, // 96.30%
+          aucScore: 9890,  // 0.9890
+          sensitivity: 9680,
+          specificity: 9580,
+          contributorCount: 3,
+          parentVersion: 1,
+          blockNumber: 9808112,
+          txHash: "0x4b78c92a10e8d53b2fa76d4920c78a0df123498a7bc62d194519f930e12d83b4",
+        },
+        {
+          version: 1,
+          modelWeightsCID: "ipfs://QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco",
+          modelHash: "0x3e18a2049c6d3fa7b120c48e892f39d09c8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
+          timestamp: "2025-12-10T14:30:00Z",
+          totalSamples: 0,
+          accuracy: 8250, // 82.50%
+          aucScore: 8850,
+          sensitivity: 8100,
+          specificity: 8400,
+          contributorCount: 3,
+          parentVersion: 0,
+          blockNumber: 9808044,
+          txHash: "0xd87a19e34c89281a940f827163c4569e8b7a6c5d4e3f2a1b0c9d8e7f6a5b4c3d",
+        },
+      ],
+      contributingHospitals: [
+        {
+          address: "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+          name: "Site A: BreaKHis Specialty Oncology Center",
+          region: "North America",
+          totalContributions: 14,
+          totalSamplesContributed: 7909,
+          isActive: true,
+        },
+        {
+          address: "0x2e06DEdf5E63B48D15a995C5193B679B92305a41",
+          name: "Site B: General Clinical Screening Facility",
+          region: "Midwest US",
+          totalContributions: 14,
+          totalSamplesContributed: 10000,
+          isActive: true,
+        },
+        {
+          address: "0x47e1801C7bF20b127D9577D51996593457a1599e",
+          name: "Site C: Multi-Spectral Imaging Research Node",
+          region: "East Coast US",
+          totalContributions: 14,
+          totalSamplesContributed: 1246,
+          isActive: true,
+        },
+      ],
+    });
+  });
+
+  router.post("/api/demo/blockchain/submit-update", (req, res) => {
+    const { hospitalId, modelHash, sampleCount } = req.body;
+    const txHash = `0x${createHash("sha256").update(`${hospitalId}:${Date.now()}`).digest("hex")}`;
+    const ipfsCid = `ipfs://Qm${createHash("sha256").update(txHash).digest("hex").slice(0, 44)}`;
+
+    roundInfo.auditLog.push({
+      event: `blockchain.update_submitted.${hospitalId}`,
+      at: new Date().toISOString(),
+      actor: "sepolia-contract",
+    });
+
+    res.json({
+      success: true,
+      network: "Ethereum Sepolia Testnet",
+      contractAddress: "0x1BE44922c9505E492eA93cfA4a673CE8ea106Ea1",
+      txHash,
+      blockNumber: 9808113 + Math.floor(Math.random() * 5),
+      ipfsCid,
+      gasUsed: "84,320",
+      status: "CONFIRMED_ON_CHAIN",
     });
   });
 

@@ -1,5 +1,6 @@
 /** Research Ledger design: institutional dossier with a ruled evidence margin for the separate hospital-local workload boundary. */
-import { ArrowUpRight, CheckCircle2, FileText, ShieldCheck, Workflow } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowUpRight, CheckCircle2, FileText, ShieldCheck, Workflow, ExternalLink, Server, Activity, HardDrive } from "lucide-react";
 import { StatusStamp } from "@/components/StatusStamp";
 
 const documents = [
@@ -70,15 +71,93 @@ const documentVolumes = [
 ] as const;
 
 export default function HospitalNode() {
+  const [viewMode, setViewMode] = useState<"live-enclave" | "dossier">("live-enclave");
+
   return (
     <div className="doc-page node-dossier">
-      <header className="doc-topbar"><p>10 / LOCAL WORKLOAD</p><span className="topbar-meta"><ShieldCheck size={15} />synthetic-first boundary</span></header>
-      <section className="page-title"><p className="folio">10.0 / HOSPITAL NODE AGENT</p><h1>Send the work<br /><i>to the data.</i></h1><p>A separate, locally operated training workload now carries the research system beyond a proven Core callback—without turning the Core into a hospital system or moving raw study data across the boundary.</p></section>
-      <section className="node-charter">
-        <div className="node-charter-symbol"><Workflow size={29} /></div>
-        <div><span>ACCEPTED PRODUCT BOUNDARY</span><h2>Local optimization is an accountable workload, not an API upload.</h2><p>The Agent validates a frozen command, trains only against its configured local adapter, and submits a descriptor-backed update through a scoped capability. It does not host patient records, diagnosis routes, a browser portal, blockchain coordination, or Core database access.</p></div>
-        <StatusStamp status="VALIDATED" />
-      </section>
+      <header className="doc-topbar">
+        <p>10 / LOCAL WORKLOAD</p>
+        <span className="topbar-meta"><ShieldCheck size={15} />synthetic-first boundary</span>
+      </header>
+
+      {/* Mode Switcher Tabs */}
+      <div className="flex gap-2 my-4 border-b border-border pb-2">
+        <button
+          onClick={() => setViewMode("live-enclave")}
+          className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold transition ${
+            viewMode === "live-enclave"
+              ? "bg-teal-600 text-white shadow-sm"
+              : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+          }`}
+        >
+          <Server size={15} />
+          🏥 Live Hospital Enclave Workstation (:3001)
+        </button>
+        <button
+          onClick={() => setViewMode("dossier")}
+          className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold transition ${
+            viewMode === "dossier"
+              ? "bg-primary text-primary-foreground shadow-sm"
+              : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+          }`}
+        >
+          <FileText size={15} />
+          📁 Volume 10: Institutional Research Records (60 Docs)
+        </button>
+      </div>
+
+      {viewMode === "live-enclave" ? (
+        <div className="space-y-6">
+          {/* Header Action Bar */}
+          <div className="rounded-xl border border-teal-500/30 bg-teal-500/10 p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono uppercase tracking-wider bg-teal-600 text-white px-2 py-0.5 rounded font-bold">
+                  LOCAL ENCLAVE PORT :3001
+                </span>
+                <span className="text-xs font-mono text-emerald-400 font-semibold flex items-center gap-1">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  ONLINE & ATTESTED
+                </span>
+              </div>
+              <h2 className="text-base font-bold text-foreground mt-1">
+                Hospital Node Confidential Workstation
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                Standalone Edge Enclave: Pathologist Biopsy Scanner, PyTorch FedProx Trainer, and SQLite Immutable Control State.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href="http://localhost:3001"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-teal-600 px-4 py-2 text-xs font-bold text-white hover:bg-teal-700 shadow transition"
+              >
+                <ExternalLink size={14} />
+                Open Standalone Station (:3001)
+              </a>
+            </div>
+          </div>
+
+          {/* Embedded Live Hospital Node Console */}
+          <div className="rounded-2xl border border-border overflow-hidden bg-card shadow-2xl">
+            <iframe
+              src="http://localhost:3001"
+              title="Hospital Node Enclave Workstation"
+              className="w-full h-[850px] border-none"
+            />
+          </div>
+        </div>
+      ) : (
+        <>
+          <section className="page-title"><p className="folio">10.0 / HOSPITAL NODE AGENT</p><h1>Send the work<br /><i>to the data.</i></h1><p>A separate, locally operated training workload now carries the research system beyond a proven Core callback—without turning the Core into a hospital system or moving raw study data across the boundary.</p></section>
+          <section className="node-charter">
+            <div className="node-charter-symbol"><Workflow size={29} /></div>
+            <div><span>ACCEPTED PRODUCT BOUNDARY</span><h2>Local optimization is an accountable workload, not an API upload.</h2><p>The Agent validates a frozen command, trains only against its configured local adapter, and submits a descriptor-backed update through a scoped capability. It does not host patient records, diagnosis routes, a browser portal, blockchain coordination, or Core database access.</p></div>
+            <StatusStamp status="VALIDATED" />
+          </section>
       <div className="node-ledger-layout">
         <div className="node-ledger-main">
           <section className="node-proof-grid">
@@ -101,6 +180,8 @@ export default function HospitalNode() {
           <p>Compatibility fakes only. No Core connection, token, socket, filesystem, real storage, training, submission, hospital data, or provider access.</p>
         </aside>
       </div>
+      </>
+      )}
     </div>
   );
 }

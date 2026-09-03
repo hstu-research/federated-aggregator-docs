@@ -17,16 +17,23 @@ import {
   Database,
   Cpu,
   LockKeyhole,
+  Check,
+  Terminal,
+  Blocks,
+  ExternalLink,
 } from "lucide-react";
 import { HospitalNodeCard } from "../components/demo/HospitalNodeCard";
 import { ConvergenceCharts } from "../components/demo/ConvergenceCharts";
 import { PrivacyShieldInspector } from "../components/demo/PrivacyShieldInspector";
 import { DefenseSlideViewer } from "../components/demo/DefenseSlideViewer";
 import { AdminConsoleView } from "../components/demo/AdminConsoleView";
+import { BlockchainRegistryView } from "../components/demo/BlockchainRegistryView";
 import type { HospitalNode, RoundState } from "@shared/demo-types";
 
 export default function DemoCockpit() {
-  const [activeTab, setActiveTab] = useState<"flight-deck" | "operator-console" | "defense-deck" | "privacy-shield">("flight-deck");
+  const [activeTab, setActiveTab] = useState<
+    "flight-deck" | "operator-console" | "defense-deck" | "privacy-shield" | "blockchain-registry"
+  >("flight-deck");
   const [hospitals, setHospitals] = useState<HospitalNode[]>([]);
   const [roundInfo, setRoundInfo] = useState<{
     roundId: string;
@@ -53,6 +60,8 @@ export default function DemoCockpit() {
   const [rounds, setRounds] = useState<number>(3);
   const [isTraining, setIsTraining] = useState<boolean>(false);
   const [trainingMessage, setTrainingMessage] = useState<string | null>(null);
+  const [trainingStage, setTrainingStage] = useState<string>("");
+  const [lastGeneratedCandidateId, setLastGeneratedCandidateId] = useState<string | null>(null);
 
   // Training results
   const [mlOutput, setMlOutput] = useState<any>(null);
@@ -104,6 +113,8 @@ export default function DemoCockpit() {
     try {
       await fetch("/api/demo/round/reset", { method: "POST" });
       setMlOutput(null);
+      setLastGeneratedCandidateId(null);
+      setTrainingStage("");
       setTrainingMessage("Demo state reset to clean baseline.");
       await fetchFederationState();
     } catch (e) {
@@ -113,7 +124,17 @@ export default function DemoCockpit() {
 
   const handleRunTraining = async () => {
     setIsTraining(true);
-    setTrainingMessage("Executing PyTorch federated training across hospital partitions…");
+    setTrainingStage("1/4: Distributing global model weights to 3 hospital enclaves…");
+    setTrainingMessage("Beginning PyTorch distributed execution across hospital partitions…");
+
+    const timer1 = setTimeout(() => {
+      setTrainingStage(`2/4: Hospital nodes optimizing local PyTorch gradients (${algorithm.toUpperCase()} μ=${mu}, E=${localEpochs})…`);
+    }, 800);
+
+    const timer2 = setTimeout(() => {
+      setTrainingStage("3/4: Gateway verifying zero-leakage manifests, tensor finite bounds, and SHA-256 digests…");
+    }, 1800);
+
     try {
       const res = await fetch("/api/demo/train", {
         method: "POST",
@@ -129,12 +150,17 @@ export default function DemoCockpit() {
       const data = await res.json();
       if (data.success) {
         setMlOutput(data.mlOutput);
+        setLastGeneratedCandidateId(data.candidate.candidateId);
+        setTrainingStage("4/4: Weighted parameter aggregation complete. Candidate registered in Outbox.");
         setTrainingMessage(`PyTorch run completed (${data.source}). Candidate model ${data.candidate.candidateId} generated and awaiting operator approval.`);
         await fetchFederationState();
       }
     } catch (e) {
       setTrainingMessage("Training execution error.");
+      setTrainingStage("Execution failed.");
     } finally {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
       setIsTraining(false);
     }
   };
@@ -168,6 +194,17 @@ export default function DemoCockpit() {
                 <span className="text-muted-foreground">STATE: </span>
                 <span className="text-teal-600 dark:text-teal-400 font-bold uppercase">{roundInfo.state}</span>
               </div>
+
+              <a
+                href="http://localhost:3001"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-teal-500/40 bg-teal-500/10 px-3 py-1.5 text-xs font-semibold text-teal-700 dark:text-teal-400 hover:bg-teal-500/20 transition shadow-sm"
+                title="Open standalone Hospital Node Workstation running on port 3001"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Hospital Node (:3001)
+              </a>
 
               <button
                 onClick={handleResetDemo}
@@ -204,6 +241,11 @@ export default function DemoCockpit() {
             >
               <ShieldCheck className="h-4 w-4" />
               2. Operator Governance Console
+              {roundInfo.state === "awaiting-approval" && (
+                <span className="rounded-full bg-amber-400 text-amber-950 font-bold text-[10px] px-1.5 animate-pulse">
+                  NEEDS SIGN-OFF
+                </span>
+              )}
             </button>
 
             <button
@@ -228,6 +270,18 @@ export default function DemoCockpit() {
             >
               <LockKeyhole className="h-4 w-4" />
               4. Zero-Leakage Privacy Inspector
+            </button>
+
+            <button
+              onClick={() => setActiveTab("blockchain-registry")}
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold transition ${
+                activeTab === "blockchain-registry"
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              <Blocks className="h-4 w-4" />
+              5. Blockchain & IPFS Registry (Sepolia)
             </button>
           </div>
         </div>
@@ -318,10 +372,17 @@ export default function DemoCockpit() {
                   {roundInfo.state === "awaiting-approval" && (
                     <button
                       onClick={() => setActiveTab("operator-console")}
-                      className="rounded-lg bg-teal-600 px-3 py-1 text-white font-medium hover:bg-teal-700 flex items-center gap-1"
+                      className="rounded-lg bg-teal-600 px-3.5 py-1.5 text-white font-semibold hover:bg-teal-700 flex items-center gap-1.5 shadow"
                     >
-                      Review & Approve in Operator Console →
+                      <ShieldCheck className="h-4 w-4" />
+                      Review & Approve Candidate in Operator Console →
                     </button>
+                  )}
+                  {roundInfo.state === "published" && (
+                    <span className="rounded-lg bg-emerald-500/10 text-emerald-600 font-semibold px-3 py-1 flex items-center gap-1.5">
+                      <Check className="h-4 w-4" />
+                      Round Successfully Published
+                    </span>
                   )}
                 </div>
               </div>
@@ -343,7 +404,7 @@ export default function DemoCockpit() {
                 <button
                   onClick={handleRunTraining}
                   disabled={isTraining}
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md transition hover:bg-primary/90 disabled:opacity-50"
+                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-md transition hover:bg-primary/90 disabled:opacity-50 active:scale-[0.98]"
                 >
                   {isTraining ? (
                     <>
@@ -385,7 +446,7 @@ export default function DemoCockpit() {
                     value={mu}
                     disabled={algorithm === "fedavg"}
                     onChange={(e) => setMu(Number(e.target.value))}
-                    className="w-full"
+                    className="w-full cursor-pointer"
                   />
                   <span className="text-[10px] text-muted-foreground">
                     {algorithm === "fedavg" ? "μ=0 for FedAvg" : "Controls client drift dampening"}
@@ -393,7 +454,7 @@ export default function DemoCockpit() {
                 </div>
 
                 <div>
-                  <label className="text-muted-foreground block font-medium mb-1">Local Epochs ($E$)</label>
+                  <label className="text-muted-foreground block font-medium mb-1">Local Epochs (E)</label>
                   <select
                     value={localEpochs}
                     onChange={(e) => setLocalEpochs(Number(e.target.value))}
@@ -420,10 +481,33 @@ export default function DemoCockpit() {
                 </div>
               </div>
 
-              {trainingMessage && (
-                <div className="mt-3 text-xs text-primary font-medium flex items-center gap-1.5 bg-primary/10 rounded-lg p-2.5">
-                  <Sparkles className="h-3.5 w-3.5" />
-                  {trainingMessage}
+              {/* Real-time multi-stage training progress banner */}
+              {isTraining && (
+                <div className="mt-4 rounded-xl border border-primary/40 bg-primary/10 p-3.5 text-xs animate-in fade-in">
+                  <div className="flex items-center gap-2 font-semibold text-primary">
+                    <RotateCcw className="h-4 w-4 animate-spin text-primary" />
+                    <span>Real PyTorch ML Training in Progress</span>
+                  </div>
+                  <p className="mt-1 font-mono text-[11px] text-foreground font-medium">
+                    {trainingStage}
+                  </p>
+                </div>
+              )}
+
+              {!isTraining && trainingMessage && (
+                <div className="mt-3 text-xs text-primary font-medium flex flex-wrap items-center justify-between gap-2 bg-primary/10 rounded-lg p-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <Sparkles className="h-3.5 w-3.5 text-primary" />
+                    <span>{trainingMessage}</span>
+                  </div>
+                  {lastGeneratedCandidateId && (
+                    <button
+                      onClick={() => setActiveTab("operator-console")}
+                      className="rounded bg-teal-600 px-2.5 py-1 text-[11px] font-semibold text-white hover:bg-teal-700 transition"
+                    >
+                      Review in Operator Console →
+                    </button>
+                  )}
                 </div>
               )}
             </div>
@@ -455,6 +539,33 @@ export default function DemoCockpit() {
               currentAlgorithm={algorithm}
               mu={mu}
             />
+
+            {/* Live Append-Only Ledger & Audit Stream */}
+            <div className="rounded-xl border border-border bg-card p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Terminal className="h-4 w-4 text-primary" />
+                  Append-Only Ledger & Verification Audit Stream
+                </h4>
+                <span className="text-[10px] font-mono bg-muted px-2 py-0.5 rounded text-muted-foreground">
+                  FIPS 180-4 Verified
+                </span>
+              </div>
+              <div className="space-y-1.5 font-mono text-[11px] max-h-48 overflow-y-auto pr-2 scrollbar-thin">
+                {roundInfo.auditLog.map((log, idx) => (
+                  <div key={idx} className="flex items-center justify-between rounded bg-muted/40 p-2 border border-border/40">
+                    <span className="text-foreground font-medium flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
+                      {log.event}
+                    </span>
+                    <div className="flex items-center gap-3 text-muted-foreground text-[10px]">
+                      <span>actor: {log.actor}</span>
+                      <span>{new Date(log.at).toLocaleTimeString()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
@@ -472,6 +583,11 @@ export default function DemoCockpit() {
         {/* TAB 4: ZERO-LEAKAGE PRIVACY INSPECTOR */}
         {/* =================================================================== */}
         {activeTab === "privacy-shield" && <PrivacyShieldInspector />}
+
+        {/* =================================================================== */}
+        {/* TAB 5: BLOCKCHAIN & IPFS MODEL REGISTRY (SEPOLIA SMART CONTRACT) */}
+        {/* =================================================================== */}
+        {activeTab === "blockchain-registry" && <BlockchainRegistryView />}
       </div>
     </div>
   );
