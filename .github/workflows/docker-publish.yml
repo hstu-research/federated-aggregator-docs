@@ -48,3 +48,15 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Trigger Portainer Redeploy Webhook
+        if: success() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          if [ -n "${{ secrets.PORTAINER_WEBHOOK_URL }}" ]; then
+            echo "Triggering Portainer redeploy webhook..."
+            curl -k -X POST "${{ secrets.PORTAINER_WEBHOOK_URL }}"
+            echo "Portainer webhook triggered successfully!"
+          else
+            echo "PORTAINER_WEBHOOK_URL secret not set. Skipping redeploy webhook."
+          fi
+
