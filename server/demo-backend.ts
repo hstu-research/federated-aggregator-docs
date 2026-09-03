@@ -589,11 +589,14 @@ export function createDemoApiRouter(): Router {
       etherscanUrl: "https://sepolia.etherscan.io/address/0x1BE44922c9505E492eA93cfA4a673CE8ea106Ea1",
       oracleAddress: "0x71C3Ac92fF21c2C218B82B53366D606E5752199b",
       framework: "PyTorch 2.0+ (EfficientNet-B0 + Coordinate Attention, 5.9M params)",
+      ipfsGateway: "https://gateway.pinata.cloud/ipfs",
       globalModels: [
         {
           version: 2,
-          modelWeightsCID: "ipfs://QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG",
-          modelHash: "0x9bb5ca956d7b29a2123f81e74f32e9f086e3f4da3ec5b4a6217c2f066e4a2bc1",
+          modelWeightsCID: "ipfs://QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          rawCid: "QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          gatewayUrl: "https://gateway.pinata.cloud/ipfs/QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          modelHash: "0x8f06cf55c3c69e1c733ba08dcacffb650afd7fa7926c5e5b61af52683f6ce770",
           timestamp: new Date(Date.now() - 7200000).toISOString(),
           totalSamples: 19155,
           accuracy: 9630, // 96.30%
@@ -602,14 +605,17 @@ export function createDemoApiRouter(): Router {
           specificity: 9580,
           contributorCount: 3,
           parentVersion: 1,
-          blockNumber: 9808112,
+          blockNumber: 10254200,
           txHash: "0x4b78c92a10e8d53b2fa76d4920c78a0df123498a7bc62d194519f930e12d83b4",
+          pinService: "Pinata Cloud IPFS Swarm (24.1 MB)",
         },
         {
           version: 1,
-          modelWeightsCID: "ipfs://QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco",
-          modelHash: "0x3e18a2049c6d3fa7b120c48e892f39d09c8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a",
-          timestamp: "2025-12-10T14:30:00Z",
+          modelWeightsCID: "ipfs://QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          rawCid: "QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          gatewayUrl: "https://gateway.pinata.cloud/ipfs/QmW4CN7kJcKniWTG5byWfCoKuwfsCN2Cti4bYbmNtruzWw",
+          modelHash: "0x8f06cf55c3c69e1c733ba08dcacffb650afd7fa7926c5e5b61af52683f6ce770",
+          timestamp: "2026-02-13T20:01:36.000Z",
           totalSamples: 0,
           accuracy: 8250, // 82.50%
           aucScore: 8850,
@@ -617,13 +623,14 @@ export function createDemoApiRouter(): Router {
           specificity: 8400,
           contributorCount: 3,
           parentVersion: 0,
-          blockNumber: 9808044,
+          blockNumber: 10254150,
           txHash: "0xd87a19e34c89281a940f827163c4569e8b7a6c5d4e3f2a1b0c9d8e7f6a5b4c3d",
+          pinService: "Pinata Cloud IPFS Swarm (24.1 MB)",
         },
       ],
       contributingHospitals: [
         {
-          address: "0x89205A3A3b2A69De6Dbf7f01ED13B2108B2c43e7",
+          address: "0x684D0898D08766cA040a500b9060690a79540Cbe",
           name: "Site A: BreaKHis Specialty Oncology Center",
           region: "North America",
           totalContributions: 14,
@@ -631,7 +638,7 @@ export function createDemoApiRouter(): Router {
           isActive: true,
         },
         {
-          address: "0x2e06DEdf5E63B48D15a995C5193B679B92305a41",
+          address: "0x8f436B8df483cC87b42d5Df0CB629bC8Ed708177",
           name: "Site B: General Clinical Screening Facility",
           region: "Midwest US",
           totalContributions: 14,
@@ -639,7 +646,7 @@ export function createDemoApiRouter(): Router {
           isActive: true,
         },
         {
-          address: "0x47e1801C7bF20b127D9577D51996593457a1599e",
+          address: "0x373F4e6B2c1CFe1dC9A4C51eE5E15de451993106",
           name: "Site C: Multi-Spectral Imaging Research Node",
           region: "East Coast US",
           totalContributions: 14,

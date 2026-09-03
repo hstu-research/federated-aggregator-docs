@@ -275,10 +275,17 @@ export const BlockchainRegistryView: React.FC = () => {
                 {/* Lineage & IPFS CID */}
                 <div className="rounded-lg bg-muted/40 p-2.5 font-mono text-xs space-y-1.5 border border-border/60">
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">IPFS Model Weights CID:</span>
-                    <span className="text-foreground font-semibold truncate max-w-[240px]" title={m.modelWeightsCID}>
-                      {m.modelWeightsCID}
-                    </span>
+                    <span className="text-muted-foreground">IPFS Model Weights (Pinata):</span>
+                    <a
+                      href={`https://gateway.pinata.cloud/ipfs/${(m.modelWeightsCID || "").replace("ipfs://", "")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-teal-600 dark:text-teal-400 hover:underline inline-flex items-center gap-1 font-semibold truncate max-w-[240px]"
+                      title={`Open on Pinata IPFS Gateway: https://gateway.pinata.cloud/ipfs/${(m.modelWeightsCID || "").replace("ipfs://", "")}`}
+                    >
+                      <span>{m.modelWeightsCID}</span>
+                      <ExternalLink className="h-3 w-3 inline shrink-0" />
+                    </a>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-muted-foreground">SHA-256 Model Hash:</span>
